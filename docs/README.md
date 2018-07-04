@@ -1,2 +1,2 @@
-##Alluxio-master-for-Game-Theoretical-Cache-Sharing
+Alluxio-master-for-Game-Theoretical-Cache-Sharing
 ============
