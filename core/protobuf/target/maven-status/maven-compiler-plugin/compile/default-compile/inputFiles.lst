@@ -1,0 +1,9 @@
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/journal/KeyValue.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/util/proto/ProtoUtils.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/journal/Journal.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/status/Status.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/dataserver/Protocol.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/journal/Block.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/util/proto/ProtoMessage.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/journal/Lineage.java
+/Users/ybc/Downloads/alluxio-master-2/core/protobuf/src/main/java/alluxio/proto/journal/File.java

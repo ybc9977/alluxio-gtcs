@@ -1,0 +1,7 @@
+alluxio/hadoop/AbstractFileSystem.class
+alluxio/hadoop/FileSystem.class
+alluxio/hadoop/HadoopUtils.class
+alluxio/hadoop/HdfsFileInputStream.class
+alluxio/hadoop/AlluxioFileSystem.class
+alluxio/hadoop/FaultTolerantFileSystem.class
+alluxio/hadoop/HadoopConfigurationUtils.class
