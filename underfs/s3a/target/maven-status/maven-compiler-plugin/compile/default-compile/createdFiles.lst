@@ -1,0 +1,8 @@
+alluxio/underfs/s3a/S3AInputStream.class
+alluxio/underfs/s3a/S3AOutputStream.class
+alluxio/underfs/s3a/S3AUnderFileSystem$1.class
+alluxio/underfs/s3a/S3AUtils.class
+alluxio/underfs/s3a/S3AUnderFileSystem$S3AObjectListingChunkV1.class
+alluxio/underfs/s3a/S3AUnderFileSystemFactory.class
+alluxio/underfs/s3a/S3AUnderFileSystem.class
+alluxio/underfs/s3a/S3AUnderFileSystem$S3AObjectListingChunk.class

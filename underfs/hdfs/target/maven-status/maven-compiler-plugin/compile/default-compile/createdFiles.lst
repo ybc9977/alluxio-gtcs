@@ -1,0 +1,6 @@
+alluxio/underfs/hdfs/HdfsUnderFileOutputStream.class
+alluxio/underfs/hdfs/HdfsUnderFileSystem$2.class
+alluxio/underfs/hdfs/HdfsUnderFileSystem.class
+alluxio/underfs/hdfs/HdfsUnderFileSystem$1.class
+alluxio/underfs/hdfs/HdfsUnderFileSystemFactory.class
+alluxio/underfs/hdfs/HdfsUnderFileInputStream.class
