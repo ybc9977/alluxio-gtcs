@@ -1,0 +1,5 @@
+alluxio/client/ByteArrayOutStream.class
+alluxio/client/keyvalue/PayloadReaderWriterTest.class
+alluxio/client/keyvalue/BaseKeyValuePartitionWriterTest.class
+alluxio/client/keyvalue/LinearProbingIndexTest.class
+alluxio/client/keyvalue/ByteBufferKeyValuePartitionReaderTest.class

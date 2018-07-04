@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.0.1' threshold='low' effort='max'><Error></Error><Project><SrcDir>/Users/ybc/Downloads/alluxio-master-2/keyvalue/server/src/main/java</SrcDir><SrcDir>/Users/ybc/Downloads/alluxio-master-2/keyvalue/server/target/generated-sources/annotations</SrcDir><SrcDir>/Users/ybc/Downloads/alluxio-master-2/keyvalue/server/src/test/java</SrcDir></Project></BugCollection>

@@ -1,0 +1,6 @@
+alluxio/hadoop/mapreduce/KeyValueInputSplit.class
+alluxio/hadoop/mapreduce/KeyValueRecordWriter.class
+alluxio/hadoop/mapreduce/KeyValueRecordReader.class
+alluxio/hadoop/mapreduce/KeyValueOutputCommitter.class
+alluxio/hadoop/mapreduce/KeyValueInputFormat.class
+alluxio/hadoop/mapreduce/KeyValueOutputFormat.class
