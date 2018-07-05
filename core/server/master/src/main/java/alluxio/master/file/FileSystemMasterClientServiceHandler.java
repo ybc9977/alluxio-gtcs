@@ -149,7 +149,7 @@ public final class FileSystemMasterClientServiceHandler implements
       //edited
       GameSystemMaster mGameSystemMaster = new GameSystemMaster(MasterClientConfig.defaults());
       Long fileId=mFileSystemMaster.createFile(new AlluxioURI(path), new CreateFileOptions(options));
-      GameMasterListMaintainer.addfile(fileId,false);
+      mGameSystemMaster.addfile(fileId);
       mGameSystemMaster.gameTheoreticalCommunication(fileId);
       //edited
 

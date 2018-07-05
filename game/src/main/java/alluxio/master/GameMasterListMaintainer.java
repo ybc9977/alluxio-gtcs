@@ -16,9 +16,9 @@ public final class GameMasterListMaintainer{
 
     private final static Logger LOG = LoggerFactory.getLogger(GameMasterListMaintainer.class);
 
-    private static Map<Long,Boolean> fileList =new HashMap<>();
+    private static Map<Long,Boolean> fileList = new HashMap<>();
 
-    private static ArrayList<Pair<Long,Boolean>> userList =new ArrayList<>();
+    private static ArrayList<Pair<Long,Boolean>> userList = new ArrayList<>();
 
     public static void addfile(Long fileId, boolean isCached){
         fileList.put(fileId, isCached);
@@ -62,7 +62,7 @@ public final class GameMasterListMaintainer{
     }
 
     private GameMasterListMaintainer(){
-        //prevent instantiation
+        // prevent instantiation
     }
 
 }

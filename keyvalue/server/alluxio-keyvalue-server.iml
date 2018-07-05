@@ -80,7 +80,7 @@
     <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-locator:2.4.0-b31" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="module" module-name="alluxio-core-client-fs" />
-    <orderEntry type="module" module-name="game" />
+    <orderEntry type="module" module-name="hkust-game" />
     <orderEntry type="module" module-name="alluxio-core-server-worker" />
     <orderEntry type="module" module-name="alluxio-keyvalue-common" />
     <orderEntry type="module" module-name="alluxio-keyvalue-client" />

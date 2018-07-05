@@ -36,6 +36,7 @@
         <module name="alluxio-underfs-swift" />
         <module name="alluxio-underfs-wasb" />
         <module name="game" />
+        <module name="hkust-game" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -77,6 +78,7 @@
       <module name="alluxio-underfs-swift" target="1.8" />
       <module name="alluxio-underfs-wasb" target="1.8" />
       <module name="game" target="8" />
+      <module name="hkust-game" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

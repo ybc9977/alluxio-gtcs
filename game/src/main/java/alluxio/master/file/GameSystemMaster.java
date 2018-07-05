@@ -2,6 +2,7 @@ package alluxio.master.file;
 
 import alluxio.AbstractMasterClient;
 import alluxio.Constants;
+import alluxio.client.GameClientListMaintainer;
 import alluxio.client.file.options.CheckCacheChangeOptions;
 import alluxio.collections.Pair;
 import alluxio.exception.status.AlluxioStatusException;
@@ -26,8 +27,12 @@ public final class GameSystemMaster extends AbstractMasterClient {
 
     private GameSystemClientMasterService.Client mClient = null;
 
-    public GameSystemMaster(MasterClientConfig conf) {
+    GameSystemMaster(MasterClientConfig conf) {
         super(conf);
+    }
+
+    void addfile(Long fileId){
+        GameMasterListMaintainer.addfile(fileId,false);
     }
 
     @Override
@@ -45,21 +50,21 @@ public final class GameSystemMaster extends AbstractMasterClient {
         return Constants.FILE_SYSTEM_MASTER_CLIENT_SERVICE_VERSION;
     }
 
-    public synchronized List<Long> checkCacheChange(Map<Long,Boolean> fileList,
-    CheckCacheChangeOptions options) throws AlluxioStatusException {
+    private synchronized List<Long> checkCacheChange(Map<Long, Boolean> fileList,
+                                                     CheckCacheChangeOptions options) throws AlluxioStatusException {
         return retryRPC(() -> {
             mClient.checkCacheChange(fileList, options.toThrift());
             return null;
         }, "CheckCacheChange");
     }
 
-    public synchronized void gameTheoreticalCommunication(Long fileId) throws AlluxioStatusException {
+    synchronized void gameTheoreticalCommunication(Long fileId) throws AlluxioStatusException {
         ArrayList<Pair<Long,Boolean>> userList = GameMasterListMaintainer.getuser();
         while(true){
             int index = (int) (Math.random() * userList.size());
             Pair<Long, Boolean> user = userList.get(index);
             Map<Long,Boolean> file_list = GameMasterListMaintainer.getfile();
-            List<Long> cache_list = null;
+            List<Long> cache_list;
             cache_list = checkCacheChange(file_list, CheckCacheChangeOptions.defaults(user.getFirst()));
             if (cache_list!=null){
                 for (Long file: cache_list){
