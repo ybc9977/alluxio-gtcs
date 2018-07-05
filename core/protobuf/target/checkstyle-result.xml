@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/protobuf/src/main/java/alluxio/util/proto/ProtoMessage.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/protobuf/src/main/java/alluxio/util/proto/ProtoUtils.java">
+</file>
+</checkstyle>

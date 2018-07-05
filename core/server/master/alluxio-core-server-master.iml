@@ -86,7 +86,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.google.errorprone:error_prone_annotations:2.0.2" level="project" />
     <orderEntry type="module" module-name="alluxio-core-common" scope="TEST" production-on-test="" />
     <orderEntry type="module" module-name="alluxio-underfs-local" scope="TEST" />
-    <orderEntry type="library" name="Maven: hkust:game:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="game" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.findbugs:annotations:3.0.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />

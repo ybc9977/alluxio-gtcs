@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/main/java/alluxio/underfs/oss/OSSInputStream.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/main/java/alluxio/underfs/oss/OSSOutputStream.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/main/java/alluxio/underfs/oss/OSSUnderFileSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/main/java/alluxio/underfs/oss/OSSUnderFileSystemFactory.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/java/alluxio/underfs/oss/OSSOutputStreamTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/java/alluxio/underfs/oss/OSSUnderFileSystemFactoryTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/java/alluxio/underfs/oss/OSSUnderFileSystemTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/java/alluxio/underfs/oss/OSSInputStreamTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/java/alluxio/underfs/oss/OSSUnderFileSystemContractTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/oss/src/test/resources/log4j.properties">
+</file>
+</checkstyle>

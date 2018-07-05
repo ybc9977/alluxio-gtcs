@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/MidPartLongRange.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/KeystoneV3Access.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftUnderFileSystemFactory.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftOutputStream.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftUnderFileSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftInputStream.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftMockOutputStream.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/http/SwiftDirectClient.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/main/java/alluxio/underfs/swift/KeystoneV3AccessProvider.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/test/java/alluxio/underfs/swift/SwiftUnderFileSystemContractTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/test/java/alluxio/underfs/swift/SwiftUnderFileSystemFactoryTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/test/java/alluxio/underfs/swift/SwiftOutputStreamTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/swift/src/test/resources/log4j.properties">
+</file>
+</checkstyle>

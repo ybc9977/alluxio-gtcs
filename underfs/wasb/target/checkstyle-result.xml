@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/wasb/src/main/java/alluxio/underfs/wasb/WasbUnderFileSystemFactory.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/wasb/src/main/java/alluxio/underfs/wasb/WasbUnderFileSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/wasb/src/test/java/alluxio/underfs/wasb/WasbUnderFileSystemFactoryTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/wasb/src/test/java/alluxio/underfs/wasb/WasbUnderFileSystemContractTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/underfs/wasb/src/test/resources/log4j.properties">
+</file>
+</checkstyle>

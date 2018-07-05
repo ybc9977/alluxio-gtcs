@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/StreamCache.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3RestServiceHandler.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/InitiateMultipartUploadResult.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Error.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Constants.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListPartsResult.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/CompleteMultipartUploadResult.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3RestUtils.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Exception.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListBucketOptions.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3ErrorCode.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListBucketResult.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/ProxyProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxyProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxy.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/PathsRestServiceHandler.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/StreamsRestServiceHandler.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxyRestServiceHandler.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/web/ProxyWebServer.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/test/java/alluxio/StreamCacheTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/test/resources/log4j.properties">
+</file>
+</checkstyle>

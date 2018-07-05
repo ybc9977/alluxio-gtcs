@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/main/java/alluxio/fuse/AlluxioFuseOptions.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/main/java/alluxio/fuse/OpenFileEntry.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/main/java/alluxio/fuse/AlluxioFuseUtils.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/main/java/alluxio/fuse/AlluxioFuseFileSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/main/java/alluxio/fuse/AlluxioFuse.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/integration/fuse/src/test/java/alluxio/fuse/AlluxioFuseFileSystemTest.java">
+</file>
+</checkstyle>

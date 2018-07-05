@@ -1,0 +1,11 @@
+#Thu Jul 05 10:33:28 HKT 2018
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/AlluxioFileSystem.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/HadoopConfigurationUtils.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/HadoopUtils.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/FaultTolerantFileSystem.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/HdfsFileInputStream.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/AbstractFileSystem.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopUtilsTest.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopClientTestUtils.java=1530716008000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/client/hdfs/src/main/java/alluxio/hadoop/FileSystem.java=1530716008000
+configuration*?=7E76C2314BB64B1A6773370299D75E45BBBBC0F1

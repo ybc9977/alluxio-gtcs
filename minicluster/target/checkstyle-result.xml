@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/Master.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/LimitedLifeMasterProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/Utils.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/ExternalProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/LimitedLifeWorkerProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/MasterNetAddress.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/Worker.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/multi/process/MultiProcessCluster.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/zookeeper/RestartableTestingServer.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/TestUtils.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/MultiMasterLocalAlluxioCluster.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/AbstractLocalAlluxioCluster.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/LocalAlluxioCluster.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/ClientPool.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/main/java/alluxio/master/LocalAlluxioMaster.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/test/java/alluxio/multi/process/MultiProcessClusterTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/minicluster/src/test/resources/log4j.properties">
+</file>
+</checkstyle>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BaseKeyValueSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BaseKeyValuePartitionReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/PayloadReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueIterable.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/Index.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/PayloadWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BaseKeyValuePartitionWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BaseKeyValueStoreWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueMasterClient.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueStoreReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValuePartitionReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValuePartitionWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueStoreWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueSystem.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/LinearProbingIndex.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BaseKeyValueStoreReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValuePair.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueWorkerClient.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueIterator.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/ByteBufferKeyValuePartitionReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BasePayloadReader.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/KeyValueStoreIterator.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/main/java/alluxio/client/keyvalue/BasePayloadWriter.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/test/java/alluxio/client/keyvalue/BaseKeyValuePartitionWriterTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/test/java/alluxio/client/keyvalue/PayloadReaderWriterTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/test/java/alluxio/client/keyvalue/ByteBufferKeyValuePartitionReaderTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/test/java/alluxio/client/keyvalue/LinearProbingIndexTest.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/client/src/test/java/alluxio/client/ByteArrayOutStream.java">
+</file>
+</checkstyle>

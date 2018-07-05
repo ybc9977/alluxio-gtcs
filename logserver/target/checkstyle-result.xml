@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/logserver/src/main/java/alluxio/logserver/AlluxioLogServer.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/logserver/src/main/java/alluxio/logserver/AlluxioLogServerProcess.java">
+</file>
+<file name="/Users/ybc/Github/Alluxio-master-for-GTCS/logserver/src/main/java/alluxio/logserver/AlluxioLog4jSocketNode.java">
+</file>
+</checkstyle>

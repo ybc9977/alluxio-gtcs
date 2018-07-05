@@ -1,0 +1,21 @@
+#Thu Jul 05 10:32:55 HKT 2018
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListPartsResult.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxyRestServiceHandler.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxy.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/CompleteMultipartUploadResult.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Constants.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/web/ProxyWebServer.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Error.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/InitiateMultipartUploadResult.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/PathsRestServiceHandler.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListBucketOptions.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3RestUtils.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/ProxyProcess.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/ListBucketResult.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/AlluxioProxyProcess.java=1530716009000
+configuration*?=26D497C859A9AB4A26E2CF6CDB538DE71306E6B6
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/StreamCache.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3Exception.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3RestServiceHandler.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/s3/S3ErrorCode.java=1530716009000
+/Users/ybc/Github/Alluxio-master-for-GTCS/core/server/proxy/src/main/java/alluxio/proxy/StreamsRestServiceHandler.java=1530716009000
