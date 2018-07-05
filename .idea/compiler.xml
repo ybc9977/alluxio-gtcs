@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="alluxio-assembly-client" />
+        <module name="alluxio-assembly-server" />
+        <module name="alluxio-checker" />
+        <module name="alluxio-core-client-fs" />
+        <module name="alluxio-core-client-hdfs" />
+        <module name="alluxio-core-client-runtime" />
+        <module name="alluxio-core-common" />
+        <module name="alluxio-core-protobuf" />
+        <module name="alluxio-core-server-common" />
+        <module name="alluxio-core-server-master" />
+        <module name="alluxio-core-server-proxy" />
+        <module name="alluxio-core-server-worker" />
+        <module name="alluxio-examples" />
+        <module name="alluxio-integration-fuse" />
+        <module name="alluxio-keyvalue-client" />
+        <module name="alluxio-keyvalue-common" />
+        <module name="alluxio-keyvalue-hadoop" />
+        <module name="alluxio-keyvalue-server" />
+        <module name="alluxio-logserver" />
+        <module name="alluxio-minicluster" />
+        <module name="alluxio-shell" />
+        <module name="alluxio-tests" />
+        <module name="alluxio-underfs-gcs" />
+        <module name="alluxio-underfs-hdfs" />
+        <module name="alluxio-underfs-local" />
+        <module name="alluxio-underfs-oss" />
+        <module name="alluxio-underfs-s3a" />
+        <module name="alluxio-underfs-swift" />
+        <module name="alluxio-underfs-wasb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="alluxio-assembly" target="1.5" />
+      <module name="alluxio-assembly-client" target="1.8" />
+      <module name="alluxio-assembly-server" target="1.8" />
+      <module name="alluxio-checker" target="1.8" />
+      <module name="alluxio-core" target="1.5" />
+      <module name="alluxio-core-client" target="1.5" />
+      <module name="alluxio-core-client-fs" target="1.8" />
+      <module name="alluxio-core-client-hdfs" target="1.8" />
+      <module name="alluxio-core-client-runtime" target="1.8" />
+      <module name="alluxio-core-common" target="1.8" />
+      <module name="alluxio-core-protobuf" target="1.8" />
+      <module name="alluxio-core-server" target="1.5" />
+      <module name="alluxio-core-server-common" target="1.8" />
+      <module name="alluxio-core-server-master" target="1.8" />
+      <module name="alluxio-core-server-proxy" target="1.8" />
+      <module name="alluxio-core-server-worker" target="1.8" />
+      <module name="alluxio-examples" target="1.8" />
+      <module name="alluxio-integration" target="1.5" />
+      <module name="alluxio-integration-fuse" target="1.8" />
+      <module name="alluxio-keyvalue" target="1.5" />
+      <module name="alluxio-keyvalue-client" target="1.8" />
+      <module name="alluxio-keyvalue-common" target="1.8" />
+      <module name="alluxio-keyvalue-hadoop" target="1.8" />
+      <module name="alluxio-keyvalue-server" target="1.8" />
+      <module name="alluxio-logserver" target="1.8" />
+      <module name="alluxio-minicluster" target="1.8" />
+      <module name="alluxio-parent" target="1.5" />
+      <module name="alluxio-shell" target="1.8" />
+      <module name="alluxio-tests" target="1.8" />
+      <module name="alluxio-underfs" target="1.5" />
+      <module name="alluxio-underfs-gcs" target="1.8" />
+      <module name="alluxio-underfs-hdfs" target="1.8" />
+      <module name="alluxio-underfs-local" target="1.8" />
+      <module name="alluxio-underfs-oss" target="1.8" />
+      <module name="alluxio-underfs-s3a" target="1.8" />
+      <module name="alluxio-underfs-swift" target="1.8" />
+      <module name="alluxio-underfs-wasb" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

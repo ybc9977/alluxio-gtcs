@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assembly" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assembly/client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assembly/server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/client/fs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/client/hdfs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/client/runtime" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/protobuf" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/server/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/server/master" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/server/proxy" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core/server/worker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/examples" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/integration" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/integration/checker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/integration/fuse" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/keyvalue" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/keyvalue/client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/keyvalue/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/keyvalue/hadoop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/keyvalue/server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/logserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/minicluster" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/shell" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tests" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/gcs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/hdfs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/local" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/oss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/s3a" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/swift" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/underfs/wasb" charset="UTF-8" />
+  </component>
+</project>
