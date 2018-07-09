@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="12:00 05/07">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alluxio-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/alluxio-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/alluxio-core-server-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/alluxio-core-server-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" beforeDir="false" afterPath="$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/alluxio-tests.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/alluxio-tests.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -62,33 +52,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="GameMasterListMaintainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="game_system_client.thrift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="848">
-              <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1513#1514#0" expanded="true" />
-                <element signature="e#1544#1545#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1015#1016#0" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#1137#1138#0" expanded="true" />
-                <element signature="e#1177#1178#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -96,8 +65,38 @@
       <file leaf-file-name="FileSystemMasterClientServiceHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
+            <state relative-caret-position="362">
+              <caret line="152" column="41" lean-forward="true" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameMasterListMaintainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameFileSystem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="786">
+              <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,6 +120,8 @@
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" />
         <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" />
         <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" />
       </list>
     </option>
   </component>
@@ -156,7 +157,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,6 +169,27 @@
               <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="thrift" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -350,7 +372,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -485,49 +507,59 @@
       <option name="presentableId" value="Default" />
       <updated>1530757698591</updated>
       <workItem from="1530757702848" duration="1884000" />
-      <workItem from="1530761702210" duration="1316000" />
+      <workItem from="1530761702210" duration="1413000" />
+      <workItem from="1530940616940" duration="252000" />
+      <workItem from="1531139683927" duration="831000" />
     </task>
+    <task id="LOCAL-00001" summary="12:00 05/07">
+      <created>1530763042348</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1530763042349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3200000" />
+    <option name="totallyTimeSpent" value="4380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3296593" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.3297619" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.501002" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.3296593" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3296593" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.3297619" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.25" />
       <window_info anchor="right" id="Bean Validation" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
+      <window_info id="Structure" order="1" sideWeight="0.501002" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Dependency Viewer" order="7" weight="0.3296593" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.3296593" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,6 +574,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="12:00 05/07" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -553,20 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -584,18 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="848">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1513#1514#0" expanded="true" />
-            <element signature="e#1544#1545#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -603,27 +629,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
+        <state relative-caret-position="362">
+          <caret line="152" column="41" lean-forward="true" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+        <state relative-caret-position="120">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1015#1016#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1177#1178#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="786">
+          <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
         </state>
       </provider>
     </entry>

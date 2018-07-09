@@ -85,6 +85,7 @@ public class GameFileSystem extends BaseFileSystem {
                 }
             }else{
                 ArrayList<Long> cacheList = mGameClientListMaintainer.getCacheList();
+                //to implement file caching process here
                 AlluxioURI path = new AlluxioURI(".");
                 createFile(path);
             }
