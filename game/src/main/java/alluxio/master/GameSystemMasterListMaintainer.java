@@ -1,5 +1,6 @@
 package alluxio.master;
 
+import alluxio.AlluxioURI;
 import alluxio.collections.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,16 +13,17 @@ import java.util.Map;
  *  created by byangak on 30/06/2018
  */
 
-public final class GameMasterListMaintainer{
+public final class GameSystemMasterListMaintainer {
 
-    private final static Logger LOG = LoggerFactory.getLogger(GameMasterListMaintainer.class);
+    private final static Logger LOG = LoggerFactory.getLogger(GameSystemMasterListMaintainer.class);
 
-    private static Map<Long,Boolean> fileList = new HashMap<>();
+    private static Map<AlluxioURI,Boolean> fileList = new HashMap<>();
 
     private static ArrayList<Pair<Long,Boolean>> userList = new ArrayList<>();
 
-    public static void addfile(Long fileId, boolean isCached){
-        fileList.put(fileId, isCached);
+    public static void addfile(String path, boolean isCached){
+        AlluxioURI uri = new AlluxioURI(path);
+        fileList.put(uri, isCached);
     }
 
     public static void adduser(Long userId) {
@@ -41,27 +43,36 @@ public final class GameMasterListMaintainer{
         }
     }
 
-    public static void deletefile(Long fileId) {
-        if(fileList.containsKey(fileId)){
-            fileList.remove(fileId);
+    public static void deletefile(String path) {
+        if(fileList.containsKey(path)){
+            fileList.remove(path);
         }else{
             LOG.info("File not found");
         }
     }
 
-    public static Map<Long,Boolean> getfile(){
-        return fileList;
+    public static Map<String,Boolean> getfile(){
+        Map<String,Boolean> fileMap = new HashMap<>();
+        for(AlluxioURI key : fileList.keySet()){
+            fileMap.put(key.toString(),fileList.get(key));
+        }
+        return fileMap;
     }
 
     public static ArrayList<Pair<Long,Boolean>> getuser(){
         return userList;
     }
 
-    public static void changefile(final Map<Long,Boolean> list){
+    public static void changefile(final Map<String,Boolean> map){
+        Map<AlluxioURI,Boolean> list = new HashMap<>();
+        for(String path : map.keySet()){
+            AlluxioURI uri = new AlluxioURI(path);
+            list.put(uri,map.get(path));
+        }
         fileList = list;
     }
 
-    private GameMasterListMaintainer(){
+    private GameSystemMasterListMaintainer(){
         // prevent instantiation
     }
 

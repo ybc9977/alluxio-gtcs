@@ -16,13 +16,9 @@ import alluxio.Constants;
 import alluxio.RpcUtils;
 import alluxio.RpcUtils.RpcCallable;
 import alluxio.RpcUtils.RpcCallableThrowsIOException;
-import alluxio.client.file.options.CheckCacheChangeOptions;
-import alluxio.master.GameMasterListMaintainer;
-import alluxio.master.MasterClientConfig;
 import alluxio.master.file.options.CheckConsistencyOptions;
 import alluxio.master.file.options.CompleteFileOptions;
 import alluxio.master.file.options.CreateDirectoryOptions;
-import alluxio.master.file.options.CreateFileOptions;
 import alluxio.master.file.options.DeleteOptions;
 import alluxio.master.file.options.DescendantType;
 import alluxio.master.file.options.FreeOptions;
@@ -145,14 +141,6 @@ public final class FileSystemMasterClientServiceHandler implements
   public CreateFileTResponse createFile(final String path, final CreateFileTOptions options)
       throws AlluxioTException {
     return RpcUtils.call(LOG, (RpcCallableThrowsIOException<CreateFileTResponse>) () -> {
-
-      //edited
-      GameSystemMaster mGameSystemMaster = new GameSystemMaster(MasterClientConfig.defaults());
-      Long fileId=mFileSystemMaster.createFile(new AlluxioURI(path), new CreateFileOptions(options));
-      mGameSystemMaster.addfile(fileId);
-      mGameSystemMaster.gameTheoreticalCommunication(fileId);
-      //edited
-
       return new CreateFileTResponse();
     }, "CreateFile", "path=%s, options=%s", path, options);
   }

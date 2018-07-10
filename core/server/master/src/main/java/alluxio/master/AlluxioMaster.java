@@ -13,12 +13,15 @@ package alluxio.master;
 
 import alluxio.ProcessUtils;
 import alluxio.RuntimeConstants;
+import alluxio.exception.status.AlluxioStatusException;
+import alluxio.master.file.GameSystemMaster;
 import alluxio.util.CommonUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.concurrent.ThreadSafe;
+import java.util.Timer;
 
 /**
  * Entry point for the Alluxio master.
@@ -47,6 +50,16 @@ public final class AlluxioMaster {
       ProcessUtils.fatalError(LOG, t, "Failed to create master process");
       // fatalError will exit, so we shouldn't reach here.
       throw t;
+    }
+
+    LOG.info("Start Game System Master");
+    GameSystemMaster gameSystemMaster = new GameSystemMaster(MasterClientConfig.defaults());
+    try {
+      gameSystemMaster.gameTheoreticalCommunication();
+//      Timer time = new Timer();
+//      time.schedule(gameSystemMaster.t,0,20000);
+    } catch (AlluxioStatusException e) {
+      e.printStackTrace();
     }
 
     // Register a shutdown hook for master, so that master closes the journal files when it

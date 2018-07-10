@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
+    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="10/07">
+      <change afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTOptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/AlluxioMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/AlluxioMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/client/GameClientListMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/client/GameSystemClientListMaintainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/options/CheckCacheChangeOptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -51,11 +64,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameMasterListMaintainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+      <file leaf-file-name="GameSystemMasterListMaintainer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="222">
+              <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,11 +76,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+              <folding>
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#877#878#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckCacheChangeTResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSystemClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="58" column="71" lean-forward="true" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,57 +112,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSystemMasterClientServiceHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
+      <file leaf-file-name="GameSystemClientMasterServiceHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="152" column="41" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="41" />
+            <state relative-caret-position="449">
+              <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game_system_client.thrift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift">
+      <file leaf-file-name="GameSystemClientListMaintainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameSystemClientListMaintainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameSystemClientHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameFileSystem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="786">
-              <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameClientListMaintainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameClientListMaintainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+            <state relative-caret-position="525">
+              <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>prevent instantiation</find>
+      <find>AlluxioURI</find>
+      <find>TOptions</find>
+      <find>path</find>
+      <find>check</find>
+      <find>RpcUtils.call</find>
+      <find>RPC</find>
+      <find>persist</find>
+      <find>FileSystemMaster</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/core/common/src/thrift</dir>
+      <dir>$PROJECT_DIR$/core</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -133,11 +162,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/core/common/src/main/java/alluxio/AbstractMasterClient.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/options/CheckCacheChangeOptions.java" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java" />
-        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" />
-        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" />
-        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" />
         <option value="$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/GameClientListMaintainer.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/MyTimer.java" />
+        <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/AlluxioMaster.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClient.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/client/GameSystemClientListMaintainer.java" />
+        <option value="$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java" />
       </list>
     </option>
   </component>
@@ -172,7 +212,347 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="fs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="thrift" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="thrift" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alluxio-master-for-GTCS" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="alluxio" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -310,6 +690,7 @@
       <workItem from="1530940616940" duration="252000" />
       <workItem from="1531139683927" duration="1128000" />
       <workItem from="1531188070065" duration="2642000" />
+      <workItem from="1531192615148" duration="11526000" />
     </task>
     <task id="LOCAL-00001" summary="12:00 05/07">
       <created>1530763042348</created>
@@ -329,7 +710,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7319000" />
+    <option name="totallyTimeSpent" value="18845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -341,13 +722,13 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.3296593" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.501002" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.3296593" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
@@ -355,19 +736,19 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498998" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.17440476" />
       <window_info anchor="right" id="Bean Validation" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296593" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Dependency Viewer" order="7" weight="0.3296593" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.3296593" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.3296593" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,29 +761,15 @@
     <MESSAGE value="12:00 05/07 about MasterListMaintainer's life cycle" />
     <MESSAGE value="12:00 05/07" />
     <MESSAGE value="Some clarification" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some clarification" />
+    <MESSAGE value="10/07" />
+    <option name="LAST_COMMIT_MESSAGE" value="10/07" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
@@ -410,21 +777,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
           <caret line="89" column="33" lean-forward="true" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameClientListMaintainer.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameSystemClientListMaintainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
@@ -438,22 +805,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1515#1516#0" expanded="true" />
+            <element signature="e#1546#1547#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
           <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1515#1516#0" expanded="true" />
+            <element signature="e#1546#1547#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -479,69 +850,316 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java">
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/master/MasterClientConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="71" column="37" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
+        <state relative-caret-position="135">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/thrift/file_system_worker.thrift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/FileSystemCommandOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/options/CheckCacheChangeOptions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="57">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+          <folding>
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameClientListMaintainer.java">
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/options/CheckConsistencyOptions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="150">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameFileSystem.java">
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/AlluxioURI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
+        <state relative-caret-position="-2614">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/RetryHandlingFileSystemMasterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1584">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/RetryHandlingMetaMasterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-294">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/thrift/file_system_master.thrift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5820">
+          <caret line="388" column="48" selection-start-line="388" selection-start-column="40" selection-end-line="388" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterWorkerServiceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="69" column="11" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/DefaultFileSystemMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4237">
+          <caret line="600" column="59" lean-forward="true" selection-start-line="600" selection-start-column="59" selection-end-line="600" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/common/src/thrift/game_system_client.thrift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientHandler.java">
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/async/AsyncPersistHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/FileSystemMasterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="195" column="25" selection-start-line="195" selection-start-column="25" selection-end-line="195" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/AbstractClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="381" column="52" selection-start-line="381" selection-start-column="49" selection-end-line="381" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/AbstractMasterClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/org/omg/CORBA/TIMEOUT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+          <folding>
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty/3.7.0.Final/netty-3.7.0.Final-sources.jar!/org/jboss/netty/util/Timeout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.0.53.Final/netty-all-4.0.53.Final-sources.jar!/io/netty/util/Timer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="152" column="41" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="41" />
+        <state relative-caret-position="135">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameMasterListMaintainer.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.0.53.Final/netty-all-4.0.53.Final-sources.jar!/io/netty/util/Timeout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="105">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/MyTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#197#198#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#344#345#0" expanded="true" />
+            <element signature="e#372#373#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="772" column="33" selection-start-line="772" selection-start-column="33" selection-end-line="772" selection-end-column="33" />
+          <folding>
+            <element signature="e#32010#32011#0" expanded="true" />
+            <element signature="e#32095#32096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6878">
+          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="486" column="86" selection-start-line="486" selection-start-column="86" selection-end-line="486" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/AlluxioMasterProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="105" column="63" lean-forward="true" selection-start-line="105" selection-start-column="63" selection-end-line="105" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/AlluxioMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/test/java/alluxio/master/file/async/DefaultAsyncPersistHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/async/DefaultAsyncPersistHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/meta/FileSystemMasterView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="54" column="35" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/common/src/main/java/alluxio/master/file/meta/PersistenceState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="330" column="41" lean-forward="true" selection-start-line="330" selection-start-column="41" selection-end-line="330" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterClientServiceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="159" column="29" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="55" column="31" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+        <state relative-caret-position="270">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding>
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="58" column="71" lean-forward="true" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/client/GameSystemClientListMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
