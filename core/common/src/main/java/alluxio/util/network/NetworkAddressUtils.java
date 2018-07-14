@@ -60,7 +60,6 @@ public final class NetworkAddressUtils {
   public static final boolean WINDOWS = OSUtils.isWindows();
 
   private static String sLocalHost;
-  private static String sLocalHostMetricName;
   private static String sLocalIP;
 
   private NetworkAddressUtils() {}
@@ -451,20 +450,6 @@ public final class NetworkAddressUtils {
     } catch (UnknownHostException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * Gets a local hostname for the host this JVM is running on with '.' replaced with '_' for
-   * metrics usage.
-   *
-   * @return the metrics system friendly local host name
-   */
-  public static synchronized String getLocalHostMetricName() {
-    if (sLocalHostMetricName != null) {
-      return sLocalHostMetricName;
-    }
-    sLocalHostMetricName = getLocalHostName().replace('.', '_');
-    return sLocalHostMetricName;
   }
 
   /**

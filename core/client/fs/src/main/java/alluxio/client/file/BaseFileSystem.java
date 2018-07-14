@@ -13,21 +13,7 @@ package alluxio.client.file;
 
 import alluxio.AlluxioURI;
 import alluxio.annotation.PublicApi;
-import alluxio.client.file.options.CreateDirectoryOptions;
-import alluxio.client.file.options.CreateFileOptions;
-import alluxio.client.file.options.DeleteOptions;
-import alluxio.client.file.options.ExistsOptions;
-import alluxio.client.file.options.FreeOptions;
-import alluxio.client.file.options.GetStatusOptions;
-import alluxio.client.file.options.InStreamOptions;
-import alluxio.client.file.options.ListStatusOptions;
-import alluxio.client.file.options.LoadMetadataOptions;
-import alluxio.client.file.options.MountOptions;
-import alluxio.client.file.options.OpenFileOptions;
-import alluxio.client.file.options.OutStreamOptions;
-import alluxio.client.file.options.RenameOptions;
-import alluxio.client.file.options.SetAttributeOptions;
-import alluxio.client.file.options.UnmountOptions;
+import alluxio.client.file.options.*;
 import alluxio.exception.AlluxioException;
 import alluxio.exception.DirectoryNotEmptyException;
 import alluxio.exception.ExceptionMessage;
@@ -364,6 +350,18 @@ public class BaseFileSystem implements FileSystem {
     }
     InStreamOptions inStreamOptions = options.toInStreamOptions(status);
     return new FileInStream(status, inStreamOptions, mFileSystemContext);
+  }
+
+  @Override
+  public void passUserId(Long userId)
+    throws IOException, AlluxioException{
+    FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
+    try{
+      masterClient.passUserId(userId,PassUserIdOptions.defaults());
+    }catch (Exception e){
+      e.printStackTrace();
+    }
+
   }
 
   @Override

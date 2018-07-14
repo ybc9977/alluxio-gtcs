@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A metric of a given instance. The instance can be master, worker, or client.
@@ -31,9 +30,6 @@ public final class Metric implements Serializable {
 
   private static final String ID_SEPARATOR = "-id:";
   public static final String TAG_SEPARATOR = ":";
-  private static final ConcurrentHashMap<UserMetricKey, String> CACHED_METRICS =
-      new ConcurrentHashMap<>();
-
   private final MetricsSystem.InstanceType mInstanceType;
   private final String mHostname;
   private final String mName;
@@ -173,7 +169,7 @@ public final class Metric implements Serializable {
 
     sb.append(mName);
     for (Entry<String, String> entry : mTags.entrySet()) {
-      sb.append('.').append(entry.getKey()).append(TAG_SEPARATOR).append(entry.getValue());
+      sb.append('.' + entry.getKey() + TAG_SEPARATOR + entry.getValue());
     }
     return sb.toString();
   }
@@ -206,26 +202,9 @@ public final class Metric implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append(name);
     for (int i = 0; i < tags.length; i += 2) {
-      sb.append('.').append(tags[i]).append(TAG_SEPARATOR).append(tags[i + 1]);
+      sb.append('.' + tags[i] + TAG_SEPARATOR + tags[i + 1]);
     }
     return sb.toString();
-  }
-
-  /**
-   * Gets a metric name with a specific user tag.
-   *
-   * @param metricName the name of the metric
-   * @param userName the user
-   * @return a metric name with the user tagged
-   */
-  public static String getMetricNameWithUserTag(String metricName, String userName) {
-    UserMetricKey k = new UserMetricKey(metricName, userName);
-    String result = CACHED_METRICS.get(k);
-    if (result != null) {
-      return result;
-    }
-    return CACHED_METRICS.computeIfAbsent(k, key -> metricName + "." + CommonMetrics.TAG_USER
-        + TAG_SEPARATOR + userName);
   }
 
   /**
@@ -266,7 +245,8 @@ public final class Metric implements Serializable {
     for (int i = tagStartIdx; i < pieces.length; i++) {
       String tagStr = pieces[i];
       if (!tagStr.contains(TAG_SEPARATOR)) {
-        // Unknown tag
+        LOG.warn("Unknown tag {}, the tag format should be tagname{}tagvalue", pieces[i],
+            TAG_SEPARATOR);
         continue;
       }
       int tagSeparatorIdx = tagStr.indexOf(TAG_SEPARATOR);
@@ -295,36 +275,5 @@ public final class Metric implements Serializable {
     return Objects.toStringHelper(this).add("instanceType", mInstanceType)
         .add("hostname", mHostname).add("instanceId", mInstanceId).add("name", mName)
         .add("value", mValue).add("tags", mTags).toString();
-  }
-
-  /**
-   * Data structure representing a metric name and user name.
-   */
-  private static class UserMetricKey {
-    private String mMetric;
-    private String mUser;
-
-    private UserMetricKey(String metricName, String userName) {
-      mMetric = metricName;
-      mUser = userName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) {
-        return true;
-      }
-      if (!(o instanceof UserMetricKey)) {
-        return false;
-      }
-      UserMetricKey that = (UserMetricKey) o;
-      return Objects.equal(mMetric, that.mMetric)
-          && Objects.equal(mUser, that.mUser);
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hashCode(mMetric, mUser);
-    }
   }
 }

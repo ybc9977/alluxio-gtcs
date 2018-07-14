@@ -14,28 +14,10 @@ package alluxio.client.file;
 import alluxio.AbstractMasterClient;
 import alluxio.AlluxioURI;
 import alluxio.Constants;
-import alluxio.client.file.options.CheckConsistencyOptions;
-import alluxio.client.file.options.CompleteFileOptions;
-import alluxio.client.file.options.CreateDirectoryOptions;
-import alluxio.client.file.options.CreateFileOptions;
-import alluxio.client.file.options.DeleteOptions;
-import alluxio.client.file.options.FreeOptions;
-import alluxio.client.file.options.GetStatusOptions;
-import alluxio.client.file.options.ListStatusOptions;
-import alluxio.client.file.options.LoadMetadataOptions;
-import alluxio.client.file.options.MountOptions;
-import alluxio.client.file.options.RenameOptions;
-import alluxio.client.file.options.SetAttributeOptions;
-import alluxio.client.file.options.UpdateUfsModeOptions;
+import alluxio.client.file.options.*;
 import alluxio.exception.status.AlluxioStatusException;
 import alluxio.master.MasterClientConfig;
-import alluxio.thrift.AlluxioService;
-import alluxio.thrift.FileSystemMasterClientService;
-import alluxio.thrift.GetMountTableTResponse;
-import alluxio.thrift.GetNewBlockIdForFileTOptions;
-import alluxio.thrift.LoadMetadataTOptions;
-import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
-import alluxio.thrift.UnmountTOptions;
+import alluxio.thrift.*;
 import alluxio.wire.FileInfo;
 import alluxio.wire.MountPointInfo;
 
@@ -50,7 +32,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * A wrapper for the thrift client to interact with the file system master, used by alluxio clients.
  *
  * Since thrift clients are not thread safe, this class is a wrapper to provide thread safety, and
- *  * to provide retries.
+ * to provide retries.
  */
 @ThreadSafe
 public final class RetryHandlingFileSystemMasterClient extends AbstractMasterClient
@@ -160,6 +142,11 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
       }
       return mountTableWire;
     }, "GetMountTable");
+  }
+
+  @Override
+  public void passUserId(Long userId, PassUserIdOptions options) throws AlluxioStatusException {
+    retryRPC(() -> mClient.passUserId(userId, options.toThrift()),"PassUserId");
   }
 
   @Override

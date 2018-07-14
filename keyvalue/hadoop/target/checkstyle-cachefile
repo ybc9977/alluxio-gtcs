@@ -1,8 +1,0 @@
-#Thu Jul 05 10:34:10 HKT 2018
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordReader.java=1530105316000
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputFormat.java=1530105316000
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputFormat.java=1530105316000
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputSplit.java=1530105316000
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordWriter.java=1530105316000
-/Users/ybc/Github/Alluxio-master-for-GTCS/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputCommitter.java=1530105316000
-configuration*?=596C5880373686C50A18A5B115CE69219ED7E27A

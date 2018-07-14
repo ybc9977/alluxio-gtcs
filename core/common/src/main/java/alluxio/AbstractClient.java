@@ -253,7 +253,7 @@ public abstract class AbstractClient implements Client {
     }
   }
 
-  private void doConnect() throws IOException, TTransportException {
+  private void  doConnect() throws IOException, TTransportException {
     LOG.info("Alluxio client (version {}) is trying to connect with {} @ {}",
         RuntimeConstants.VERSION, getServiceName(), mAddress);
     // The wrapper transport

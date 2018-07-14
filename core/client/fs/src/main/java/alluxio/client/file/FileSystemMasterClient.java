@@ -13,19 +13,7 @@ package alluxio.client.file;
 
 import alluxio.AlluxioURI;
 import alluxio.Client;
-import alluxio.client.file.options.CheckConsistencyOptions;
-import alluxio.client.file.options.CompleteFileOptions;
-import alluxio.client.file.options.CreateDirectoryOptions;
-import alluxio.client.file.options.CreateFileOptions;
-import alluxio.client.file.options.DeleteOptions;
-import alluxio.client.file.options.FreeOptions;
-import alluxio.client.file.options.GetStatusOptions;
-import alluxio.client.file.options.ListStatusOptions;
-import alluxio.client.file.options.LoadMetadataOptions;
-import alluxio.client.file.options.MountOptions;
-import alluxio.client.file.options.RenameOptions;
-import alluxio.client.file.options.SetAttributeOptions;
-import alluxio.client.file.options.UpdateUfsModeOptions;
+import alluxio.client.file.options.*;
 import alluxio.exception.status.AlluxioStatusException;
 import alluxio.exception.status.AlreadyExistsException;
 import alluxio.exception.status.NotFoundException;
@@ -38,7 +26,7 @@ import java.util.Map;
 /**
  * A client to use for interacting with a file system master.
  */
-public interface FileSystemMasterClient extends Client {
+public interface FileSystemMasterClient extends Client{
 
   /**
    * Factory for {@link FileSystemMasterClient}.
@@ -163,6 +151,8 @@ public interface FileSystemMasterClient extends Client {
    * @return a map from String to {@link MountPointInfo}
    */
   Map<String, MountPointInfo> getMountTable() throws AlluxioStatusException;
+
+  void passUserId(Long userId, PassUserIdOptions options) throws AlluxioStatusException;
 
   /**
    * Renames a file or a directory.

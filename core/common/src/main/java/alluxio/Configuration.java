@@ -18,7 +18,6 @@ import alluxio.util.ConfigurationUtils;
 
 import com.google.common.base.Preconditions;
 
-import java.net.URL;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,7 @@ public final class Configuration {
 
     // Step2: Load site specific properties file if not in test mode. Note that we decide whether in
     // test mode by default properties and system properties (via getBoolean).
-    Properties siteProps = null;
+    Properties siteProps;
     // we are not in test mode, load site properties
     String confPaths = Configuration.get(PropertyKey.SITE_CONF_DIR);
     String[] confPathList = confPaths.split(",");
@@ -85,13 +84,7 @@ public final class Configuration {
     if (sitePropertyFile != null) {
       siteProps = ConfigurationUtils.loadPropertiesFromFile(sitePropertyFile);
     } else {
-      URL resource = Configuration.class.getClassLoader().getResource(Constants.SITE_PROPERTIES);
-      if (resource != null) {
-        siteProps = ConfigurationUtils.loadPropertiesFromResource(resource);
-        if (siteProps != null) {
-          sitePropertyFile = resource.getPath();
-        }
-      }
+      siteProps = ConfigurationUtils.loadPropertiesFromResource(Constants.SITE_PROPERTIES);
     }
     PROPERTIES.merge(siteProps, Source.siteProperty(sitePropertyFile));
     validate();

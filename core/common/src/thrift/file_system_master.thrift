@@ -169,6 +169,9 @@ union FileSystemCommandOptions {
   1: optional PersistCommandOptions persistOptions
 }
 
+struct PassUserIdTOptions{}
+struct PassUserIdTResponse{}
+
 struct PersistCommandOptions {
   1: list<PersistFile> persistFiles
 }
@@ -348,6 +351,12 @@ service FileSystemMasterClientService extends common.AlluxioService {
     // This is deprecated since 1.5 and will be removed in 2.0. Use DeleteTOptions.
     /** whether to remove recursively */ 2: bool recursive,
     /** the options for deleting the file */ 3: DeleteTOptions options,
+    )
+    throws (1: exception.AlluxioTException e)
+
+  PassUserIdTResponse passUserId(
+    1: i64 userId,
+    2: PassUserIdTOptions options,
     )
     throws (1: exception.AlluxioTException e)
 

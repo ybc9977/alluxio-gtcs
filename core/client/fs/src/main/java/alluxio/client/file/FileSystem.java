@@ -312,6 +312,8 @@ public interface FileSystem {
   FileInStream openFile(AlluxioURI path, OpenFileOptions options)
       throws FileDoesNotExistException, IOException, AlluxioException;
 
+  void passUserId(Long userId) throws IOException,AlluxioException;
+
   /**
    * Convenience method for {@link #rename(AlluxioURI, AlluxioURI, RenameOptions)} with default
    * options.

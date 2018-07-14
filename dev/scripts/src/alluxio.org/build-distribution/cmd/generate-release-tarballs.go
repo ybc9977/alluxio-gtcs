@@ -55,11 +55,7 @@ func release(_ *cmdline.Env, _ []string) error {
 
 func generateTarballs() error {
 	for _, distribution := range strings.Split(hadoopDistributionsFlag, ",") {
-		if distribution == "default" {
-			targetFlag = fmt.Sprintf("alluxio-%v-bin.tar.gz", versionMarker)
-		} else {
-			targetFlag = fmt.Sprintf("alluxio-%v-%v.tar.gz", versionMarker, distribution)
-		}
+		targetFlag = fmt.Sprintf("alluxio-%v-%v.tar.gz", versionMarker, distribution)
 		fmt.Printf("Generating distribution for %v at %v", distribution, targetFlag)
 		if err := generateTarball(distribution); err != nil {
 			return err

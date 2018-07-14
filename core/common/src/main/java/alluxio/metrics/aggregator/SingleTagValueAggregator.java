@@ -31,7 +31,6 @@ import java.util.Set;
  */
 public class SingleTagValueAggregator implements MultiValueMetricsAggregator {
   private final MetricsSystem.InstanceType mInstanceType;
-  private final String mAggregationName;
   private final String mMetricName;
   private final String mTagName;
   private final MetricsFilter mFilter;
@@ -41,18 +40,15 @@ public class SingleTagValueAggregator implements MultiValueMetricsAggregator {
   /**
    * Constructs a new instance of {@link SingleTagValueAggregator}.
    *
-   * @param aggregationName the aggregated metric name
    * @param instanceType instance type
    * @param metricName metric name
    * @param tagName tag name
    */
-  public SingleTagValueAggregator(String aggregationName, MetricsSystem.InstanceType instanceType,
-      String metricName, String tagName) {
-    Preconditions.checkNotNull(aggregationName, "aggregationName");
+  public SingleTagValueAggregator(MetricsSystem.InstanceType instanceType, String metricName,
+      String tagName) {
     Preconditions.checkNotNull(instanceType, "instance type");
     Preconditions.checkNotNull(metricName, "metricName");
     Preconditions.checkNotNull(tagName, "tagName");
-    mAggregationName = aggregationName;
     mInstanceType = instanceType;
     mMetricName = metricName;
     mTagName = tagName;
@@ -72,7 +68,7 @@ public class SingleTagValueAggregator implements MultiValueMetricsAggregator {
       Map<String, String> tags = metric.getTags();
       if (tags.containsKey(mTagName)) {
         String ufsName = MetricsSystem.getClusterMetricName(
-            Metric.getMetricNameWithTags(mAggregationName, mTagName, tags.get(mTagName)));
+            mMetricName + "." + tags.get(mTagName));
         long value = updated.getOrDefault(ufsName, 0L);
         updated.put(ufsName, (long) (value + metric.getValue()));
       }

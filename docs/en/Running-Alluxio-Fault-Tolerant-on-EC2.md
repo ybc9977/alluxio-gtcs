@@ -29,7 +29,7 @@ $ vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dumm
 
 **Install Alluxio**
 
-[Clone Alluxio Repository](https://github.com/Alluxio/alluxio) to your local machine.
+[Download Alluxio](https://alluxio.org/download) to your local machine, and unzip it:
 
 **Install python library dependencies**
 

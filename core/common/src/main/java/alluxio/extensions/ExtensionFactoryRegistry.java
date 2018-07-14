@@ -17,6 +17,7 @@ import alluxio.util.ExtensionUtils;
 import alluxio.util.io.PathUtils;
 
 import com.google.common.base.Preconditions;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,8 +108,8 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
     ServiceLoader<T> discoveredFactories =
         ServiceLoader.load(mFactoryClass, mFactoryClass.getClassLoader());
     for (T factory : discoveredFactories) {
-      LOG.debug("Discovered base extension factory implementation {} - {}", factory.getClass(),
-          factory);
+      LOG.debug("Discovered base extension factory implementation {} - {}",
+          factory.getClass(), factory.toString());
       register(factory);
     }
   }
@@ -139,13 +140,14 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
     List<T> eligibleFactories = new ArrayList<>();
     for (T factory : factories) {
       if (factory.supportsPath(path, conf)) {
-        LOG.debug("Factory implementation {} is eligible for path {}", factory, path);
+        LOG.debug("factory implementation {} is eligible for path {}",
+            factory.getClass(), path);
         eligibleFactories.add(factory);
       }
     }
 
     if (eligibleFactories.isEmpty()) {
-      LOG.warn("No factory implementation supports the path {}", path);
+      LOG.warn("factory implementation supports the path {}", path);
     }
     return eligibleFactories;
   }
@@ -176,7 +178,7 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
         }
       }
     } catch (IOException e) {
-      LOG.warn("Failed to load libs: {}", e.toString());
+      LOG.warn("Failed to load libs: {}", e.getMessage());
     }
     scan(files, factories);
   }
@@ -198,12 +200,12 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
         ServiceLoader<T> extensionServiceLoader =
             ServiceLoader.load(mFactoryClass, extensionsClassLoader);
         for (T factory : extensionServiceLoader) {
-          LOG.debug("Discovered a factory implementation {} - {} in jar {}", factory.getClass(),
-              factory, jarPath);
+          LOG.debug("Discovered a factory implementation {} - {} in jar {}",
+              factory.getClass(), factory.toString(), jarPath);
           register(factory, factories);
         }
       } catch (Throwable t) {
-        LOG.warn("Failed to load jar {}: {}", jar, t.toString());
+        LOG.warn("Failed to load jar {}: {}", jar, t.getMessage());
       }
     }
   }
@@ -229,7 +231,8 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
       return;
     }
 
-    LOG.debug("Registered factory implementation {} - {}", factory.getClass(), factory);
+    LOG.debug("Registered factory implementation {} - {}", factory.getClass(),
+        factory.toString());
 
     // Insert at start of list so it will take precedence over automatically discovered and
     // previously registered factories
@@ -267,7 +270,8 @@ public class ExtensionFactoryRegistry<T extends ExtensionFactory<?, S>, S> {
       return;
     }
 
-    LOG.debug("Unregistered factory implementation {} - {}", factory.getClass(), factory);
+    LOG.debug("Unregistered factory implementation {} - {}", factory.getClass(),
+        factory.toString());
     factories.remove(factory);
   }
 }

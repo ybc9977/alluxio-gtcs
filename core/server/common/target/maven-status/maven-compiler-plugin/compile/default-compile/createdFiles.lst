@@ -21,6 +21,7 @@ alluxio/metrics/sink/PrometheusMetricsServlet.class
 alluxio/MasterStorageTierAssoc.class
 alluxio/master/journal/noop/NoopJournalReader.class
 alluxio/master/journalv0/ProtoBufJournalFormatter$1.class
+alluxio/RpcUtils$NamedMethod.class
 alluxio/master/journalv0/MutableJournal$Factory.class
 alluxio/master/journal/ufs/UfsJournalReader.class
 alluxio/master/MasterContext.class
@@ -28,7 +29,6 @@ alluxio/cli/validation/HadoopConfigurationFileParser.class
 alluxio/master/journal/ufs/UfsJournal$State.class
 alluxio/master/journal/ufs/UfsJournalGarbageCollector.class
 alluxio/master/NoopMaster.class
-alluxio/RpcUtils$NettyRpcCallable.class
 alluxio/cli/validation/SshValidationTask.class
 alluxio/cli/extensions/ExtensionsShell.class
 alluxio/master/journal/noop/NoopJournalSystem.class
@@ -53,6 +53,7 @@ alluxio/cli/validation/RamDiskMountPrivilegeValidationTask.class
 alluxio/master/journal/options/JournalWriterOptions.class
 alluxio/master/journal/ufs/UfsJournalFileParser.class
 alluxio/master/journal/ufs/UfsJournalSystem.class
+alluxio/RpcUtils$NettyRPCCallable.class
 alluxio/cli/validation/StorageSpaceValidationTask.class
 alluxio/metrics/sink/MetricsServlet$1.class
 alluxio/cli/validation/Utils$ProcessExecutionResult.class

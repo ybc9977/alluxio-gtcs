@@ -11,13 +11,8 @@
 
 package alluxio.master.metrics;
 
-import alluxio.Configuration;
 import alluxio.Constants;
-import alluxio.PropertyKey;
 import alluxio.clock.SystemClock;
-import alluxio.heartbeat.HeartbeatContext;
-import alluxio.heartbeat.HeartbeatExecutor;
-import alluxio.heartbeat.HeartbeatThread;
 import alluxio.master.AbstractMaster;
 import alluxio.master.MasterContext;
 import alluxio.metrics.ClientMetrics;
@@ -58,7 +53,6 @@ public class DefaultMetricsMaster extends AbstractMaster implements MetricsMaste
   private final Set<MultiValueMetricsAggregator> mMultiValueMetricsAggregatorRegistry =
       new HashSet<>();
   private final MetricsStore mMetricsStore;
-  private final HeartbeatThread mClusterMetricsUpdater;
 
   /**
    * Creates a new instance of {@link MetricsMaster}.
@@ -83,10 +77,6 @@ public class DefaultMetricsMaster extends AbstractMaster implements MetricsMaste
     super(masterContext, clock, executorServiceFactory);
     mMetricsStore = new MetricsStore();
     registerAggregators();
-    mClusterMetricsUpdater =
-        new HeartbeatThread(HeartbeatContext.MASTER_CLUSTER_METRICS_UPDATER,
-            new ClusterMetricsUpdater(),
-            Configuration.getMs(PropertyKey.MASTER_CLUSTER_METRICS_UPDATE_INTERVAL));
   }
 
   @VisibleForTesting
@@ -156,15 +146,10 @@ public class DefaultMetricsMaster extends AbstractMaster implements MetricsMaste
         MetricsSystem.InstanceType.CLIENT, ClientMetrics.BYTES_READ_LOCAL_THROUGHPUT));
 
     // multi-value aggregators
-    addAggregator(new SingleTagValueAggregator(WorkerMetrics.BYTES_READ_UFS,
-        MetricsSystem.InstanceType.WORKER, WorkerMetrics.BYTES_READ_UFS, WorkerMetrics.TAG_UFS));
-    addAggregator(new SingleTagValueAggregator(WorkerMetrics.BYTES_WRITTEN_UFS,
-        MetricsSystem.InstanceType.WORKER, WorkerMetrics.BYTES_WRITTEN_UFS, WorkerMetrics.TAG_UFS));
-    for (WorkerMetrics.UfsOps ufsOp : WorkerMetrics.UfsOps.values()) {
-      addAggregator(new SingleTagValueAggregator(WorkerMetrics.UFS_OP_PREFIX + ufsOp,
-          MetricsSystem.InstanceType.MASTER, ufsOp.toString(),
-          WorkerMetrics.TAG_UFS));
-    }
+    addAggregator(new SingleTagValueAggregator(MetricsSystem.InstanceType.WORKER,
+        WorkerMetrics.BYTES_READ_UFS, WorkerMetrics.TAG_UFS));
+    addAggregator(new SingleTagValueAggregator(MetricsSystem.InstanceType.WORKER,
+        WorkerMetrics.BYTES_WRITTEN_UFS, WorkerMetrics.TAG_UFS));
   }
 
   @Override
@@ -198,14 +183,12 @@ public class DefaultMetricsMaster extends AbstractMaster implements MetricsMaste
   @Override
   public void start(Boolean isLeader) throws IOException {
     super.start(isLeader);
-    if (isLeader) {
-      getExecutorService().submit(mClusterMetricsUpdater);
-    }
   }
 
   @Override
   public void clientHeartbeat(String clientId, String hostname, List<Metric> metrics) {
     mMetricsStore.putClientMetrics(hostname, clientId, metrics);
+    updateMultiValueMetrics();
   }
 
   @Override
@@ -216,21 +199,6 @@ public class DefaultMetricsMaster extends AbstractMaster implements MetricsMaste
   @Override
   public void workerHeartbeat(String hostname, List<Metric> metrics) {
     mMetricsStore.putWorkerMetrics(hostname, metrics);
+    updateMultiValueMetrics();
   }
-
-  /**
-   * Heartbeat executor that updates the cluster metrics.
-   */
-  private class ClusterMetricsUpdater implements HeartbeatExecutor {
-    @Override
-    public void heartbeat() throws InterruptedException {
-      updateMultiValueMetrics();
-    }
-
-    @Override
-    public void close() {
-      // nothing to clean up
-    }
-  }
-
 }

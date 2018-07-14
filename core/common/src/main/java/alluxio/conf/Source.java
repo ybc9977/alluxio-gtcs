@@ -11,8 +11,6 @@
 
 package alluxio.conf;
 
-import com.google.common.base.Objects;
-
 /**
  * The source of a configuration property.
  */
@@ -93,23 +91,6 @@ public class Source implements Comparable<Source> {
     private SitePropertySource(String filename) {
       super(Type.SITE_PROPERTY);
       mFilename = filename;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) {
-        return true;
-      }
-      if (!(o instanceof SitePropertySource)) {
-        return false;
-      }
-      SitePropertySource that = (SitePropertySource) o;
-      return Objects.equal(mFilename, that.mFilename);
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hashCode(mFilename);
     }
 
     @Override

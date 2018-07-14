@@ -110,8 +110,10 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
    */
   private void handleBlockOpenRequest(final ChannelHandlerContext ctx,
       final Protocol.LocalBlockOpenRequest request) {
-    mRpcExecutor.submit(() ->
-        RpcUtils.nettyRPCAndLog(LOG, new RpcUtils.NettyRpcCallable<Void>() {
+    mRpcExecutor.submit(new Runnable() {
+      @Override
+      public void run() {
+        RpcUtils.nettyRPCAndLog(LOG, new RpcUtils.NettyRPCCallable<Void>() {
           @Override
           public Void call() throws Exception {
             if (mLockId == BlockLockManager.INVALID_LOCK_ID) {
@@ -155,7 +157,15 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
             ctx.writeAndFlush(
                 RPCProtoMessage.createResponse(AlluxioStatusException.fromThrowable(e)));
           }
-        }, "OpenBlock", "Session=%d, Request=%s", mSessionId, request));
+
+          @Override
+          public String toString() {
+            return String.format("OpenBlock: Session=%d, Request:=%s", mSessionId, request
+                .toString());
+          }
+        });
+      }
+    });
   }
 
   /**
@@ -166,8 +176,12 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
    */
   private void handleBlockCloseRequest(final ChannelHandlerContext ctx,
       final Protocol.LocalBlockCloseRequest request) {
-    mRpcExecutor.submit(() ->
-        RpcUtils.nettyRPCAndLog(LOG, new RpcUtils.NettyRpcCallable<Void>() {
+    mRpcExecutor.submit(new Runnable() {
+      @Override
+      public void run() {
+
+        RpcUtils.nettyRPCAndLog(LOG, new RpcUtils.NettyRPCCallable<Void>() {
+
           @Override
           public Void call() throws Exception {
             if (mLockId != BlockLockManager.INVALID_LOCK_ID) {
@@ -186,6 +200,14 @@ class ShortCircuitBlockReadHandler extends ChannelInboundHandlerAdapter {
                 RPCProtoMessage.createResponse(AlluxioStatusException.fromThrowable(e)));
             mLockId = BlockLockManager.INVALID_LOCK_ID;
           }
-        }, "CloseBlock", "Session=%d, Request=%s", mSessionId, request));
+
+          @Override
+          public String toString() {
+            return String.format("CloseBlock: Session=%d, Request:=%s", mSessionId,
+                request.toString());
+          }
+        });
+      }
+    });
   }
 }

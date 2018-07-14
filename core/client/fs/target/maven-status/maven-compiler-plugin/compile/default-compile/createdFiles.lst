@@ -29,6 +29,7 @@ alluxio/client/block/stream/LocalFilePacketWriter$2.class
 alluxio/client/file/FileSystem$Factory.class
 alluxio/client/file/FileSystemContext$Metrics.class
 alluxio/client/file/options/UnmountOptions.class
+alluxio/client/file/options/PassUserIdOptions.class
 alluxio/client/block/policy/BlockLocationPolicy.class
 alluxio/client/file/options/GetStatusOptions.class
 alluxio/client/block/stream/LocalFilePacketReader$Factory.class
@@ -59,9 +60,11 @@ alluxio/client/file/FileSystemMasterClient.class
 alluxio/client/block/AlluxioBlockStore.class
 alluxio/client/block/stream/UnderFileSystemFileOutStream.class
 alluxio/client/MetaMasterClient.class
+alluxio/client/file/GameSystemClient.class
 alluxio/client/RetryHandlingMetaMasterClient.class
 alluxio/client/block/stream/NettyPacketReader$PacketReadHandler.class
 alluxio/client/file/FileSystemUtils.class
+alluxio/client/GameSystemClientListMaintainer.class
 alluxio/client/block/BlockWorkerInfo.class
 alluxio/client/lineage/LineageMasterClient$5.class
 alluxio/client/lineage/LineageMasterClient$2.class
@@ -93,6 +96,7 @@ alluxio/client/metrics/MetricsMasterClient.class
 alluxio/client/file/FileSystemMasterClient$Factory.class
 alluxio/client/block/stream/NettyPacketReader$Factory.class
 alluxio/client/metrics/ClientMasterSync.class
+alluxio/client/file/GameSystemClientMasterServiceHandler.class
 alluxio/client/file/options/InStreamOptions.class
 alluxio/client/file/FileSystem.class
 alluxio/client/AbstractOutStream.class

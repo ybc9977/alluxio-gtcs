@@ -4,6 +4,7 @@ alluxio/SessionInfo.class
 alluxio/worker/AlluxioWorkerRestServiceHandler$6.class
 alluxio/worker/netty/FileTransferType.class
 alluxio/worker/file/FileWorkerMasterSyncExecutor.class
+alluxio/worker/netty/ShortCircuitBlockReadHandler$2$1.class
 alluxio/worker/file/FileSystemWorker.class
 alluxio/worker/block/DefaultBlockWorker$1.class
 alluxio/web/WebInterfaceWorkerGeneralServlet$UIStorageDir.class
@@ -25,6 +26,7 @@ alluxio/worker/AlluxioWorkerRestServiceHandler$3.class
 alluxio/worker/block/BlockMasterSync$1.class
 alluxio/underfs/WorkerUfsManager.class
 alluxio/worker/netty/NettyExecutors.class
+alluxio/worker/netty/ShortCircuitBlockWriteHandler$1$1.class
 alluxio/worker/block/BlockStoreMeta.class
 alluxio/worker/block/evictor/LRFUEvictor$1.class
 alluxio/web/WorkerWebServer$1.class
@@ -71,6 +73,7 @@ alluxio/worker/block/BlockMasterSync.class
 alluxio/worker/block/BlockHeartbeatReporter.class
 alluxio/worker/block/BlockMasterSync$BlockRemover.class
 alluxio/worker/file/FileSystemWorkerClientServiceHandler.class
+alluxio/worker/netty/ShortCircuitBlockWriteHandler$2$1.class
 alluxio/worker/block/BlockMetricsReporter.class
 alluxio/worker/netty/BlockWriteHandler.class
 alluxio/worker/block/allocator/MaxFreeAllocator.class
@@ -104,6 +107,7 @@ alluxio/worker/AlluxioWorkerRestServiceHandler$5.class
 alluxio/worker/block/DefaultBlockWorker$Metrics$6.class
 alluxio/Sessions.class
 alluxio/worker/block/allocator/Allocator.class
+alluxio/worker/netty/ShortCircuitBlockReadHandler$1$1.class
 alluxio/worker/block/BlockWorkerFactory.class
 alluxio/worker/block/BlockStore.class
 alluxio/worker/block/UnderFileSystemBlockReader.class

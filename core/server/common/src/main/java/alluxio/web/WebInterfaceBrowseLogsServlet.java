@@ -104,9 +104,6 @@ public final class WebInterfaceBrowseLogsServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    if (!Configuration.getBoolean(PropertyKey.WEB_FILE_INFO_ENABLED)) {
-      return;
-    }
     request.setAttribute("debug", Configuration.getBoolean(PropertyKey.DEBUG));
     request.setAttribute("invalidPathError", "");
     request.setAttribute("viewingOffset", 0);

@@ -68,9 +68,8 @@ public class Pair<T1, T2> {
    *
    * @param first the value to be set
    */
-  public Pair<T1, T2> setFirst(T1 first) {
+  public void setFirst(T1 first) {
     mFirst = first;
-    return this;
   }
 
   /**
@@ -78,9 +77,8 @@ public class Pair<T1, T2> {
    *
    * @param second the value to be set
    */
-  public Pair<T1, T2> setSecond(T2 second) {
+  public void setSecond(T2 second) {
     mSecond = second;
-    return this;
   }
 
   @Override

@@ -14,6 +14,7 @@ package alluxio.master.metrics;
 import alluxio.Constants;
 import alluxio.RpcUtils;
 import alluxio.RpcUtils.RpcCallableThrowsIOException;
+import alluxio.exception.AlluxioException;
 import alluxio.metrics.Metric;
 import alluxio.thrift.AlluxioTException;
 import alluxio.thrift.GetServiceVersionTOptions;
@@ -28,6 +29,7 @@ import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.concurrent.NotThreadSafe;
@@ -56,15 +58,23 @@ public final class MetricsMasterClientServiceHandler implements MetricsMasterCli
   @Override
   public MetricsHeartbeatTResponse metricsHeartbeat(final String clientId, final String hostname,
       final MetricsHeartbeatTOptions options) throws AlluxioTException, TException {
-    return RpcUtils.call(LOG, (RpcCallableThrowsIOException<MetricsHeartbeatTResponse>) () -> {
-      List<Metric> metrics = Lists.newArrayList();
-      for (alluxio.thrift.Metric metric : options.getMetrics()) {
-        Metric parsed = Metric.from(metric);
-        metrics.add(parsed);
+    return RpcUtils.call(LOG, new RpcCallableThrowsIOException<MetricsHeartbeatTResponse>() {
+      @Override
+      public MetricsHeartbeatTResponse call() throws AlluxioException, IOException {
+        List<Metric> metrics = Lists.newArrayList();
+        for (alluxio.thrift.Metric metric : options.getMetrics()) {
+          Metric parsed =  Metric.from(metric);
+          metrics.add(parsed);
+        }
+        mMetricsMaster.clientHeartbeat(clientId, hostname, metrics);
+        return new MetricsHeartbeatTResponse();
       }
-      mMetricsMaster.clientHeartbeat(clientId, hostname, metrics);
-      return new MetricsHeartbeatTResponse();
-    }, "ClientHeartbeat", "ClientHeartbeat: hostname=%s, contextId=%s, options=%s", hostname,
-        clientId, options);
+
+      @Override
+      public String toString() {
+        return String.format("clientHeartbeat: hostname=%s, contextId=%s, " + "options=%s",
+            hostname, clientId, options);
+      }
+    });
   }
 }

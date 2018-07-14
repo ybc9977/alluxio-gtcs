@@ -65,6 +65,7 @@ public final class CpCommand extends AbstractFileSystemCommand {
           .desc("copy files in subdirectories recursively")
           .build();
 
+  private String[] args;
   /**
    * @param fs the filesystem of Alluxio
    */
@@ -89,7 +90,7 @@ public final class CpCommand extends AbstractFileSystemCommand {
 
   @Override
   public int run(CommandLine cl) throws AlluxioException, IOException {
-    String[] args = cl.getArgs();
+    args = cl.getArgs();
     AlluxioURI srcPath = new AlluxioURI(args[0]);
     AlluxioURI dstPath = new AlluxioURI(args[1]);
     if ((dstPath.getScheme() == null || isAlluxio(dstPath.getScheme()))
@@ -382,7 +383,17 @@ public final class CpCommand extends AbstractFileSystemCommand {
       copyPath(srcPath, dstPath);
     }
     System.out.println("Copied " + srcPath + " to " + dstPath);
+
+    if (args.length >= 3) {
+      System.out.println("A new user "+ args[2] + " copied file from local");
+      long userId = Long.parseLong(args[2]);
+      mFileSystem.passUserId(userId);
+    }
+
+
   }
+
+
 
   /**
    * Copies a file or directory specified by srcPath from the local filesystem to dstPath in the
@@ -558,6 +569,8 @@ public final class CpCommand extends AbstractFileSystemCommand {
     String randomSuffix =
         String.format(".%s_copyToLocal_", RandomStringUtils.randomAlphanumeric(8));
     File outputFile;
+
+
     if (dstFile.isDirectory()) {
       outputFile = new File(PathUtils.concatPath(dstFile.getAbsolutePath(), srcPath.getName()));
     } else {

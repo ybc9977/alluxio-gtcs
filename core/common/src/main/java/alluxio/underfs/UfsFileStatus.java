@@ -72,12 +72,4 @@ public class UfsFileStatus extends UfsStatus {
   public long getContentLength() {
     return mContentLength;
   }
-
-  @Override
-  public String toString() {
-    return toStringHelper()
-        .add("contentHash", mContentHash)
-        .add("contentLength", mContentLength)
-        .toString();
-  }
 }

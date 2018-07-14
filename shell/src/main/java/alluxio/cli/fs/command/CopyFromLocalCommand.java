@@ -47,7 +47,7 @@ public final class CopyFromLocalCommand extends AbstractFileSystemCommand {
 
   @Override
   public void validateArgs(CommandLine cl) throws InvalidArgumentException {
-    CommandUtils.checkNumOfArgsEquals(this, cl, 2);
+    CommandUtils.checkNumOfArgsEquals(this, cl, 3);
   }
 
   @Override
