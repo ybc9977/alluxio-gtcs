@@ -65,6 +65,7 @@
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/meta/checkconf/ServerConfigurationChecker.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/options/CreateFileOptions.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/RpcContext.java
+/Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/GameSystemCacheMaster.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/block/BlockContainerIdGenerator.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/block/BlockMasterWorkerServiceHandler.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterFactory.java

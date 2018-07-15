@@ -198,6 +198,7 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RequestBlockLocationTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/status/NotFoundException.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GetConfigReportTOptions.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GameSystemCacheService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/wire/BackupOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/time/ThreadSleeper.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/PromoteBlockTOptions.java

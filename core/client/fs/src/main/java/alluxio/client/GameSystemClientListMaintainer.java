@@ -37,8 +37,8 @@ public final class GameSystemClientListMaintainer {
             pref.put(path,p_now);
             p = p * (1-p_now);
             //prefList.set((int) (Math.random() * fileList.size()), path);
-            LOG.info("randomized preference list for user "+ userId);
         }
+        LOG.info("randomized preference list for user "+ userId);
         pref = sortByValue(pref);
         LOG.info(pref.toString());
         prefList.addAll(pref.keySet());
@@ -56,9 +56,15 @@ public final class GameSystemClientListMaintainer {
         return result;
     }
 
-    public void changeCacheList(ArrayList<String> mCacheList){
-        cacheList =  mCacheList;
-        LOG.info("CacheList changed for user "+userId);
+    public boolean changeCacheList(ArrayList<String> mCacheList){
+        //if(cacheList==mCacheList){
+        //    LOG.info("CacheList stay the same for user "+userId);
+        //    return false;
+        //}else{
+        //    LOG.info("CacheList changed for user "+userId);
+            cacheList=mCacheList;
+            return true;
+        //}
     }
 
     public ArrayList<String> getCacheList(){

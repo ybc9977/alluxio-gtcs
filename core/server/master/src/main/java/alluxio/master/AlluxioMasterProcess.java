@@ -15,6 +15,8 @@ import alluxio.AlluxioURI;
 import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.RuntimeConstants;
+import alluxio.client.file.FileSystemContext;
+import alluxio.client.file.GameSystemClient;
 import alluxio.master.journal.JournalSystem;
 import alluxio.metrics.MetricsSystem;
 import alluxio.metrics.sink.MetricsServlet;
@@ -95,6 +97,10 @@ public class AlluxioMasterProcess implements MasterProcess {
 
   /** The master registry. */
   private final MasterRegistry mRegistry;
+
+  private final FileSystemContext context = FileSystemContext.create(null);
+
+  private final GameSystemClient mGameSystemClient = new GameSystemClient(context);
 
   /** The web ui server. */
   private WebServer mWebServer;
@@ -360,6 +366,7 @@ public class AlluxioMasterProcess implements MasterProcess {
     // set up multiplexed thrift processors
     TMultiplexedProcessor processor = new TMultiplexedProcessor();
     // register master services
+    registerServices(processor,mGameSystemClient.getServices());
     for (Master master : mRegistry.getServers()) {
       registerServices(processor, master.getServices());
     }

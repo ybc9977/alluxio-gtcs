@@ -1,10 +1,18 @@
 package alluxio.client.file;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import alluxio.Client;
+import alluxio.Constants;
+import alluxio.Server;
 import alluxio.client.GameSystemClientListMaintainer;
+import alluxio.thrift.GameSystemClientMasterService;
+import alluxio.util.ThreadFactoryUtils;
+import com.google.common.base.Preconditions;
+import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,20 +20,20 @@ import org.slf4j.LoggerFactory;
  *  created by byangak on 28/06/2018
  */
 
-public class GameSystemClient extends BaseFileSystem {
+public class GameSystemClient extends BaseFileSystem implements Server<Long> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameSystemClient.class);
     private ArrayList<String> prefList = new ArrayList<>();
     private float cacheNum = 0;
     private GameSystemClientListMaintainer mGameSystemClientListMaintainer = new GameSystemClientListMaintainer();
-
+    private Long mUserId;
 
     /**
      * Constructs a new base file system.
      *
      * @param context file system context
      */
-    protected GameSystemClient(FileSystemContext context) {
+    public GameSystemClient(FileSystemContext context) {
 
         super(context);
     }
@@ -69,11 +77,47 @@ public class GameSystemClient extends BaseFileSystem {
             if (cacheNum>0 && fileList.containsKey(path) && !fileList.get(path)){
                 cacheNum--;
                 cacheList.add(path);
+                fileList.replace(path,true);
             }else if (cacheNum <= 0){
-                mGameSystemClientListMaintainer.changeCacheList(cacheList);
-                return cacheList;
+                //if(mGameSystemClientListMaintainer.changeCacheList(cacheList)){
+                    return cacheList;
+                //}else {
+                //    return null;
+                //}
+
             }
         }
         return null;
     }
+
+    @Override
+    public Set<Class<? extends Server>> getDependencies() {
+        return new HashSet<>();
+    }
+
+    @Override
+    public String getName() {
+        return Constants.GAME_SYSTEM_CLIENT_MASTER_SERVICE_NAME;
+    }
+
+    @Override
+    public Map<String, TProcessor> getServices() {
+        Map<String, TProcessor> services = new HashMap<>();
+        services.put(Constants.GAME_SYSTEM_CLIENT_MASTER_SERVICE_NAME,
+                new GameSystemClientMasterService.Processor<>(
+                        new GameSystemClientMasterServiceHandler(this)));
+        return services;
+    }
+
+    @Override
+    public void start(Long userId) throws IOException {
+        mUserId = userId;
+        LOG.info("Starting user " + mUserId + "'s server to reply for Master's require" );
+    }
+
+    @Override
+    public void stop() throws IOException {
+        LOG.info("Stopping user " + mUserId + "'s server to reply for Master's require");
+    }
+
 }
