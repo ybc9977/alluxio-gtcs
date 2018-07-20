@@ -2,16 +2,10 @@ package alluxio.client.file;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import alluxio.Client;
 import alluxio.Constants;
 import alluxio.Server;
-import alluxio.client.GameSystemClientListMaintainer;
 import alluxio.thrift.GameSystemClientMasterService;
-import alluxio.util.ThreadFactoryUtils;
-import com.google.common.base.Preconditions;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +17,9 @@ import org.slf4j.LoggerFactory;
 public class GameSystemClient extends BaseFileSystem implements Server<Long> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameSystemClient.class);
-    private ArrayList<String> prefList = new ArrayList<>();
-    private float cacheNum = 0;
-    private GameSystemClientListMaintainer mGameSystemClientListMaintainer = new GameSystemClientListMaintainer();
-    private Long mUserId;
+    private ArrayList<String> mPrefList = new ArrayList<>();
+    private Map<String,Double> pref = new HashMap<>();
+    public Long mUserId;
 
     /**
      * Constructs a new base file system.
@@ -36,23 +29,44 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
     public GameSystemClient(FileSystemContext context) {
 
         super(context);
+        mUserId = 0L;
     }
 
-    protected GameSystemClient(FileSystemContext context, Long userId) {
+    public GameSystemClient(FileSystemContext context, Long userId) {
 
         super(context);
-
-//        Random random = new Random();
-//
-//        userId = random.nextLong();
-
-        mGameSystemClientListMaintainer.setUserId(userId);
+        mUserId = userId;
 
     }
 
     private void setPrefList(Map<String,Boolean> fileList){
 
-        prefList = mGameSystemClientListMaintainer.getPrefList(fileList);
+        double p = 1.0;
+        for(String path: fileList.keySet()){
+            double p_now = p * Math.random();
+            pref.put(path,p_now);
+            p = p * (1-p_now);
+            //prefList.set((int) (Math.random() * fileList.size()), path);
+        }
+
+        LOG.info("randomized preference list for user "+ mUserId );
+        pref = sortByValue(pref);
+
+        LOG.info(pref.toString());
+        mPrefList.addAll(pref.keySet());
+    }
+
+
+    private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
 
     /**
@@ -64,30 +78,27 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
      */
 
      ArrayList<String> checkCacheChange(Map<String,Boolean> fileList) {
-        ArrayList<String> cacheList = new ArrayList<>();
+        ArrayList<String> cachingList = new ArrayList<>();
 
         //String quota = WORKER_TIERED_STORE_LEVEL0_DIRS_QUOTA.getDefaultValue();
         //String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
 
         setPrefList(fileList);
 
-        cacheNum = 2; // default setting
+        float cacheNum = 2;
 
-        for(String path: prefList){
-            if (cacheNum>0 && fileList.containsKey(path) && !fileList.get(path)){
+        for(String path: mPrefList){
+            if (cacheNum >0 && fileList.containsKey(path) && !fileList.get(path)){
                 cacheNum--;
-                cacheList.add(path);
+                cachingList.add(path);
                 fileList.replace(path,true);
             }else if (cacheNum <= 0){
-                //if(mGameSystemClientListMaintainer.changeCacheList(cacheList)){
-                    return cacheList;
-                //}else {
-                //    return null;
-                //}
-
+                    return cachingList;
             }
         }
+
         return null;
+
     }
 
     @Override

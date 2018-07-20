@@ -4,18 +4,11 @@ import alluxio.AbstractMasterClient;
 import alluxio.AlluxioURI;
 import alluxio.Constants;
 import alluxio.collections.Pair;
-import alluxio.exception.*;
 import alluxio.exception.status.AlluxioStatusException;
-import alluxio.exception.status.UnavailableException;
 import alluxio.master.GameSystemMasterListMaintainer;
 import alluxio.master.MasterClientConfig;
-import alluxio.master.MasterContext;
-import alluxio.master.MasterRegistry;
-import alluxio.master.block.DefaultBlockMaster;
-import alluxio.master.file.options.FreeOptions;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemClientMasterService;
-import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,89 +57,94 @@ public final class GameSystemMaster extends AbstractMasterClient {
     }
 
     public synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
-        ArrayList<Pair<Long,Boolean>> userList = GameSystemMasterListMaintainer.getuser();
+        ArrayList<Pair<Long,Boolean>> userList = GameSystemMasterListMaintainer.getUserList();
         Map<Long,List<String>> cacheMap = new HashMap<>();
         while(userList.size()!=0){
+            
             int index = (int) (Math.random() * userList.size());
             Pair<Long, Boolean> user = userList.get(index);
-            Map<String,Boolean> file_list = GameSystemMasterListMaintainer.getfilebefore();
-            List<String> cache_list = checkCacheChange(file_list);
+            Map<String,Boolean> file_list = GameSystemMasterListMaintainer.getFileList();
+            List<String> caching_list = checkCacheChange(file_list);
             LOG.info(String.valueOf("cacheMap: "+cacheMap));
-            LOG.info(String.valueOf("cache_list: "+cache_list));
-            LOG.info(String.valueOf("MAP_LIST: "+cacheMap.get(user.getFirst())));
-            //LOG.info(String.valueOf(cache_list.equals(cacheMap.get(user.getFirst()))));
+
             if (cacheMap.containsKey(user.getFirst())) {
-                if (!cache_list.equals(cacheMap.get(user.getFirst()))){
-                    for (String file_path : cache_list) {
+
+                if (!caching_list.equals(cacheMap.get(user.getFirst()))){
+                    for (String file_path : caching_list) {
                         if (file_list.containsKey(file_path)) {
                             file_list.replace(file_path, true);
                         }
                     }
                     user.setSecond(true);
                     userList.set(index, user);
-                    cacheMap.replace(user.getFirst(),cache_list);
+                    cacheMap.replace(user.getFirst(),caching_list);
                 } else {
                     user.setSecond(false);
                     userList.set(index, user);
                 }
-            }else if (cache_list!=null){
-                for (String file_path : cache_list) {
+
+            }else if (caching_list!=null){
+
+                for (String file_path : caching_list) {
                     if (file_list.containsKey(file_path)) {
                         file_list.replace(file_path, true);
                     }
                 }
                 user.setSecond(true);
                 userList.set(index, user);
-                cacheMap.put(user.getFirst(),cache_list);
+                cacheMap.put(user.getFirst(),caching_list);
+
             }else{
                 user.setSecond(false);
                 userList.set(index, user);
-                cacheMap.put(user.getFirst(),cache_list);
+                cacheMap.put(user.getFirst(),caching_list);
             }
-            GameSystemMasterListMaintainer.changefile(file_list);
 
             int count = 0;
-            LOG.info(String.valueOf(userList));
+
             for (Pair<Long,Boolean> p:userList) {
                 if (p.getSecond()) {
                     count = 0;
                     break;
-                }else{
-                    count++;
-                }
+                }else{count++;}
                 if (count == userList.size()){
                     cacheIt();
                     return;
                 }
             }
+
         }
     }
     private synchronized void cacheIt(){
+        Map<String,Boolean> fileList = GameSystemMasterListMaintainer.getFileList();
+        Map<String,Boolean> cacheList = GameSystemMasterListMaintainer.getCacheList();
 
-        Map<String,Boolean> file_list_before = GameSystemMasterListMaintainer.getfilebefore();
-        Map<String,Boolean> file_list_after = GameSystemMasterListMaintainer.getfileafter();
-        LOG.info("start the caching process");
-        for (String file:file_list_before.keySet()) {
-            AlluxioURI uri = new AlluxioURI(file);
-            if (file_list_before.get(file)!=file_list_after.get(file)){
-                if (file_list_after.get(file)) {
-                    try {
-                        mGameSystemCacheMaster.scheduleAsyncPersist(uri);
-                        LOG.info("persist complete");
-                    } catch (AlluxioStatusException e) {
-                        e.printStackTrace();
+        for (String file:fileList.keySet()) {
+            if(cacheList.containsKey(file)){
+                if (fileList.get(file)!=cacheList.get(file)){
+                    LOG.info("start the caching process");
+                    AlluxioURI uri = new AlluxioURI(file);
+                    if (fileList.get(file)) {
+                        try {
+                            mGameSystemCacheMaster.scheduleAsyncPersist(uri);
+                            LOG.info("Persist Process Complete");
+                        } catch (AlluxioStatusException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            mGameSystemCacheMaster.free(uri, alluxio.client.file.options.FreeOptions.defaults());
+                            LOG.info("Free Process Complete");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } else {
-                    try {
-                        mGameSystemCacheMaster.free(uri, alluxio.client.file.options.FreeOptions.defaults());
-                        LOG.info("free complete");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    GameSystemMasterListMaintainer.setCacheList(fileList);
+                }else{
+                    LOG.info("fileList is the same as cacheList");
                 }
-                GameSystemMasterListMaintainer.setFileListBefore(file_list_after);
             }else{
-                LOG.info("cache lists are the same, didn't change caching list");
+                LOG.warn("file "+ file +" is not found in the cacheList");
             }
         }
     }

@@ -152,7 +152,7 @@ public final class FileSystemMasterClientServiceHandler implements
   @Override
   public FreeTResponse free(final String path, final boolean recursive, final FreeTOptions options)
       throws AlluxioTException {
-    GameSystemMasterListMaintainer.changeMode(path,false);
+    GameSystemMasterListMaintainer.changeFileMode(path,false);
     return RpcUtils.call(LOG, new RpcCallableThrowsIOException<FreeTResponse>() {
       @Override
       public FreeTResponse call() throws AlluxioException, IOException {
@@ -364,7 +364,7 @@ public final class FileSystemMasterClientServiceHandler implements
   @Override
   public ScheduleAsyncPersistenceTResponse scheduleAsyncPersistence(final String path,
       final ScheduleAsyncPersistenceTOptions options) throws AlluxioTException {
-    GameSystemMasterListMaintainer.changeMode(path,true);
+    GameSystemMasterListMaintainer.changeFileMode(path,true);
     return RpcUtils.call(LOG,
         new RpcCallableThrowsIOException<ScheduleAsyncPersistenceTResponse>() {
           @Override
