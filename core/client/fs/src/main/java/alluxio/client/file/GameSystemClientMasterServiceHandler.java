@@ -43,8 +43,8 @@ public class GameSystemClientMasterServiceHandler implements
     public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList)
             throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
-            ArrayList<String> cacheFileList= mGameSystemClient.checkCacheChange(fileList);
-            return new CheckCacheChangeTResponse(cacheFileList);
+            ArrayList<String> cachingList= mGameSystemClient.checkCacheChange(fileList);
+            return new CheckCacheChangeTResponse(cachingList);
         });
     }
 }

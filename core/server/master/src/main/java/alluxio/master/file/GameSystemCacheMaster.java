@@ -10,6 +10,10 @@ import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;
 import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
 
+/**
+ *  created by byangak on 18/07/2018
+ */
+
 public class GameSystemCacheMaster extends AbstractMasterClient {
 
     private GameSystemCacheService.Client mClient = null;
