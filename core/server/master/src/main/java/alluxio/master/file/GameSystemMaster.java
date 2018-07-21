@@ -33,6 +33,8 @@ public final class GameSystemMaster extends AbstractMasterClient {
 
     private GameSystemCacheMaster mGameSystemCacheMaster = new GameSystemCacheMaster(MasterClientConfig.defaults());
 
+    private Map<String,List<String>> cacheMap = new HashMap<>();
+
     @Override
     protected AlluxioService.Client getClient() {
         return mClient;
@@ -52,29 +54,30 @@ public final class GameSystemMaster extends AbstractMasterClient {
     protected void afterConnect() {
         mClient = new GameSystemClientMasterService.Client(mProtocol);
     }
-    private synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.checkCacheChange(fileList).cachingList, "CheckCacheChange");
+
+    private synchronized List<String> checkCacheChange(Map<String, Boolean> fileList, String user) throws AlluxioStatusException {
+        return retryRPC(() -> mClient.checkCacheChange(fileList, user).cachingList, "CheckCacheChange");
     }
 
     public synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
-        ArrayList<Pair<Long,Boolean>> userList = GameSystemMasterListMaintainer.getUserList();
-        Map<Long,List<String>> cacheMap = new HashMap<>();
-        while(userList.size()!=0){
+        ArrayList<Pair<String,Boolean>> userList = GameSystemMasterListMaintainer.getUserList();
+        while(userList.size()!=0 && !GameSystemMasterListMaintainer.getFileList().isEmpty()){
             
             int index = (int) (Math.random() * userList.size());
-            Pair<Long, Boolean> user = userList.get(index);
+            Pair<String, Boolean> user = userList.get(index);
             Map<String,Boolean> file_list = GameSystemMasterListMaintainer.getFileList();
-            List<String> caching_list = checkCacheChange(file_list);
+            List<String> caching_list = checkCacheChange(file_list, user.getFirst());
             LOG.info(String.valueOf("cacheMap: "+cacheMap));
 
-            if (cacheMap.containsKey(user.getFirst())) {
+            if (cacheMap.containsKey(user.getFirst()) && caching_list!=null) {
 
                 if (!caching_list.equals(cacheMap.get(user.getFirst()))){
                     for (String file_path : caching_list) {
                         if (file_list.containsKey(file_path)) {
-                            file_list.replace(file_path, true);
+                            file_list.put(file_path,true);
                         }
                     }
+                    GameSystemMasterListMaintainer.setFileList(file_list);
                     user.setSecond(true);
                     userList.set(index, user);
                     cacheMap.replace(user.getFirst(),caching_list);
@@ -87,9 +90,10 @@ public final class GameSystemMaster extends AbstractMasterClient {
 
                 for (String file_path : caching_list) {
                     if (file_list.containsKey(file_path)) {
-                        file_list.replace(file_path, true);
+                        file_list.replace(file_path,true);
                     }
                 }
+                GameSystemMasterListMaintainer.setFileList(file_list);
                 user.setSecond(true);
                 userList.set(index, user);
                 cacheMap.put(user.getFirst(),caching_list);
@@ -102,7 +106,7 @@ public final class GameSystemMaster extends AbstractMasterClient {
 
             int count = 0;
 
-            for (Pair<Long,Boolean> p:userList) {
+            for (Pair<String,Boolean> p:userList) {
                 if (p.getSecond()) {
                     count = 0;
                     break;
@@ -118,6 +122,8 @@ public final class GameSystemMaster extends AbstractMasterClient {
     private synchronized void cacheIt(){
         Map<String,Boolean> fileList = GameSystemMasterListMaintainer.getFileList();
         Map<String,Boolean> cacheList = GameSystemMasterListMaintainer.getCacheList();
+        LOG.info("fileList: "+String.valueOf(fileList));
+        LOG.info("cacheList: "+String.valueOf(cacheList));
 
         for (String file:fileList.keySet()) {
             if(cacheList.containsKey(file)){

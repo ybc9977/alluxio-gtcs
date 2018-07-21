@@ -48,6 +48,7 @@ import org.apache.thrift.transport.TTransportFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
@@ -58,6 +59,8 @@ import java.util.concurrent.locks.Lock;
 
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
+
+import static java.lang.Long.parseLong;
 
 /**
  * This class encapsulates the different master services that are configured to run.
@@ -100,9 +103,9 @@ public class AlluxioMasterProcess implements MasterProcess {
   /** The master registry. */
   private final MasterRegistry mRegistry;
 
-  private final int number = 1;
+  //private final int number = 1;
 
-  private final GameSystemClient[] mGameSystemClientList = new GameSystemClient[number];
+  private final GameSystemClient mGameSystemClient = new GameSystemClient(FileSystemContext.create(null));
 
   /** The web ui server. */
   private WebServer mWebServer;
@@ -369,14 +372,14 @@ public class AlluxioMasterProcess implements MasterProcess {
     TMultiplexedProcessor processor = new TMultiplexedProcessor();
 
     // register client services for GTC
-    for (GameSystemClient mGameSystemClient:mGameSystemClientList){
-      Random rand = new Random();
-      Long rand_long = rand.nextLong();
-      mGameSystemClient = new GameSystemClient(FileSystemContext.create(null),rand_long);
-      GameSystemMasterListMaintainer.adduser(rand_long);
-      LOG.info("Client service of user "+rand_long+" has started");
+//    for (GameSystemClient mGameSystemClient:mGameSystemClientList){
+//      FileSystemContext context = FileSystemContext.create(null);
+//      String APP_ID = context.mAppId;
+//      mGameSystemClient = new GameSystemClient(context,APP_ID);
+//      GameSystemMasterListMaintainer.adduser(APP_ID);
+      LOG.info("Game System Client service has started");
       registerServices(processor,mGameSystemClient.getServices());
-    }
+//    }
     // register master services
     for (Master master : mRegistry.getServers()) {
       registerServices(processor, master.getServices());

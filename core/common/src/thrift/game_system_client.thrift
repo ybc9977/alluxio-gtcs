@@ -12,7 +12,8 @@ struct CheckCacheChangeTResponse{
 service GameSystemClientMasterService extends common.AlluxioService {
 
     CheckCacheChangeTResponse checkCacheChange(
-        1: map<string,bool> fileList
+        1: map<string,bool> fileList,
+        2: string user
     )
     throws (1: exception.AlluxioTException e)
 

@@ -64,7 +64,6 @@ alluxio/client/file/GameSystemClient.class
 alluxio/client/RetryHandlingMetaMasterClient.class
 alluxio/client/block/stream/NettyPacketReader$PacketReadHandler.class
 alluxio/client/file/FileSystemUtils.class
-alluxio/client/GameSystemClientListMaintainer.class
 alluxio/client/block/BlockWorkerInfo.class
 alluxio/client/lineage/LineageMasterClient$5.class
 alluxio/client/lineage/LineageMasterClient$2.class

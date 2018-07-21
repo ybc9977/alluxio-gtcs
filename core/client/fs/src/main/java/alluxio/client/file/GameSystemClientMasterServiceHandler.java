@@ -40,10 +40,10 @@ public class GameSystemClientMasterServiceHandler implements
 
 
     @Override
-    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList)
+    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList, String user)
             throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
-            ArrayList<String> cachingList= mGameSystemClient.checkCacheChange(fileList);
+            ArrayList<String> cachingList= mGameSystemClient.checkCacheChange(fileList, user);
             return new CheckCacheChangeTResponse(cachingList);
         });
     }

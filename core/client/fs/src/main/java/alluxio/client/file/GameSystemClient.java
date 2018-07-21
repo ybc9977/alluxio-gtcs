@@ -14,12 +14,10 @@ import org.slf4j.LoggerFactory;
  *  created by byangak on 28/06/2018
  */
 
-public class GameSystemClient extends BaseFileSystem implements Server<Long> {
+public class GameSystemClient extends BaseFileSystem implements Server {
 
     private static final Logger LOG = LoggerFactory.getLogger(GameSystemClient.class);
-    private ArrayList<String> mPrefList = new ArrayList<>();
-    private Map<String,Double> pref = new HashMap<>();
-    public Long mUserId;
+    private static Map<String,ArrayList<String>> userList = new HashMap<>();
 
     /**
      * Constructs a new base file system.
@@ -27,33 +25,24 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
      * @param context file system context
      */
     public GameSystemClient(FileSystemContext context) {
-
         super(context);
-        mUserId = 0L;
     }
 
-    public GameSystemClient(FileSystemContext context, Long userId) {
-
-        super(context);
-        mUserId = userId;
-
-    }
-
-    private void setPrefList(Map<String,Boolean> fileList){
-
-        double p = 1.0;
-        for(String path: fileList.keySet()){
-            double p_now = p * Math.random();
-            pref.put(path,p_now);
-            p = p * (1-p_now);
-            //prefList.set((int) (Math.random() * fileList.size()), path);
-        }
-
-        LOG.info("randomized preference list for user "+ mUserId );
-        pref = sortByValue(pref);
-
-        LOG.info(pref.toString());
-        mPrefList.addAll(pref.keySet());
+    private void setPrefList(Map<String,Boolean> fileList, String user){
+        Map<String,Double> pref = new HashMap<>();
+//        if (userList.get(user)==null || System.currentTimeMillis()%10000==0 || true ) {
+            double p = 1.0;
+            for (String path : fileList.keySet()) {
+                double p_now = p * Math.random();
+                pref.put(path, p_now);
+                p = p * (1 - p_now);
+                //prefList.set((int) (Math.random() * fileList.size()), path);
+            }
+            pref = sortByValue(pref);
+            LOG.info("randomized preference list for user " + user + " : " + pref.toString());
+            ArrayList<String> mPrefList = new ArrayList<>(pref.keySet());
+            userList.replace(user, mPrefList);
+//        }
     }
 
 
@@ -61,7 +50,12 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
 
         List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
         list.sort(Map.Entry.comparingByValue());
-
+        for (int i = 0; i < Math.floor(list.size() / 2) ; i++){
+            Map.Entry<K, V> temp;
+            temp = list.get(i);
+            list.set(i,list.get(list.size()-i-1));
+            list.set(list.size()-i-1,temp);
+        }
         Map<K, V> result = new LinkedHashMap<>();
         for (Map.Entry<K, V> entry : list) {
             result.put(entry.getKey(), entry.getValue());
@@ -69,7 +63,9 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
         return result;
     }
 
-    /**
+
+
+        /**
      *
      * Check whether cache allocation need to change and how to
      *
@@ -77,28 +73,37 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
      * @return cacheList or null
      */
 
-     ArrayList<String> checkCacheChange(Map<String,Boolean> fileList) {
+     ArrayList<String> checkCacheChange(Map<String,Boolean> fileList, String user) {
+
         ArrayList<String> cachingList = new ArrayList<>();
 
+        if (!userList.containsKey(user)){
+            LOG.info("Client side server add user "+user);
+            userList.put(user,null);
+        }
         //String quota = WORKER_TIERED_STORE_LEVEL0_DIRS_QUOTA.getDefaultValue();
         //String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
 
-        setPrefList(fileList);
+        setPrefList(fileList, user);
+        LOG.info("userList:"+String.valueOf(userList));
 
-        float cacheNum = 2;
+        int cacheNum = 2;
 
-        for(String path: mPrefList){
+        for(String path: userList.get(user)){
+//            LOG.info("fileList:"+String.valueOf(fileList));
+//            LOG.info("cacheNum >0 :"+String.valueOf(cacheNum));
+//            LOG.info("fileList.containsKey(path) :"+String.valueOf(fileList.containsKey(path)));
+//            LOG.info("!fileList.get(path) :"+String.valueOf(!fileList.get(path)));
             if (cacheNum >0 && fileList.containsKey(path) && !fileList.get(path)){
                 cacheNum--;
                 cachingList.add(path);
                 fileList.replace(path,true);
+//                LOG.info("hello world!");
             }else if (cacheNum <= 0){
-                    return cachingList;
+                return cachingList;
             }
         }
-
-        return null;
-
+        return cachingList;
     }
 
     @Override
@@ -121,14 +126,13 @@ public class GameSystemClient extends BaseFileSystem implements Server<Long> {
     }
 
     @Override
-    public void start(Long userId) throws IOException {
-        mUserId = userId;
-        LOG.info("Starting user " + mUserId + "'s server to reply for Master's require" );
+    public void start(Object options) throws IOException {
+        LOG.info("Starting client server to reply for Master's require" );
     }
 
     @Override
     public void stop() throws IOException {
-        LOG.info("Stopping user " + mUserId + "'s server to reply for Master's require");
+        LOG.info("Stopping client server to reply for Master's require");
     }
 
 }

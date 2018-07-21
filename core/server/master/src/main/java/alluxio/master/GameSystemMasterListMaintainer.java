@@ -24,7 +24,7 @@ public final class GameSystemMasterListMaintainer {
     private static Map<AlluxioURI,Boolean> cacheList = new HashMap<>();
 
     /** Each user is a Pair contains userId(Long) and isCachingOptionChanged(Boolean) */
-    private static ArrayList<Pair<Long,Boolean>> userList = new ArrayList<>();
+    private static ArrayList<Pair<String,Boolean>> userList = new ArrayList<>();
 
     public static void addfile(String path, boolean isCached){
         AlluxioURI uri = new AlluxioURI(path);
@@ -41,11 +41,11 @@ public final class GameSystemMasterListMaintainer {
         }
     }
 
-    public static void adduser(Long userId) {
-        Pair<Long,Boolean> p1 = new Pair<>(userId, true);
-        Pair<Long,Boolean> p2 = new Pair<>(userId, false);
+    public static void adduser(String userId) {
+        Pair<String,Boolean> p1 = new Pair<>(userId, true);
+        Pair<String,Boolean> p2 = new Pair<>(userId, false);
         if(!userList.contains(p1)&&!userList.contains(p2)){
-            Pair<Long, Boolean> pair = new Pair<>(userId, false);
+            Pair<String, Boolean> pair = new Pair<>(userId, false);
             userList.add(pair);
             LOG.info("user "+ userId +" is added successfully into userList");
         }else{
@@ -65,7 +65,7 @@ public final class GameSystemMasterListMaintainer {
         }
     }
 
-    public static ArrayList<Pair<Long,Boolean>> getUserList(){
+    public static ArrayList<Pair<String,Boolean>> getUserList(){
         return userList;
     }
 

@@ -331,7 +331,8 @@ public final class FileSystemMasterClientServiceHandler implements
 
       @Override
       public PassUserIdTResponse call() throws AlluxioException, IOException {
-        GameSystemMasterListMaintainer.adduser(userId);
+        String user = String.valueOf(userId);
+        GameSystemMasterListMaintainer.adduser(user);
         return new PassUserIdTResponse();
       }
 
