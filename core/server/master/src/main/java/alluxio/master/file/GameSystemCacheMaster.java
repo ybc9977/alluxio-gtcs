@@ -42,11 +42,6 @@ public class GameSystemCacheMaster extends AbstractMasterClient {
         mClient = new GameSystemCacheService.Client(mProtocol);
     }
 
-    public synchronized void scheduleAsyncPersist(final AlluxioURI path)
-            throws AlluxioStatusException {
-        retryRPC(() -> mClient.scheduleAsyncPersistence(path.getPath(),
-                new ScheduleAsyncPersistenceTOptions()), "ScheduleAsyncPersist");
-    }
     public synchronized void free(final AlluxioURI path, final FreeOptions options)
             throws AlluxioStatusException {
         retryRPC(() -> mClient.free(path.getPath(),false , options.toThrift()), "Free");

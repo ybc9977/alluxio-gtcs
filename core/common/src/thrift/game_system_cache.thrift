@@ -9,11 +9,6 @@ struct FileSystemMasterCommonTOptions {
   3: optional common.TTtlAction ttlAction
 }
 
-struct ScheduleAsyncPersistenceTOptions {
-  1: optional FileSystemMasterCommonTOptions commonOptions
-}
-struct ScheduleAsyncPersistenceTResponse {}
-
 struct FreeTOptions {
   1: optional bool recursive
   2: optional bool forced
@@ -22,12 +17,6 @@ struct FreeTOptions {
 struct FreeTResponse {}
 
 service GameSystemCacheService extends common.AlluxioService{
-
-ScheduleAsyncPersistenceTResponse scheduleAsyncPersistence(
-    /** the path of the file */ 1: string path,
-    /** the method options */ 2: ScheduleAsyncPersistenceTOptions options,
-    )
-    throws (1: exception.AlluxioTException e)
 
 FreeTResponse free(
     /** the path of the file or directory */ 1: string path,

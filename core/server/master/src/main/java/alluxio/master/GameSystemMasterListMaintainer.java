@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +18,8 @@ public final class GameSystemMasterListMaintainer {
 
     private final static Logger LOG = LoggerFactory.getLogger(GameSystemMasterListMaintainer.class);
 
+    private static Map<String,List<String>> cacheMap = new HashMap<>();
+
     /** FileList which is unsettled during the querying process */
     private static Map<AlluxioURI,Boolean> fileList = new HashMap<>();
 
@@ -26,16 +29,17 @@ public final class GameSystemMasterListMaintainer {
     /** Each user is a Pair contains userId(Long) and isCachingOptionChanged(Boolean) */
     private static ArrayList<Pair<String,Boolean>> userList = new ArrayList<>();
 
-    public static void addfile(String path, boolean isCached){
+    public static void addfile(String path){
         AlluxioURI uri = new AlluxioURI(path);
-        fileList.put(uri, isCached);
-        cacheList.put(uri, isCached);
-        LOG.info("a file has been added successfully into " + path + ", cache status: " +isCached);
+        fileList.put(uri,false);
+        cacheList.put(uri,false);
+        LOG.info("a file has been added successfully into " + path );
     }
 
     public static void deletefile(String path) {
-        if(fileList.containsKey(path)){
-            fileList.remove(path);
+        AlluxioURI uri = new AlluxioURI(path);
+        if(fileList.containsKey(uri)){
+            fileList.remove(uri);
         }else{
             LOG.info("File not found");
         }
@@ -47,6 +51,7 @@ public final class GameSystemMasterListMaintainer {
         if(!userList.contains(p1)&&!userList.contains(p2)){
             Pair<String, Boolean> pair = new Pair<>(userId, false);
             userList.add(pair);
+            cacheMap.put(userId,null);
             LOG.info("user "+ userId +" is added successfully into userList");
         }else{
             LOG.info("user "+ userId +" is already in the userList");
@@ -69,10 +74,37 @@ public final class GameSystemMasterListMaintainer {
         return userList;
     }
 
+    public static Map<String,List<String>> getCacheMap(){
+        return cacheMap;
+    }
+
+    public static void setCacheMap(Map<String,List<String>> mCacheMap){
+        boolean isEqual = true;
+        for (String user:cacheMap.keySet()){
+            if(cacheMap.get(user)==null){
+                for (String file:cacheMap.get(user)){
+                    if(!mCacheMap.get(user).contains(file)){
+                        isEqual = false;
+                    }
+                }
+            }else{
+                isEqual = false;
+            }
+
+        }
+        if(!isEqual){
+            cacheMap = mCacheMap;
+            LOG.info(String.valueOf("cacheMap: "+cacheMap));
+        }else{
+            LOG.info("cacheMap stay the same");
+        }
+
+    }
+
     public static Map<String,Boolean> getFileList(){
         Map<String,Boolean> fileMap = new HashMap<>();
         for(AlluxioURI key : fileList.keySet()){
-            fileMap.put(key.toString(),fileList.get(key));
+            fileMap.put(key.toString(), fileList.get(key));
         }
         return fileMap;
     }
@@ -85,17 +117,17 @@ public final class GameSystemMasterListMaintainer {
     }
 
     public static void setFileList(Map<String,Boolean> files){
-        LOG.info("fileList changed");
+        LOG.info("fileList: "+String.valueOf(files));
         for(String file:files.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
-            if (files.get(file)!=fileList.get(uri)){
+            if (files.get(file)!= fileList.get(uri)){
                 fileList.replace(uri,files.get(file));
             }
         }
     }
 
     public static void setCacheList(Map<String,Boolean> files){
-        LOG.info("cacheList changed");
+        LOG.info("cacheList: "+String.valueOf(files));
         for(String file:files.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
             if (files.get(file)!=cacheList.get(uri)){

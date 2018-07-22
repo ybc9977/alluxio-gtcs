@@ -138,7 +138,7 @@ public final class FileSystemMasterClientServiceHandler implements
       @Override
       public CreateFileTResponse call() throws AlluxioException, IOException {
         mFileSystemMaster.createFile(new AlluxioURI(path), new CreateFileOptions(options));
-        GameSystemMasterListMaintainer.addfile(path,options.persisted);
+        GameSystemMasterListMaintainer.addfile(path);
         return new CreateFileTResponse();
       }
 

@@ -422,6 +422,7 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/BlockMasterInfoField.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/FileAlreadyCompletedException.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/WorkerInfo.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/LoadTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/MetricValue.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GetCapacityBytesTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/SyncMetadataTResponse.java

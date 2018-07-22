@@ -32,12 +32,16 @@ public class GameSystemClient extends BaseFileSystem implements Server {
         Map<String,Double> pref = new HashMap<>();
 //        if (userList.get(user)==null || System.currentTimeMillis()%10000==0 || true ) {
             double p = 1.0;
+            double p_now = 0;
+            String lastKey = null;
             for (String path : fileList.keySet()) {
-                double p_now = p * Math.random();
+                p_now = p * Math.random();
                 pref.put(path, p_now);
                 p = p * (1 - p_now);
+                lastKey = path;
                 //prefList.set((int) (Math.random() * fileList.size()), path);
             }
+            if (lastKey!=null) pref.replace(lastKey, p / (1 - p_now));
             pref = sortByValue(pref);
             LOG.info("randomized preference list for user " + user + " : " + pref.toString());
             ArrayList<String> mPrefList = new ArrayList<>(pref.keySet());
@@ -85,7 +89,7 @@ public class GameSystemClient extends BaseFileSystem implements Server {
         //String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
 
         setPrefList(fileList, user);
-        LOG.info("userList:"+String.valueOf(userList));
+        LOG.info("userList(user[pref]):"+String.valueOf(userList));
 
         int cacheNum = 2;
 

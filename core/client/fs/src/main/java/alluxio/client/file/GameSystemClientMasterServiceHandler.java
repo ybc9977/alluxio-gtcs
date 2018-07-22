@@ -1,7 +1,10 @@
 package alluxio.client.file;
 
+import alluxio.AlluxioURI;
 import alluxio.Constants;
 import alluxio.RpcUtils;
+import alluxio.client.ReadType;
+import alluxio.client.file.options.OpenFileOptions;
 import alluxio.thrift.*;
 import com.google.common.base.Preconditions;
 import org.apache.thrift.TException;
@@ -45,6 +48,16 @@ public class GameSystemClientMasterServiceHandler implements
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
             ArrayList<String> cachingList= mGameSystemClient.checkCacheChange(fileList, user);
             return new CheckCacheChangeTResponse(cachingList);
+        });
+    }
+
+    @Override
+    public LoadTResponse load(String path) throws AlluxioTException, TException {
+        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
+            AlluxioURI uri = new AlluxioURI(path);
+            OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
+            mGameSystemClient.openFile(uri,options);
+            return new LoadTResponse();
         });
     }
 }
