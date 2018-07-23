@@ -79,26 +79,27 @@ public final class GameSystemMasterListMaintainer {
     }
 
     public static void setCacheMap(Map<String,List<String>> mCacheMap){
-        boolean isEqual = true;
-        for (String user:cacheMap.keySet()){
-            if(cacheMap.get(user)==null){
-                for (String file:cacheMap.get(user)){
-                    if(!mCacheMap.get(user).contains(file)){
-                        isEqual = false;
-                    }
-                }
-            }else{
-                isEqual = false;
-            }
-
-        }
-        if(!isEqual){
-            cacheMap = mCacheMap;
-            LOG.info(String.valueOf("cacheMap: "+cacheMap));
-        }else{
-            LOG.info("cacheMap stay the same");
-        }
-
+        cacheMap = mCacheMap;
+        LOG.info(String.valueOf("cacheMap: "+cacheMap));
+//        boolean isEqual = true;
+//        LOG.info(String.valueOf("cacheMap: "+cacheMap));
+//        for (String user:cacheMap.keySet()){
+//            if(cacheMap.get(user)!=null){
+//                for (String file:mCacheMap.get(user)){
+//                    if(!cacheMap.get(user).contains(file)){
+//                        isEqual = false;
+//                    }
+//                }
+//            }else{
+//                isEqual = false;
+//            }
+//        }
+//        if(!isEqual){
+//            cacheMap = mCacheMap;
+//            LOG.info(String.valueOf("cacheMap: "+cacheMap));
+//        }else{
+//            LOG.info("cacheMap stay the same");
+//        }
     }
 
     public static Map<String,Boolean> getFileList(){

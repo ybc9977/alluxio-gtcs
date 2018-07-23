@@ -6,6 +6,7 @@
 *.pyc
 *.swo
 *.swp
+*.jar
 *~
 \#*#
 .DS_STORE

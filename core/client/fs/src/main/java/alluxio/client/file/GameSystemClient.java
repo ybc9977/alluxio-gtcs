@@ -43,7 +43,7 @@ public class GameSystemClient extends BaseFileSystem implements Server {
             }
             if (lastKey!=null) pref.replace(lastKey, p / (1 - p_now));
             pref = sortByValue(pref);
-            LOG.info("randomized preference list for user " + user + " : " + pref.toString());
+            LOG.info("randomized preference list for user " + user + " :\n" + pref.toString());
             ArrayList<String> mPrefList = new ArrayList<>(pref.keySet());
             userList.replace(user, mPrefList);
 //        }
@@ -85,8 +85,8 @@ public class GameSystemClient extends BaseFileSystem implements Server {
             LOG.info("Client side server add user "+user);
             userList.put(user,null);
         }
-        //String quota = WORKER_TIERED_STORE_LEVEL0_DIRS_QUOTA.getDefaultValue();
-        //String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
+//        String quota = WORKER_TIERED_STORE_LEVEL0_DIRS_QUOTA.getDefaultValue();
+//        String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
 
         setPrefList(fileList, user);
         LOG.info("userList(user[pref]):"+String.valueOf(userList));

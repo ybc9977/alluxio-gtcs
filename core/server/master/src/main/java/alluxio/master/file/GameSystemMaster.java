@@ -107,7 +107,7 @@ public final class GameSystemMaster extends AbstractMasterClient {
 
             userList.set(index, user);
 
-            LOG.info("cacheMap: "+cacheMap);
+//            LOG.info("cacheMap: "+cacheMap);
             GameSystemMasterListMaintainer.setCacheMap(cacheMap);
 
             int count = 0;
