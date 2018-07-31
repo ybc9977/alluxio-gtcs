@@ -104,6 +104,13 @@ public final class NetworkAddressUtils {
      */
     PROXY_WEB("Alluxio Proxy Web service", PropertyKey.PROXY_WEB_HOSTNAME,
         PropertyKey.PROXY_WEB_BIND_HOST, PropertyKey.PROXY_WEB_PORT),
+
+    /**
+     * Client RPC service (Thrift)
+     */
+
+    CLIENT_RPC("Alluxio Client RPC service",PropertyKey.USER_HOSTNAME,
+            PropertyKey.CLIENT_BIND_HOST, PropertyKey.CLIENT_RPC_PORT)
     ;
 
     // service name

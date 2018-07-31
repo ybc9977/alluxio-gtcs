@@ -18,7 +18,12 @@ import alluxio.exception.status.AlluxioStatusException;
 import alluxio.exception.status.AlreadyExistsException;
 import alluxio.exception.status.NotFoundException;
 import alluxio.master.MasterClientConfig;
+import alluxio.thrift.ClientNetAddress;
+import alluxio.thrift.MasterNetAddress;
+import alluxio.thrift.RegisterUserTOptions;
+import alluxio.wire.Address;
 import alluxio.wire.MountPointInfo;
+import org.apache.commons.math3.analysis.function.Add;
 
 import java.util.List;
 import java.util.Map;
@@ -152,8 +157,7 @@ public interface FileSystemMasterClient extends Client{
    */
   Map<String, MountPointInfo> getMountTable() throws AlluxioStatusException;
 
-  void passUserId(Long userId, PassUserIdOptions options) throws AlluxioStatusException;
-
+  void registerUser(String  userId, String hostname, ClientNetAddress address, RegisterUserOptions options) throws AlluxioStatusException;
   /**
    * Renames a file or a directory.
    *

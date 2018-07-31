@@ -15,19 +15,7 @@ import alluxio.AlluxioURI;
 import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.annotation.PublicApi;
-import alluxio.client.file.options.CreateDirectoryOptions;
-import alluxio.client.file.options.CreateFileOptions;
-import alluxio.client.file.options.DeleteOptions;
-import alluxio.client.file.options.ExistsOptions;
-import alluxio.client.file.options.FreeOptions;
-import alluxio.client.file.options.GetStatusOptions;
-import alluxio.client.file.options.ListStatusOptions;
-import alluxio.client.file.options.LoadMetadataOptions;
-import alluxio.client.file.options.MountOptions;
-import alluxio.client.file.options.OpenFileOptions;
-import alluxio.client.file.options.RenameOptions;
-import alluxio.client.file.options.SetAttributeOptions;
-import alluxio.client.file.options.UnmountOptions;
+import alluxio.client.file.options.*;
 import alluxio.client.lineage.LineageContext;
 import alluxio.client.lineage.LineageFileSystem;
 import alluxio.conf.Source;
@@ -36,6 +24,9 @@ import alluxio.exception.DirectoryNotEmptyException;
 import alluxio.exception.FileAlreadyExistsException;
 import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
+import alluxio.thrift.ClientNetAddress;
+import alluxio.thrift.MasterNetAddress;
+import alluxio.wire.Address;
 import alluxio.wire.MountPointInfo;
 
 import org.slf4j.Logger;
@@ -312,8 +303,7 @@ public interface FileSystem {
   FileInStream openFile(AlluxioURI path, OpenFileOptions options)
       throws FileDoesNotExistException, IOException, AlluxioException;
 
-  void passUserId(Long userId) throws IOException,AlluxioException;
-
+  void register(String userId, String hostname, ClientNetAddress address) throws IOException,AlluxioException;
   /**
    * Convenience method for {@link #rename(AlluxioURI, AlluxioURI, RenameOptions)} with default
    * options.

@@ -909,6 +909,28 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .build();
 
   /**
+   * Cilent related properties.
+   */
+  public static final PropertyKey CLIENT_HOSTNAME =
+          new Builder(Name.CLIENT_HOSTNAME)
+                  .setDescription("The hostname of Alluxio client.")
+                  .setScope(Scope.ALL)
+                  .build();
+  public static final PropertyKey CLIENT_BIND_HOST =
+          new Builder(Name.CLIENT_BIND_HOST)
+                  .setDefaultValue("0.0.0.0")
+                  .setDescription("The hostname that Alluxio client binds to. See <a "
+                          + "href=\"#configure-multihomed-networks\">multi-homed networks</a>.")
+                  .setScope(Scope.CLIENT)
+                  .build();
+  public static final PropertyKey CLIENT_RPC_PORT =
+          new Builder(Name.CLIENT_RPC_PORT)
+                  .setDefaultValue(39998)
+                  .setDescription("The port Alluxio's client node runs on.")
+                  .setConsistencyCheckLevel(ConsistencyCheckLevel.WARN)
+                  .setScope(Scope.ALL)
+                  .build();
+  /**
    * Master related properties.
    */
   public static final PropertyKey MASTER_AUDIT_LOGGING_ENABLED =
@@ -2263,7 +2285,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .build();
   public static final PropertyKey USER_CONF_CLUSTER_DEFAULT_ENABLED =
       new Builder(Name.USER_CONF_CLUSTER_DEFAULT_ENABLED)
-          .setDefaultValue(true)
+          .setDefaultValue(false)
           .setDescription("When this property is true, an Alluxio client will load the default "
               + "values of configuration properties set by Alluxio master.")
           .setScope(Scope.CLIENT)
@@ -3178,6 +3200,12 @@ public final class PropertyKey implements Comparable<PropertyKey> {
     public static final String SWIFT_USE_PUBLIC_URI_KEY = "fs.swift.use.public.url";
     public static final String SWIFT_REGION_KEY = "fs.swift.region";
 
+    //
+    // Client related properties
+    //
+    public static final String CLIENT_HOSTNAME = "alluxio.client.hostname";
+    public static final String CLIENT_BIND_HOST = "alluxio.client.bind.host";
+    public static final String CLIENT_RPC_PORT = "alluxio.client.port";
     //
     // Master related properties
     //

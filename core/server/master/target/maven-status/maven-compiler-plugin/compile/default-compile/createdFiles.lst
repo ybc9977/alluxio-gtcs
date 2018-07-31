@@ -4,7 +4,6 @@ alluxio/master/block/DefaultBlockMaster$Metrics$2.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$14.class
 alluxio/master/lineage/LineageMasterClientServiceHandler$1.class
 alluxio/master/metrics/DefaultMetricsMaster.class
-alluxio/master/file/GameSystemCacheMaster.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$6.class
 alluxio/master/meta/DefaultMetaMaster$LogConfigReportHeartbeatExecutor.class
 alluxio/master/meta/AlluxioMasterRestServiceHandler$2.class
@@ -189,6 +188,7 @@ alluxio/master/file/DefaultFileSystemMaster$Metrics$2.class
 alluxio/master/file/FileSystemMasterFactory.class
 alluxio/master/file/DefaultFileSystemMaster$1.class
 alluxio/master/file/FileSystemMasterWorkerServiceHandler$2.class
+alluxio/master/file/GameSystemFreeClient.class
 alluxio/master/file/DefaultFileSystemMaster$Metrics.class
 alluxio/master/file/DefaultFileSystemMaster$OperationType.class
 alluxio/master/file/meta/InodeFile.class
@@ -219,7 +219,6 @@ alluxio/master/lineage/LineageMasterFactory.class
 alluxio/master/file/options/LoadMetadataOptions.class
 alluxio/master/file/DefaultFileSystemMaster.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$8.class
-alluxio/master/GameSystemMasterListMaintainer.class
 alluxio/master/MasterProcess$Factory.class
 alluxio/master/file/meta/options/MountInfo.class
 alluxio/underfs/MasterUfsManager$UfsState.class
@@ -251,3 +250,4 @@ alluxio/master/file/async/AsyncPersistHandler$Factory.class
 alluxio/master/file/meta/AsyncUfsAbsentPathCache$1.class
 alluxio/master/lineage/checkpoint/CheckpointSchedulingExecutor.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$7.class
+alluxio/master/file/GameSystemClient.class

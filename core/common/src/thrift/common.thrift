@@ -79,12 +79,19 @@ struct MasterNetAddress {
  * Address information about workers.
  */
 struct WorkerNetAddress {
+   1: string host
+   2: i32 rpcPort
+   3: i32 dataPort
+   4: i32 webPort
+   5: string domainSocketPath
+   6: TieredIdentity tieredIdentity
+ }
+/**
+ * Address information about masters.
+ */
+struct ClientNetAddress {
   1: string host
   2: i32 rpcPort
-  3: i32 dataPort
-  4: i32 webPort
-  5: string domainSocketPath
-  6: TieredIdentity tieredIdentity
 }
 
 struct GetServiceVersionTResponse {

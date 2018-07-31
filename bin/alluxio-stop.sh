@@ -60,6 +60,9 @@ stop_workers() {
   ${LAUNCHER} "${BIN}/alluxio-workers.sh" "${BIN}/alluxio-stop.sh" "worker"
 }
 
+stop_client(){
+  ${LAUNCHER} "${BIN}/alluxio" "killAll" "alluxio.client.AlluxioGameSystemClient"
+}
 stop_logserver() {
     ${LAUNCHER} "${BIN}/alluxio" "killAll" "alluxio.logserver.AlluxioLogServer"
 }
@@ -72,6 +75,7 @@ case "${WHAT}" in
     stop_proxies
     stop_workers
     stop_masters
+    stop_client
     ;;
   local)
     stop_proxy
@@ -80,6 +84,7 @@ case "${WHAT}" in
     stop_master
     ALLUXIO_MASTER_SECONDARY=false
     stop_master
+    stop_client
     ;;
   master)
     stop_master
@@ -103,6 +108,9 @@ case "${WHAT}" in
     ;;
   workers)
     stop_workers
+    ;;
+  client)
+    stop_client
     ;;
   logserver)
     stop_logserver

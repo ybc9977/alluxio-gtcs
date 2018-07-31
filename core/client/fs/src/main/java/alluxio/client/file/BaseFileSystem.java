@@ -12,6 +12,7 @@
 package alluxio.client.file;
 
 import alluxio.AlluxioURI;
+import alluxio.Configuration;
 import alluxio.annotation.PublicApi;
 import alluxio.client.file.options.*;
 import alluxio.exception.AlluxioException;
@@ -26,9 +27,9 @@ import alluxio.exception.status.FailedPreconditionException;
 import alluxio.exception.status.InvalidArgumentException;
 import alluxio.exception.status.NotFoundException;
 import alluxio.exception.status.UnavailableException;
-import alluxio.wire.CommonOptions;
-import alluxio.wire.LoadMetadataType;
-import alluxio.wire.MountPointInfo;
+import alluxio.thrift.ClientNetAddress;
+import alluxio.thrift.MasterNetAddress;
+import alluxio.wire.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -353,15 +354,14 @@ public class BaseFileSystem implements FileSystem {
   }
 
   @Override
-  public void passUserId(Long userId)
-    throws IOException, AlluxioException{
+  public void register(String userId, String hostname, ClientNetAddress address)
+          throws IOException, AlluxioException{
     FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
     try{
-      masterClient.passUserId(userId,PassUserIdOptions.defaults());
+      masterClient.registerUser(userId,hostname,address,RegisterUserOptions.defaults());
     }catch (Exception e){
       e.printStackTrace();
     }
-
   }
 
   @Override

@@ -15,8 +15,6 @@ import alluxio.AlluxioURI;
 import alluxio.Configuration;
 import alluxio.PropertyKey;
 import alluxio.RuntimeConstants;
-import alluxio.client.file.FileSystemContext;
-import alluxio.client.file.GameSystemClient;
 import alluxio.master.journal.JournalSystem;
 import alluxio.metrics.MetricsSystem;
 import alluxio.metrics.sink.MetricsServlet;
@@ -48,13 +46,10 @@ import org.apache.thrift.transport.TTransportFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.locks.Lock;
 
 import javax.annotation.Nullable;
@@ -104,8 +99,6 @@ public class AlluxioMasterProcess implements MasterProcess {
   private final MasterRegistry mRegistry;
 
   //private final int number = 1;
-
-  private final GameSystemClient mGameSystemClient = new GameSystemClient(FileSystemContext.create(null));
 
   /** The web ui server. */
   private WebServer mWebServer;
@@ -371,15 +364,6 @@ public class AlluxioMasterProcess implements MasterProcess {
     // set up multiplexed thrift processors
     TMultiplexedProcessor processor = new TMultiplexedProcessor();
 
-    // register client services for GTC
-//    for (GameSystemClient mGameSystemClient:mGameSystemClientList){
-//      FileSystemContext context = FileSystemContext.create(null);
-//      String APP_ID = context.mAppId;
-//      mGameSystemClient = new GameSystemClient(context,APP_ID);
-//      GameSystemMasterListMaintainer.adduser(APP_ID);
-      LOG.info("Game System Client service has started");
-      registerServices(processor,mGameSystemClient.getServices());
-//    }
     // register master services
     for (Master master : mRegistry.getServers()) {
       registerServices(processor, master.getServices());

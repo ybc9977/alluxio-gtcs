@@ -56,6 +56,7 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/URI.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/metrics/MetricsConfig.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/DependencyDoesNotExistException.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RegisterUserTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/network/netty/NettyRPC.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/util/io/ByteIOUtils.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/annotation/PublicApi.java
@@ -154,11 +155,13 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/network/protocol/databuffer/DataBuffer.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RegisterWorkerTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/TStatus.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GameSystemService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/JobConfInfo.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/ScheduleAsyncPersistenceTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/AlluxioURI.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/network/thrift/ThriftUtils.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/metrics/SingleValueAggregator.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RegisterUserTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/extensions/ExtensionFactoryRegistry.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/status/FailedPreconditionException.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/metrics/source/Source.java
@@ -167,10 +170,12 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/network/netty/NettyRPCContext.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/ListStatusTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/util/network/NetworkAddressUtils.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GetUserIdTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/metrics/WorkerMetrics.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/wire/TtlAction.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/LineageDoesNotExistException.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/PersistFile.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GameSystemFreeService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/BlockHeartbeatTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/ConfigProperty.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/security/authorization/ModeParser.java
@@ -201,6 +206,7 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GameSystemCacheService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/wire/BackupOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/time/ThreadSleeper.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GetUserIdTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/PromoteBlockTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/underfs/UnderFileSystem.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/extensions/ExtensionFactory.java
@@ -313,6 +319,7 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/security/authentication/PlainSaslServer.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RemoveBlockTOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/status/ResourceExhaustedException.java
+/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/ClientNetAddress.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/LineageMasterClientService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GetFileInfoTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/SetAttributeTOptions.java
@@ -405,7 +412,6 @@
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/wire/CommonOptions.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/metrics/sink/CsvSink.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/RequestSpaceTOptions.java
-/Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/GameSystemClientMasterService.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/thrift/MasterHeartbeatTResponse.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/exception/InvalidWorkerStateException.java
 /Users/ybc/Downloads/alluxio-master/core/common/src/main/java/alluxio/wire/MasterInfo.java

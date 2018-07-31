@@ -82,7 +82,7 @@ public final class Constants {
   public static final long FILE_SYSTEM_MASTER_CLIENT_SERVICE_VERSION = 2;
   public static final long FILE_SYSTEM_MASTER_WORKER_SERVICE_VERSION = 2;
   public static final long FILE_SYSTEM_WORKER_CLIENT_SERVICE_VERSION = 2;
-  public static final long GAME_SYSTEM_CLIENT_MASTER_SERVICE_VERSION = 2;
+  public static final long GAME_SYSTEM_SERVICE_VERSION = 1;
   public static final long LINEAGE_MASTER_CLIENT_SERVICE_VERSION = 2;
   public static final long META_MASTER_CLIENT_SERVICE_VERSION = 2;
   public static final long META_MASTER_MASTER_SERVICE_VERSION = 1;

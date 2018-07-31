@@ -9,10 +9,10 @@
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/AlluxioMaster.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/block/BlockMasterClientRestServiceHandler.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/web/WebInterfaceMemoryServlet.java
+/Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/web/WebInterfaceBrowseServlet.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/meta/checkconf/ConfigRecord.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/meta/options/MountInfo.java
-/Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/GameSystemMasterListMaintainer.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/options/RenameOptions.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/lineage/recompute/RecomputeExecutor.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/meta/Inode.java
@@ -65,9 +65,9 @@
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/meta/checkconf/ServerConfigurationChecker.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/options/CreateFileOptions.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/RpcContext.java
-/Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/GameSystemCacheMaster.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/block/BlockContainerIdGenerator.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/block/BlockMasterWorkerServiceHandler.java
+/Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/GameSystemFreeClient.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/FileSystemMasterFactory.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/lineage/checkpoint/CheckpointSchedulingExecutor.java
 /Users/ybc/Downloads/alluxio-master/core/server/master/src/main/java/alluxio/master/file/meta/InodeTree.java

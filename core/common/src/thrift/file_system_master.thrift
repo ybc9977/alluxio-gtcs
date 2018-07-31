@@ -169,9 +169,6 @@ union FileSystemCommandOptions {
   1: optional PersistCommandOptions persistOptions
 }
 
-struct PassUserIdTOptions{}
-struct PassUserIdTResponse{}
-
 struct PersistCommandOptions {
   1: list<PersistFile> persistFiles
 }
@@ -180,6 +177,11 @@ struct PersistFile {
   1: i64 fileId
   2: list<i64> blockIds
 }
+
+struct RegisterUserTOptions {
+}
+
+struct RegisterUserTResponse {}
 
 struct RenameTOptions {
   1: optional FileSystemMasterCommonTOptions commonOptions
@@ -354,12 +356,13 @@ service FileSystemMasterClientService extends common.AlluxioService {
     )
     throws (1: exception.AlluxioTException e)
 
-  PassUserIdTResponse passUserId(
-    1: i64 userId,
-    2: PassUserIdTOptions options,
-    )
-    throws (1: exception.AlluxioTException e)
-
+  RegisterUserTResponse registerUser(
+     1: string userId,
+     2: string hostname,
+     3: common.ClientNetAddress address,
+     4: RegisterUserTOptions options,
+  )
+  throws (1: exception.AlluxioTException e)
   /**
    * Renames a file or a directory.
    */

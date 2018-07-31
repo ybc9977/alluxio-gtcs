@@ -1,6 +1,5 @@
 package alluxio.client.file.options;
 
-import alluxio.thrift.CloseUfsFileTOptions;
 import alluxio.thrift.PassUserIdTOptions;
 import com.google.common.base.Objects;
 

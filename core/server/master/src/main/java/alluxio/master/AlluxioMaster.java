@@ -13,7 +13,6 @@ package alluxio.master;
 
 import alluxio.ProcessUtils;
 import alluxio.RuntimeConstants;
-import alluxio.exception.status.AlluxioStatusException;
 import alluxio.master.file.GameSystemMaster;
 import alluxio.util.CommonUtils;
 
@@ -43,7 +42,7 @@ public final class AlluxioMaster {
       System.exit(-1);
     }
 
-    GameSystemMaster gameSystemMaster = new GameSystemMaster(MasterClientConfig.defaults());
+    GameSystemMaster gameSystemMaster = new GameSystemMaster();
     Timer time = new Timer();
     time.schedule(gameSystemMaster.t, 20000, 20000);
 

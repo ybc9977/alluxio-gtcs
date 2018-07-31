@@ -145,8 +145,8 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
   }
 
   @Override
-  public void passUserId(Long userId, PassUserIdOptions options) throws AlluxioStatusException {
-    retryRPC(() -> mClient.passUserId(userId, options.toThrift()),"PassUserId");
+  public void registerUser(String userId, String hostname, ClientNetAddress address, RegisterUserOptions options) throws AlluxioStatusException {
+    retryRPC(() -> mClient.registerUser(userId, hostname, address, options.toThrift()),"RegisterUser");
   }
 
   @Override

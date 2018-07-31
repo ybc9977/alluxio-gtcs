@@ -18,7 +18,6 @@ import alluxio.RpcUtils.RpcCallable;
 import alluxio.RpcUtils.RpcCallableThrowsIOException;
 import alluxio.exception.AlluxioException;
 import alluxio.exception.status.AlluxioStatusException;
-import alluxio.master.GameSystemMasterListMaintainer;
 import alluxio.master.file.options.CheckConsistencyOptions;
 import alluxio.master.file.options.CompleteFileOptions;
 import alluxio.master.file.options.CreateDirectoryOptions;
@@ -54,7 +53,7 @@ import javax.annotation.concurrent.NotThreadSafe;
  */
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1664)
 public final class FileSystemMasterClientServiceHandler implements
-    FileSystemMasterClientService.Iface,GameSystemCacheService.Iface {
+    FileSystemMasterClientService.Iface,GameSystemFreeService.Iface {
   private static final Logger LOG =
       LoggerFactory.getLogger(FileSystemMasterClientServiceHandler.class);
   private final FileSystemMaster mFileSystemMaster;
@@ -138,7 +137,7 @@ public final class FileSystemMasterClientServiceHandler implements
       @Override
       public CreateFileTResponse call() throws AlluxioException, IOException {
         mFileSystemMaster.createFile(new AlluxioURI(path), new CreateFileOptions(options));
-        GameSystemMasterListMaintainer.addfile(path);
+        GameSystemMaster.addfile(path);
         return new CreateFileTResponse();
       }
 
@@ -152,7 +151,7 @@ public final class FileSystemMasterClientServiceHandler implements
   @Override
   public FreeTResponse free(final String path, final boolean recursive, final FreeTOptions options)
       throws AlluxioTException {
-    GameSystemMasterListMaintainer.changeFileMode(path,false);
+    GameSystemMaster.changeFileMode(path,false);
     return RpcUtils.call(LOG, new RpcCallableThrowsIOException<FreeTResponse>() {
       @Override
       public FreeTResponse call() throws AlluxioException, IOException {
@@ -325,22 +324,21 @@ public final class FileSystemMasterClientServiceHandler implements
   }
 
   @Override
-  public PassUserIdTResponse passUserId(long userId, PassUserIdTOptions options) throws AlluxioTException, TException {
+  public RegisterUserTResponse registerUser(String userId, String hostname, ClientNetAddress address, RegisterUserTOptions options) throws AlluxioTException, TException {
+      return RpcUtils.call(LOG, new RpcUtils.RpcCallableThrowsIOException<RegisterUserTResponse>() {
+        @Override
+        public RegisterUserTResponse call() throws AlluxioException, AlluxioStatusException {
 
-    return RpcUtils.call(LOG,new RpcCallableThrowsIOException<PassUserIdTResponse>(){
+          GameSystemMaster.register(userId,hostname,address,options);
+          return new RegisterUserTResponse();
+        }
 
-      @Override
-      public PassUserIdTResponse call() throws AlluxioException, IOException {
-        String user = String.valueOf(userId);
-        GameSystemMasterListMaintainer.adduser(user);
-        return new PassUserIdTResponse();
-      }
-
-      @Override
-      public String toString() {
-        return String.format("PassUserId: userId=%d, options=%s", userId, options);
-      }
-    });
+        @Override
+        public String toString() {
+          return String
+                  .format("registerUser: userId=%s, address=%s, options=%s", userId, address, options);
+        }
+      });
   }
 
   @Override
@@ -365,7 +363,6 @@ public final class FileSystemMasterClientServiceHandler implements
   @Override
   public ScheduleAsyncPersistenceTResponse scheduleAsyncPersistence(final String path,
       final ScheduleAsyncPersistenceTOptions options) throws AlluxioTException {
-    GameSystemMasterListMaintainer.changeFileMode(path,true);
     return RpcUtils.call(LOG,
         new RpcCallableThrowsIOException<ScheduleAsyncPersistenceTResponse>() {
           @Override

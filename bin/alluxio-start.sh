@@ -33,6 +33,7 @@ Where ACTION is one of:
   workers [MOPT]     \tStart workers on worker nodes.
   restart_worker     \tRestart a failed worker on this node.
   restart_workers    \tRestart any failed workers on worker nodes.
+  client [ID]        \tStart game system client on this node
 
 MOPT (Mount Option) is one of:
   Mount    \tMount the configured RamFS. Notice: this will format the existing RamFS.
@@ -259,6 +260,29 @@ start_workers() {
   ${LAUNCHER} "${BIN}/alluxio-workers.sh" "${BIN}/alluxio-start.sh" "worker" $1
 }
 
+start_client(){
+
+ if [[ -z ${ALLUXIO_CLIENT_JAVA_OPTS} ]]; then
+    ALLUXIO_CLIENT_JAVA_OPTS=${ALLUXIO_JAVA_OPTS}
+  fi
+
+  # use a default Xmx value for the worker
+  contains "${ALLUXIO_CLIENT_JAVA_OPTS}" "Xmx"
+  if [[ $? -eq 0 ]]; then
+    ALLUXIO_CLIENT_JAVA_OPTS+=" -Xmx4g "
+  fi
+
+  # use a default MaxDirectMemorySize value for the worker
+  contains "${ALLUXIO_CLIENT_JAVA_OPTS}" "XX:MaxDirectMemorySize"
+  if [[ $? -eq 0 ]]; then
+    ALLUXIO_CLIENT_JAVA_OPTS+=" -XX:MaxDirectMemorySize=4g "
+  fi
+  echo "Starting client @ $(hostname -f). Logging to ${ALLUXIO_LOGS_DIR}"
+  (nohup "${JAVA}" -cp ${CLASSPATH} \
+   ${ALLUXIO_CLIENT_JAVA_OPTS} \
+   alluxio.client.AlluxioGameSystemClient > ${ALLUXIO_LOGS_DIR}/client.out 2>&1 ) &
+}
+
 restart_worker() {
   if [[ -z ${ALLUXIO_WORKER_JAVA_OPTS} ]]; then
     ALLUXIO_WORKER_JAVA_OPTS=${ALLUXIO_JAVA_OPTS}
@@ -386,6 +410,7 @@ main() {
   fi
   shift
 
+
   MOPT=$1
   # Set MOPT.
   case "${ACTION}" in
@@ -399,6 +424,9 @@ main() {
       fi
       check_mount_mode "${MOPT}"
       ;;
+#    client)
+#      ID=$2;
+#      ;;
     *)
       MOPT=""
       ;;
@@ -449,6 +477,7 @@ main() {
       sleep 2
       start_worker "${MOPT}"
       start_proxy
+      start_client
       ;;
     master)
       start_master "${FORMAT}"
@@ -484,6 +513,9 @@ main() {
       ;;
     logserver)
       start_logserver
+      ;;
+    client)
+      start_client
       ;;
     *)
     echo "Error: Invalid ACTION: ${ACTION}" >&2

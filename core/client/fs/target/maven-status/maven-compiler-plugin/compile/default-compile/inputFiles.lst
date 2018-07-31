@@ -1,4 +1,5 @@
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/CreateUfsFileOptions.java
+/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/policy/RoundRobinPolicy.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/stream/BlockOutStream.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/RetryHandlingBlockMasterClient.java
@@ -19,9 +20,9 @@
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/FileSystemContext.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/stream/PacketReader.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/policy/SpecificHostPolicy.java
-/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/GameSystemClient.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/lineage/LineageClient.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/CancelUfsFileOptions.java
+/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/GameSystemServiceHandler.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/stream/LocalFilePacketWriter.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/AlluxioBlockStore.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/PassUserIdOptions.java
@@ -38,9 +39,9 @@
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/BlockMasterClientPool.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/policy/DeterministicHashPolicy.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/FileInStream.java
+/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/AlluxioGameSystemServer.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/metrics/ClientMasterSync.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/SetAttributeOptions.java
-/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/GameSystemClientMasterServiceHandler.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/ListStatusOptions.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/FileOutStream.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/RetryHandlingFileSystemMasterClient.java
@@ -69,9 +70,11 @@
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/AbstractOutStream.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/BlockMasterClient.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/CreateFileOptions.java
+/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/GameSystemServerProcess.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/lineage/LineageContext.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/PositionedReadable.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/block/stream/LocalFilePacketReader.java
+/Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/RegisterUserOptions.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/options/OutStreamOptions.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/MetaMasterClient.java
 /Users/ybc/Downloads/alluxio-master/core/client/fs/src/main/java/alluxio/client/file/policy/LocalFirstPolicy.java

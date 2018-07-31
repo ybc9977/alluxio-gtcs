@@ -7,18 +7,19 @@ import alluxio.client.file.options.FreeOptions;
 import alluxio.exception.status.AlluxioStatusException;
 import alluxio.master.MasterClientConfig;
 import alluxio.thrift.AlluxioService;
-import alluxio.thrift.GameSystemCacheService;
-import alluxio.thrift.ScheduleAsyncPersistenceTOptions;
+import alluxio.thrift.GameSystemFreeService;
 
 /**
  *  created by byangak on 18/07/2018
+ *
+ *  in order to achieve free option, which is used by GameSystemClient, call master by master
  */
 
-public class GameSystemCacheMaster extends AbstractMasterClient {
+public class GameSystemFreeClient extends AbstractMasterClient {
 
-    private GameSystemCacheService.Client mClient = null;
+    private GameSystemFreeService.Client mClient = null;
 
-    public GameSystemCacheMaster(MasterClientConfig conf) {
+    public GameSystemFreeClient(MasterClientConfig conf) {
         super(conf);
     }
 
@@ -39,7 +40,7 @@ public class GameSystemCacheMaster extends AbstractMasterClient {
 
     @Override
     protected void afterConnect() {
-        mClient = new GameSystemCacheService.Client(mProtocol);
+        mClient = new GameSystemFreeService.Client(mProtocol);
     }
 
     public synchronized void free(final AlluxioURI path, final FreeOptions options)

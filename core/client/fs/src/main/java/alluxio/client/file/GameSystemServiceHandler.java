@@ -18,35 +18,34 @@ import java.util.Map;
  *  created by byangak on 28/06/2018
  */
 
-public class GameSystemClientMasterServiceHandler implements
-        GameSystemClientMasterService.Iface {
+public class GameSystemServiceHandler implements
+        GameSystemCacheService.Iface {
     private static final Logger LOG =
-            LoggerFactory.getLogger(GameSystemClientMasterServiceHandler.class);
+            LoggerFactory.getLogger(GameSystemServiceHandler.class);
     //
-    private final GameSystemClient mGameSystemClient;
+    private final GameSystemServer mGameSystemServer;
 
     /**
-     * Creates a new instance of {@link GameSystemClientMasterServiceHandler}.
+     * Creates a new instance of {@link GameSystemServiceHandler}.
      *
-     * @param gameSystemClient the {@link GameSystemClient} the handler uses internally
+     * @param gameSystemServer the {@link GameSystemServer} the handler uses internally
      */
 
-    public GameSystemClientMasterServiceHandler(GameSystemClient gameSystemClient){
-        Preconditions.checkNotNull(gameSystemClient, "gameSystemClient");
-        mGameSystemClient = gameSystemClient;
+    public GameSystemServiceHandler(GameSystemServer gameSystemServer){
+        Preconditions.checkNotNull(gameSystemServer, "gameSystemServer");
+        mGameSystemServer = gameSystemServer;
     }
 
 
     public GetServiceVersionTResponse getServiceVersion(GetServiceVersionTOptions options) {
-        return new GetServiceVersionTResponse(Constants.FILE_SYSTEM_MASTER_CLIENT_SERVICE_VERSION);
+        return new GetServiceVersionTResponse(Constants.GAME_SYSTEM_SERVICE_VERSION);
     }
 
-
     @Override
-    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList, String user)
+    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList)
             throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
-            ArrayList<String> cachingList= mGameSystemClient.checkCacheChange(fileList, user);
+            ArrayList<String> cachingList= mGameSystemServer.checkCacheChange(fileList);
             return new CheckCacheChangeTResponse(cachingList);
         });
     }
@@ -56,8 +55,9 @@ public class GameSystemClientMasterServiceHandler implements
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
             AlluxioURI uri = new AlluxioURI(path);
             OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
-            mGameSystemClient.openFile(uri,options);
+            mGameSystemServer.openFile(uri,options);
             return new LoadTResponse();
         });
     }
+
 }

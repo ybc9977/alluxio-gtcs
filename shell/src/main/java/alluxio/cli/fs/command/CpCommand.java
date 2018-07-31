@@ -16,10 +16,7 @@ import alluxio.Configuration;
 import alluxio.Constants;
 import alluxio.PropertyKey;
 import alluxio.cli.CommandUtils;
-import alluxio.client.file.FileInStream;
-import alluxio.client.file.FileOutStream;
-import alluxio.client.file.FileSystem;
-import alluxio.client.file.URIStatus;
+import alluxio.client.file.*;
 import alluxio.client.file.options.CreateFileOptions;
 import alluxio.client.file.options.OpenFileOptions;
 import alluxio.client.file.policy.FileWriteLocationPolicy;
@@ -383,14 +380,6 @@ public final class CpCommand extends AbstractFileSystemCommand {
       copyPath(srcPath, dstPath);
     }
     System.out.println("Copied " + srcPath + " to " + dstPath);
-
-    if (args.length >= 3) {
-      System.out.println("A new user "+ args[2] + " copied file from local");
-      long userId = Long.parseLong(args[2]);
-      mFileSystem.passUserId(userId);
-    }
-
-
   }
 
 
