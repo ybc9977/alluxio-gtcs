@@ -39,7 +39,12 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     private void setPrefList(Map<String,Boolean> fileList){
+        ArrayList<String> list = new ArrayList<>(fileList.keySet());
+        Collections.shuffle(list);
         Map<String,Double> pref = new HashMap<>();
+        for (String aList : list) {
+            pref.put(aList, 1.0);
+        }
 //                    double p = 1.0;
 //            double p_now = 0;
 //            String lastKey = null;

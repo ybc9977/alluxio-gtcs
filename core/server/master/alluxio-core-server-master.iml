@@ -12,6 +12,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.apache.hbase:hbase-protocol:2.0.0-cdh6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.yetus:audience-annotations:0.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:14.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.qmino:miredot-annotations:1.4.0" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
