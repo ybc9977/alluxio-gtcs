@@ -40,25 +40,16 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
 
     private void setPrefList(Map<String,Boolean> fileList){
         ArrayList<String> list = new ArrayList<>(fileList.keySet());
-        Collections.shuffle(list);
+        Collections.shuffle(list, new Random(System.currentTimeMillis()));
         Map<String,Double> pref = new HashMap<>();
         for (String aList : list) {
-            pref.put(aList, 1.0);
+            pref.put(aList, 0.0);
         }
-//                    double p = 1.0;
-//            double p_now = 0;
-//            String lastKey = null;
-//            for (String path : fileList.keySet()) {
-//                p_now = p * Math.random();
-////                pref.put(path, p_now);
-////                p = p * (1 - p_now);
-////                lastKey = path;
-////            }
-////            if (lastKey!=null) pref.replace(lastKey, p / (1 - p_now));
-////            pref = sortByValue(pref);
-        ZipfDistribution zd = new ZipfDistribution(fileList.size(),2);
+        ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
+        int count = 1;
         for (String path : fileList.keySet()) {
-            pref.put(path, zd.probability((int)(fileList.size()*Math.random())+1));
+            pref.put(path, zd.probability(count));
+            count++;
         }
         LOG.info(pref.toString());
         prefList= new ArrayList<>(pref.keySet());
