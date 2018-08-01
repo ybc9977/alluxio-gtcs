@@ -53,7 +53,7 @@ import javax.annotation.concurrent.NotThreadSafe;
  */
 @NotThreadSafe // TODO(jiri): make thread-safe (c.f. ALLUXIO-1664)
 public final class FileSystemMasterClientServiceHandler implements
-    FileSystemMasterClientService.Iface,GameSystemFreeService.Iface {
+    FileSystemMasterClientService.Iface{
   private static final Logger LOG =
       LoggerFactory.getLogger(FileSystemMasterClientServiceHandler.class);
   private final FileSystemMaster mFileSystemMaster;

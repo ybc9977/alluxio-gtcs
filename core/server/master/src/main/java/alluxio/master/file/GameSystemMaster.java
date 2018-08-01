@@ -36,6 +36,12 @@ public final class GameSystemMaster {
     /** Each user is a Pair contains userId(Long) and isCachingOptionChanged(Boolean) */
     private static ArrayList<Pair<String,Boolean>> userList = new ArrayList<>();
 
+    private DefaultFileSystemMaster fileSystemMaster;
+
+    public GameSystemMaster(DefaultFileSystemMaster defaultFileSystemMaster) {
+        fileSystemMaster = defaultFileSystemMaster;
+    }
+
 
     /** add file into fileList & cacheList */
     static void addfile(String path){
@@ -158,7 +164,7 @@ public final class GameSystemMaster {
                 if (count == userList.size()){
                     Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
                     GameSystemClient C = clientList.get(U.getFirst());
-                    C.cacheIt(fileList,cacheList);
+                    C.cacheIt(fileList,cacheList, fileSystemMaster);
                     return;
                 }
             }

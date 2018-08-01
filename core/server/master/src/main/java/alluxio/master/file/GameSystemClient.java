@@ -3,8 +3,13 @@ package alluxio.master.file;
 import alluxio.AbstractClient;
 import alluxio.AlluxioURI;
 import alluxio.Constants;
+import alluxio.exception.AccessControlException;
+import alluxio.exception.FileDoesNotExistException;
+import alluxio.exception.InvalidPathException;
+import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.exception.status.AlluxioStatusException;
 import alluxio.master.MasterClientConfig;
+import alluxio.master.file.options.FreeOptions;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;
 import org.slf4j.Logger;
@@ -34,8 +39,6 @@ public class GameSystemClient extends AbstractClient {
         mUserId = userId;
     }
 
-    private GameSystemFreeClient mGameSystemFreeClient = new GameSystemFreeClient(MasterClientConfig.defaults());
-
     @Override
     protected AlluxioService.Client getClient() {
         return mClient;
@@ -62,7 +65,7 @@ public class GameSystemClient extends AbstractClient {
         return retryRPC(() -> mClient.checkCacheChange(fileList).cachingList, "CheckCacheChange");
     }
 
-    public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList){
+    public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, DefaultFileSystemMaster fsMaster){
         for (String file:fileList.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
             if(fileList.get(file)!=cacheList.get(file)){
@@ -76,10 +79,10 @@ public class GameSystemClient extends AbstractClient {
                     }
                 }else{
                     try {
-                        mGameSystemFreeClient.free(uri, alluxio.client.file.options.FreeOptions.defaults());
+                        fsMaster.free(uri,FreeOptions.defaults());
                         LOG.info("Free Process Complete, uri: " + uri.getPath());
                         cacheList.replace(file,false);
-                    } catch (IOException e) {
+                    } catch (IOException | AccessControlException | FileDoesNotExistException | InvalidPathException | UnexpectedAlluxioException e) {
                         e.printStackTrace();
                     }
                 }

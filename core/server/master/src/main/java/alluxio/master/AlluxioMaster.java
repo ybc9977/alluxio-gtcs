@@ -42,9 +42,6 @@ public final class AlluxioMaster {
       System.exit(-1);
     }
 
-    GameSystemMaster gameSystemMaster = new GameSystemMaster();
-    Timer time = new Timer();
-    time.schedule(gameSystemMaster.t, 20000, 20000);
 
     CommonUtils.PROCESS_TYPE.set(CommonUtils.ProcessType.MASTER);
     MasterProcess process;
