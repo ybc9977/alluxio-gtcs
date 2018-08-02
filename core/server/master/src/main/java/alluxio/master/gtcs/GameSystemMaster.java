@@ -1,7 +1,8 @@
-package alluxio.master.file;
+package alluxio.master.gtcs;
 
 import alluxio.collections.Pair;
 import alluxio.exception.status.AlluxioStatusException;
+import alluxio.master.file.FileSystemMaster;
 import alluxio.thrift.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,9 +37,9 @@ public final class GameSystemMaster {
     /** Each user is a Pair contains userId(Long) and isCachingOptionChanged(Boolean) */
     private static ArrayList<Pair<String,Boolean>> userList = new ArrayList<>();
 
-    private DefaultFileSystemMaster fileSystemMaster;
+    private FileSystemMaster fileSystemMaster;
 
-    public GameSystemMaster(DefaultFileSystemMaster defaultFileSystemMaster) {
+    public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
         fileSystemMaster = defaultFileSystemMaster;
     }
 

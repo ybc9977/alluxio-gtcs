@@ -1,10 +1,9 @@
-package alluxio.client;
+package alluxio.client.gtcs;
 
 import alluxio.*;
 import alluxio.Process;
 import alluxio.client.file.BaseFileSystem;
 import alluxio.client.file.FileSystemContext;
-import alluxio.client.file.GameSystemServer;
 import alluxio.exception.AlluxioException;
 import alluxio.metrics.MetricsSystem;
 import alluxio.network.thrift.BootstrapServerTransport;

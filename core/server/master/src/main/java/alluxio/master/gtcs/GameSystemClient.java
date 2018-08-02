@@ -1,4 +1,4 @@
-package alluxio.master.file;
+package alluxio.master.gtcs;
 
 import alluxio.AbstractClient;
 import alluxio.AlluxioURI;
@@ -8,7 +8,7 @@ import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
 import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.exception.status.AlluxioStatusException;
-import alluxio.master.MasterClientConfig;
+import alluxio.master.file.FileSystemMaster;
 import alluxio.master.file.options.FreeOptions;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;
@@ -65,7 +65,7 @@ public class GameSystemClient extends AbstractClient {
         return retryRPC(() -> mClient.checkCacheChange(fileList).cachingList, "CheckCacheChange");
     }
 
-    public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, DefaultFileSystemMaster fsMaster){
+    public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, FileSystemMaster fsMaster){
         for (String file:fileList.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
             if(fileList.get(file)!=cacheList.get(file)){

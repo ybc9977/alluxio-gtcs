@@ -1,4 +1,4 @@
-package alluxio.client;
+package alluxio.client.gtcs;
 
 import alluxio.Constants;
 import alluxio.ProcessUtils;
@@ -9,8 +9,6 @@ import alluxio.util.ConfigurationUtils;
 import net.jcip.annotations.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.lang.Long.parseLong;
 
 /**
  * created by byangak 27/07/18

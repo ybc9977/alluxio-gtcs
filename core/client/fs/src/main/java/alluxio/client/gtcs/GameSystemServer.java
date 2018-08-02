@@ -1,7 +1,9 @@
-package alluxio.client.file;
+package alluxio.client.gtcs;
 
 import java.util.*;
 import alluxio.Server;
+import alluxio.client.file.BaseFileSystem;
+import alluxio.client.file.FileSystemContext;
 import alluxio.thrift.ClientNetAddress;
 import alluxio.thrift.GameSystemCacheService;
 import com.google.common.base.Preconditions;

@@ -57,6 +57,9 @@
       <module name="alluxio-core-server-proxy" target="1.8" />
       <module name="alluxio-core-server-worker" target="1.8" />
       <module name="alluxio-examples" target="1.8" />
+      <module name="alluxio-gtcs" target="1.5" />
+      <module name="alluxio-gtcs-client-fs" target="1.8" />
+      <module name="alluxio-gtcs-server-master" target="1.8" />
       <module name="alluxio-integration" target="1.5" />
       <module name="alluxio-integration-fuse" target="1.8" />
       <module name="alluxio-keyvalue" target="1.5" />

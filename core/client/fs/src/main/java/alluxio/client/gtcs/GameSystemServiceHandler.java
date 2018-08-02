@@ -1,4 +1,4 @@
-package alluxio.client.file;
+package alluxio.client.gtcs;
 
 import alluxio.AlluxioURI;
 import alluxio.Constants;
