@@ -1,4 +1,4 @@
-package alluxio.master.gtcs;
+package alluxio.master.file;
 
 import alluxio.AbstractClient;
 import alluxio.AlluxioURI;
@@ -8,7 +8,6 @@ import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
 import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.exception.status.AlluxioStatusException;
-import alluxio.master.file.FileSystemMaster;
 import alluxio.master.file.options.FreeOptions;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;

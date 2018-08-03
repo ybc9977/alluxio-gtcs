@@ -1,9 +1,10 @@
-package alluxio.client.gtcs;
+package alluxio.client;
 
 import alluxio.*;
 import alluxio.Process;
 import alluxio.client.file.BaseFileSystem;
 import alluxio.client.file.FileSystemContext;
+import alluxio.client.file.GameSystemServer;
 import alluxio.exception.AlluxioException;
 import alluxio.metrics.MetricsSystem;
 import alluxio.network.thrift.BootstrapServerTransport;
@@ -68,7 +69,7 @@ public class GameSystemServerProcess implements Process {
     /**
      * Creates a new instance of {@link GameSystemServerProcess}.
      */
-    GameSystemServerProcess(){
+    public GameSystemServerProcess(){
 
         mUserId = context.mAppId.substring(4);
 

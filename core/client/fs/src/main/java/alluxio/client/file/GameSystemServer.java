@@ -1,9 +1,6 @@
-package alluxio.client.gtcs;
+package alluxio.client.file;
 
-import java.util.*;
 import alluxio.Server;
-import alluxio.client.file.BaseFileSystem;
-import alluxio.client.file.FileSystemContext;
 import alluxio.thrift.ClientNetAddress;
 import alluxio.thrift.GameSystemCacheService;
 import com.google.common.base.Preconditions;
@@ -11,6 +8,8 @@ import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  *  created by byangak on 28/06/2018

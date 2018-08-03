@@ -1,6 +1,6 @@
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/master/RegistryTest.java
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/StorageTierAssocTest.java
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/master/journal/AsyncJournalWriterTest.java
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/master/AbstractPrimarySelectorTest.java
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/RestUtilsTest.java
-/Users/ybc/Downloads/alluxio-master/core/server/common/src/test/java/alluxio/cli/FormatTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/journal/AsyncJournalWriterTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/StorageTierAssocTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/RestUtilsTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/AbstractPrimarySelectorTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/cli/FormatTest.java
+/Users/ybc/Github/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/RegistryTest.java

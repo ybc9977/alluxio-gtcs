@@ -1,6 +1,6 @@
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordReader.java
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputCommitter.java
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordWriter.java
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputFormat.java
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputFormat.java
-/Users/ybc/Downloads/alluxio-master/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputSplit.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputFormat.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputFormat.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordReader.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueInputSplit.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueOutputCommitter.java
+/Users/ybc/Github/alluxio-gtcs/keyvalue/hadoop/src/main/java/alluxio/hadoop/mapreduce/KeyValueRecordWriter.java

@@ -18,5 +18,4 @@
 #
 # In either case, multi-master deployments require that the masters can all access
 # the same journal through a shared medium (e.g. HDFS or NFS).
-18.212.227.199
-s
+localhost

@@ -188,7 +188,6 @@ alluxio/master/file/DefaultFileSystemMaster$Metrics$2.class
 alluxio/master/file/FileSystemMasterFactory.class
 alluxio/master/file/DefaultFileSystemMaster$1.class
 alluxio/master/file/FileSystemMasterWorkerServiceHandler$2.class
-alluxio/master/file/GameSystemFreeClient.class
 alluxio/master/file/DefaultFileSystemMaster$Metrics.class
 alluxio/master/file/DefaultFileSystemMaster$OperationType.class
 alluxio/master/file/meta/InodeFile.class

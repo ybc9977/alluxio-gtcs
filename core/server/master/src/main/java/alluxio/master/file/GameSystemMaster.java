@@ -1,11 +1,12 @@
-package alluxio.master.gtcs;
+package alluxio.master.file;
 
 import alluxio.collections.Pair;
 import alluxio.exception.status.AlluxioStatusException;
-import alluxio.master.file.FileSystemMaster;
-import alluxio.thrift.*;
+import alluxio.thrift.ClientNetAddress;
+import alluxio.thrift.RegisterUserTOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.net.InetSocketAddress;
 import java.util.*;
 
@@ -45,7 +46,7 @@ public final class GameSystemMaster {
 
 
     /** add file into fileList & cacheList */
-    static void addfile(String path){
+    public static void addfile(String path){
         fileList.put(path,false);
         cacheList.put(path,false);
         LOG.info("a file has been added successfully: " + path );
@@ -95,7 +96,7 @@ public final class GameSystemMaster {
      * currently has just implemented free file circumstance
      * @param path file path
      * @param isCached whether the file is cached or not */
-    static void changeFileMode(final String path, final boolean isCached){
+    public static void changeFileMode(final String path, final boolean isCached){
         if(cacheList.get(path)!=isCached){
             cacheList.replace(path,isCached);
             fileList.replace(path,isCached);

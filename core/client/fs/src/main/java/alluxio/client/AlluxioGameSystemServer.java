@@ -1,4 +1,4 @@
-package alluxio.client.gtcs;
+package alluxio.client;
 
 import alluxio.Constants;
 import alluxio.ProcessUtils;
@@ -23,7 +23,7 @@ public final class AlluxioGameSystemServer {
     private static String mUserId;
 
     /**
-     * Starts the Alluxio Game System Client in certain node
+     * Starts the Alluxio Game System Server in certain node
      *
      * @param args command line arguments, should be only one with userID
      */

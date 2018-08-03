@@ -175,7 +175,6 @@
     <module>shell</module>
     <module>tests</module>
     <module>underfs</module>
-      <module>gtcs</module>
   </modules>
 
   <dependencyManagement>

@@ -1,5 +1,5 @@
-/Users/ybc/Downloads/alluxio-master/shell/src/test/java/alluxio/cli/fsadmin/report/CapacityCommandTest.java
-/Users/ybc/Downloads/alluxio-master/shell/src/test/java/alluxio/cli/fsadmin/report/SummaryCommandTest.java
-/Users/ybc/Downloads/alluxio-master/shell/src/test/java/alluxio/cli/fs/command/ChownCommandTest.java
-/Users/ybc/Downloads/alluxio-master/shell/src/test/java/alluxio/cli/fsadmin/FileSystemAdminShellUtilsTest.java
-/Users/ybc/Downloads/alluxio-master/shell/src/test/java/alluxio/cli/fsadmin/report/MetricsCommandTest.java
+/Users/ybc/Github/alluxio-gtcs/shell/src/test/java/alluxio/cli/fsadmin/report/SummaryCommandTest.java
+/Users/ybc/Github/alluxio-gtcs/shell/src/test/java/alluxio/cli/fsadmin/FileSystemAdminShellUtilsTest.java
+/Users/ybc/Github/alluxio-gtcs/shell/src/test/java/alluxio/cli/fsadmin/report/MetricsCommandTest.java
+/Users/ybc/Github/alluxio-gtcs/shell/src/test/java/alluxio/cli/fs/command/ChownCommandTest.java
+/Users/ybc/Github/alluxio-gtcs/shell/src/test/java/alluxio/cli/fsadmin/report/CapacityCommandTest.java

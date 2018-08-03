@@ -61,7 +61,7 @@ stop_workers() {
 }
 
 stop_client(){
-  ${LAUNCHER} "${BIN}/alluxio" "killAll" "alluxio.client.gtcs.AlluxioGameSystemClient"
+  ${LAUNCHER} "${BIN}/alluxio" "killAll" "alluxio.client.AlluxioGameSystemServer"
 }
 stop_logserver() {
     ${LAUNCHER} "${BIN}/alluxio" "killAll" "alluxio.logserver.AlluxioLogServer"
