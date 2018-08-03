@@ -9,6 +9,5 @@
 # See the NOTICE file distributed with this work for information regarding copyright ownership.
 #
 
-# An Alluxio Worker will be started on each of the machines listed below.
-34.229.88.227
-35.172.225.236
+# An Alluxio Client will be started on each of the machines listed below.
+localhost
