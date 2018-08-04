@@ -10,4 +10,8 @@
 #
 
 # An Alluxio Worker will be started on each of the machines listed below.
+<<<<<<< HEAD
 localhost
+=======
+18.207.221.249
+>>>>>>> 8912550715b461319b6087c17ae9655f61ca996e

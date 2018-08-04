@@ -18,4 +18,8 @@
 #
 # In either case, multi-master deployments require that the masters can all access
 # the same journal through a shared medium (e.g. HDFS or NFS).
+<<<<<<< HEAD
 localhost
+=======
+18.207.221.249
+>>>>>>> 8912550715b461319b6087c17ae9655f61ca996e
