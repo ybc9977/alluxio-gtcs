@@ -11,6 +11,7 @@ import alluxio.exception.status.AlluxioStatusException;
 import alluxio.master.file.options.FreeOptions;
 import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;
+import alluxio.thrift.GetPrefTOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,6 +65,14 @@ public class GameSystemClient extends AbstractClient {
         return retryRPC(() -> mClient.checkCacheChange(fileList).cachingList, "CheckCacheChange");
     }
 
+    public Map<String,Double> getPref() throws AlluxioStatusException {
+        return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).pref, "GetPref");
+    }
+
+    public Map<String, Integer> access(Map<String,Double> prefList) throws AlluxioStatusException {
+        return retryRPC(() -> mClient.access(prefList).access, "Access");
+    }
+
     public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, FileSystemMaster fsMaster){
         for (String file:fileList.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
@@ -88,4 +97,5 @@ public class GameSystemClient extends AbstractClient {
             }
         }
     }
+
 }

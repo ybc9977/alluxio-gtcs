@@ -73,7 +73,7 @@ public class GameSystemServerProcess implements Process {
 
         mUserId = context.mAppId.substring(4);
 
-        mGameSystemServer =  new GameSystemServer(context,mUserId);
+        mGameSystemServer =  new GameSystemServer(context,mUserId,mFileSystem);
 
         try {
             mRegistry = new Registry<>();

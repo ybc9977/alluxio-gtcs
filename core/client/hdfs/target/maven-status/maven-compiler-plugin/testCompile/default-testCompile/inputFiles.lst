@@ -1,4 +1,4 @@
-/Users/ybc/Github/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopClientTestUtils.java
-/Users/ybc/Github/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopConfigurationUtilsTest.java
-/Users/ybc/Github/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopUtilsTest.java
-/Users/ybc/Github/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/AbstractFileSystemTest.java
+/Users/ybc/Downloads/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopConfigurationUtilsTest.java
+/Users/ybc/Downloads/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopUtilsTest.java
+/Users/ybc/Downloads/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/AbstractFileSystemTest.java
+/Users/ybc/Downloads/alluxio-gtcs/core/client/hdfs/src/test/java/alluxio/hadoop/HadoopClientTestUtils.java

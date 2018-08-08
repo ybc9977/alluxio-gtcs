@@ -51,12 +51,26 @@ public class GameSystemServiceHandler implements
     }
 
     @Override
+    public GetPrefTResponse getPref(GetPrefTOptions options) throws AlluxioTException, TException {
+        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<GetPrefTResponse>)
+                ()-> new GetPrefTResponse(mGameSystemServer.getPref()));
+    }
+
+    @Override
     public LoadTResponse load(String path) throws AlluxioTException, TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
             AlluxioURI uri = new AlluxioURI(path);
             OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
             mGameSystemServer.openFile(uri,options);
             return new LoadTResponse();
+        });
+    }
+
+    @Override
+    public AccessTResponse access(Map<String, Double> prefList) throws AlluxioTException, TException {
+        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessTResponse>)()->{
+            Map<String, Integer> list= mGameSystemServer.accessFile(prefList);
+            return new AccessTResponse(list);
         });
     }
 

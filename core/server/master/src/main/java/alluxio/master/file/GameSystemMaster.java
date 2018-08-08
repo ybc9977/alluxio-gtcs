@@ -38,6 +38,10 @@ public final class GameSystemMaster {
     /** Each user is a Pair contains userId(Long) and isCachingOptionChanged(Boolean) */
     private static ArrayList<Pair<String,Boolean>> userList = new ArrayList<>();
 
+    private static Map<String,Double> utilList = new HashMap<>();
+
+    private static Map<String, Map<String, Double>> userPref = new HashMap<>();
+
     private FileSystemMaster fileSystemMaster;
 
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
@@ -129,6 +133,11 @@ public final class GameSystemMaster {
             }
             GameSystemClient client = clientList.get(user.getFirst());
             List<String> caching_list = client.checkCacheChange(fileList);
+            if(userPref.keySet().contains(user.getFirst())){
+                userPref.replace(user.getFirst(),client.getPref());
+            }else{
+                userPref.put(user.getFirst(),client.getPref());
+            }
             LOG.info(String.valueOf("caching_list: "+caching_list+" for user "+user.getFirst()));
             // Check if caching_list stay the same with cacheMap, if so, do "else"
             boolean isChanged = false;
@@ -155,7 +164,7 @@ public final class GameSystemMaster {
             }
             userList.set(index, user);
             int count = 0;
-            LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
+//            LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
             for (Pair<String,Boolean> p:userList) {
                 if (p.getSecond()) {
                     count = 0;
@@ -167,10 +176,91 @@ public final class GameSystemMaster {
                     Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
                     GameSystemClient C = clientList.get(U.getFirst());
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
+                    LOG.info("Equilibrium established");
+                    Efficiency();
+                    HitRatio();
                     return;
                 }
             }
         }
+    }
+
+    private void HitRatio() throws AlluxioStatusException {
+        for (String user : clientList.keySet()){
+            Map<String,Integer> accessList;
+            accessList=clientList.get(user).access(userPref.get(user));
+            double hit=0,access=0;
+            for (String file : accessList.keySet()){
+                if (cacheList.get(file))
+                    hit+=accessList.get(file);
+                access+=accessList.get(file);
+            }
+            LOG.info("user "+user+"'s hit ratio is " + hit/access);
+        }
+    }
+
+    private void Efficiency() {
+        int cacheNum = 0;
+        for (String u : cacheMap.keySet()) {
+            double efficiency = 0;
+            for (String f : cacheList.keySet()) {
+                if (cacheList.get(f)) {
+                    cacheNum++;
+                    efficiency += userPref.get(u).get(f);
+                }
+            }
+            if (utilList.keySet().contains(u)) {
+                utilList.replace(u, efficiency);
+            } else {
+                utilList.put(u, efficiency);
+            }
+        }
+//        LOG.info("Util List: " + utilList.toString());
+        double sum = 0;
+        for (double value : utilList.values()) {
+            sum += value;
+        }
+//        LOG.info("Average Utility: " + sum / utilList.size());
+        Map<String, Double> filePref = new HashMap<>();
+        for (String f:cacheList.keySet()){
+            double e = 0;
+            for (String u:cacheMap.keySet()){
+                if(userPref.get(u).get(f)!=null){
+                    e +=userPref.get(u).get(f);
+                }
+            }
+            filePref.put(f, e);
+        }
+        filePref = sortByValue(filePref);
+//        LOG.info("filePref: "+filePref.toString());
+        int count=0;
+        double s=0;
+        for (String key : filePref.keySet()){
+            s+=filePref.get(key);
+            if(count==cacheNum-1) break;
+            count++;
+        }
+//        LOG.info("s "+s);
+        LOG.info("Efficiency: " + s/sum);
+    }
+    /**
+     * Sort the Map by descending order according to the values
+     */
+    private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+        for (int i = 0; i < Math.floor(list.size() / 2) ; i++){
+            Map.Entry<K, V> temp;
+            temp = list.get(i);
+            list.set(i,list.get(list.size()-i-1));
+            list.set(list.size()-i-1,temp);
+        }
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
 
     /** timer task to start GTC*/
