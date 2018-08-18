@@ -200,12 +200,12 @@ public final class GameSystemMaster {
     }
 
     private void Efficiency() {
-        int cacheNum = 0;
+        int cacheNum = userList.size() * 2;
         for (String u : cacheMap.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {
-                if (cacheList.get(f)) {
-                    cacheNum++;
+                if (cacheList.get(f) && userPref.get(u).containsKey(f)
+                        && userPref.get(u).get(f)!=null && !userPref.isEmpty()) {
                     efficiency += userPref.get(u).get(f);
                 }
             }
@@ -241,7 +241,7 @@ public final class GameSystemMaster {
             count++;
         }
 //        LOG.info("s "+s);
-        LOG.info("Efficiency: " + s/sum);
+        LOG.info("Efficiency: " + sum/s);
     }
     /**
      * Sort the Map by descending order according to the values

@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -82,7 +83,9 @@ public class GameSystemServerProcess implements Process {
             mTransportProvider = TransportProvider.Factory.create();
             mThriftServerSocket = new TServerSocket(
                     NetworkAddressUtils.getBindAddress(NetworkAddressUtils.ServiceType.CLIENT_RPC));
+
             int rpcPort = ThriftUtils.getThriftPort(mThriftServerSocket);
+
             String rpcHost = ThriftUtils.getThriftSocket(mThriftServerSocket).getInetAddress()
                     .getHostAddress();
             // reset master rpc port

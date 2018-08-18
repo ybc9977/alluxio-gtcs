@@ -10,4 +10,4 @@
 #
 
 # An Alluxio Worker will be started on each of the machines listed below.
-localhost
+18.212.62.112
