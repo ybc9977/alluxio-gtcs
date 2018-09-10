@@ -86,13 +86,11 @@ public class GameSystemServerProcess implements Process {
 
             int rpcPort = ThriftUtils.getThriftPort(mThriftServerSocket);
 
-            String rpcHost = ThriftUtils.getThriftSocket(mThriftServerSocket).getInetAddress()
-                    .getHostAddress();
+            String rpcHost = NetworkAddressUtils.getConnectHost(NetworkAddressUtils.ServiceType.CLIENT_RPC);
             // reset master rpc port
             mRpcAddress = new InetSocketAddress(rpcHost, rpcPort);
             mThriftServer = createThriftServer();
             registerWithMaster(mUserId,rpcHost,getAddress());
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -108,8 +106,8 @@ public class GameSystemServerProcess implements Process {
         int maxWorkerThreads = Configuration.getInt(PropertyKey.WORKER_BLOCK_THREADS_MAX);
         TMultiplexedProcessor processor = new TMultiplexedProcessor();
 
-        for (GameSystemServer client:mRegistry.getServers()) {
-            registerServices(processor,client.getServices());
+        for (GameSystemServer server:mRegistry.getServers()) {
+            registerServices(processor,server.getServices());
         }
 
         // Return a TTransportFactory based on the authentication type
