@@ -244,7 +244,7 @@ public final class GameSystemMaster {
         }
         LOG.info("s "+s);
         LOG.info("Pref: "+userPref);
-        LOG.info("Efficiency: " + sum/s);
+        LOG.info("Efficiency: " + s/sum);
     }
     /**
      * Sort the Map by descending order according to the values
