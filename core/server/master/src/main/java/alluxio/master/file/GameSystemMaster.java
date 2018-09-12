@@ -241,7 +241,7 @@ public final class GameSystemMaster {
             count++;
         }
 //        LOG.info("s "+s);
-        LOG.info("Efficiency: " + sum/s);
+        LOG.info("Efficiency: " + s/sum);
     }
     /**
      * Sort the Map by descending order according to the values
