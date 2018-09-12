@@ -39,7 +39,6 @@
       <module fileurl="file://$PROJECT_DIR$/underfs/s3a/alluxio-underfs-s3a.iml" filepath="$PROJECT_DIR$/underfs/s3a/alluxio-underfs-s3a.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" filepath="$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" filepath="$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/game/hkust-game.iml" filepath="$PROJECT_DIR$/game/hkust-game.iml" />
     </modules>
   </component>
 </project>
