@@ -3,9 +3,39 @@
   <component name="ChangeListManager">
     <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assembly/client/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/assembly/client/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assembly/server/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/assembly/server/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/alluxio-site.properties" beforeDir="false" afterPath="$PROJECT_DIR$/conf/alluxio-site.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/client/fs/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/client/fs/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/client/hdfs/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/client/hdfs/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/client/runtime/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/client/runtime/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/protobuf/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/protobuf/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/common/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/common/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gtcs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/gtcs.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/master.sh" beforeDir="false" afterPath="$PROJECT_DIR$/master.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/master/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/master/target/miredot/input/input.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/target/miredot/input/input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/proxy/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/proxy/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/proxy/target/miredot/input/input.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/proxy/target/miredot/input/input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/worker/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/worker/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/worker/target/miredot/input/input.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/worker/target/miredot/input/input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/examples/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/integration/fuse/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/integration/fuse/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyvalue/client/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/keyvalue/client/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyvalue/common/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/keyvalue/common/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyvalue/hadoop/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/keyvalue/hadoop/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyvalue/server/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/keyvalue/server/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logserver/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/logserver/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minicluster/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/minicluster/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shell/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/shell/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/tests/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/gcs/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/gcs/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/hdfs/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/hdfs/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/local/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/local/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/oss/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/oss/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/s3a/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/s3a/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/swift/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/swift/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/underfs/wasb/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/underfs/wasb/target/maven-archiver/pom.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -57,29 +87,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameSystemClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
+      <file leaf-file-name="alluxio-site.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/conf/alluxio-site.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="243" column="39" selection-start-line="243" selection-start-column="39" selection-end-line="243" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameSystemServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-550">
-              <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+            <state relative-caret-position="225">
+              <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -153,10 +165,10 @@
         <option value="$PROJECT_DIR$/conf/workers" />
         <option value="$PROJECT_DIR$/conf/masters" />
         <option value="$PROJECT_DIR$/bin/alluxio-start.sh" />
-        <option value="$PROJECT_DIR$/conf/alluxio-site.properties" />
         <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" />
         <option value="$PROJECT_DIR$/core/protobuf/dependency-reduced-pom.xml" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/conf/alluxio-site.properties" />
       </list>
     </option>
   </component>
@@ -194,9 +206,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,6 +219,11 @@
               <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="alluxio-gtcs" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alluxio-gtcs" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
@@ -368,9 +384,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -542,7 +560,8 @@
       <workItem from="1536668924399" duration="213000" />
       <workItem from="1536671707700" duration="164000" />
       <workItem from="1536674928899" duration="15000" />
-      <workItem from="1536714973692" duration="121000" />
+      <workItem from="1536714973692" duration="671000" />
+      <workItem from="1536725694794" duration="1125000" />
     </task>
     <task id="LOCAL-00001" summary="12:00 05/07">
       <created>1530763042348</created>
@@ -607,11 +626,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533282856403</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="12/09/18">
+      <created>1536715159757</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1536715159757</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31772000" />
+    <option name="totallyTimeSpent" value="33447000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -631,7 +657,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.2783883" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.2814408" />
       <window_info anchor="right" id="Bean Validation" order="9" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="right" id="SciView" order="6" />
@@ -665,15 +691,15 @@
     <MESSAGE value="10/07" />
     <MESSAGE value="01/08/18" />
     <MESSAGE value="02/08/18" />
-    <option name="LAST_COMMIT_MESSAGE" value="02/08/18" />
+    <MESSAGE value="12/09/18" />
+    <option name="LAST_COMMIT_MESSAGE" value="12/09/18" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/game/src/main/java/alluxio/master/file/GameSystemMaster.java" />
     <entry file="file://$PROJECT_DIR$/underfs/hdfs/target/generated-sources/preprocessed/alluxio/underfs/hdfs/HdfsUnderFileInputStream.java" />
     <entry file="file://$PROJECT_DIR$/underfs/hdfs/src/main/java/alluxio/underfs/hdfs/HdfsUnderFileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -874,13 +900,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/gtcs/GameSystemClient.java" />
-    <entry file="file://$PROJECT_DIR$/conf/alluxio-site.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="60" lean-forward="true" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/protobuf/dependency-reduced-pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="845">
@@ -888,24 +907,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-550">
-          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+        <state relative-caret-position="135">
+          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="243" column="39" selection-start-line="243" selection-start-column="39" selection-end-line="243" selection-end-column="39" />
+        <state relative-caret-position="501">
+          <caret line="222" column="30" selection-start-line="222" selection-start-column="30" selection-end-line="222" selection-end-column="30" />
+          <folding>
+            <element signature="e#1936#1967#0" />
+            <element signature="e#2840#2871#0" />
+            <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-555">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding>
+            <element signature="method#sortByValue#0;class#GameSystemServer#0" />
+            <element signature="e#3751#3832#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/alluxio-site.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
         </state>
       </provider>
     </entry>
