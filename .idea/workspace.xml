@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="12/09/18">
+    <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -55,16 +54,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
-              <caret line="246" column="39" selection-start-line="246" selection-start-column="39" selection-end-line="246" selection-end-column="39" />
+            <state relative-caret-position="601">
+              <caret line="234" column="41" lean-forward="true" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
               <folding>
                 <element signature="e#1936#1967#0" />
                 <element signature="e#2840#2871#0" />
                 <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gtcs.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gtcs.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -142,6 +150,7 @@
         <option value="$PROJECT_DIR$/core/protobuf/dependency-reduced-pom.xml" />
         <option value="$PROJECT_DIR$/conf/alluxio-site.properties" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/gtcs.sh" />
       </list>
     </option>
   </component>
@@ -536,7 +545,7 @@
       <workItem from="1536714973692" duration="671000" />
       <workItem from="1536725694794" duration="1233000" />
       <workItem from="1536732039908" duration="10000" />
-      <workItem from="1536733705054" duration="27000" />
+      <workItem from="1536733705054" duration="236000" />
     </task>
     <task id="LOCAL-00001" summary="12:00 05/07">
       <created>1530763042348</created>
@@ -615,11 +624,25 @@
       <option name="project" value="LOCAL" />
       <updated>1536731914478</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="12/09/18">
+      <created>1536733745635</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1536733745635</updated>
+    </task>
+    <task id="LOCAL-00013" summary="12/09/18">
+      <created>1536733916435</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1536733916435</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33592000" />
+    <option name="totallyTimeSpent" value="33801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -682,7 +705,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/underfs/hdfs/target/generated-sources/preprocessed/alluxio/underfs/hdfs/HdfsUnderFileInputStream.java" />
     <entry file="file://$PROJECT_DIR$/underfs/hdfs/src/main/java/alluxio/underfs/hdfs/HdfsUnderFileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -919,13 +941,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="246" column="39" selection-start-line="246" selection-start-column="39" selection-end-line="246" selection-end-column="39" />
+        <state relative-caret-position="601">
+          <caret line="234" column="41" lean-forward="true" selection-start-line="234" selection-start-column="41" selection-end-line="234" selection-end-column="41" />
           <folding>
             <element signature="e#1936#1967#0" />
             <element signature="e#2840#2871#0" />
             <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtcs.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
         </state>
       </provider>
     </entry>
