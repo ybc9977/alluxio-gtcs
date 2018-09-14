@@ -47,7 +47,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
 
     private void setPrefList(Map<String,Boolean> fileList){
         ArrayList<String> list = new ArrayList<>(fileList.keySet());
-        if ((int)(Math.random()*10)%5==0)
+        if ((int)(Math.random()*10)%2==0)
             Collections.shuffle(list);
         ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
         int count = 1;
