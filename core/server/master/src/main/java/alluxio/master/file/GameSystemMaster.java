@@ -204,10 +204,15 @@ public final class GameSystemMaster {
         for (String u : cacheMap.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {
-                if (cacheList.get(f) && userPref.get(u).containsKey(f)
-                        && userPref.get(u).get(f)!=null && !userPref.isEmpty()) {
-                    efficiency += userPref.get(u).get(f);
+                try{
+                    if (cacheList.get(f) && userPref.get(u).containsKey(f)
+                            && userPref.get(u).get(f)!=null && !userPref.isEmpty()) {
+                        efficiency += userPref.get(u).get(f);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+
             }
             if (utilList.keySet().contains(u)) {
                 utilList.replace(u, efficiency);
