@@ -44,6 +44,8 @@ public final class GameSystemMaster {
 
     private FileSystemMaster fileSystemMaster;
 
+    private static int QUOTA = 5;
+
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
         fileSystemMaster = defaultFileSystemMaster;
     }
@@ -173,6 +175,10 @@ public final class GameSystemMaster {
                     count++;
                 }
                 if (count == userList.size()){
+                    for (GameSystemClient clt : clientList.values()){
+                        clt.reset();
+                    }
+                    // More stuffs to be done here
                     Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
                     GameSystemClient C = clientList.get(U.getFirst());
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
@@ -200,7 +206,7 @@ public final class GameSystemMaster {
     }
 
     private void Efficiency() {
-        int cacheNum = userList.size() * 5;
+        int cacheNum = userList.size() * QUOTA;
         for (String u : cacheMap.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {

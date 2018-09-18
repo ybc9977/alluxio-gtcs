@@ -15,7 +15,7 @@ com.qmino.miredot.restApiSource = {
 	"jsonDocHidden":false,
 	"singlePage":false,
 	"hideLogoOnTop":false,
-	"dateOfGeneration":"2018-09-12 13:50:20",
+	"dateOfGeneration":"2018-09-18 20:39:53",
 	"validLicense":true,
 	"licenseErrorMessage":[
 		
@@ -379,18 +379,6 @@ com.qmino.miredot.restApiSource.tos = {
 		"content":[
 		],
 	},
-	"javax_ws_rs_core_EntityTag_in":{
-		"type":"complex",
-		"name":"javax_ws_rs_core_EntityTag_in",
-		"content":[
-		],
-	},
-	"javax_ws_rs_core_EntityTag_out":{
-		"type":"complex",
-		"name":"javax_ws_rs_core_EntityTag_out",
-		"content":[
-		],
-	},
 	"alluxio_client_file_options_ListStatusOptions_in":{
 		"type":"complex",
 		"name":"alluxio_client_file_options_ListStatusOptions_in",
@@ -400,6 +388,18 @@ com.qmino.miredot.restApiSource.tos = {
 	"alluxio_client_file_options_ListStatusOptions_out":{
 		"type":"complex",
 		"name":"alluxio_client_file_options_ListStatusOptions_out",
+		"content":[
+		],
+	},
+	"javax_ws_rs_core_EntityTag_in":{
+		"type":"complex",
+		"name":"javax_ws_rs_core_EntityTag_in",
+		"content":[
+		],
+	},
+	"javax_ws_rs_core_EntityTag_out":{
+		"type":"complex",
+		"name":"javax_ws_rs_core_EntityTag_out",
 		"content":[
 		],
 	},
@@ -719,28 +719,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"].content 
 		"required":false,
 	},
 	{
-		"name":"rpcPort",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"webPort",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"dataPort",
 		"comment":null,
 		"fullComment":null,
@@ -770,6 +748,28 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"].content 
 		"deprecated":false,
 		"required":false,
 	},
+	{
+		"name":"rpcPort",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"webPort",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"].comment = null;
@@ -782,6 +782,25 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_out"].content
 			"type":"simple",
 			"typeValue":"string",
 		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"domainSocketPath",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"tieredIdentity",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_TieredIdentity_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -815,25 +834,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_out"].content
 			"type":"simple",
 			"typeValue":"number",
 		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"domainSocketPath",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"tieredIdentity",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_TieredIdentity_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -864,6 +864,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_i
 		"required":false,
 	},
 	{
+		"name":"storageClass",
+		"comment":"the storage class to set",
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"key",
 		"comment":"the object key to set",
 		"fullComment":null,
@@ -877,17 +888,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_i
 	{
 		"name":"eTag",
 		"comment":"the ETag to set",
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"storageClass",
-		"comment":"the storage class to set",
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
@@ -923,6 +923,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_o
 		"required":false,
 	},
 	{
+		"name":"storageClass",
+		"comment":"the storage class",
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"key",
 		"comment":"the object key",
 		"fullComment":null,
@@ -936,17 +947,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_o
 	{
 		"name":"eTag",
 		"comment":"the ETag",
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"storageClass",
-		"comment":"the storage class",
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
@@ -1285,17 +1285,6 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_NewCookie_out"].content = 
 		"required":false,
 	},
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"domain",
 		"comment":null,
 		"fullComment":null,
@@ -1307,23 +1296,12 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_NewCookie_out"].content = 
 		"required":false,
 	},
 	{
-		"name":"comment",
+		"name":"version",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"expiry",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"date string",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -1340,12 +1318,23 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_NewCookie_out"].content = 
 		"required":false,
 	},
 	{
-		"name":"httpOnly",
+		"name":"expiry",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
-			"typeValue":"boolean",
+			"typeValue":"date string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"comment",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -1357,6 +1346,17 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_NewCookie_out"].content = 
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"httpOnly",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
 		},
 		"deprecated":false,
 		"required":false,
@@ -1395,14 +1395,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_MountOptions_in
 		"required":false,
 	},
 	{
-		"name":"commonOptions",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"shared",
 		"comment":null,
 		"fullComment":null,
@@ -1410,6 +1402,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_MountOptions_in
 			"type":"simple",
 			"typeValue":"boolean",
 		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"commonOptions",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -1470,14 +1470,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_MountOptions_ou
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_MountOptions_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_in"].content = [
 	{
-		"name":"otherBits",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"ownerBits",
 		"comment":null,
 		"fullComment":null,
@@ -1487,6 +1479,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_in"].co
 	},
 	{
 		"name":"groupBits",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"otherBits",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
@@ -1498,6 +1498,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_in"].or
 com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"].content = [
 	{
+		"name":"groupBits",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"otherBits",
 		"comment":null,
 		"fullComment":null,
@@ -1507,14 +1515,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"].c
 	},
 	{
 		"name":"ownerBits",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"groupBits",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_security_authorization_Mode$Bits"],
@@ -1642,17 +1642,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_in"].cont
 		"required":false,
 	},
 	{
-		"name":"content",
-		"comment":"the contents list to set",
-		"fullComment":null,
-		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_in"],
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"continuationToken",
 		"comment":"the continuation token to set",
 		"fullComment":null,
@@ -1703,6 +1692,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_in"].cont
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"content",
+		"comment":"the contents list to set",
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_in"],
 		},
 		"deprecated":false,
 		"required":false,
@@ -1778,17 +1778,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_out"].con
 		"required":false,
 	},
 	{
-		"name":"contents",
-		"comment":"the list of contents",
-		"fullComment":null,
-		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_out"],
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"truncated",
 		"comment":"false if all results are returned, otherwise true",
 		"fullComment":null,
@@ -1799,18 +1788,21 @@ com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_out"].con
 		"deprecated":false,
 		"required":false,
 	},
+	{
+		"name":"contents",
+		"comment":"the list of contents",
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult$Content_out"],
+		},
+		"deprecated":false,
+		"required":false,
+	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_out"].ordered = true;
 com.qmino.miredot.restApiSource.tos["alluxio_proxy_s3_ListBucketResult_out"].comment = "Get bucket result defined in http://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html It will be encoded into an XML string to be returned as a response for the REST call";
 com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerInfo_in"].content = [
-	{
-		"name":"address",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"],
-		"deprecated":false,
-		"required":false,
-	},
 	{
 		"name":"id",
 		"comment":null,
@@ -1823,24 +1815,10 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerInfo_in"].content = [
 		"required":false,
 	},
 	{
-		"name":"state",
+		"name":"address",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"startTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_in"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -1904,6 +1882,28 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerInfo_in"].content = [
 	},
 	{
 		"name":"lastContactSec",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"state",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"startTimeMs",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
@@ -2088,14 +2088,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_DeleteOptions_o
 		"required":false,
 	},
 	{
-		"name":"commonOptions",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_out"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"unchecked",
 		"comment":null,
 		"fullComment":null,
@@ -2103,6 +2095,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_DeleteOptions_o
 			"type":"simple",
 			"typeValue":"boolean",
 		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"commonOptions",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -2122,17 +2122,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_DeleteOptions_o
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_DeleteOptions_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioProxyInfo_in"].content = [
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"configuration",
 		"comment":null,
 		"fullComment":null,
@@ -2146,6 +2135,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioProxyInfo_in"].content 
 				"type":"simple",
 				"typeValue":"string",
 			},
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"version",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -2195,6 +2195,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioProxyInfo_out"].content
 		"required":false,
 	},
 	{
+		"name":"startTimeMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"version",
 		"comment":null,
 		"fullComment":null,
@@ -2207,17 +2218,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioProxyInfo_out"].content
 	},
 	{
 		"name":"uptimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"startTimeMs",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
@@ -2274,7 +2274,7 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_FreeOptions_in"
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_FreeOptions_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_FreeOptions_out"].content = [
 	{
-		"name":"forced",
+		"name":"recursive",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
@@ -2285,7 +2285,7 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_FreeOptions_out
 		"required":false,
 	},
 	{
-		"name":"recursive",
+		"name":"forced",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
@@ -2422,17 +2422,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ExistsOptions_o
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ExistsOptions_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_in"].content = [
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"configuration",
 		"comment":null,
 		"fullComment":null,
@@ -2446,6 +2435,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_in"].content
 				"type":"simple",
 				"typeValue":"string",
 			},
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"version",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -2600,17 +2600,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_out"].conten
 		"required":false,
 	},
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"metrics",
 		"comment":null,
 		"fullComment":null,
@@ -2624,17 +2613,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_out"].conten
 				"type":"simple",
 				"typeValue":"number",
 			},
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"uptimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -2685,6 +2663,28 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_out"].conten
 		"required":false,
 	},
 	{
+		"name":"workers",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerInfo_out"],
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"version",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"capacity",
 		"comment":null,
 		"fullComment":null,
@@ -2693,12 +2693,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioMasterInfo_out"].conten
 		"required":false,
 	},
 	{
-		"name":"workers",
+		"name":"uptimeMs",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerInfo_out"],
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -2753,13 +2753,10 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 		"required":false,
 	},
 	{
-		"name":"allowExists",
+		"name":"writeType",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -2772,6 +2769,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 		"required":false,
 	},
 	{
+		"name":"commonOptions",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"ttl",
 		"comment":null,
 		"fullComment":null,
@@ -2779,14 +2784,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 			"type":"simple",
 			"typeValue":"number",
 		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"commonOptions",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -2799,10 +2796,13 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 		"required":false,
 	},
 	{
-		"name":"writeType",
+		"name":"allowExists",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -2810,14 +2810,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectoryOptions_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectoryOptions_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectoryOptions_out"].content = [
-	{
-		"name":"mode",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
-		"deprecated":false,
-		"required":false,
-	},
 	{
 		"name":"recursive",
 		"comment":null,
@@ -2830,13 +2822,18 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 		"required":false,
 	},
 	{
-		"name":"ttl",
+		"name":"mode",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"writeType",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -2849,18 +2846,21 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 		"required":false,
 	},
 	{
-		"name":"ttlAction",
+		"name":"ttl",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_wire_TtlAction"],
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
 		"deprecated":false,
 		"required":false,
 	},
 	{
-		"name":"writeType",
+		"name":"ttlAction",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_wire_TtlAction"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -2880,17 +2880,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectory
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateDirectoryOptions_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_in"].content = [
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"configuration",
 		"comment":null,
 		"fullComment":null,
@@ -2904,6 +2893,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_in"].content
 				"type":"simple",
 				"typeValue":"string",
 			},
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"version",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -3026,17 +3026,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_out"].conten
 		"required":false,
 	},
 	{
-		"name":"version",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"metrics",
 		"comment":null,
 		"fullComment":null,
@@ -3050,17 +3039,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_out"].conten
 				"type":"simple",
 				"typeValue":"number",
 			},
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"uptimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -3088,10 +3066,32 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_out"].conten
 		"required":false,
 	},
 	{
+		"name":"version",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"capacity",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_Capacity_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"uptimeMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -3136,6 +3136,20 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_out"].ordere
 com.qmino.miredot.restApiSource.tos["alluxio_wire_AlluxioWorkerInfo_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_in"].content = [
 	{
+		"name":"inputFiles",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":{
+				"type":"simple",
+				"typeValue":"string",
+			},
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"id",
 		"comment":null,
 		"fullComment":null,
@@ -3161,15 +3175,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_in"].content = [
 		"required":false,
 	},
 	{
-		"name":"inputFiles",
+		"name":"creationTimeMs",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"collection",
-			"typeValue":{
-				"type":"simple",
-				"typeValue":"string",
-			},
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -3210,17 +3221,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_in"].content = [
 		"deprecated":false,
 		"required":false,
 	},
-	{
-		"name":"creationTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_in"].comment = null;
@@ -3232,6 +3232,20 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_out"].content = [
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"inputFiles",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":{
+				"type":"simple",
+				"typeValue":"string",
+			},
 		},
 		"deprecated":false,
 		"required":false,
@@ -3265,15 +3279,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"inputFiles",
+		"name":"creationTimeMs",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"collection",
-			"typeValue":{
-				"type":"simple",
-				"typeValue":"string",
-			},
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -3297,17 +3308,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_LineageInfo_out"].content = [
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommandLineJobInfo_out"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"creationTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -3448,10 +3448,29 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 		"required":false,
 	},
 	{
+		"name":"owner",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"mode",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_in"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"commonOptions",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -3463,14 +3482,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 			"type":"simple",
 			"typeValue":"number",
 		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"commonOptions",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -3504,17 +3515,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 		"deprecated":true,
 		"required":false,
 	},
-	{
-		"name":"owner",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOptions_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOptions_in"].comment = null;
@@ -3527,14 +3527,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 			"type":"simple",
 			"typeValue":"string",
 		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"mode",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -3561,13 +3553,10 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 		"required":false,
 	},
 	{
-		"name":"ttl",
+		"name":"mode",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -3576,6 +3565,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"ttl",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -3612,36 +3612,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOpt
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOptions_out"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_SetAttributeOptions_out"].comment = null;
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].content = [
-];
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].ordered = false;
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].comment = null;
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].content = [
-	{
-		"name":"value",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"weak",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-];
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].ordered = false;
-com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ListStatusOptions_in"].content = [
 	{
 		"name":"recursive",
@@ -3704,6 +3674,36 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ListStatusOptio
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ListStatusOptions_out"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_ListStatusOptions_out"].comment = null;
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].content = [
+];
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].ordered = false;
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_in"].comment = null;
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].content = [
+	{
+		"name":"value",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"weak",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+];
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].ordered = false;
+com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_EntityTag_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_JobConfInfo_in"].content = [
 	{
 		"name":"outputFile",
@@ -3774,6 +3774,17 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response$StatusType_out"].
 com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response$StatusType_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"].content = [
 	{
+		"name":"syncIntervalMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"ttl",
 		"comment":null,
 		"fullComment":null,
@@ -3789,17 +3800,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_in"].content = [
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_wire_TtlAction"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"syncIntervalMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -3876,17 +3876,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_BlockLocation_in"].ordered = f
 com.qmino.miredot.restApiSource.tos["alluxio_wire_BlockLocation_in"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_BlockLocation_out"].content = [
 	{
-		"name":"tierAlias",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"workerId",
 		"comment":null,
 		"fullComment":null,
@@ -3902,6 +3891,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_BlockLocation_out"].content = 
 		"comment":null,
 		"fullComment":null,
 		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_WorkerNetAddress_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"tierAlias",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -3980,17 +3980,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_URIStatus_out"].content
 		"required":false,
 	},
 	{
-		"name":"mode",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"owner",
 		"comment":null,
 		"fullComment":null,
@@ -4002,12 +3991,67 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_URIStatus_out"].content
 		"required":false,
 	},
 	{
-		"name":"pinned",
+		"name":"mode",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"creationTimeMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"fileId",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"inAlluxioPercentage",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"completed",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"blockSizeBytes",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4043,6 +4087,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_URIStatus_out"].content
 		"required":false,
 	},
 	{
+		"name":"pinned",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"persisted",
 		"comment":null,
 		"fullComment":null,
@@ -4060,17 +4115,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_URIStatus_out"].content
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"fileBlockInfos",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_FileBlockInfo_out"],
 		},
 		"deprecated":false,
 		"required":false,
@@ -4145,56 +4189,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_URIStatus_out"].content
 		"required":false,
 	},
 	{
-		"name":"fileId",
+		"name":"fileBlockInfos",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"inAlluxioPercentage",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"completed",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"blockSizeBytes",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"creationTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_FileBlockInfo_out"],
 		},
 		"deprecated":false,
 		"required":false,
@@ -4293,28 +4293,6 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"status",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"links",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Link_out"],
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"entity",
 		"comment":null,
 		"fullComment":null,
@@ -4347,22 +4325,12 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"headers",
+		"name":"status",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"map",
-			"typeKey":{
-				"type":"simple",
-				"typeValue":"string",
-			},
-			"typeValue":{
-				"type":"collection",
-				"typeValue":{
-					"type":"simple",
-					"typeValue":"object",
-				},
-			},
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4390,10 +4358,42 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"mediaType",
+		"name":"headers",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_MediaType_out"],
+		"typeValue":{
+			"type":"map",
+			"typeKey":{
+				"type":"simple",
+				"typeValue":"string",
+			},
+			"typeValue":{
+				"type":"collection",
+				"typeValue":{
+					"type":"simple",
+					"typeValue":"object",
+				},
+			},
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"statusInfo",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response$StatusType_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"links",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Link_out"],
+		},
 		"deprecated":false,
 		"required":false,
 	},
@@ -4413,10 +4413,10 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"statusInfo",
+		"name":"mediaType",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Response$StatusType_out"],
+		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_MediaType_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -4501,12 +4501,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].content = [
 		"required":false,
 	},
 	{
-		"name":"mode",
+		"name":"owner",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
-			"typeValue":"number",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4518,6 +4518,50 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].content = [
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"mode",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"creationTimeMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"completed",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"folder",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4603,17 +4647,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].content = [
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"owner",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4720,39 +4753,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].content = [
 		"deprecated":false,
 		"required":false,
 	},
-	{
-		"name":"creationTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"completed",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"folder",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_in"].comment = null;
@@ -4824,17 +4824,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"mode",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"owner",
 		"comment":null,
 		"fullComment":null,
@@ -4846,12 +4835,67 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"pinned",
+		"name":"mode",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"creationTimeMs",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"fileId",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"inAlluxioPercentage",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"completed",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"blockSizeBytes",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -4887,6 +4931,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_out"].content = [
 		"required":false,
 	},
 	{
+		"name":"pinned",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"persisted",
 		"comment":null,
 		"fullComment":null,
@@ -4904,17 +4959,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_out"].content = [
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"fileBlockInfos",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"collection",
-			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_FileBlockInfo_out"],
 		},
 		"deprecated":false,
 		"required":false,
@@ -4989,56 +5033,12 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_FileInfo_out"].content = [
 		"required":false,
 	},
 	{
-		"name":"fileId",
+		"name":"fileBlockInfos",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"inAlluxioPercentage",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"completed",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"blockSizeBytes",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"creationTimeMs",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
+			"type":"collection",
+			"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_FileBlockInfo_out"],
 		},
 		"deprecated":false,
 		"required":false,
@@ -5059,6 +5059,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"required":false,
 	},
 	{
+		"name":"writeType",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"mode",
 		"comment":null,
 		"fullComment":null,
@@ -5067,7 +5075,18 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"required":false,
 	},
 	{
-		"name":"ttl",
+		"name":"locationPolicyClass",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"writeTier",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
@@ -5086,6 +5105,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"required":false,
 	},
 	{
+		"name":"ttl",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"number",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"ttlAction",
 		"comment":null,
 		"fullComment":null,
@@ -5104,6 +5134,10 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"deprecated":false,
 		"required":false,
 	},
+];
+com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_in"].ordered = false;
+com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_in"].comment = null;
+com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_out"].content = [
 	{
 		"name":"writeTier",
 		"comment":null,
@@ -5116,10 +5150,21 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"required":false,
 	},
 	{
-		"name":"writeType",
+		"name":"recursive",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"mode",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -5134,25 +5179,29 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"deprecated":false,
 		"required":false,
 	},
-];
-com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_in"].ordered = false;
-com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_in"].comment = null;
-com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_out"].content = [
 	{
-		"name":"mode",
+		"name":"writeType",
 		"comment":null,
 		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_security_authorization_Mode_out"],
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
 		"deprecated":false,
 		"required":false,
 	},
 	{
-		"name":"recursive",
+		"name":"commonOptions",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"blockSizeBytes",
 		"comment":null,
 		"fullComment":null,
 		"typeValue":{
 			"type":"simple",
-			"typeValue":"boolean",
+			"typeValue":"number",
 		},
 		"deprecated":false,
 		"required":false,
@@ -5169,14 +5218,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"required":false,
 	},
 	{
-		"name":"commonOptions",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["alluxio_wire_CommonOptions_out"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"ttlAction",
 		"comment":null,
 		"fullComment":null,
@@ -5184,59 +5225,10 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptio
 		"deprecated":false,
 		"required":false,
 	},
-	{
-		"name":"writeType",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_WriteType"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"blockSizeBytes",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"locationPolicyClass",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"writeTier",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"number",
-		},
-		"deprecated":false,
-		"required":false,
-	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_out"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_CreateFileOptions_out"].comment = null;
 com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_OpenFileOptions_in"].content = [
-	{
-		"name":"readType",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_ReadType"],
-		"deprecated":false,
-		"required":false,
-	},
 	{
 		"name":"locationPolicyClass",
 		"comment":null,
@@ -5278,6 +5270,14 @@ com.qmino.miredot.restApiSource.tos["alluxio_client_file_options_OpenFileOptions
 			"type":"simple",
 			"typeValue":"number",
 		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"readType",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.enums["alluxio_client_ReadType"],
 		"deprecated":false,
 		"required":false,
 	},
@@ -5383,6 +5383,14 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Link_out"].content = [
 		"required":false,
 	},
 	{
+		"name":"uriBuilder",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_UriBuilder_out"],
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"title",
 		"comment":null,
 		"fullComment":null,
@@ -5405,6 +5413,17 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Link_out"].content = [
 		"required":false,
 	},
 	{
+		"name":"rel",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"rels",
 		"comment":null,
 		"fullComment":null,
@@ -5414,25 +5433,6 @@ com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_Link_out"].content = [
 				"type":"simple",
 				"typeValue":"string",
 			},
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"uriBuilder",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":com.qmino.miredot.restApiSource.tos["javax_ws_rs_core_UriBuilder_out"],
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"rel",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,
@@ -5471,6 +5471,28 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_in"].content = 
 		"required":false,
 	},
 	{
+		"name":"shared",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"ufsUri",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
 		"name":"ufsType",
 		"comment":null,
 		"fullComment":null,
@@ -5503,28 +5525,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_in"].content = 
 		"deprecated":false,
 		"required":false,
 	},
-	{
-		"name":"shared",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"boolean",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
-		"name":"ufsUri",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
 ];
 com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_in"].ordered = false;
 com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_in"].comment = null;
@@ -5548,17 +5548,6 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_out"].content =
 		"required":false,
 	},
 	{
-		"name":"ufsUri",
-		"comment":null,
-		"fullComment":null,
-		"typeValue":{
-			"type":"simple",
-			"typeValue":"string",
-		},
-		"deprecated":false,
-		"required":false,
-	},
-	{
 		"name":"readOnly",
 		"comment":null,
 		"fullComment":null,
@@ -5576,6 +5565,17 @@ com.qmino.miredot.restApiSource.tos["alluxio_wire_MountPointInfo_out"].content =
 		"typeValue":{
 			"type":"simple",
 			"typeValue":"boolean",
+		},
+		"deprecated":false,
+		"required":false,
+	},
+	{
+		"name":"ufsUri",
+		"comment":null,
+		"fullComment":null,
+		"typeValue":{
+			"type":"simple",
+			"typeValue":"string",
 		},
 		"deprecated":false,
 		"required":false,

@@ -74,4 +74,12 @@ public class GameSystemServiceHandler implements
         });
     }
 
+    @Override
+    public ResetTResponse reset(ResetTOptions options) throws AlluxioTException, TException {
+        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<ResetTResponse>)()->{
+            mGameSystemServer.reset();
+            return new ResetTResponse();
+        });
+    }
+
 }

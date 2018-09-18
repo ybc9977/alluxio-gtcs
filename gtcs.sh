@@ -1,12 +1,12 @@
 #!bin/bash
 
 #launch
-python3 ~/Downloads/flintrock-master/standalone.py launch gtcs 
+python3 ~/Downloads/flintrock-master/standalone.py launch gtcs
 
 #set up
 python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "sudo yum update -y"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "sudo yum install java-1.8.0-openjdk* -y"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs 'export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk"'
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "sudo yum install java-1.8.0-openjdk* -y"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs 'export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk"'
 
 python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo"
 python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs 'sudo sed -i s/\$releasever/7/g /etc/yum.repos.d/epel-apache-maven.repo'
@@ -40,7 +40,7 @@ python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "~/alluxio-g
 #start
 #i=1
     # test $i -eq 1 && ((i=i+1)) && continue
-# while read -r line 
+# while read -r line
 # do
 #     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh worker SudoMount; ~/alluxio-gtcs/bin/alluxio-start.sh client"
 # done < ~/flintrock.txt

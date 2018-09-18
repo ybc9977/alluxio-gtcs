@@ -11,14 +11,16 @@ struct GetPrefTResponse{
         1: map<string, double> pref
 }
 struct GetPrefTOptions{
-
 }
 struct LoadTResponse{
 }
 struct AccessTResponse{
         1: map<string,i32> access
 }
-
+struct ResetTOptions{
+}
+struct ResetTResponse{
+}
 
 //Client offer service to Master
 service GameSystemCacheService extends common.AlluxioService {
@@ -42,4 +44,10 @@ service GameSystemCacheService extends common.AlluxioService {
         1: map<string,double> prefList
     )
     throws (1: exception.AlluxioTException e)
+
+    ResetTResponse reset(
+        1: ResetTOptions options
+    )
+    throws (1: exception.AlluxioTException e)
+
 }

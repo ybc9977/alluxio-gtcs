@@ -107,6 +107,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/AccessTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/wire/AlluxioMasterInfo.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/time/ThreadSleeper.java
+/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/ResetTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/FileSystemHeartbeatTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/heartbeat/SleepingTimer.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/FileSystemMasterClientService.java
@@ -404,6 +405,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/Positioned.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/security/authentication/AuthenticationProvider.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/FreeTResponse.java
+/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/ResetTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/security/login/AlluxioLoginModule.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/ClientNetAddress.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/ReinitializeFileTResponse.java
