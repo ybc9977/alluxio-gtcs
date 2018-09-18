@@ -46,6 +46,10 @@ public final class GameSystemMaster {
 
     private static int QUOTA = 5;
 
+    private float start_time;
+
+    private float time_interval;
+
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
         fileSystemMaster = defaultFileSystemMaster;
     }
@@ -123,7 +127,10 @@ public final class GameSystemMaster {
 
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
+        start_time =System.currentTimeMillis();
+        int poll_iter = 0;
         while(userList.size()!=0 && !fileList.isEmpty()){
+            poll_iter++;
             int index = (int) (Math.random() * userList.size());
             Pair<String, Boolean> user = userList.get(index);
             if(cacheMap.containsKey(user.getFirst()) && cacheMap.get(user.getFirst())!=null){
@@ -183,6 +190,8 @@ public final class GameSystemMaster {
                     GameSystemClient C = clientList.get(U.getFirst());
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
                     LOG.info("Equilibrium established");
+                    LOG.info("Total iteration: "+poll_iter);
+                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     HitRatio();
                     return;
