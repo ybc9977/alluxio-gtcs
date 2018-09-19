@@ -193,28 +193,33 @@ public final class GameSystemMaster {
                     LOG.info("Total iteration: "+poll_iter);
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
-                    HitRatio();
+                    Experimental_HitRatio();
                     return;
                 }
             }
         }
     }
 
-    private void HitRatio() throws AlluxioStatusException {
+    private void Experimental_HitRatio() throws AlluxioStatusException {
+        double hit=0,access=0;
         for (String user : clientList.keySet()){
             Map<String,Integer> accessList;
             accessList=clientList.get(user).access(userPref.get(user));
-            double hit=0,access=0;
+            double h=0,acc=0;
             for (String file : accessList.keySet()){
-                if (cacheList.get(file))
-                    hit+=accessList.get(file);
-                access+=accessList.get(file);
+                if (cacheList.get(file)) {
+                    hit += accessList.get(file);
+                    h += accessList.get(file);
+                }
+                acc += accessList.get(file);
+                access += accessList.get(file);
             }
-            LOG.info("user "+user+"'s hit ratio is " + hit/access);
+            LOG.info("user " + user+"'s hit ratio is " + hit/access);
         }
+        LOG.info("the overall hit ratio should be " + hit/access);
     }
 
-    private void Efficiency() {
+    private synchronized void Efficiency() {
         int cacheNum = userList.size() * QUOTA;
         for (String u : cacheMap.keySet()) {
             double efficiency = 0;
