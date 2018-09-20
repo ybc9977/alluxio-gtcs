@@ -6,6 +6,8 @@ import alluxio.exception.AlluxioException;
 import alluxio.thrift.ClientNetAddress;
 import alluxio.thrift.GameSystemCacheService;
 import com.google.common.base.Preconditions;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
+import org.apache.commons.math3.distribution.PoissonDistribution;
 import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
@@ -69,7 +71,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             int total_access = 3;
             AlluxioURI uri = new AlluxioURI(file);
             for (int i=0;i<total_access;i++){
-                double interval = prefList.indexOf(file)+1;
+                double interval = new PoissonDistribution(prefList.indexOf(file)+1).sample();
                 try {
                     Thread.sleep((long) interval*1000);
                     mFileSystem.openFile(uri);
