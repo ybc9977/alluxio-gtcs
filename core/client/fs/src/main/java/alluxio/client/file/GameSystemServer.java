@@ -68,18 +68,17 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     Map<String,Integer> accessFile(Map<String, Double> fileList){
         Map<String,Integer> access = new HashMap<>();
         for(String file : fileList.keySet()){
-            int total_access = 3;
+            int acc = new PoissonDistribution(prefList.indexOf(file)+1).sample() * 10;
             AlluxioURI uri = new AlluxioURI(file);
-            for (int i=0;i<total_access;i++){
-                double interval = new PoissonDistribution(prefList.indexOf(file)+1).sample();
+            for (int i=0;i<acc;i++){
                 try {
-                    Thread.sleep((long) interval*1000);
+                    Thread.sleep(1000);
                     mFileSystem.openFile(uri);
                 } catch (InterruptedException | AlluxioException | IOException e) {
                     e.printStackTrace();
                 }
             }
-            access.put(file,total_access);
+            access.put(file,acc);
         }
         return access;
     }

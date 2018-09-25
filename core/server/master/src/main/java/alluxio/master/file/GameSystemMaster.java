@@ -216,7 +216,7 @@ public final class GameSystemMaster {
                 acc += accessList.get(file);
                 access += accessList.get(file);
             }
-            LOG.info("user " + user+"'s hit ratio is " + hit/access);
+            LOG.info("user " + user+"'s hit ratio is " + h/acc);
         }
         LOG.info("the overall hit ratio should be " + hit/access);
     }
