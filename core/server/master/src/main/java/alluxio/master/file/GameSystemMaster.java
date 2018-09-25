@@ -223,7 +223,7 @@ public final class GameSystemMaster {
 
     private synchronized void Efficiency() {
         int cacheNum = userList.size() * QUOTA;
-        for (String u : cacheMap.keySet()) {
+        for (String u : userPref.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {
                 try{
@@ -252,7 +252,7 @@ public final class GameSystemMaster {
         Map<String, Double> filePref = new HashMap<>();
         for (String f:cacheList.keySet()){
             double e = 0;
-            for (String u:cacheMap.keySet()){
+            for (String u:userPref.keySet()){
                 if(userPref.get(u).get(f)!=null){
                     e +=userPref.get(u).get(f);
                 }
