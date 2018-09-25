@@ -14,6 +14,5 @@ done
 for ((i=1; i<=10; i ++))
 do
     ~/alluxio-gtcs/bin/alluxio fs copyFromLocal ~/testFile/$i.txt /
-    sleep 1
 done
 exit 0
