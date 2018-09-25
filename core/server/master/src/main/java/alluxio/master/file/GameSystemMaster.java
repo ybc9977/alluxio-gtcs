@@ -195,14 +195,14 @@ public final class GameSystemMaster {
                     LOG.info("end time is "+System.currentTimeMillis());
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
-                    Experimental_HitRatio();
+                    HitRatio();
                     return;
                 }
             }
         }
     }
 
-    private void Experimental_HitRatio() throws AlluxioStatusException {
+    private void HitRatio() throws AlluxioStatusException {
         double hit=0,access=0;
         for (String user : clientList.keySet()){
             Map<String,Integer> accessList;
