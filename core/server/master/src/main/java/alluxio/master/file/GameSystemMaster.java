@@ -128,7 +128,7 @@ public final class GameSystemMaster {
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
         start_time =System.currentTimeMillis();
-        LOG.info("start time is"+start_time);
+        LOG.info("start time is "+start_time);
         int poll_iter = 0;
         while(userList.size()!=0 && !fileList.isEmpty()){
             poll_iter++;
@@ -192,7 +192,7 @@ public final class GameSystemMaster {
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-                    LOG.info("end time is"+System.currentTimeMillis());
+                    LOG.info("end time is "+System.currentTimeMillis());
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     Experimental_HitRatio();
