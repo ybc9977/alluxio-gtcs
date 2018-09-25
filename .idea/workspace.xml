@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_log.sh" beforeDir="false" afterPath="$PROJECT_DIR$/get_log.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gtcs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/gtcs.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/master.sh" beforeDir="false" afterPath="$PROJECT_DIR$/master.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -55,11 +57,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="179" column="30" lean-forward="true" selection-start-line="179" selection-start-column="30" selection-end-line="179" selection-end-column="30" />
+            <state relative-caret-position="562">
+              <caret line="203" lean-forward="true" selection-start-line="203" selection-end-line="203" />
               <folding>
                 <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
               </folding>
@@ -70,17 +72,17 @@
       <file leaf-file-name="gtcs.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gtcs.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="795">
+              <caret line="53" column="106" lean-forward="true" selection-start-line="53" selection-start-column="106" selection-end-line="53" selection-end-column="106" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="master.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="master.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/master.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="135">
+              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -197,11 +199,11 @@
         <option value="$PROJECT_DIR$/core/common/src/thrift/game_system_cache.thrift" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" />
         <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServiceHandler.java" />
-        <option value="$PROJECT_DIR$/gtcs.sh" />
-        <option value="$PROJECT_DIR$/get_log.sh" />
-        <option value="$PROJECT_DIR$/master.sh" />
-        <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
         <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" />
+        <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/get_log.sh" />
+        <option value="$PROJECT_DIR$/gtcs.sh" />
+        <option value="$PROJECT_DIR$/master.sh" />
       </list>
     </option>
   </component>
@@ -520,7 +522,7 @@
       <workItem from="1537342093147" duration="9000" />
       <workItem from="1537354874795" duration="1312000" />
       <workItem from="1537411696163" duration="1634000" />
-      <workItem from="1537854809135" duration="3518000" />
+      <workItem from="1537854809135" duration="5331000" />
     </task>
     <task id="LOCAL-00001" summary="12:00 05/07">
       <created>1530763042348</created>
@@ -725,11 +727,32 @@
       <option name="project" value="LOCAL" />
       <updated>1537867017347</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="25/09/18">
+      <created>1537868180147</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1537868180147</updated>
+    </task>
+    <task id="LOCAL-00031" summary="25/09/18">
+      <created>1537868300824</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1537868300824</updated>
+    </task>
+    <task id="LOCAL-00032" summary="25/09/18">
+      <created>1537868787451</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1537868787451</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50198000" />
+    <option name="totallyTimeSpent" value="52011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1015,27 +1038,6 @@
     <entry file="file://$PROJECT_DIR$/NOTICE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gtcs.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_log.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/GameSystemCacheService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1073,11 +1075,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="179" column="30" lean-forward="true" selection-start-line="179" selection-start-column="30" selection-end-line="179" selection-end-column="30" />
+        <state relative-caret-position="562">
+          <caret line="203" lean-forward="true" selection-start-line="203" selection-end-line="203" />
           <folding>
             <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_log.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtcs.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="106" lean-forward="true" selection-start-line="53" selection-start-column="106" selection-end-line="53" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>

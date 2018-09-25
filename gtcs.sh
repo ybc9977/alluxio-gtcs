@@ -51,6 +51,6 @@ ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/ma
 sleep 40
 
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r 1.zip ./logs" < /dev/null
-scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/1.zip ~/Desktop/Formal Data/
+scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/1.zip ~/Desktop/Formal\ Data/
 
 exit 0
