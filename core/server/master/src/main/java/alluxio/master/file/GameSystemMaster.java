@@ -46,7 +46,7 @@ public final class GameSystemMaster {
 
     private static int QUOTA = 5;
 
-    private static float start_time;
+    private static double start_time;
 
     private float time_interval;
 
