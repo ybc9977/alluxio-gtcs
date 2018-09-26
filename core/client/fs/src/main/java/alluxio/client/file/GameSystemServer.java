@@ -70,14 +70,14 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         for(String file : fileList.keySet()){
             int acc = new PoissonDistribution(prefList.indexOf(file)+1).sample() * 10;
             AlluxioURI uri = new AlluxioURI(file);
-            for (int i=0;i<acc;i++){
-                try {
-                    Thread.sleep(1000);
-                    mFileSystem.openFile(uri);
-                } catch (InterruptedException | AlluxioException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
+//            for (int i=0;i<acc;i++){
+//                try {
+//                    Thread.sleep(1000);
+//                    mFileSystem.openFile(uri);
+//                } catch (InterruptedException | AlluxioException | IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
             access.put(file,acc);
         }
         return access;
