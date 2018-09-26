@@ -207,6 +207,7 @@ public final class GameSystemMaster {
         for (String user : clientList.keySet()){
             Map<String,Integer> accessList;
             accessList=clientList.get(user).access(userPref.get(user));
+            LOG.info("user "+ user +"'s accessList "+accessList.toString());
             double h=0,acc=0;
             for (String file : accessList.keySet()){
                 if (cacheList.get(file)) {
