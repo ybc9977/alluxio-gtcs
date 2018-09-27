@@ -120,7 +120,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         setPrefList(fileList);
 //        LOG.info("randomized preference list for user " + mUserId + " : " + prefList.toString());
 
-        int quota = 5;
+        int quota = 10;
 
         for(String path: prefList){
             if (quota >0 && fileList.containsKey(path) && !fileList.get(path)){
