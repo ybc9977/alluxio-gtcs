@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 #launch
 python3 ~/Downloads/flintrock-master/standalone.py launch gtcs
@@ -46,11 +46,6 @@ python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "~/alluxio-g
 # done < ~/flintrock.txt
 
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/master.sh"
-
-sleep 40
-
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r 1.zip ./logs" < /dev/null
-scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/1.zip ~/Desktop/Formal\ Data/
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/start.sh $1"
 
 exit 0

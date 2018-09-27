@@ -128,7 +128,7 @@ public final class GameSystemMaster {
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
         start_time =System.currentTimeMillis();
-        LOG.info("start time is "+start_time);
+//        LOG.info("start time is "+start_time);
         int poll_iter = 0;
         while(userList.size()!=0 && !fileList.isEmpty()){
             poll_iter++;
@@ -148,7 +148,7 @@ public final class GameSystemMaster {
             }else{
                 userPref.put(user.getFirst(),client.getPref());
             }
-            LOG.info(String.valueOf("caching_list: "+caching_list+" for user "+user.getFirst()));
+//            LOG.info(String.valueOf("caching_list: "+caching_list+" for user "+user.getFirst()));
             // Check if caching_list stay the same with cacheMap, if so, do "else"
             boolean isChanged = false;
             if(cacheMap.get(user.getFirst())!=null){
@@ -192,7 +192,7 @@ public final class GameSystemMaster {
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-                    LOG.info("end time is "+System.currentTimeMillis());
+//                    LOG.info("end time is "+System.currentTimeMillis());
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     HitRatio();
@@ -207,7 +207,7 @@ public final class GameSystemMaster {
         for (String user : clientList.keySet()){
             Map<String,Integer> accessList;
             accessList=clientList.get(user).access(userPref.get(user));
-            LOG.info("user "+ user +"'s accessList "+accessList.toString());
+//            LOG.info("user "+ user +"'s accessList "+accessList.toString());
             double h=0,acc=0;
             for (String file : accessList.keySet()){
                 if (cacheList.get(file)) {
@@ -217,9 +217,9 @@ public final class GameSystemMaster {
                 acc += accessList.get(file);
                 access += accessList.get(file);
             }
-            LOG.info("user " + user+"'s hit ratio is " + h/acc);
+//            LOG.info("user " + user+"'s hit ratio is " + h/acc);
         }
-        LOG.info("the overall hit ratio should be " + hit/access);
+        LOG.info("the overall hit ratio is " + hit/access);
     }
 
     private synchronized void Efficiency() {
@@ -262,7 +262,7 @@ public final class GameSystemMaster {
         }
         filePref = sortByValue(filePref);
         //LOG.info("filePref: "+filePref.toString());
-        LOG.info("cacheList "+cacheList);
+//        LOG.info("cacheList "+cacheList);
         int count=0;
         double s=0;
         for (String key : filePref.keySet()){
