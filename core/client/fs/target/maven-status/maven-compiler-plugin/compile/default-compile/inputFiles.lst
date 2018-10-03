@@ -75,7 +75,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/block/stream/LocalFilePacketReader.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/options/CompleteUfsFileOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/lineage/AlluxioLineage.java
-/Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/options/PassUserIdOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/policy/LocalFirstPolicy.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/options/OpenUfsFileOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/UnderStorageType.java
