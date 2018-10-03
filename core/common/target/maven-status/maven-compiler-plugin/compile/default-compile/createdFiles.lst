@@ -20,7 +20,6 @@ alluxio/thrift/GameSystemCacheService$getPref_result$getPref_resultTupleSchemeFa
 alluxio/util/network/HttpUtils$1.class
 alluxio/thrift/BlockMasterClientService$getUsedBytes_result.class
 alluxio/underfs/ObjectUnderFileSystem$ObjectListingChunk.class
-alluxio/thrift/GameSystemService$load_args$load_argsTupleSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$AsyncClient$Factory.class
 alluxio/thrift/FileSystemMasterClientService$setAttribute_result$setAttribute_resultStandardScheme.class
 alluxio/thrift/MetaMasterClientService$Client$Factory.class
@@ -40,7 +39,6 @@ alluxio/thrift/FileSystemMasterClientService$setAttribute_args$setAttribute_args
 alluxio/thrift/MetaMasterClientService$AsyncProcessor$getMetrics.class
 alluxio/thrift/LineageInfo$_Fields.class
 alluxio/thrift/FileSystemHeartbeatTResponse$FileSystemHeartbeatTResponseStandardScheme.class
-alluxio/thrift/GetUserIdTResponse$GetUserIdTResponseStandardSchemeFactory.class
 alluxio/thrift/MetaMasterMasterService$registerMaster_result$registerMaster_resultStandardScheme.class
 alluxio/thrift/FileSystemHeartbeatTResponse$FileSystemHeartbeatTResponseTupleScheme.class
 alluxio/thrift/GetBlockInfoTResponse$GetBlockInfoTResponseStandardScheme.class
@@ -63,7 +61,6 @@ alluxio/thrift/ListStatusTResponse$ListStatusTResponseTupleScheme.class
 alluxio/thrift/GameSystemCacheService$access_args.class
 alluxio/thrift/BlockWorkerClientService$accessBlock_result$accessBlock_resultTupleScheme.class
 alluxio/retry/ExponentialTimeBoundedRetry$1.class
-alluxio/thrift/GameSystemService$load_result$_Fields.class
 alluxio/thrift/BlockWorkerClientService$accessBlock_args$accessBlock_argsTupleSchemeFactory.class
 alluxio/thrift/CreateUfsFileTOptions.class
 alluxio/thrift/MasterNetAddress$MasterNetAddressTupleSchemeFactory.class
@@ -78,7 +75,6 @@ alluxio/security/authentication/SimpleAuthenticationProvider.class
 alluxio/thrift/BlockMasterClientService$Iface.class
 alluxio/network/protocol/databuffer/DataFileChannel.class
 alluxio/thrift/AlluxioService$getServiceVersion_args$getServiceVersion_argsStandardSchemeFactory.class
-alluxio/thrift/GameSystemService$Processor.class
 alluxio/thrift/SessionBlockHeartbeatTResponse.class
 alluxio/thrift/BlockMasterClientService$getWorkerReport_result$getWorkerReport_resultTupleScheme.class
 alluxio/thrift/GetStatusTOptions$_Fields.class
@@ -94,7 +90,6 @@ alluxio/thrift/GetUfsInfoTResponse.class
 alluxio/thrift/MetaMasterClientService$backup_args$backup_argsStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$createDirectory_result$createDirectory_resultTupleSchemeFactory.class
 alluxio/thrift/ResetTResponse$ResetTResponseTupleScheme.class
-alluxio/thrift/GameSystemService$checkCacheChange_result$checkCacheChange_resultTupleScheme.class
 alluxio/thrift/BlockWorkerClientService$cancelBlock_result$cancelBlock_resultStandardSchemeFactory.class
 alluxio/security/authentication/PlainSaslServer.class
 alluxio/thrift/BlockMasterClientService$getWorkerInfoList_args$getWorkerInfoList_argsTupleSchemeFactory.class
@@ -151,7 +146,6 @@ alluxio/thrift/GameSystemCacheService$access_result$access_resultTupleSchemeFact
 alluxio/thrift/ListStatusTOptions$_Fields.class
 alluxio/thrift/WorkerNetAddress$WorkerNetAddressStandardSchemeFactory.class
 alluxio/thrift/CompleteFileTResponse$CompleteFileTResponseStandardSchemeFactory.class
-alluxio/thrift/GameSystemService$AsyncClient.class
 alluxio/thrift/BlockWorkerClientService$Processor$cacheBlock.class
 alluxio/exception/LineageDeletionException.class
 alluxio/thrift/GetMasterIdTResponse$GetMasterIdTResponseTupleSchemeFactory.class
@@ -263,7 +257,6 @@ alluxio/thrift/GetConfigurationTResponse$_Fields.class
 alluxio/network/protocol/databuffer/DataByteArrayChannel.class
 alluxio/thrift/WorkerInfo$WorkerInfoTupleScheme.class
 alluxio/thrift/CloseUfsFileTResponse$CloseUfsFileTResponseTupleScheme.class
-alluxio/thrift/GameSystemService$checkCacheChange_args.class
 alluxio/thrift/MetaMasterMasterService$Client$Factory.class
 alluxio/thrift/FileSystemMasterClientService$scheduleAsyncPersistence_args$scheduleAsyncPersistence_argsTupleSchemeFactory.class
 alluxio/thrift/FileSystemWorkerClientService$completeUfsFile_args$_Fields.class
@@ -321,7 +314,6 @@ alluxio/security/authentication/CustomAuthenticationProvider.class
 alluxio/security/authentication/PlainSaslServerCallbackHandler.class
 alluxio/thrift/UfsInfo$_Fields.class
 alluxio/thrift/BlockHeartbeatTOptions$BlockHeartbeatTOptionsStandardSchemeFactory.class
-alluxio/thrift/PassUserIdTOptions$PassUserIdTOptionsStandardScheme.class
 alluxio/thrift/SessionFileSystemHeartbeatTResponse.class
 alluxio/thrift/BlockWorkerClientService$cacheBlock_args$cacheBlock_argsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$registerUser_result$registerUser_resultTupleScheme.class
@@ -334,7 +326,6 @@ alluxio/thrift/GetMasterIdTResponse$GetMasterIdTResponseStandardSchemeFactory.cl
 alluxio/thrift/MetaMasterClientService$getMetrics_result$getMetrics_resultTupleSchemeFactory.class
 alluxio/thrift/BlockWorkerClientService$AsyncProcessor$promoteBlock.class
 alluxio/thrift/FileSystemWorkerClientService$cancelUfsFile_result.class
-alluxio/thrift/GetUserIdTResponse$GetUserIdTResponseTupleScheme.class
 alluxio/thrift/CreateFileTResponse$CreateFileTResponseStandardScheme.class
 alluxio/thrift/FileSystemMasterClientService$remove_result$_Fields.class
 alluxio/thrift/GetConfigReportTResponse$GetConfigReportTResponseStandardScheme.class
@@ -345,7 +336,6 @@ alluxio/thrift/MountTOptions$MountTOptionsTupleScheme.class
 alluxio/thrift/MetaMasterMasterService$AsyncIface.class
 alluxio/thrift/AlluxioService$getServiceVersion_args$getServiceVersion_argsTupleSchemeFactory.class
 alluxio/thrift/FileSystemWorkerClientService$openUfsFile_args$_Fields.class
-alluxio/thrift/GameSystemService$checkCacheChange_args$checkCacheChange_argsTupleSchemeFactory.class
 alluxio/thrift/LineageMasterClientService.class
 alluxio/thrift/BlockWorkerClientService$AsyncClient$accessBlock_call.class
 alluxio/thrift/GetNewBlockIdForFileTOptions$GetNewBlockIdForFileTOptionsTupleSchemeFactory.class
@@ -405,7 +395,6 @@ alluxio/thrift/FileSystemMasterClientService$checkConsistency_result$checkConsis
 alluxio/thrift/GetConfigurationTResponse$GetConfigurationTResponseTupleScheme.class
 alluxio/thrift/GetMetricsTResponse$GetMetricsTResponseStandardScheme.class
 alluxio/thrift/FileSystemMasterWorkerService$getFileInfo_result.class
-alluxio/thrift/GameSystemService$checkCacheChange_result$_Fields.class
 alluxio/Positioned.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$createFile.class
 alluxio/thrift/LineageMasterClientService$AsyncClient$reinitializeFile_call.class
@@ -415,7 +404,6 @@ alluxio/thrift/CloseUfsFileTOptions$_Fields.class
 alluxio/thrift/FileSystemWorkerClientService$completeUfsFile_args$completeUfsFile_argsTupleScheme.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$getStatus$1.class
 alluxio/util/LogUtils.class
-alluxio/thrift/PassUserIdTOptions$_Fields.class
 alluxio/thrift/MetricValue$MetricValueTupleScheme.class
 alluxio/thrift/BlockMasterWorkerService$registerWorker_args$registerWorker_argsTupleSchemeFactory.class
 alluxio/thrift/GetLineageInfoListTOptions$GetLineageInfoListTOptionsStandardSchemeFactory.class
@@ -531,9 +519,7 @@ alluxio/thrift/CommitBlockTResponse$CommitBlockTResponseTupleSchemeFactory.class
 alluxio/thrift/MountPointInfo$MountPointInfoTupleScheme.class
 alluxio/thrift/FileSystemMasterCommonTOptions$FileSystemMasterCommonTOptionsStandardScheme.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$rename$1.class
-alluxio/thrift/PassUserIdTResponse$PassUserIdTResponseStandardScheme.class
 alluxio/thrift/CompleteUfsFileTReponse$CompleteUfsFileTReponseStandardScheme.class
-alluxio/thrift/GameSystemService$checkCacheChange_result$checkCacheChange_resultTupleSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_result$checkCacheChange_resultTupleSchemeFactory.class
 alluxio/thrift/CompleteUfsFileTOptions$CompleteUfsFileTOptionsStandardSchemeFactory.class
 alluxio/thrift/MetaMasterMasterService$getMasterId_result$getMasterId_resultTupleSchemeFactory.class
@@ -554,7 +540,6 @@ alluxio/thrift/FileBlockInfo$_Fields.class
 alluxio/thrift/BlockWorkerClientService$requestSpace_result$requestSpace_resultStandardScheme.class
 alluxio/thrift/FileBlockInfo$FileBlockInfoStandardSchemeFactory.class
 alluxio/thrift/GetConfigurationTResponse$GetConfigurationTResponseTupleSchemeFactory.class
-alluxio/thrift/GameSystemService$AsyncProcessor$load$1.class
 alluxio/thrift/SessionBlockHeartbeatTResponse$SessionBlockHeartbeatTResponseStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$setAttribute.class
 alluxio/thrift/FileSystemWorkerClientService$openUfsFile_result$openUfsFile_resultTupleSchemeFactory.class
@@ -586,7 +571,6 @@ alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$loadMetadata.class
 alluxio/thrift/BlockWorkerClientService$promoteBlock_args$promoteBlock_argsTupleSchemeFactory.class
 alluxio/thrift/CancelBlockTResponse$CancelBlockTResponseStandardScheme.class
 alluxio/thrift/GetServiceVersionTResponse.class
-alluxio/thrift/GameSystemService$Client$Factory.class
 alluxio/thrift/BlockMasterClientService$getBlockMasterInfo_result$getBlockMasterInfo_resultTupleScheme.class
 alluxio/collections/NonUniqueFieldIndex$NonUniqueFieldIndexIterator.class
 alluxio/thrift/DeleteLineageTResponse$DeleteLineageTResponseTupleScheme.class
@@ -608,7 +592,6 @@ alluxio/thrift/MetricsMasterClientService$Processor$metricsHeartbeat.class
 alluxio/thrift/CompleteFileTResponse$1.class
 alluxio/PropertyKey$Builder.class
 alluxio/thrift/JobConfInfo$JobConfInfoStandardSchemeFactory.class
-alluxio/thrift/GetUserIdTOptions$1.class
 alluxio/thrift/CompleteUfsFileTReponse.class
 alluxio/thrift/GetStatusTOptions$GetStatusTOptionsTupleScheme.class
 alluxio/thrift/InconsistentProperty$InconsistentPropertyStandardScheme.class
@@ -665,7 +648,6 @@ alluxio/thrift/BlockWorkerClientService$sessionBlockHeartbeat_args$sessionBlockH
 alluxio/thrift/FileSystemMasterClientService$listStatus_args.class
 alluxio/thrift/BlockWorkerClientService$requestSpace_args$_Fields.class
 alluxio/thrift/GetCapacityBytesTResponse$GetCapacityBytesTResponseTupleSchemeFactory.class
-alluxio/thrift/PassUserIdTResponse$_Fields.class
 alluxio/thrift/SessionBlockHeartbeatTResponse$SessionBlockHeartbeatTResponseTupleSchemeFactory.class
 alluxio/thrift/GetWorkerReportTOptions$GetWorkerReportTOptionsStandardSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$Client$Factory.class
@@ -727,7 +709,6 @@ alluxio/thrift/ReportLostFileTOptions$1.class
 alluxio/thrift/FileSystemMasterWorkerService$getUfsInfo_result$getUfsInfo_resultStandardSchemeFactory.class
 alluxio/thrift/UnmountTResponse$_Fields.class
 alluxio/thrift/FileSystemMasterClientService$scheduleAsyncPersistence_result$_Fields.class
-alluxio/thrift/PassUserIdTResponse$PassUserIdTResponseTupleScheme.class
 alluxio/exception/PreconditionMessage.class
 alluxio/thrift/GetWorkerIdTResponse$GetWorkerIdTResponseStandardScheme.class
 alluxio/thrift/WorkerInfo$1.class
@@ -780,7 +761,6 @@ alluxio/thrift/AccessBlockTResponse$AccessBlockTResponseTupleScheme.class
 alluxio/thrift/FileSystemCommandOptions.class
 alluxio/thrift/GetStatusTResponse$GetStatusTResponseStandardSchemeFactory.class
 alluxio/thrift/MetaMasterClientService$getConfigReport_result$getConfigReport_resultTupleScheme.class
-alluxio/thrift/GameSystemService$AsyncIface.class
 alluxio/thrift/RemoveBlockTOptions.class
 alluxio/thrift/OptionalString$OptionalStringTupleScheme.class
 alluxio/thrift/MetaMasterClientService$getMasterInfo_args$_Fields.class
@@ -982,7 +962,6 @@ alluxio/thrift/FileSystemMasterWorkerService$getPinnedFileIds_args$getPinnedFile
 alluxio/thrift/LineageMasterClientService$Client.class
 alluxio/underfs/UnderFileSystemWithLogging$11.class
 alluxio/thrift/GameSystemCacheService$AsyncProcessor$reset$1.class
-alluxio/thrift/PassUserIdTResponse$1.class
 alluxio/thrift/GetMetricsTOptions.class
 alluxio/underfs/AtomicFileOutputStream.class
 alluxio/util/ShellUtils$ExitCodeException.class
@@ -1000,7 +979,6 @@ alluxio/thrift/PromoteBlockTResponse$PromoteBlockTResponseStandardScheme.class
 alluxio/thrift/BlockWorkerClientService$accessBlock_args$accessBlock_argsStandardScheme.class
 alluxio/underfs/ObjectUnderFileSystem$ObjectPermissions.class
 alluxio/thrift/ClientNetAddress$_Fields.class
-alluxio/thrift/GameSystemService$checkCacheChange_args$checkCacheChange_argsTupleScheme.class
 alluxio/thrift/FileSystemMasterClientService$completeFile_result$completeFile_resultStandardSchemeFactory.class
 alluxio/thrift/GetBlockInfoTOptions$GetBlockInfoTOptionsTupleSchemeFactory.class
 alluxio/thrift/LineageMasterClientService$reportLostFile_result$reportLostFile_resultStandardScheme.class
@@ -1018,13 +996,11 @@ alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$registerUser.class
 alluxio/thrift/BlockMasterWorkerService$getWorkerId_args$_Fields.class
 alluxio/thrift/MetaMasterClientService$getConfiguration_args$getConfiguration_argsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$AsyncClient$unmount_call.class
-alluxio/thrift/GameSystemService$AsyncClient$Factory.class
 alluxio/thrift/FileSystemMasterClientService$AsyncClient$free_call.class
 alluxio/thrift/FileSystemMasterClientService$rename_args$_Fields.class
 alluxio/thrift/UpdateUfsModeTResponse$UpdateUfsModeTResponseStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$listStatus_args$listStatus_argsTupleScheme.class
 alluxio/thrift/BlockWorkerClientService$cancelBlock_args$cancelBlock_argsTupleScheme.class
-alluxio/thrift/GameSystemService$load_result$load_resultTupleScheme.class
 alluxio/thrift/GetPinnedFileIdsTOptions$1.class
 alluxio/thrift/UfsInfo$UfsInfoStandardSchemeFactory.class
 alluxio/exception/JournalClosedException$1.class
@@ -1044,7 +1020,6 @@ alluxio/thrift/CheckCacheChangeTResponse.class
 alluxio/network/thrift/BootstrapServerTransport.class
 alluxio/thrift/AccessBlockTOptions$AccessBlockTOptionsTupleScheme.class
 alluxio/thrift/FileSystemMasterClientService$getStatus_result$_Fields.class
-alluxio/thrift/GameSystemService$checkCacheChange_args$_Fields.class
 alluxio/thrift/MetaMasterClientService$Processor$getConfiguration.class
 alluxio/thrift/BlockWorkerClientService$requestBlockLocation_args$requestBlockLocation_argsTupleSchemeFactory.class
 alluxio/thrift/WorkerInfo$WorkerInfoStandardScheme.class
@@ -1055,7 +1030,6 @@ alluxio/metrics/MetricsFilter.class
 alluxio/thrift/BlockWorkerClientService$accessBlock_result$accessBlock_resultStandardSchemeFactory.class
 alluxio/thrift/CheckConsistencyTResponse$CheckConsistencyTResponseStandardSchemeFactory.class
 alluxio/thrift/BlockMasterWorkerService$AsyncClient$commitBlock_call.class
-alluxio/thrift/GameSystemService$checkCacheChange_result$checkCacheChange_resultStandardScheme.class
 alluxio/underfs/UnderFileSystemWithLogging$3.class
 alluxio/thrift/LoadMetadataTResponse$1.class
 alluxio/thrift/MetaMasterClientService$getMasterInfo_args$getMasterInfo_argsStandardScheme.class
@@ -1280,7 +1254,6 @@ alluxio/thrift/GetUsedBytesTResponse$_Fields.class
 alluxio/thrift/MetaMasterMasterService$AsyncProcessor$masterHeartbeat$1.class
 alluxio/thrift/BlockMasterWorkerService$registerWorker_args$registerWorker_argsStandardScheme.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$mount.class
-alluxio/thrift/GameSystemService$load_args.class
 alluxio/thrift/SessionFileSystemHeartbeatTResponse$_Fields.class
 alluxio/thrift/BlockMasterWorkerService$getWorkerId_result$getWorkerId_resultStandardSchemeFactory.class
 alluxio/underfs/UnderFileSystemWithLogging$6.class
@@ -1300,7 +1273,6 @@ alluxio/util/executor/ExecutorServiceFactories$1.class
 alluxio/thrift/MetaMasterMasterService$masterHeartbeat_args$_Fields.class
 alluxio/thrift/WorkerInfo.class
 alluxio/thrift/CancelBlockTOptions$1.class
-alluxio/thrift/PassUserIdTOptions.class
 alluxio/thrift/GetUsedBytesTOptions$GetUsedBytesTOptionsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$createDirectory$1.class
 alluxio/underfs/UnderFileSystemWithLogging$5.class
@@ -1311,7 +1283,6 @@ alluxio/thrift/BlockWorkerClientService$AsyncProcessor$removeBlock$1.class
 alluxio/thrift/PersistFile$1.class
 alluxio/thrift/MetaMasterClientService$getConfiguration_args$getConfiguration_argsStandardSchemeFactory.class
 alluxio/thrift/ConfigCheckReport$ConfigCheckReportTupleSchemeFactory.class
-alluxio/thrift/GameSystemService$AsyncProcessor$checkCacheChange.class
 alluxio/thrift/UnmountTResponse$UnmountTResponseTupleScheme.class
 alluxio/thrift/RegisterUserTOptions$RegisterUserTOptionsStandardSchemeFactory.class
 alluxio/thrift/LineageMasterClientService$deleteLineage_result$deleteLineage_resultStandardScheme.class
@@ -1337,7 +1308,6 @@ alluxio/thrift/FileSystemMasterClientService$unmount_args$unmount_argsTupleSchem
 alluxio/thrift/MasterNetAddress$MasterNetAddressTupleScheme.class
 alluxio/thrift/GetMetricsTResponse$GetMetricsTResponseStandardSchemeFactory.class
 alluxio/thrift/FileSystemHeartbeatTResponse$FileSystemHeartbeatTResponseTupleSchemeFactory.class
-alluxio/thrift/PassUserIdTOptions$PassUserIdTOptionsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterWorkerService$getPinnedFileIds_result$getPinnedFileIds_resultTupleScheme.class
 alluxio/thrift/BlockWorkerClientService$requestSpace_args$requestSpace_argsTupleSchemeFactory.class
 alluxio/network/protocol/databuffer/DataByteBuffer.class
@@ -1345,7 +1315,6 @@ alluxio/thrift/FileSystemMasterClientService$Processor$checkConsistency.class
 alluxio/underfs/UnderFileSystemFactoryRegistry.class
 alluxio/thrift/FileSystemMasterClientService$checkConsistency_args.class
 alluxio/thrift/LockBlockTResponse$_Fields.class
-alluxio/thrift/GameSystemService$AsyncClient$checkCacheChange_call.class
 alluxio/thrift/BlockWorkerClientService$lockBlock_args$lockBlock_argsStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$remove_args$remove_argsStandardSchemeFactory.class
 alluxio/thrift/MasterInfoField.class
@@ -1470,7 +1439,6 @@ alluxio/thrift/BlockMasterWorkerService$commitBlock_result$commitBlock_resultTup
 alluxio/thrift/BlockWorkerClientService$sessionBlockHeartbeat_result.class
 alluxio/thrift/MetaMasterClientService$getConfigReport_args$getConfigReport_argsTupleSchemeFactory.class
 alluxio/thrift/JobConfInfo$JobConfInfoTupleScheme.class
-alluxio/thrift/PassUserIdTResponse$PassUserIdTResponseStandardSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_result$checkCacheChange_resultStandardSchemeFactory.class
 alluxio/thrift/GetWorkerIdTOptions$GetWorkerIdTOptionsTupleSchemeFactory.class
 alluxio/thrift/GetServiceVersionTOptions$1.class
@@ -1488,7 +1456,6 @@ alluxio/thrift/FreeTOptions$FreeTOptionsTupleScheme.class
 alluxio/util/network/NettyUtils$1.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$remove.class
 alluxio/thrift/GameSystemCacheService$getPref_result$getPref_resultStandardSchemeFactory.class
-alluxio/thrift/GameSystemService$load_args$_Fields.class
 alluxio/thrift/FileSystemMasterClientService$createDirectory_args$createDirectory_argsStandardSchemeFactory.class
 alluxio/thrift/RemoveBlockTResponse.class
 alluxio/thrift/MetaMasterClientService$getMetrics_args$getMetrics_argsStandardSchemeFactory.class
@@ -1532,7 +1499,6 @@ alluxio/thrift/PromoteBlockTResponse$PromoteBlockTResponseTupleScheme.class
 alluxio/thrift/FileSystemMasterClientService$updateUfsMode_result$_Fields.class
 alluxio/underfs/UfsFileStatus.class
 alluxio/thrift/FileSystemMasterClientService$free_result$free_resultTupleScheme.class
-alluxio/thrift/GetUserIdTResponse$1.class
 alluxio/thrift/ListStatusTOptions.class
 alluxio/thrift/GetConfigReportTResponse.class
 alluxio/thrift/BlockMasterWorkerService$commitBlock_args$commitBlock_argsStandardSchemeFactory.class
@@ -1556,7 +1522,6 @@ alluxio/heartbeat/HeartbeatTimer.class
 alluxio/thrift/UnlockBlockTOptions.class
 alluxio/thrift/CreateLineageTOptions$_Fields.class
 alluxio/security/group/CachedGroupMapping.class
-alluxio/thrift/PassUserIdTResponse$PassUserIdTResponseTupleSchemeFactory.class
 alluxio/collections/NonUniqueFieldIndex.class
 alluxio/AbstractClient$RpcCallable.class
 alluxio/thrift/FileSystemMasterClientService$checkConsistency_result$_Fields.class
@@ -1571,7 +1536,6 @@ alluxio/thrift/BlockMasterClientService$getWorkerInfoList_result$getWorkerInfoLi
 alluxio/thrift/LockBlockTOptions.class
 alluxio/thrift/GetCapacityBytesTResponse.class
 alluxio/thrift/MasterInfo$MasterInfoStandardScheme.class
-alluxio/thrift/GetUserIdTOptions$_Fields.class
 alluxio/thrift/BlockWorkerClientService$AsyncProcessor$requestBlockLocation$1.class
 alluxio/thrift/BlockMasterWorkerService$getWorkerId_result$getWorkerId_resultTupleSchemeFactory.class
 alluxio/thrift/CacheBlockTResponse$CacheBlockTResponseStandardSchemeFactory.class
@@ -1581,7 +1545,6 @@ alluxio/thrift/BlockMasterWorkerService$registerWorker_args$registerWorker_argsT
 alluxio/thrift/MetaMasterClientService$AsyncClient$backup_call.class
 alluxio/thrift/TieredIdentity$TieredIdentityStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$updateUfsMode_result$updateUfsMode_resultTupleSchemeFactory.class
-alluxio/thrift/GetUserIdTOptions$GetUserIdTOptionsStandardSchemeFactory.class
 alluxio/thrift/OpenUfsFileTResponse$OpenUfsFileTResponseStandardScheme.class
 alluxio/thrift/FileSystemMasterClientService$unmount_result$unmount_resultStandardScheme.class
 alluxio/thrift/MetaMasterClientService$Client.class
@@ -1598,7 +1561,6 @@ alluxio/thrift/MetricsMasterClientService$metricsHeartbeat_args$metricsHeartbeat
 alluxio/thrift/FileSystemMasterClientService$completeFile_result.class
 alluxio/thrift/FileSystemMasterClientService$loadMetadata_result$loadMetadata_resultStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterWorkerService$AsyncProcessor$getUfsInfo.class
-alluxio/thrift/GameSystemService$AsyncProcessor$load.class
 alluxio/thrift/GetServiceVersionTOptions$GetServiceVersionTOptionsTupleSchemeFactory.class
 alluxio/thrift/FileSystemWorkerClientService$createUfsFile_args$createUfsFile_argsStandardScheme.class
 alluxio/thrift/LineageMasterClientService$reportLostFile_result$_Fields.class
@@ -1624,13 +1586,11 @@ alluxio/thrift/MetaMasterClientService$getMetrics_result$getMetrics_resultTupleS
 alluxio/thrift/GetMasterInfoTResponse$GetMasterInfoTResponseTupleScheme.class
 alluxio/thrift/FileSystemWorkerClientService$openUfsFile_args$openUfsFile_argsTupleSchemeFactory.class
 alluxio/resource/DynamicResourcePool$1.class
-alluxio/thrift/GetUserIdTResponse.class
 alluxio/thrift/FileSystemMasterWorkerService$getFileInfo_args.class
 alluxio/thrift/CreateFileTOptions.class
 alluxio/thrift/FileSystemMasterWorkerService$getPinnedFileIds_result.class
 alluxio/thrift/SyncMetadataTOptions$SyncMetadataTOptionsStandardScheme.class
 alluxio/thrift/FileSystemMasterWorkerService$getPinnedFileIds_result$getPinnedFileIds_resultTupleSchemeFactory.class
-alluxio/thrift/GameSystemService$checkCacheChange_args$checkCacheChange_argsStandardScheme.class
 alluxio/thrift/LineageInfo.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$mount$1.class
 alluxio/thrift/ListStatusTOptions$1.class
@@ -1680,7 +1640,6 @@ alluxio/thrift/BlockMasterClientService$Processor$getCapacityBytes.class
 alluxio/thrift/GetPinnedFileIdsTOptions$GetPinnedFileIdsTOptionsStandardSchemeFactory.class
 alluxio/thrift/OpenUfsFileTOptions.class
 alluxio/thrift/MountTOptions$MountTOptionsTupleSchemeFactory.class
-alluxio/thrift/GetUserIdTOptions.class
 alluxio/thrift/RequestBlockLocationTOptions$RequestBlockLocationTOptionsStandardScheme.class
 alluxio/thrift/BlockInfo$BlockInfoTupleSchemeFactory.class
 alluxio/thrift/JobConfInfo.class
@@ -1688,7 +1647,6 @@ alluxio/thrift/LockBlockTOptions$LockBlockTOptionsStandardScheme.class
 alluxio/thrift/MetaMasterMasterService$registerMaster_result$registerMaster_resultStandardSchemeFactory.class
 alluxio/network/netty/NettyClient.class
 alluxio/exception/JournalClosedException$IOJournalClosedException.class
-alluxio/thrift/PassUserIdTOptions$PassUserIdTOptionsStandardSchemeFactory.class
 alluxio/security/authentication/AuthenticationProvider$Factory.class
 alluxio/thrift/BlockMasterClientService$getBlockInfo_args.class
 alluxio/thrift/FileSystemMasterClientService$mount_result$mount_resultTupleScheme.class
@@ -1772,7 +1730,6 @@ alluxio/thrift/GameSystemCacheService$reset_result$_Fields.class
 alluxio/thrift/AlluxioTException$AlluxioTExceptionStandardScheme.class
 alluxio/thrift/FileSystemMasterClientService$AsyncClient$getMountTable_call.class
 alluxio/thrift/FileSystemMasterWorkerService$fileSystemHeartbeat_args.class
-alluxio/thrift/GetUserIdTResponse$GetUserIdTResponseStandardScheme.class
 alluxio/thrift/FileSystemCommand$FileSystemCommandTupleSchemeFactory.class
 alluxio/thrift/ResetTOptions$ResetTOptionsStandardSchemeFactory.class
 alluxio/thrift/GetConfigReportTResponse$1.class
@@ -1789,7 +1746,6 @@ alluxio/thrift/BlockMasterClientService$getBlockInfo_result.class
 alluxio/thrift/BlockWorkerClientService$removeBlock_args.class
 alluxio/thrift/GetCapacityBytesTOptions$GetCapacityBytesTOptionsTupleSchemeFactory.class
 alluxio/thrift/GetMasterInfoTOptions$1.class
-alluxio/thrift/PassUserIdTOptions$PassUserIdTOptionsTupleScheme.class
 alluxio/network/protocol/RPCMessageDecoder.class
 alluxio/collections/IndexedSet.class
 alluxio/thrift/FileSystemMasterClientService$createDirectory_result$_Fields.class
@@ -1852,12 +1808,10 @@ alluxio/thrift/FileSystemMasterClientService$Processor$completeFile.class
 alluxio/thrift/UnmountTResponse$UnmountTResponseTupleSchemeFactory.class
 alluxio/underfs/UnderFileSystemFactory.class
 alluxio/exception/status/DataLossException.class
-alluxio/thrift/GameSystemService$AsyncProcessor$checkCacheChange$1.class
 alluxio/thrift/BlockWorkerClientService$sessionBlockHeartbeat_result$sessionBlockHeartbeat_resultStandardSchemeFactory.class
 alluxio/wire/ConfigProperty.class
 alluxio/thrift/ResetTResponse$ResetTResponseStandardScheme.class
 alluxio/thrift/TieredIdentity$TieredIdentityTupleSchemeFactory.class
-alluxio/thrift/GameSystemService$AsyncClient$load_call.class
 alluxio/security/login/AppLoginModule.class
 alluxio/thrift/MountTOptions$1.class
 alluxio/thrift/GetServiceVersionTOptions$GetServiceVersionTOptionsTupleScheme.class
@@ -1897,7 +1851,6 @@ alluxio/thrift/CommitBlockTOptions$CommitBlockTOptionsStandardSchemeFactory.clas
 alluxio/thrift/MetaMasterMasterService$getMasterId_result$getMasterId_resultStandardSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$getPref_args$getPref_argsTupleSchemeFactory.class
 alluxio/resource/DynamicResourcePool.class
-alluxio/thrift/GameSystemService$AsyncProcessor.class
 alluxio/thrift/FileSystemMasterClientService$registerUser_result$registerUser_resultTupleSchemeFactory.class
 alluxio/thrift/ListStatusTResponse.class
 alluxio/security/authentication/TransportProviderUtils.class
@@ -1908,7 +1861,6 @@ alluxio/thrift/BlockMasterClientService$getWorkerReport_args$getWorkerReport_arg
 alluxio/thrift/GetMasterInfoTResponse$_Fields.class
 alluxio/thrift/GameSystemCacheService$AsyncClient$getPref_call.class
 alluxio/thrift/BlockMasterWorkerService$commitBlock_result.class
-alluxio/thrift/PassUserIdTResponse.class
 alluxio/thrift/MetaMasterClientService$getConfigReport_result$getConfigReport_resultTupleSchemeFactory.class
 alluxio/RuntimeConstants.class
 alluxio/thrift/CompleteFileTOptions$CompleteFileTOptionsTupleSchemeFactory.class
@@ -1937,7 +1889,6 @@ alluxio/thrift/UfsInfo$UfsInfoStandardScheme.class
 alluxio/security/group/GroupMappingService.class
 alluxio/thrift/CreateDirectoryTOptions$CreateDirectoryTOptionsTupleSchemeFactory.class
 alluxio/thrift/CacheBlockTResponse.class
-alluxio/thrift/GetUserIdTOptions$GetUserIdTOptionsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$scheduleAsyncPersistence_args$scheduleAsyncPersistence_argsStandardScheme.class
 alluxio/thrift/BlockMasterClientService$getWorkerInfoList_result$getWorkerInfoList_resultTupleScheme.class
 alluxio/thrift/GameSystemCacheService$getPref_args$getPref_argsStandardScheme.class
@@ -1959,7 +1910,6 @@ alluxio/thrift/FileSystemMasterClientService$scheduleAsyncPersistence_result$sch
 alluxio/thrift/LockBlockTResponse$LockBlockTResponseTupleSchemeFactory.class
 alluxio/thrift/FileSystemWorkerClientService$closeUfsFile_result$closeUfsFile_resultStandardSchemeFactory.class
 alluxio/resource/DynamicResourcePool$ResourceInternal.class
-alluxio/thrift/GameSystemService$load_args$load_argsStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$updateUfsMode_result.class
 alluxio/thrift/GameSystemCacheService$load_result$load_resultTupleScheme.class
 alluxio/thrift/BlockMasterClientService$getWorkerInfoList_args$getWorkerInfoList_argsStandardSchemeFactory.class
@@ -1967,7 +1917,6 @@ alluxio/thrift/GetMasterIdTOptions.class
 alluxio/thrift/UnmountTOptions$UnmountTOptionsStandardScheme.class
 alluxio/thrift/LoadMetadataTOptions$LoadMetadataTOptionsTupleScheme.class
 alluxio/thrift/AlluxioService$getServiceVersion_result$getServiceVersion_resultStandardSchemeFactory.class
-alluxio/thrift/GetUserIdTResponse$_Fields.class
 alluxio/thrift/ListStatusTResponse$ListStatusTResponseTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$loadMetadata_args$_Fields.class
 alluxio/thrift/BlockWorkerClientService$Processor$promoteBlock.class
@@ -1996,7 +1945,6 @@ alluxio/thrift/ScheduleAsyncPersistenceTOptions$_Fields.class
 alluxio/thrift/CompleteUfsFileTOptions$_Fields.class
 alluxio/thrift/ConfigProperty.class
 alluxio/thrift/Command$CommandStandardScheme.class
-alluxio/thrift/GameSystemService$load_result$load_resultStandardSchemeFactory.class
 alluxio/wire/BlockMasterInfo.class
 alluxio/thrift/BlockWorkerClientService$AsyncProcessor$accessBlock$1.class
 alluxio/thrift/BlockMasterClientService$getWorkerReport_args$_Fields.class
@@ -2005,7 +1953,6 @@ alluxio/thrift/LockBlockStatus.class
 alluxio/thrift/SessionBlockHeartbeatTOptions.class
 alluxio/thrift/UnmountTResponse$UnmountTResponseStandardScheme.class
 alluxio/thrift/GetNewBlockIdForFileTOptions.class
-alluxio/thrift/GetUserIdTResponse$GetUserIdTResponseTupleSchemeFactory.class
 alluxio/thrift/GetMountTableTResponse$GetMountTableTResponseStandardScheme.class
 alluxio/wire/MasterInfo$MasterInfoField.class
 alluxio/thrift/GetServiceVersionTResponse$_Fields.class
@@ -2023,7 +1970,6 @@ alluxio/thrift/CompleteFileTOptions$1.class
 alluxio/metrics/sink/GraphiteSink.class
 alluxio/metrics/sink/ConsoleSink.class
 alluxio/thrift/MetaMasterClientService$backup_result$_Fields.class
-alluxio/thrift/GameSystemService$checkCacheChange_result$checkCacheChange_resultStandardSchemeFactory.class
 alluxio/thrift/LineageMasterClientService$reportLostFile_result$reportLostFile_resultTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$checkConsistency_args$checkConsistency_argsStandardScheme.class
 alluxio/thrift/GetFileInfoTResponse$GetFileInfoTResponseStandardSchemeFactory.class
@@ -2055,7 +2001,6 @@ alluxio/thrift/GetMasterInfoTOptions$_Fields.class
 alluxio/thrift/DeleteTResponse$1.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_args$_Fields.class
 alluxio/thrift/FileSystemMasterClientService$getMountTable_args$_Fields.class
-alluxio/thrift/GameSystemService$load_result.class
 alluxio/network/netty/NettyChannelPool.class
 alluxio/thrift/BlockWorkerClientService$lockBlock_result$lockBlock_resultTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterWorkerService$getFileInfo_args$getFileInfo_argsStandardScheme.class
@@ -2113,7 +2058,6 @@ alluxio/thrift/FileSystemMasterClientService$AsyncClient$getStatus_call.class
 alluxio/thrift/DeleteTOptions$DeleteTOptionsTupleScheme.class
 alluxio/thrift/UnlockBlockTResponse$UnlockBlockTResponseTupleSchemeFactory.class
 alluxio/thrift/FileSystemWorkerClientService$openUfsFile_result$_Fields.class
-alluxio/thrift/GetUserIdTOptions$GetUserIdTOptionsStandardScheme.class
 alluxio/thrift/FileSystemMasterWorkerService$AsyncProcessor$fileSystemHeartbeat$1.class
 alluxio/thrift/MetricsHeartbeatTResponse$MetricsHeartbeatTResponseTupleScheme.class
 alluxio/thrift/BlockMasterClientService$AsyncProcessor$getBlockMasterInfo.class
@@ -2130,9 +2074,7 @@ alluxio/AbstractClient.class
 alluxio/thrift/LineageMasterClientService$deleteLineage_args$deleteLineage_argsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$unmount_result$unmount_resultStandardSchemeFactory.class
 alluxio/thrift/AccessBlockTOptions.class
-alluxio/thrift/GameSystemService$checkCacheChange_result.class
 alluxio/thrift/RenameTOptions$1.class
-alluxio/thrift/GameSystemService$Iface.class
 alluxio/thrift/FileSystemMasterClientService$getNewBlockIdForFile_args$getNewBlockIdForFile_argsTupleScheme.class
 alluxio/thrift/FileSystemWorkerClientService$createUfsFile_args$createUfsFile_argsTupleSchemeFactory.class
 alluxio/thrift/CloseUfsFileTResponse$_Fields.class
@@ -2229,7 +2171,6 @@ alluxio/thrift/FileSystemMasterClientService$mount_args$mount_argsTupleScheme.cl
 alluxio/thrift/RegisterUserTResponse$RegisterUserTResponseTupleSchemeFactory.class
 alluxio/thrift/SetAttributeTResponse.class
 alluxio/thrift/FileSystemMasterClientService$setAttribute_result$setAttribute_resultTupleScheme.class
-alluxio/thrift/PassUserIdTOptions$1.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_result$_Fields.class
 alluxio/exception/status/PermissionDeniedException.class
 alluxio/thrift/GameSystemCacheService$AsyncProcessor.class
@@ -2265,7 +2206,6 @@ alluxio/thrift/BlockMasterClientService$getWorkerReport_args.class
 alluxio/thrift/ScheduleAsyncPersistenceTOptions$ScheduleAsyncPersistenceTOptionsTupleSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$AsyncClient$remove_call.class
 alluxio/thrift/AlluxioService$AsyncIface.class
-alluxio/thrift/GameSystemService.class
 alluxio/thrift/FreeTOptions$FreeTOptionsStandardScheme.class
 alluxio/thrift/MetaMasterClientService$getMasterInfo_result$getMasterInfo_resultStandardScheme.class
 alluxio/thrift/RequestSpaceTOptions$_Fields.class
@@ -2291,11 +2231,9 @@ alluxio/thrift/DependencyInfo$1.class
 alluxio/thrift/RemoveBlockTOptions$RemoveBlockTOptionsStandardSchemeFactory.class
 alluxio/thrift/GameSystemCacheService$load_args.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$createDirectory.class
-alluxio/thrift/GameSystemService$load_args$load_argsTupleScheme.class
 alluxio/thrift/WorkerNetAddress$WorkerNetAddressStandardScheme.class
 alluxio/thrift/GameSystemCacheService$AsyncProcessor$getPref.class
 alluxio/thrift/FileSystemMasterWorkerService$AsyncClient.class
-alluxio/thrift/GetUserIdTOptions$GetUserIdTOptionsTupleScheme.class
 alluxio/thrift/AlluxioService$getServiceVersion_result$getServiceVersion_resultTupleSchemeFactory.class
 alluxio/thrift/DeleteLineageTResponse$DeleteLineageTResponseTupleSchemeFactory.class
 alluxio/thrift/ResetTResponse.class
@@ -2387,7 +2325,6 @@ alluxio/thrift/GameSystemCacheService$1.class
 alluxio/thrift/BlockWorkerClientService$lockBlock_result$lockBlock_resultStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$listStatus_result$listStatus_resultStandardSchemeFactory.class
 alluxio/thrift/FileSystemMasterClientService$Processor$setAttribute.class
-alluxio/thrift/GameSystemService$Processor$checkCacheChange.class
 alluxio/thrift/AlluxioService$getServiceVersion_result$_Fields.class
 alluxio/thrift/LoadTResponse$LoadTResponseStandardScheme.class
 alluxio/thrift/CommandLineJobInfo.class
@@ -2463,7 +2400,6 @@ alluxio/thrift/LineageMasterClientService$1.class
 alluxio/thrift/FileSystemMasterClientService$free_args$free_argsStandardSchemeFactory.class
 alluxio/retry/CountingRetry.class
 alluxio/thrift/BlockWorkerClientService$removeBlock_result.class
-alluxio/thrift/GameSystemService$checkCacheChange_args$checkCacheChange_argsStandardSchemeFactory.class
 alluxio/thrift/SessionBlockHeartbeatTResponse$_Fields.class
 alluxio/thrift/CancelBlockTResponse$_Fields.class
 alluxio/thrift/FileSystemMasterClientService$completeFile_result$completeFile_resultStandardScheme.class
@@ -2505,7 +2441,6 @@ alluxio/thrift/MetaMasterClientService$getConfigReport_result$getConfigReport_re
 alluxio/thrift/CompleteFileTOptions$_Fields.class
 alluxio/heartbeat/ScheduledTimer.class
 alluxio/thrift/BlockWorkerClientService$requestBlockLocation_result$requestBlockLocation_resultTupleScheme.class
-alluxio/thrift/GameSystemService$1.class
 alluxio/util/StreamUtils.class
 alluxio/thrift/MountTOptions.class
 alluxio/thrift/MetricValue.class
@@ -2630,7 +2565,6 @@ alluxio/wire/AlluxioMasterInfo.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_args$checkCacheChange_argsStandardScheme.class
 alluxio/thrift/GameSystemCacheService$checkCacheChange_result$checkCacheChange_resultStandardScheme.class
 alluxio/thrift/ClientNetAddress$ClientNetAddressStandardScheme.class
-alluxio/thrift/GameSystemService$Processor$load.class
 alluxio/thrift/RegisterUserTResponse$RegisterUserTResponseTupleScheme.class
 alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$listStatus.class
 alluxio/thrift/BlockWorkerClientService$Processor$removeBlock.class
@@ -2649,7 +2583,6 @@ alluxio/thrift/FileSystemMasterClientService$AsyncProcessor$getStatus.class
 alluxio/thrift/GetConfigReportTOptions$GetConfigReportTOptionsTupleScheme.class
 alluxio/thrift/ScheduleAsyncPersistenceTResponse.class
 alluxio/thrift/SessionBlockHeartbeatTResponse$SessionBlockHeartbeatTResponseTupleScheme.class
-alluxio/thrift/GameSystemService$Client.class
 alluxio/thrift/MetaMasterClientService$getMetrics_result.class
 alluxio/thrift/FileSystemWorkerClientService$AsyncProcessor$openUfsFile.class
 alluxio/thrift/GetFileInfoTOptions$_Fields.class
@@ -2696,7 +2629,6 @@ alluxio/thrift/FileSystemMasterClientService$loadMetadata_args$loadMetadata_args
 alluxio/thrift/BlockWorkerClientService$AsyncClient$lockBlock_call.class
 alluxio/thrift/AlluxioService$AsyncClient$Factory.class
 alluxio/thrift/BlockMasterClientService$getBlockInfo_result$getBlockInfo_resultStandardScheme.class
-alluxio/thrift/GameSystemService$load_args$load_argsStandardScheme.class
 alluxio/thrift/CheckConsistencyTOptions.class
 alluxio/thrift/ListStatusTOptions$ListStatusTOptionsTupleScheme.class
 alluxio/thrift/BlockMasterClientService$AsyncClient$Factory.class
@@ -2714,7 +2646,6 @@ alluxio/underfs/Fingerprint$Type.class
 alluxio/wire/BackupResponse.class
 alluxio/thrift/FileSystemMasterCommonTOptions$_Fields.class
 alluxio/thrift/LineageMasterClientService$getLineageInfoList_args.class
-alluxio/thrift/GameSystemService$load_result$load_resultStandardScheme.class
 alluxio/thrift/CreateDirectoryTOptions$CreateDirectoryTOptionsStandardScheme.class
 alluxio/thrift/GetServiceVersionTResponse$GetServiceVersionTResponseTupleScheme.class
 alluxio/thrift/CreateLineageTResponse$CreateLineageTResponseStandardSchemeFactory.class
@@ -2770,7 +2701,6 @@ alluxio/thrift/RequestBlockLocationTOptions.class
 alluxio/thrift/LineageMasterClientService$createLineage_result$createLineage_resultStandardSchemeFactory.class
 alluxio/thrift/BlockWorkerClientService$cancelBlock_result$cancelBlock_resultTupleSchemeFactory.class
 alluxio/thrift/BackupTOptions$1.class
-alluxio/thrift/GameSystemService$load_result$load_resultTupleSchemeFactory.class
 alluxio/thrift/OpenUfsFileTResponse$OpenUfsFileTResponseTupleScheme.class
 alluxio/thrift/FileSystemMasterWorkerService$fileSystemHeartbeat_result$fileSystemHeartbeat_resultTupleSchemeFactory.class
 alluxio/thrift/ClientNetAddress$ClientNetAddressTupleScheme.class

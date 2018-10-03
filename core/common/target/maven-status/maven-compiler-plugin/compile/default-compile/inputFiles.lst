@@ -22,7 +22,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/AbstractMasterClient.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/network/netty/NettyRPCContext.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/CancelUfsFileTResponse.java
-/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/PassUserIdTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/security/authentication/CustomAuthenticationProvider.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/underfs/MultiRangeObjectInputStream.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/metrics/sink/JmxSink.java
@@ -70,7 +69,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/AbstractClient.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/wire/Address.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/wire/AlluxioWorkerInfo.java
-/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetUserIdTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/job/CommandLineJob.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetPinnedFileIdsTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/util/UnixMountInfo.java
@@ -126,7 +124,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/security/authorization/Mode.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/clock/ElapsedTimeClock.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetMasterInfoTOptions.java
-/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/PassUserIdTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/network/protocol/databuffer/DataNettyBufferV2.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/network/thrift/BootstrapServerTransport.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/exception/DependencyDoesNotExistException.java
@@ -148,7 +145,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/util/network/NetworkAddressUtils.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/CommitBlockTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/metrics/sink/GraphiteSink.java
-/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GameSystemService.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetWorkerInfoListTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/RenameTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/underfs/ObjectUnderFileSystem.java
@@ -183,7 +179,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/util/io/ByteIOUtils.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/collections/NonUniqueFieldIndex.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/util/HFSUtils.java
-/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetUserIdTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/network/netty/NettyChannelPool.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/exception/UfsBlockAccessTokenUnavailableException.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/GetPrefTResponse.java

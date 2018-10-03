@@ -5,7 +5,7 @@ import com.google.common.base.Objects;
 
 public class RegisterUserOptions {
     /**
-     * @return the default {@link PassUserIdOptions}
+     * @return the default {@link }
      */
     public static RegisterUserOptions defaults() {
         return new RegisterUserOptions();
