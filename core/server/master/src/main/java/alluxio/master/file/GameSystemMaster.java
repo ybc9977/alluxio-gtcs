@@ -44,7 +44,7 @@ public final class GameSystemMaster {
 
     private FileSystemMaster fileSystemMaster;
 
-    private static int QUOTA =10;
+    private static int QUOTA = 20;
 
     private static double start_time;
 
@@ -119,7 +119,7 @@ public final class GameSystemMaster {
      * @param address client side server address, contains RPC_host & RPC_port */
     public static void register(String userId, String hostname, ClientNetAddress address, RegisterUserTOptions options){
         adduser(userId);
-        InetSocketAddress mAddress = new InetSocketAddress(hostname, address.rpcPort);
+        InetSocketAddress mAddress = new InetSocketAddress(hostname, address.getRpcPort());
         LOG.info("register a client with : " + mAddress.getAddress().toString());
         GameSystemClient client = new GameSystemClient(null,mAddress,userId);
         clientList.put(userId,client);

@@ -63,15 +63,15 @@ public class GameSystemClient extends AbstractClient {
     /** a remote procedure to call in client side server
      * @param fileList a map contains filePath & isCached */
     public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.checkCacheChange(fileList).cachingList, "CheckCacheChange");
+        return retryRPC(() -> mClient.checkCacheChange(fileList).getCachingList(), "CheckCacheChange");
     }
 
     public Map<String,Double> getPref() throws AlluxioStatusException {
-        return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).pref, "GetPref");
+        return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).getPref(), "GetPref");
     }
 
     public Map<String, Integer> access(Map<String,Double> prefList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.access(prefList).access, "Access");
+        return retryRPC(() -> mClient.access(prefList).getAccess(), "Access");
     }
 
     public void reset() throws AlluxioStatusException {

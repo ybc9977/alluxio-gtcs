@@ -75,7 +75,6 @@ case "${WHAT}" in
     stop_proxies
     stop_workers
     stop_masters
-    stop_client
     ;;
   local)
     stop_proxy
