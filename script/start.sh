@@ -12,16 +12,16 @@ do
 done < ~/flintrock.txt
 
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio-start.sh all"
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio-start.sh master"
 
-# i=1
-# while read -r line
-# do
-#     test $i -le 1 && let "i++" && continue
-#     test $i -gt $[1+$1] && let "i++" && continue
-#     ssh -o StrictHostKeyChecking=no -i .ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh worker"
-#     let "i++"
-# done < ~/flintrock.txt
+i=1
+while read -r line
+do
+    test $i -le 1 && let "i++" && continue
+    test $i -gt $[1+$1] && let "i++" && continue
+    ssh -o StrictHostKeyChecking=no -i .ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh worker"
+    let "i++"
+done < ~/flintrock.txt
 
 i=1
 while read -r line
