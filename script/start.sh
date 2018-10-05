@@ -12,7 +12,7 @@ do
 done < ~/flintrock.txt
 
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh all"
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio-start.sh all"
 
 # i=1
 # while read -r line
@@ -34,6 +34,6 @@ done < ~/flintrock.txt
 sleep 30
 
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "for ((i=1; i<=500; i ++)); do ~/alluxio-gtcs/bin/alluxio fs copyFromLocal ~/testFile/\$i.txt /test/\$i.txt; done;"
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/file_copy.sh"
 
 exit 0

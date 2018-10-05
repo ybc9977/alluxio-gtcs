@@ -23,15 +23,15 @@ python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "git clone h
 # python3 ~/Downloads/flintrock-master/standalone.py copy-file gtcs /Users/ybc/Downloads/alluxio-gtcs.zip /home/ec2-user/
 # python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "unzip alluxio-gtcs"
 
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Droid_Sans/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Open_Sans/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Droid_Sans/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Open_Sans/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Droid_Sans/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
-python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Open_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Droid_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/master/target/miredot/font/Open_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Droid_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/proxy/target/miredot/font/Open_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Droid_Sans/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Droid_Sans_Mono/LICENSE.txt"
+# python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "rm alluxio-gtcs/core/server/worker/target/miredot/font/Open_Sans/LICENSE.txt"
 
 python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "cd alluxio-gtcs;mvn clean install -DskipTests=true -Dlicense.skip=true -Dcheckstyle.skip -Dmaven.javadoc.skip=true"
 
