@@ -2,6 +2,7 @@
 
 # $1 is the number of workers and $2 is the numnber of clients
 
+
 #launch
 python3 ~/Downloads/flintrock-master/standalone.py launch gtcs
 
