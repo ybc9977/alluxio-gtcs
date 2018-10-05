@@ -7,7 +7,7 @@ while read -r line
 do
     test $i -lt 2 && let "i++" && continue
     test $i -gt $[1+$1] && let "i++" && continue
-    python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "echo '${line}' >> ~/alluxio-gtcs/conf/workers"
+    python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "echo '${line:9}' >> ~/alluxio-gtcs/conf/workers"
     let "i++"
 done < ~/flintrock.txt
 
