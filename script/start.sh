@@ -11,8 +11,10 @@ do
     let "i++"
 done < ~/flintrock.txt
 
+python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "~/Hadoop/sbin/start-dfs"
+
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio-start.sh master"
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/alluxio-gtcs/bin/alluxio-start.sh master"
 
 i=1
 while read -r line
