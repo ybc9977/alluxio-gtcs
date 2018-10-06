@@ -45,6 +45,6 @@ python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "echo ${line
 read -r line < ~/flintrock.txt
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
 
-sh ~/Github/alluxio-gtcs/script/start.sh $1 $2
+sh ~/Github/alluxio-gtcs/script/start.sh $1
 
 exit 0
