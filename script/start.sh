@@ -30,7 +30,7 @@ i=1
 while read -r line
 do
     test $i -le $[1+$1] && let "i++" && continue
-    ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh client" && continue
+    ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-start.sh client" < /dev/null
     let "i++"
 done < ~/flintrock.txt
 
