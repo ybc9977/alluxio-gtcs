@@ -2,16 +2,16 @@
 
 # $1 is the number of workers while $2 is the number of clients
 
-# python3 ~/Downloads/flintrock-master/standalone.py add-slaves gtcs --num-slaves $1
+python3 ~/Downloads/flintrock-master/standalone.py add-slaves gtcs --num-slaves $1
 
-# python3 ~/Downloads/flintrock-master/standalone.py describe gtcs
+python3 ~/Downloads/flintrock-master/standalone.py describe gtcs
 
 read -r k < ~/flintrock.txt
 
 i=1
 while read -r line
 do
-    test $i -le 13 && let "i++" && continue
+    test $i -le $2 && let "i++" && continue
 
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sudo yum update -y;sudo yum install java-1.8.0-openjdk* -y;" < /dev/null
 
