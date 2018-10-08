@@ -2,6 +2,8 @@
 
 # start
 
+python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "touch ~/alluxio-gtcs/conf/workers"
+
 i=1
 while read -r line
 do
@@ -13,7 +15,7 @@ done < ~/flintrock.txt
 
 
 read -r line < ~/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio-start.sh all SudoMount"
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} " ~/Hadoop/sbin/start-dfs;~/alluxio-gtcs/bin/alluxio format;~/alluxio-gtcs/bin/alluxio-start.sh all SudoMount"
 
 # python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "chmod -R 770 /mnt/"
 
