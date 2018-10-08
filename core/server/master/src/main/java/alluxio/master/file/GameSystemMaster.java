@@ -174,7 +174,7 @@ public final class GameSystemMaster {
             }
             userList.set(poll_iter % userList.size(), user);
             int count = 0;
-//            LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
+            LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
             for (Pair<String,Boolean> p:userList) {
                 if (p.getSecond()) {
                     count = 0;
