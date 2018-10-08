@@ -130,10 +130,10 @@ public final class GameSystemMaster {
         start_time =System.currentTimeMillis();
 //        LOG.info("start time is "+start_time);
         int poll_iter = 0;
+        Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
             poll_iter++;
-            int index = (int) (Math.random() * userList.size());
-            Pair<String, Boolean> user = userList.get(index);
+            Pair<String, Boolean> user = userList.get(poll_iter % userList.size());
             if(cacheMap.containsKey(user.getFirst()) && cacheMap.get(user.getFirst())!=null){
                 for (String file: cacheMap.get(user.getFirst())){
                     if(fileList.get(file)){
@@ -172,7 +172,7 @@ public final class GameSystemMaster {
                     fileList.put(file_path,true);
                 }
             }
-            userList.set(index, user);
+            userList.set(poll_iter % userList.size(), user);
             int count = 0;
 //            LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
             for (Pair<String,Boolean> p:userList) {
@@ -198,6 +198,9 @@ public final class GameSystemMaster {
                     HitRatio();
                     return;
                 }
+            }
+            if (poll_iter%userList.size()==0){
+                Collections.shuffle(userList);
             }
         }
     }
