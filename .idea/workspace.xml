@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/file_preparation.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script/file_preparation.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -58,7 +60,7 @@
       <file leaf-file-name="DefaultFileSystemMaster.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/DefaultFileSystemMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
+            <state relative-caret-position="15">
               <caret line="356" column="5" selection-start-line="356" selection-start-column="5" selection-end-line="356" selection-end-column="5" />
             </state>
           </provider>
@@ -67,8 +69,17 @@
       <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="183" column="17" lean-forward="true" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
+            <state relative-caret-position="3300">
+              <caret line="230" column="47" lean-forward="true" selection-start-line="230" selection-start-column="47" selection-end-line="230" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSystemServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="121" column="23" selection-start-line="121" selection-start-column="23" selection-end-line="121" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -153,12 +164,13 @@
         <option value="$PROJECT_DIR$/stop.sh" />
         <option value="$PROJECT_DIR$/file_preparation.sh" />
         <option value="$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/CheckCacheChangeTResponse.java" />
-        <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" />
         <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/options/RegisterUserOptions.java" />
         <option value="$PROJECT_DIR$/conf/alluxio-site.properties" />
         <option value="$PROJECT_DIR$/conf/alluxio-env.sh.template" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/DefaultFileSystemMaster.java" />
+        <option value="$PROJECT_DIR$/script/file_preparation.sh" />
+        <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
       </list>
     </option>
@@ -197,6 +209,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,19 +300,6 @@
               <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="alluxio-gtcs" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="fs" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="file" type="462c0819:PsiDirectoryNode" />
-              <item name="options" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alluxio-gtcs" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -486,14 +487,17 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="alluxio" type="462c0819:PsiDirectoryNode" />
               <item name="worker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alluxio-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alluxio-gtcs" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -702,14 +706,9 @@
       <workItem from="1538890139099" duration="217000" />
       <workItem from="1538966504951" duration="94000" />
       <workItem from="1538970233622" duration="841000" />
-      <workItem from="1538981430564" duration="71000" />
-    </task>
-    <task id="LOCAL-00018" summary="18/09/18">
-      <created>1537275576785</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1537275576785</updated>
+      <workItem from="1538981430564" duration="465000" />
+      <workItem from="1538983759664" duration="444000" />
+      <workItem from="1539089154170" duration="556000" />
     </task>
     <task id="LOCAL-00019" summary="19/09/18">
       <created>1537362002465</created>
@@ -1047,11 +1046,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538975578538</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="08/10/18">
+      <created>1538981511774</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1538981511775</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71107000" />
+    <option name="totallyTimeSpent" value="72501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1066,12 +1072,12 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32923076" />
       <window_info anchor="right" id="Maven Projects" order="5" weight="0.3297619" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.2893773" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498998" visible="true" weight="0.2967033" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.32967034" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="right" id="SciView" order="6" />
@@ -1079,8 +1085,8 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Dependency Viewer" order="10" weight="0.3296593" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32923076" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1125,28 +1131,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/protobuf/dependency-reduced-pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="845">
-          <caret line="217" column="10" selection-start-line="217" selection-start-column="10" selection-end-line="217" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/FileSystemMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/collections/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/gen-java/alluxio/thrift/AccessTResponse.java" />
     <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/gen-java/alluxio/thrift/ResetTResponse.java" />
     <entry file="file://$PROJECT_DIR$/core/common/src/main/java/alluxio/thrift/gen-java/alluxio/thrift/ResetTOptions.java" />
     <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/GameSystemServerProcess.java">
@@ -1285,13 +1269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="898">
-          <caret line="122" column="22" selection-start-line="122" selection-start-column="22" selection-end-line="122" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/common/src/thrift/game_system_cache.thrift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1365,6 +1342,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/gtcs.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/file_copy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/file_preparation.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/add_slave.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -1372,17 +1369,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="121" column="23" selection-start-line="121" selection-start-column="23" selection-end-line="121" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/DefaultFileSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
+        <state relative-caret-position="15">
           <caret line="356" column="5" selection-start-line="356" selection-start-column="5" selection-end-line="356" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="183" column="17" lean-forward="true" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
+        <state relative-caret-position="3300">
+          <caret line="230" column="47" lean-forward="true" selection-start-line="230" selection-start-column="47" selection-end-line="230" selection-end-column="47" />
         </state>
       </provider>
     </entry>

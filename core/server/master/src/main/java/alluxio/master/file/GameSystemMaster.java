@@ -44,7 +44,7 @@ public final class GameSystemMaster {
 
     private FileSystemMaster fileSystemMaster;
 
-    private static int QUOTA = 20;
+    private static int QUOTA = 150;
 
     private static double start_time;
 
@@ -132,6 +132,7 @@ public final class GameSystemMaster {
         int poll_iter = 0;
         Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
+            double ts = System.currentTimeMillis();
             poll_iter++;
             Pair<String, Boolean> user = userList.get(poll_iter % userList.size());
             if(cacheMap.containsKey(user.getFirst()) && cacheMap.get(user.getFirst())!=null){
@@ -199,6 +200,7 @@ public final class GameSystemMaster {
                     return;
                 }
             }
+            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-ts));
             if (poll_iter%userList.size()==0){
                 Collections.shuffle(userList);
             }
