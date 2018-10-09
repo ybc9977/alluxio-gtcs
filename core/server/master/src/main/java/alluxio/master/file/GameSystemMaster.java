@@ -144,6 +144,7 @@ public final class GameSystemMaster {
             }
             GameSystemClient client = clientList.get(user.getFirst());
             List<String> caching_list = client.checkCacheChange(fileList);
+            double tt = System.currentTimeMillis();
             if(userPref.keySet().contains(user.getFirst())){
                 userPref.replace(user.getFirst(),client.getPref());
             }else{
@@ -201,6 +202,7 @@ public final class GameSystemMaster {
                 }
             }
             LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-ts));
+            LOG.info("Iter num: " + poll_iter + " No RPC Time cost : " + (System.currentTimeMillis()-tt));
             if (poll_iter%userList.size()==0){
                 Collections.shuffle(userList);
             }
