@@ -185,16 +185,15 @@ public final class GameSystemMaster {
                     count++;
                 }
                 if (count == userList.size()){
+                    LOG.info("Total time without cache cost(ms): "+(System.currentTimeMillis()-start_time));
                     for (GameSystemClient clt : clientList.values()){
                         clt.reset();
                     }
-                    // More stuffs to be done here
                     Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
                     GameSystemClient C = clientList.get(U.getFirst());
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-//                    LOG.info("end time is "+System.currentTimeMillis());
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     HitRatio();
