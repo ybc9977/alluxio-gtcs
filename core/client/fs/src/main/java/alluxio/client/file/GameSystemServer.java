@@ -119,7 +119,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
 //        String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
         setPrefList(fileList);
 //        LOG.info("randomized preference list for user " + mUserId + " : " + prefList.toString());
-        int QUOTA = 150;
+        int QUOTA = 50;
         for(String path: prefList){
             if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
                 QUOTA--;
