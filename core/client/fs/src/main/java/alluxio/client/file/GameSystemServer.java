@@ -1,19 +1,14 @@
 package alluxio.client.file;
 
-import alluxio.AlluxioURI;
 import alluxio.Server;
-import alluxio.exception.AlluxioException;
 import alluxio.thrift.ClientNetAddress;
 import alluxio.thrift.GameSystemCacheService;
 import com.google.common.base.Preconditions;
-import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 import java.util.*;
 
 /**
