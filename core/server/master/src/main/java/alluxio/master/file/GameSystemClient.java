@@ -91,7 +91,7 @@ public class GameSystemClient extends AbstractClient {
      * @param fileList a map contains filePath & isCached */
     public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
         setPrefList(fileList);
-        int QUOTA = 50;
+        int QUOTA = 150;
         for(String path: mPrefList){
             if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
                 QUOTA--;
