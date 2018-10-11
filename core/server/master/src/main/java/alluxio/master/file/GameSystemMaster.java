@@ -48,8 +48,6 @@ public final class GameSystemMaster {
 
     private static double start_time;
 
-    private float time_interval;
-
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
         fileSystemMaster = defaultFileSystemMaster;
     }
@@ -61,15 +59,6 @@ public final class GameSystemMaster {
         cacheList.put(path,false);
         LOG.info("a file has been added successfully: " + path );
     }
-
-//    //has not implemented yet
-//    public static void deletefile(String path) {
-//        if(fileList.containsKey(path)){
-//            fileList.remove(path);
-//        }else{
-//            LOG.info("File not found");
-//        }
-//    }
 
     /** add user through user side server register request
      * @param userId user app_ID sent from
@@ -88,19 +77,6 @@ public final class GameSystemMaster {
             LOG.info("user "+ userId +" is already in the userList");
         }
     }
-
-//    //has not implemented yet
-//    public static void deleteuser(Long userId) {
-//        Pair<Long, Boolean> pair1 = new Pair<>(userId, false);
-//        Pair<Long, Boolean> pair2 = new Pair<>(userId, true);
-//        if(userList.contains(pair1)){
-//            userList.remove(pair1);
-//        }else if(userList.contains(pair2)){
-//            userList.remove(pair2);
-//        }else{
-//            LOG.info("user "+ userId+ " not found");
-//        }
-//    }
 
     /** when external command is sent, change corresponding file status in the fileList & cacheList
      * currently has just implemented free file circumstance
@@ -128,7 +104,6 @@ public final class GameSystemMaster {
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
         start_time =System.currentTimeMillis();
-//        LOG.info("start time is "+start_time);
         int poll_iter = 0;
         Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
@@ -185,7 +160,7 @@ public final class GameSystemMaster {
                     count++;
                 }
                 if (count == userList.size()){
-                    LOG.info("Total time without cache cost(ms): "+(System.currentTimeMillis()-start_time));
+                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     for (GameSystemClient clt : clientList.values()){
                         clt.reset();
                     }
@@ -194,7 +169,7 @@ public final class GameSystemMaster {
                     C.cacheIt(fileList,cacheList, fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
+//                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     HitRatio();
                     return;

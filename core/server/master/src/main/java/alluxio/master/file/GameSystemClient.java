@@ -3,6 +3,7 @@ package alluxio.master.file;
 import alluxio.AbstractClient;
 import alluxio.AlluxioURI;
 import alluxio.Constants;
+import alluxio.collections.Pair;
 import alluxio.exception.AccessControlException;
 import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
@@ -13,14 +14,16 @@ import alluxio.thrift.AlluxioService;
 import alluxio.thrift.GameSystemCacheService;
 import alluxio.thrift.GetPrefTOptions;
 import alluxio.thrift.ResetTOptions;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.commons.math3.distribution.PoissonDistribution;
+import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.Subject;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *  created by byangak on 30/07/2018
@@ -34,6 +37,14 @@ public class GameSystemClient extends AbstractClient {
     private GameSystemCacheService.Client mClient = null;
 
     private String mUserId;
+
+    private Map<String, Double> mPref = new HashMap<>();
+
+    private ArrayList<String> mPrefList;
+
+    private ArrayList<String> mCacheList = new ArrayList<>();
+
+    private boolean shuffle = true;
 
     GameSystemClient(Subject subject, InetSocketAddress address, String userId) {
         super(subject, address);
@@ -60,23 +71,80 @@ public class GameSystemClient extends AbstractClient {
         mClient = new GameSystemCacheService.Client(mProtocol);
     }
 
+    private void setPrefList (Map<String,Boolean> fileList){
+        ArrayList<String> list = new ArrayList<>(fileList.keySet());
+        if (shuffle){
+            Collections.shuffle(list);
+            shuffle = false;
+        }
+        ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
+        int count = 1;
+        for (String path : list) {
+            mPref.put(path, zd.probability(count));
+            count++;
+        }
+        mPref = sortByValue(mPref);
+        mPrefList= new ArrayList<>(mPref.keySet());
+    }
+
     /** a remote procedure to call in client side server
      * @param fileList a map contains filePath & isCached */
     public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.checkCacheChange(fileList).getCachingList(), "CheckCacheChange");
+        setPrefList(fileList);
+        int QUOTA = 50;
+        for(String path: mPrefList){
+            if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
+                QUOTA--;
+                fileList.replace(path,true);
+                mCacheList.add(path);
+            }else if (QUOTA <= 0){
+                return mCacheList;
+            }
+        }
+        return mCacheList;
+        //return retryRPC(() -> mClient.checkCacheChange(fileList).getCachingList(), "CheckCacheChange");
     }
 
     public Map<String,Double> getPref() throws AlluxioStatusException {
-        return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).getPref(), "GetPref");
+        return mPref;
+        //return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).getPref(), "GetPref");
     }
 
     public Map<String, Integer> access(Map<String,Double> prefList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.access(prefList).getAccess(), "Access");
+        Map<String,Integer> access = new HashMap<>();
+        for(String file : prefList.keySet()){
+            int acc = new PoissonDistribution(mPrefList.indexOf(file)+1).sample() * 10;
+            access.put(file,acc);
+        }
+        return access;
+        //return retryRPC(() -> mClient.access(prefList).getAccess(), "Access");
     }
 
     public void reset() throws AlluxioStatusException {
-        retryRPC(() -> mClient.reset(new ResetTOptions()), "Access");
+//        retryRPC(() -> mClient.reset(new ResetTOptions()), "Access");
+        shuffle = true;
     }
+
+    /**
+     * Sort the Map by descending order according to the values
+     */
+    private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+        for (int i = 0; i < Math.floor(list.size() / 2) ; i++){
+            Map.Entry<K, V> temp;
+            temp = list.get(i);
+            list.set(i,list.get(list.size()-i-1));
+            list.set(list.size()-i-1,temp);
+        }
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+    }
+
 
     public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, FileSystemMaster fsMaster){
         for (String file:fileList.keySet()){

@@ -69,7 +69,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         Map<String,Integer> access = new HashMap<>();
         for(String file : fileList.keySet()){
             int acc = new PoissonDistribution(prefList.indexOf(file)+1).sample() * 10;
-            AlluxioURI uri = new AlluxioURI(file);
+//            AlluxioURI uri = new AlluxioURI(file);
 //            for (int i=0;i<acc;i++){
 //                try {
 //                    Thread.sleep(1000);
@@ -115,10 +115,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
      ArrayList<String> checkCacheChange(Map<String,Boolean> fileList) {
 
         ArrayList<String> cachingList = new ArrayList<>();
-//        String quota = WORKER_TIERED_STORE_LEVEL0_DIRS_QUOTA.getDefaultValue();
-//        String size = USER_BLOCK_SIZE_BYTES_DEFAULT.getDefaultValue();
         setPrefList(fileList);
-//        LOG.info("randomized preference list for user " + mUserId + " : " + prefList.toString());
         int QUOTA = 50;
         for(String path: prefList){
             if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
