@@ -117,7 +117,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
 
         ArrayList<String> cachingList = new ArrayList<>();
         setPrefList(fileList);
-        int QUOTA = 50;
+        int QUOTA = 150;
         for(String path: prefList){
             if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
                 QUOTA--;
