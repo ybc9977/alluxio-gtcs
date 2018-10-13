@@ -23,6 +23,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     public ClientNetAddress mAddress;
     private BaseFileSystem mFileSystem;
     private Map<String,Double> pref = new HashMap<>();
+    private ArrayList<String> list = new ArrayList<>();
     private boolean shuffle=true;
 //    private final ExecutorService mExecutorService;
 
@@ -44,7 +45,12 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     private void setPrefList(Map<String,Boolean> fileList){
-        ArrayList<String> list = new ArrayList<>(fileList.keySet());
+        if (list.size()!=fileList.size()){
+            int i = 0;
+            for (String file : fileList.keySet()){
+                list.set(i++,file);
+            }
+        }
         if (shuffle){
             Collections.shuffle(list);
             shuffle = false;

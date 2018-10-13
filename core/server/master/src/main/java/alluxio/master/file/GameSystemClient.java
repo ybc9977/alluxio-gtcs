@@ -42,7 +42,7 @@ public class GameSystemClient extends AbstractClient {
 
     private ArrayList<String> mPrefList;
 
-    private ArrayList<String> mCacheList = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>();
 
     private boolean shuffle = true;
 
@@ -72,7 +72,13 @@ public class GameSystemClient extends AbstractClient {
     }
 
     private void setPrefList (Map<String,Boolean> fileList){
-        ArrayList<String> list = new ArrayList<>(fileList.keySet());
+        if (list.size()!=fileList.size()){
+            int i = 0;
+            for (String file : fileList.keySet()){
+                list.set(i,file);
+                i++;
+            }
+        }
         if (shuffle){
             Collections.shuffle(list);
             shuffle = false;
@@ -90,10 +96,11 @@ public class GameSystemClient extends AbstractClient {
     /** a remote procedure to call in client side server
      * @param fileList a map contains filePath & isCached */
     public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
+        ArrayList<String> mCacheList = new ArrayList<>();
         setPrefList(fileList);
         int QUOTA = 150;
         for(String path: mPrefList){
-            if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
+            if (QUOTA >0 && !fileList.get(path)){
                 QUOTA--;
                 fileList.replace(path,true);
                 mCacheList.add(path);

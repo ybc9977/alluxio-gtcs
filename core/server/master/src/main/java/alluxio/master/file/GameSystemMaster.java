@@ -107,54 +107,50 @@ public final class GameSystemMaster {
         int poll_iter = 0;
         Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
-            double ts = System.currentTimeMillis();
-            poll_iter++;
-            Pair<String, Boolean> user = userList.get(poll_iter % userList.size());
-            if(cacheMap.containsKey(user.getFirst()) && cacheMap.get(user.getFirst())!=null){
-                for (String file: cacheMap.get(user.getFirst())){
-                    if(fileList.get(file)){
-                        fileList.replace(file,false);
-                    }
+            int userPos = poll_iter % userList.size();
+            Pair<String, Boolean> user = userList.get(userPos);
+            String userID = user.getFirst();
+
+            // file list pretreatment
+            user.setSecond(false);
+            if(cacheMap.get(userID)!=null){
+                for (String file: cacheMap.get(userID)){
+                    fileList.put(file,false);
                 }
             }
-            GameSystemClient client = clientList.get(user.getFirst());
+            GameSystemClient client = clientList.get(userID);
+
+            double before_rpc = System.currentTimeMillis();
             List<String> caching_list = client.checkCacheChange(fileList);
-            double tt = System.currentTimeMillis();
-            if(userPref.keySet().contains(user.getFirst())){
-                userPref.replace(user.getFirst(),client.getPref());
-            }else{
-                userPref.put(user.getFirst(),client.getPref());
-            }
-//            LOG.info(String.valueOf("caching_list: "+caching_list+" for user "+user.getFirst()));
+            double after_rpc = System.currentTimeMillis();
+
+            userPref.put(userID,client.getPref());
+
             // Check if caching_list stay the same with cacheMap, if so, do "else"
-            boolean isChanged = false;
-            if(cacheMap.get(user.getFirst())!=null){
+
+            if(cacheMap.get(userID)!=null){
                 for (String key:caching_list){
-                    if(!cacheMap.get(user.getFirst()).contains(key)){
-                        isChanged = true;
+                    if(!cacheMap.get(userID).contains(key)){
+                        cacheMap.put(userID,caching_list);
+                        user.setSecond(true);
                         break;
                     }
                 }
             }else{
-                isChanged = true;
-            }
-            if (isChanged) {
+                cacheMap.put(userID,caching_list);
                 user.setSecond(true);
-                cacheMap.replace(user.getFirst(),caching_list);
-            } else {
-                user.setSecond(false);
             }
             for (String file_path : caching_list) {
-                if (fileList.containsKey(file_path)) {
-                    fileList.put(file_path,true);
-                }
+                fileList.put(file_path,true);
             }
-            userList.set(poll_iter % userList.size(), user);
-            int count = 0;
+            userList.set(userPos,user);
+
             LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
+
+            int count = 0;
+            poll_iter++;
             for (Pair<String,Boolean> p:userList) {
                 if (p.getSecond()) {
-                    count = 0;
                     break;
                 }else{
                     count++;
@@ -166,17 +162,17 @@ public final class GameSystemMaster {
                     }
                     Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
                     GameSystemClient C = clientList.get(U.getFirst());
-                    C.cacheIt(fileList,cacheList, fileSystemMaster);
+                    C.cacheIt(fileList,cacheList,fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-//                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
                     Efficiency();
                     HitRatio();
                     return;
                 }
             }
-            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-ts));
-            LOG.info("Iter num: " + poll_iter + " No RPC Time cost : " + (System.currentTimeMillis()-tt));
+            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-before_rpc));
+            LOG.info("Iter num: " + poll_iter + " No RPC Time cost : " + (System.currentTimeMillis()-after_rpc));
+
             if (poll_iter%userList.size()==0){
                 Collections.shuffle(userList);
             }
@@ -229,7 +225,7 @@ public final class GameSystemMaster {
         for (double value : utilList.values()) {
             sum += value;
         }
-        //LOG.info("sum: "+sum);
+//        LOG.info("sum: "+sum);
 //        LOG.info("Average Utility: " + sum / utilList.size());
         Map<String, Double> filePref = new HashMap<>();
         for (String f:cacheList.keySet()){
@@ -242,7 +238,7 @@ public final class GameSystemMaster {
             filePref.put(f, e);
         }
         filePref = sortByValue(filePref);
-        //LOG.info("filePref: "+filePref.toString());
+//        LOG.info("filePref: "+filePref.toString());
 //        LOG.info("cacheList "+cacheList);
         int count=0;
         double s=0;
@@ -251,8 +247,8 @@ public final class GameSystemMaster {
             if(count==cacheNum-1) break;
             count++;
         }
-        //LOG.info("s "+s);
-        //LOG.info("Pref: "+userPref);
+//        LOG.info("s "+s);
+//        LOG.info("Pref: "+userPref);
         LOG.info("Efficiency: " + s/sum);
     }
     /**
