@@ -75,7 +75,7 @@ public class GameSystemClient extends AbstractClient {
         if (list.size()!=fileList.size()){
             int i = 0;
             for (String file : fileList.keySet()){
-                list.set(i,file);
+                list.add(i,file);
                 i++;
             }
         }
