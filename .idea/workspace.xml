@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81c88f1b-6783-4983-89c3-8159ac1e31d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/assembly/target/" />
     <ignored path="$PROJECT_DIR$/shell/target/" />
@@ -60,8 +59,8 @@
           <file leaf-file-name="GameSystemClient.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="810">
-                  <caret line="85" column="67" lean-forward="true" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+                <state relative-caret-position="451">
+                  <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
                   <folding>
                     <element signature="method#sortByValue#0;class#GameSystemClient#0" />
                   </folding>
@@ -88,7 +87,7 @@
           <file leaf-file-name="GameSystemMaster.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="666">
+                <state relative-caret-position="2055">
                   <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
                   <folding>
                     <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
@@ -187,9 +186,9 @@
         <option value="$PROJECT_DIR$/conf/alluxio-env.sh.template" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/DefaultFileSystemMaster.java" />
         <option value="$PROJECT_DIR$/script/file_preparation.sh" />
-        <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" />
         <option value="$PROJECT_DIR$/core/client/fs/src/main/java/alluxio/client/file/GameSystemServer.java" />
         <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java" />
+        <option value="$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java" />
       </list>
     </option>
   </component>
@@ -735,14 +734,7 @@
       <workItem from="1539318674779" duration="776000" />
       <workItem from="1539408596295" duration="3882000" />
       <workItem from="1539428854590" duration="778000" />
-      <workItem from="1539484463809" duration="164000" />
-    </task>
-    <task id="LOCAL-00029" summary="25/09/18">
-      <created>1537867017347</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1537867017347</updated>
+      <workItem from="1539484463809" duration="316000" />
     </task>
     <task id="LOCAL-00030" summary="25/09/18">
       <created>1537868180147</created>
@@ -1080,11 +1072,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539428981530</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="14/10/18">
+      <created>1539484643351</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1539484643352</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86018000" />
+    <option name="totallyTimeSpent" value="86170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1154,7 +1153,8 @@
     <MESSAGE value="10/10/18" />
     <MESSAGE value="11/10/18" />
     <MESSAGE value="13/10/18" />
-    <option name="LAST_COMMIT_MESSAGE" value="13/10/18" />
+    <MESSAGE value="14/10/18" />
+    <option name="LAST_COMMIT_MESSAGE" value="14/10/18" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1422,22 +1422,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="85" column="67" lean-forward="true" selection-start-line="85" selection-start-column="67" selection-end-line="85" selection-end-column="67" />
+        <state relative-caret-position="2055">
+          <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
           <folding>
-            <element signature="method#sortByValue#0;class#GameSystemClient#0" />
+            <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java">
+    <entry file="file://$PROJECT_DIR$/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
+        <state relative-caret-position="451">
+          <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
           <folding>
-            <element signature="method#sortByValue#0;class#GameSystemMaster#0" />
+            <element signature="method#sortByValue#0;class#GameSystemClient#0" />
           </folding>
         </state>
       </provider>

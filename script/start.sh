@@ -36,7 +36,7 @@ do
     let "i++"
 done < ~/flintrock.txt
 
-sleep 30
+sleep 10
 
 read -r line < ~/flintrock.txt
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_copy.sh"
