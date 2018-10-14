@@ -145,6 +145,8 @@ public final class GameSystemMaster {
             }
             userList.set(userPos,user);
 
+            LOG.info("cacheMap: " + cacheMap.toString());
+
             LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
 
             int count = 0;
