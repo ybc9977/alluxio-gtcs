@@ -40,7 +40,7 @@ public class GameSystemClient extends AbstractClient {
 
     private Map<String, Double> mPref = new HashMap<>();
 
-    private ArrayList<String> mPrefList;
+    private ArrayList<String> mPrefList = new ArrayList<>();
 
     private ArrayList<String> list = new ArrayList<>();
 
@@ -91,6 +91,7 @@ public class GameSystemClient extends AbstractClient {
         }
         mPref = sortByValue(mPref);
         mPrefList= new ArrayList<>(mPref.keySet());
+        LOG.info(mPref.toString());
     }
 
     /** a remote procedure to call in client side server
