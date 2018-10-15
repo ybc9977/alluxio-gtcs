@@ -93,7 +93,8 @@ public class GameSystemClient extends AbstractClient {
         }
         mPref = sortByValue(mPref);
         mPrefList= new ArrayList<>(mPref.keySet());
-        LOG.info(mPrefList.toString());
+        LOG.info("List: "+list);
+        LOG.info("mPrefList:" + mPrefList.toString());
         LOG.info("user " + mUserId + " afterwards shuffle? " + shuffle);
     }
 
