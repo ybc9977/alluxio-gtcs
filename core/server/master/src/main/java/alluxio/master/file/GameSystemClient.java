@@ -93,6 +93,7 @@ public class GameSystemClient extends AbstractClient {
         mPref = sortByValue(mPref);
         mPrefList= new ArrayList<>(mPref.keySet());
 //        LOG.info(mPref.toString());
+        LOG.info("user " + mUserId + " shuffle? " + shuffle);
     }
 
     /** a remote procedure to call in client side server
