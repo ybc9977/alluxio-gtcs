@@ -78,6 +78,7 @@ public class GameSystemClient extends AbstractClient {
                 list.add(i,file);
                 i++;
             }
+            Collections.shuffle(list);
         }
         if (shuffle){
             Collections.shuffle(list);
@@ -91,7 +92,7 @@ public class GameSystemClient extends AbstractClient {
         }
         mPref = sortByValue(mPref);
         mPrefList= new ArrayList<>(mPref.keySet());
-        LOG.info(mPref.toString());
+//        LOG.info(mPref.toString());
     }
 
     /** a remote procedure to call in client side server
