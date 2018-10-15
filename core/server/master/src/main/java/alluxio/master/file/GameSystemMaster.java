@@ -44,7 +44,7 @@ public final class GameSystemMaster {
 
     private FileSystemMaster fileSystemMaster;
 
-    private static int QUOTA = 150;
+    private static int QUOTA = 10;
 
     private static double start_time;
 

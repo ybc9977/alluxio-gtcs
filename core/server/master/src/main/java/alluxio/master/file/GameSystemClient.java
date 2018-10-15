@@ -102,7 +102,7 @@ public class GameSystemClient extends AbstractClient {
     public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
         ArrayList<String> mCacheList = new ArrayList<>();
         setPrefList(fileList);
-        int QUOTA = 150;
+        int QUOTA = 10;
         for(String path: mPrefList){
             if (QUOTA >0 && !fileList.get(path)){
                 QUOTA--;
