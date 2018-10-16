@@ -54,7 +54,7 @@ public final class GameSystemMaster {
 
 
     /** add file into fileList & cacheList */
-    public static void addfile(String path){
+    public synchronized static void addfile(String path){
         fileList.put(path,false);
         cacheList.put(path,false);
         LOG.info("a file has been added successfully: " + path );
