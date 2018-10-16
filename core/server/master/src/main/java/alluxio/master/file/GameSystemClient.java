@@ -72,7 +72,7 @@ public class GameSystemClient extends AbstractClient {
     }
 
     private void setPrefList (Map<String,Boolean> fileList){
-        LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
+//        LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
         if (list.size()!=fileList.size()){
             int i = 0;
             for (String file : fileList.keySet()){
@@ -94,9 +94,9 @@ public class GameSystemClient extends AbstractClient {
         }
         mPref = sortByValue(mPref);
         mPrefList= new ArrayList<>(mPref.keySet());
-        LOG.info("List: "+list);
-        LOG.info("mPrefList:" + mPrefList.toString());
-        LOG.info("user " + mUserId + " afterwards shuffle? " + shuffle);
+//        LOG.info("List: "+list);
+//        LOG.info("mPrefList:" + mPrefList.toString());
+//        LOG.info("user " + mUserId + " afterwards shuffle? " + shuffle);
     }
 
     /** a remote procedure to call in client side server
