@@ -71,7 +71,7 @@ public class GameSystemClient extends AbstractClient {
         mClient = new GameSystemCacheService.Client(mProtocol);
     }
 
-    private void setPrefList (Map<String,Boolean> fileList){
+    private synchronized void setPrefList (Map<String,Boolean> fileList){
         LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
         if (list.size()!=fileList.size()){
             int i = 0;
