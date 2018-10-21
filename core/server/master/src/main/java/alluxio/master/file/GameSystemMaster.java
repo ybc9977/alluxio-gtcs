@@ -44,8 +44,6 @@ public final class GameSystemMaster {
 
     private FileSystemMaster fileSystemMaster;
 
-    private static int QUOTA = 50;
-
     private static double start_time;
 
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
@@ -103,6 +101,8 @@ public final class GameSystemMaster {
 
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
+        int QUOTA = 300 / clientList.size();
+
         start_time =System.currentTimeMillis();
         int poll_iter = 0;
         Collections.shuffle(userList);
@@ -121,7 +121,7 @@ public final class GameSystemMaster {
             GameSystemClient client = clientList.get(userID);
 
             double before_rpc = System.currentTimeMillis();
-            List<String> caching_list = client.checkCacheChange(fileList);
+            List<String> caching_list = client.checkCacheChange(fileList,QUOTA);
             double after_rpc = System.currentTimeMillis();
 
             userPref.put(userID,client.getPref());
@@ -167,7 +167,7 @@ public final class GameSystemMaster {
                     C.cacheIt(fileList,cacheList,fileSystemMaster);
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
-                    Efficiency();
+                    Efficiency(QUOTA);
                     HitRatio();
                     return;
                 }
@@ -201,7 +201,7 @@ public final class GameSystemMaster {
         LOG.info("the overall hit ratio is " + hit/access);
     }
 
-    private synchronized void Efficiency() {
+    private synchronized void Efficiency(int QUOTA) {
         int cacheNum = userList.size() * QUOTA;
         for (String u : userPref.keySet()) {
             double efficiency = 0;

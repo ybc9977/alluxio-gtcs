@@ -101,10 +101,9 @@ public class GameSystemClient extends AbstractClient {
 
     /** a remote procedure to call in client side server
      * @param fileList a map contains filePath & isCached */
-    public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList) throws AlluxioStatusException {
+    public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList, int QUOTA) throws AlluxioStatusException {
         ArrayList<String> mCacheList = new ArrayList<>();
         setPrefList(fileList);
-        int QUOTA =50;
         for(String path: mPrefList){
             if (QUOTA >0 && !fileList.get(path)){
                 QUOTA--;
