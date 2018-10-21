@@ -4,7 +4,7 @@
 
 
 #launch
-python3 ~/Downloads/flintrock-master/standalone.py launch gtcs
+python3 ~/Downloads/flintrock-master/standalone.py launch gtcs --num-slaves $(($1+$2))
 
 #set up
 python3 ~/Downloads/flintrock-master/standalone.py run-command gtcs "sudo yum update -y"

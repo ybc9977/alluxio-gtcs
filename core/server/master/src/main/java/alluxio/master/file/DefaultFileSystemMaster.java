@@ -397,7 +397,8 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
 
     GameSystemMaster gameSystemMaster = new GameSystemMaster(this);
     Timer time = new Timer();
-    time.schedule(gameSystemMaster.t, 1400000, 40000);
+    //1400000
+    time.schedule(gameSystemMaster.t, 100000, 40000);
 
     resetState();
     Metrics.registerGauges(this, mUfsManager);
