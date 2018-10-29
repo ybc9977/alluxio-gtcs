@@ -203,6 +203,9 @@ public final class GameSystemMaster {
 
     private synchronized void Efficiency(int QUOTA) {
         int cacheNum = userList.size() * QUOTA;
+        //
+        // Calculate the optimized utility
+        //
         for (String u : userPref.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {
@@ -222,13 +225,13 @@ public final class GameSystemMaster {
                 utilList.put(u, efficiency);
             }
         }
-//        LOG.info("Util List: " + utilList.toString());
         double sum = 0;
         for (double value : utilList.values()) {
             sum += value;
         }
-//        LOG.info("sum: "+sum);
-//        LOG.info("Average Utility: " + sum / utilList.size());
+        //
+        // Calculate current utility
+        //
         Map<String, Double> filePref = new HashMap<>();
         for (String f:cacheList.keySet()){
             double e = 0;
@@ -240,8 +243,6 @@ public final class GameSystemMaster {
             filePref.put(f, e);
         }
         filePref = sortByValue(filePref);
-//        LOG.info("filePref: "+filePref.toString());
-//        LOG.info("cacheList "+cacheList);
         int count=0;
         double s=0;
         for (String key : filePref.keySet()){
@@ -249,8 +250,6 @@ public final class GameSystemMaster {
             if(count==cacheNum-1) break;
             count++;
         }
-//        LOG.info("s "+s);
-//        LOG.info("Pref: "+userPref);
         LOG.info("Efficiency: " + s/sum);
     }
     /**
