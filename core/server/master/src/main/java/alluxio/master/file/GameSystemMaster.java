@@ -107,6 +107,7 @@ public final class GameSystemMaster {
         int poll_iter = 0;
         Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
+            double iter_start = System.currentTimeMillis();
             int userPos = poll_iter % userList.size();
             Pair<String, Boolean> user = userList.get(userPos);
             String userID = user.getFirst();
@@ -119,10 +120,7 @@ public final class GameSystemMaster {
                 }
             }
             GameSystemClient client = clientList.get(userID);
-
-            double before_rpc = System.currentTimeMillis();
             List<String> caching_list = client.checkCacheChange(fileList,QUOTA);
-            double after_rpc = System.currentTimeMillis();
 
             userPref.put(userID,client.getPref());
 
@@ -145,7 +143,7 @@ public final class GameSystemMaster {
             }
             userList.set(userPos,user);
 
-            LOG.info("fileList: " + fileList.toString());
+//            LOG.info("fileList: " + fileList.toString());
 
             LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
 
@@ -172,9 +170,7 @@ public final class GameSystemMaster {
                     return;
                 }
             }
-            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-before_rpc));
-            LOG.info("Iter num: " + poll_iter + " No RPC Time cost : " + (System.currentTimeMillis()-after_rpc));
-
+            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-iter_start));
             if (poll_iter%userList.size()==0){
                 Collections.shuffle(userList);
             }
