@@ -101,7 +101,7 @@ public final class GameSystemMaster {
 
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
-        int QUOTA = 20 / clientList.size();
+        int QUOTA = 300 / clientList.size();
 
         start_time =System.currentTimeMillis();
         int poll_iter = 0;
