@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *  created by byangak on 28/06/2018
@@ -30,7 +31,7 @@ public final class GameSystemMaster {
     private static Map<String,List<String>> cacheMap = new HashMap<>();
 
     /** FileList which is unsettled during the querying process */
-    private static Map<String,Boolean> fileList = new HashMap<>();
+    private static Map<String,Boolean> fileList = new ConcurrentHashMap<>();
 
     /** FileList which is settled and always representing the realistic circumstance */
     private static Map<String,Boolean> cacheList = new HashMap<>();
