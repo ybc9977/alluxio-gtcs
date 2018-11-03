@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *  created by byangak on 28/06/2018
@@ -30,7 +31,7 @@ public final class GameSystemMaster {
     private static Map<String,List<String>> cacheMap = new HashMap<>();
 
     /** FileList which is unsettled during the querying process */
-    private static Map<String,Boolean> fileList = new HashMap<>();
+    private static Map<String,Boolean> fileList = new ConcurrentHashMap<>();
 
     /** FileList which is settled and always representing the realistic circumstance */
     private static Map<String,Boolean> cacheList = new HashMap<>();
@@ -101,12 +102,13 @@ public final class GameSystemMaster {
 
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
-        int QUOTA = 20 / clientList.size();
+        int QUOTA = 300 / clientList.size();
 
         start_time =System.currentTimeMillis();
         int poll_iter = 0;
         Collections.shuffle(userList);
         while(userList.size()!=0 && !fileList.isEmpty()){
+            double iter_start = System.currentTimeMillis();
             int userPos = poll_iter % userList.size();
             Pair<String, Boolean> user = userList.get(userPos);
             String userID = user.getFirst();
@@ -119,10 +121,7 @@ public final class GameSystemMaster {
                 }
             }
             GameSystemClient client = clientList.get(userID);
-
-            double before_rpc = System.currentTimeMillis();
             List<String> caching_list = client.checkCacheChange(fileList,QUOTA);
-            double after_rpc = System.currentTimeMillis();
 
             userPref.put(userID,client.getPref());
 
@@ -145,7 +144,7 @@ public final class GameSystemMaster {
             }
             userList.set(userPos,user);
 
-            LOG.info("fileList: " + fileList.toString());
+//            LOG.info("fileList: " + fileList.toString());
 
             LOG.info(String.valueOf("userList[(user,isChanged)]: "+userList));
 
@@ -172,9 +171,7 @@ public final class GameSystemMaster {
                     return;
                 }
             }
-            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-before_rpc));
-            LOG.info("Iter num: " + poll_iter + " No RPC Time cost : " + (System.currentTimeMillis()-after_rpc));
-
+            LOG.info("Iter num: " + poll_iter + " Time cost : " + (System.currentTimeMillis()-iter_start));
             if (poll_iter%userList.size()==0){
                 Collections.shuffle(userList);
             }
@@ -203,6 +200,9 @@ public final class GameSystemMaster {
 
     private synchronized void Efficiency(int QUOTA) {
         int cacheNum = userList.size() * QUOTA;
+        //
+        // Calculate the optimized utility
+        //
         for (String u : userPref.keySet()) {
             double efficiency = 0;
             for (String f : cacheList.keySet()) {
@@ -222,13 +222,13 @@ public final class GameSystemMaster {
                 utilList.put(u, efficiency);
             }
         }
-//        LOG.info("Util List: " + utilList.toString());
         double sum = 0;
         for (double value : utilList.values()) {
             sum += value;
         }
-//        LOG.info("sum: "+sum);
-//        LOG.info("Average Utility: " + sum / utilList.size());
+        //
+        // Calculate current utility
+        //
         Map<String, Double> filePref = new HashMap<>();
         for (String f:cacheList.keySet()){
             double e = 0;
@@ -240,8 +240,6 @@ public final class GameSystemMaster {
             filePref.put(f, e);
         }
         filePref = sortByValue(filePref);
-//        LOG.info("filePref: "+filePref.toString());
-//        LOG.info("cacheList "+cacheList);
         int count=0;
         double s=0;
         for (String key : filePref.keySet()){
@@ -249,8 +247,6 @@ public final class GameSystemMaster {
             if(count==cacheNum-1) break;
             count++;
         }
-//        LOG.info("s "+s);
-//        LOG.info("Pref: "+userPref);
         LOG.info("Efficiency: " + s/sum);
     }
     /**

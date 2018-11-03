@@ -54,16 +54,16 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         if (shuffle){
             Collections.shuffle(list);
             shuffle = false;
+            ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
+            int count = 1;
+            for (String path : list) {
+                pref.put(path, zd.probability(count));
+                count++;
+            }
+            pref = sortByValue(pref);
+            LOG.info(pref.toString());
+            prefList= new ArrayList<>(pref.keySet());
         }
-        ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
-        int count = 1;
-        for (String path : list) {
-            pref.put(path, zd.probability(count));
-            count++;
-        }
-        pref = sortByValue(pref);
-        LOG.info(pref.toString());
-        prefList= new ArrayList<>(pref.keySet());
     }
 
     Map<String,Integer> accessFile(Map<String, Double> fileList){

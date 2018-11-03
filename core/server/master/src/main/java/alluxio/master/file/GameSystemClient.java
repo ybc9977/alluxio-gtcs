@@ -72,6 +72,7 @@ public class GameSystemClient extends AbstractClient {
     }
 
     private synchronized void setPrefList (Map<String,Boolean> fileList){
+        double start_time =System.currentTimeMillis();
         LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
         if (list.size()!=fileList.size()){
             int i = 0;
@@ -84,19 +85,17 @@ public class GameSystemClient extends AbstractClient {
         }
         if (shuffle){
             Collections.shuffle(list);
+            ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
+            int count = 1;
+            for (String path : list) {
+                mPref.put(path, zd.probability(count));
+                count++;
+            }
+            mPref = sortByValue(mPref);
+            mPrefList= new ArrayList<>(mPref.keySet());
             shuffle = false;
         }
-        ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
-        int count = 1;
-        for (String path : list) {
-            mPref.put(path, zd.probability(count));
-            count++;
-        }
-        mPref = sortByValue(mPref);
-        mPrefList= new ArrayList<>(mPref.keySet());
-        LOG.info("List: "+list);
-//        LOG.info("mPrefList:" + mPrefList.toString());
-        LOG.info("user " + mUserId + " afterwards shuffle? " + shuffle);
+        LOG.info("setPrefList time cost: "+ (System.currentTimeMillis()-start_time));
     }
 
     /** a remote procedure to call in client side server
