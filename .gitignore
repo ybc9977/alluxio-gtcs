@@ -13,8 +13,8 @@
 .checkstyle
 .classpath
 .fbExcludeFilterFile
-.idea/
-.metadata/
+.idea/*
+.metadata/*
 .project
 .settings/
 /client/
@@ -48,3 +48,5 @@
 dependency-reduced-pom.xml
 target/
 tests.log*
+*.xml
+*.iml
