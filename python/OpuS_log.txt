@@ -131,3 +131,95 @@ cached ratio: [  9.36741533e-10   9.99999999e-01   9.99999999e-01   1.00000000e+
    9.47756697e-10]access factor: [ 0.975814    1.          0.80893862]###################End########################################
 
 
+###################Start: 2018-11-22 10:27:14.463181 ####################
+User number: 2
+File number: 3
+###################Start: 2018-11-22 10:27:25.918797 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.2, 0.6]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:27:35.166710 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.2, 0.6]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:28:54.134535 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:28:57.824645 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:29:12.990370 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:29:21.052564 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+###################Start: 2018-11-22 10:30:45.378209 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:30:58.650837 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.4, 0.4]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:31:23.638747 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.3, 0.4, 0.3]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:31:46.824263 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.4, 0.5, 0.1]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:32:01.110928 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.4, 0.5, 0.1]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:32:10.913752 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.4, 0.5, 0.1]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus Failed###################Start: 2018-11-22 10:33:39.037547 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.4, 0.5, 0.1]
+User 1 preferences: [0.4, 0.5, 0.1]
+###################Start: 2018-11-22 10:35:56.425914 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.4, 0.5, 0.1]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus SucceededOpus cached ratio: [9.99999997e-01 9.99999998e-01 2.33826897e-09]Opus access factor: [1. 1.]###################End########################################
+
+
+###################Start: 2018-11-22 10:36:20.782113 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.3, 0.2, 0.5]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus SucceededOpus cached ratio: [0.99999998 0.70833429 0.29166572]Opus access factor: [0.87037079 0.73437465]###################End########################################
+
+
+###################Start: 2018-11-22 10:38:54.633446 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.3, 0.5]
+User 1 preferences: [0.4, 0.5, 0.1]
+Opus SucceededOpus cached ratio: [0.3333368 1.        0.6666632]Opus access factor: [0.77777893 0.8749987 ]###################End########################################
+
+

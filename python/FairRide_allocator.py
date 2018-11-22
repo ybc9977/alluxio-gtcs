@@ -53,7 +53,8 @@ def FairRide_allocator(PMatrix, file_size_set, R):
     # print AccessFactorMatrix
     #print utilities_fairride
     (utilities_without_blocking, utilities_fairride) = Calculate_Utility(n,m,PaymentMatrix,PMatrixUnified)
-    return utilities_fairride
+    #return utilities_fairride
+    return (cachedFractions, AccessFactorMatrix)
 
 # process of bidding. Over-bidding might happen in this process.
 # saturated_users vector will be updated.

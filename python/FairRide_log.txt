@@ -1,0 +1,21 @@
+###################Start: 2018-11-22 10:26:08.018060 ####################
+User number: 2
+File number: 3
+###################Start: 2018-11-22 10:26:31.651372 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.2, 0.2, 0.6]
+User 1 preferences: [0.4, 0.5, 0.1]
+FairRide SucceededFairRide cached ratio: [0. 1. 1.]FairRide access factor: [[0.  0.5 1. ]
+ [0.  1.  0.5]]###################End########################################
+
+
+###################Start: 2018-11-22 10:36:45.333236 ####################
+User number: 2
+File number: 3
+User 0 preferences: [0.3, 0.2, 0.5]
+User 1 preferences: [0.4, 0.5, 0.1]
+FairRide SucceededFairRide cached ratio: [0. 1. 1.]FairRide access factor: [[0.  0.5 1. ]
+ [0.  1.  0.5]]###################End########################################
+
+

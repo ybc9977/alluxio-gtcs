@@ -64,7 +64,7 @@ def VCG_Mech(PMatrix, size_set, R):
     #print "tax bound:", (n-1)*numpy.log(float(n)/(n-1))
     #print tax
 
-    return (PMatrixUnified, PE_allocation, allocated_ratio,final_utility)
+    return (PMatrixUnified, PE_allocation, allocated_ratio, final_utility)
 
 if __name__ == "__main__":
     # # construct PMatrix for testing
