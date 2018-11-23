@@ -1,4 +1,4 @@
-package alluxio.master.file;
+package alluxio.master.game;
 
 import alluxio.AbstractClient;
 import alluxio.AlluxioURI;
@@ -9,12 +9,9 @@ import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
 import alluxio.exception.UnexpectedAlluxioException;
 import alluxio.exception.status.AlluxioStatusException;
+import alluxio.master.file.FileSystemMaster;
 import alluxio.master.file.options.FreeOptions;
-import alluxio.thrift.AlluxioService;
-import alluxio.thrift.GameSystemCacheService;
-import alluxio.thrift.GetPrefTOptions;
-import alluxio.thrift.ResetTOptions;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import alluxio.thrift.*;
 import org.apache.commons.math3.distribution.PoissonDistribution;
 import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.slf4j.Logger;
@@ -45,6 +42,10 @@ public class GameSystemClient extends AbstractClient {
     private ArrayList<String> list = new ArrayList<>();
 
     private boolean shuffle = true;
+
+    private boolean delegate = false;
+
+    private int accessNum = 200;
 
     GameSystemClient(Subject subject, InetSocketAddress address, String userId) {
         super(subject, address);
@@ -100,40 +101,57 @@ public class GameSystemClient extends AbstractClient {
 
     /** a remote procedure to call in client side server
      * @param fileList a map contains filePath & isCached */
-    public synchronized List<String> checkCacheChange(Map<String, Boolean> fileList, int QUOTA) throws AlluxioStatusException {
-        ArrayList<String> mCacheList = new ArrayList<>();
-        setPrefList(fileList);
-        for(String path: mPrefList){
-            if (QUOTA >0 && !fileList.get(path)){
-                QUOTA--;
-                fileList.replace(path,true);
-                mCacheList.add(path);
-            }else if (QUOTA <= 0){
-                return mCacheList;
+    synchronized List<String> checkCacheChange(Map<String, Boolean> fileList, int QUOTA) throws AlluxioStatusException {
+        if(delegate){
+            ArrayList<String> mCacheList = new ArrayList<>();
+            setPrefList(fileList);
+            for(String path: mPrefList){
+                if (QUOTA >0 && !fileList.get(path)){
+                    QUOTA--;
+                    fileList.replace(path,true);
+                    mCacheList.add(path);
+                }else if (QUOTA <= 0){
+                    return mCacheList;
+                }
             }
+            return mCacheList;
+        }else{
+            int quota = QUOTA;
+            return retryRPC(() -> mClient.checkCacheChange(fileList,quota).getCachingList(), "CheckCacheChange");
         }
-        return mCacheList;
-        //return retryRPC(() -> mClient.checkCacheChange(fileList).getCachingList(), "CheckCacheChange");
     }
 
-    public Map<String,Double> getPref() throws AlluxioStatusException {
-        return mPref;
-        //return retryRPC(() -> mClient.getPref(new GetPrefTOptions()).getPref(), "GetPref");
+    Map<String,Double> getPref() throws AlluxioStatusException {
+        if (delegate)
+            return mPref;
+        else
+            mPref = retryRPC(() -> mClient.getPref(new GetPrefTOptions()).getPref(), "GetPref");
+            return mPref;
     }
 
-    public Map<String, Integer> access(Map<String,Double> prefList) throws AlluxioStatusException {
+    public Map<String, Integer> experimental_access(Map<String,Double> prefList) throws AlluxioStatusException {
         Map<String,Integer> access = new HashMap<>();
-        for(String file : prefList.keySet()){
-            int acc = new PoissonDistribution(mPrefList.indexOf(file)+1).sample() * 10;
-            access.put(file,acc);
+        ArrayList<Integer> acc = new ArrayList<>(prefList.size());
+        for (int i = 0;i<prefList.size();i++){
+            acc.add(0);
+        }
+        for (int i = 0;i<accessNum;i++){
+            int index = (int) (Math.random()*prefList.size());
+            acc.set(index,acc.get(index)+1);
+        }
+        int i = 0;
+        for (String file : prefList.keySet()){
+            access.put(file,acc.get(i));
+            i++;
         }
         return access;
-        //return retryRPC(() -> mClient.access(prefList).getAccess(), "Access");
     }
 
     public void reset() throws AlluxioStatusException {
-//        retryRPC(() -> mClient.reset(new ResetTOptions()), "Access");
-        shuffle = true;
+        if (delegate)
+            shuffle = true;
+        else
+            retryRPC(() -> mClient.reset(new ResetTOptions()), "Reset");
     }
 
     /**
@@ -157,7 +175,7 @@ public class GameSystemClient extends AbstractClient {
     }
 
 
-    public synchronized void cacheIt(Map<String,Boolean> fileList, Map<String,Boolean> cacheList, FileSystemMaster fsMaster){
+    synchronized void cacheIt(Map<String, Boolean> fileList, Map<String, Boolean> cacheList, FileSystemMaster fsMaster){
         for (String file:fileList.keySet()){
             AlluxioURI uri = new AlluxioURI(file);
             if(fileList.get(file)!=cacheList.get(file)){
@@ -180,5 +198,40 @@ public class GameSystemClient extends AbstractClient {
                 }
             }
         }
+//        try {
+//            LOG.info(String.valueOf(fsMaster.getInAlluxioFiles()));
+//        } catch (UnavailableException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    synchronized void cacheIt(Map<String, Double> cacheList, FileSystemMaster fsMaster){
+        for (String file: cacheList.keySet()){
+            AlluxioURI uri = new AlluxioURI(file);
+            if(cacheList.get(file)>0){
+                try {
+                    retryRPC(() -> mClient.load(file), "Load");
+                    LOG.info("Load Process Complete, uri: " + uri.getPath());
+                } catch (AlluxioStatusException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                try {
+                    fsMaster.free(uri,FreeOptions.defaults());
+                    LOG.info("Free Process Complete, uri: " + uri.getPath());
+                } catch (IOException | AccessControlException | FileDoesNotExistException | InvalidPathException | UnexpectedAlluxioException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    synchronized Pair access() throws AlluxioStatusException {
+        Object rpc = retryRPC(() -> mClient.access(mPref),"Access");
+        return new Pair<>(((AccessTResponse) rpc).getRatio(),((AccessTResponse) rpc).getTime());
+    }
+
+    synchronized Double accessFairRide(ArrayList<Double> factorList) throws AlluxioStatusException {
+        return retryRPC(() -> mClient.accessFairRide(mPref,factorList).getRatio(),"AccessFairRide");
     }
 }

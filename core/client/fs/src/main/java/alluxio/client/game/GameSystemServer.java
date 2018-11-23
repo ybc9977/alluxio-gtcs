@@ -1,14 +1,23 @@
-package alluxio.client.file;
+package alluxio.client.game;
 
+import alluxio.AlluxioURI;
 import alluxio.Server;
+import alluxio.client.ReadType;
+import alluxio.client.file.BaseFileSystem;
+import alluxio.client.file.FileSystemContext;
+import alluxio.client.file.options.OpenFileOptions;
+import alluxio.collections.Pair;
+import alluxio.exception.AlluxioException;
 import alluxio.thrift.ClientNetAddress;
 import alluxio.thrift.GameSystemCacheService;
 import com.google.common.base.Preconditions;
-import org.apache.commons.math3.distribution.PoissonDistribution;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.commons.math3.distribution.ZipfDistribution;
 import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -25,7 +34,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     private Map<String,Double> pref = new HashMap<>();
     private ArrayList<String> list = new ArrayList<>();
     private boolean shuffle=true;
-//    private final ExecutorService mExecutorService;
+    private int accessNum = 200;
 
     /**
      * Constructs a new base file system.
@@ -36,8 +45,6 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
-//        mExecutorService = Executors.newFixedThreadPool(1,
-//                ThreadFactoryUtils.build("game-system-client-%d", true));
     }
 
     public String getUserId(){
@@ -45,15 +52,19 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     private void setPrefList(Map<String,Boolean> fileList){
+        LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
+        double start_time =System.currentTimeMillis();
         if (list.size()!=fileList.size()){
             int i = 0;
             for (String file : fileList.keySet()){
-                list.set(i++,file);
+                list.remove(file);
+                list.add(i,file);
+                i++;
             }
+            Collections.shuffle(list);
         }
         if (shuffle){
             Collections.shuffle(list);
-            shuffle = false;
             ZipfDistribution zd = new ZipfDistribution(fileList.size(),1.05);
             int count = 1;
             for (String path : list) {
@@ -61,27 +72,82 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
             pref = sortByValue(pref);
-            LOG.info(pref.toString());
             prefList= new ArrayList<>(pref.keySet());
+            shuffle = false;
         }
+        LOG.info("setPrefList time cost: "+ (System.currentTimeMillis()-start_time));
+
     }
 
-    Map<String,Integer> accessFile(Map<String, Double> fileList){
-        Map<String,Integer> access = new HashMap<>();
-        for(String file : fileList.keySet()){
-            int acc = new PoissonDistribution(prefList.indexOf(file)+1).sample() * 10;
-//            AlluxioURI uri = new AlluxioURI(file);
-//            for (int i=0;i<acc;i++){
-//                try {
-//                    Thread.sleep(1000);
-//                    mFileSystem.openFile(uri);
-//                } catch (InterruptedException | AlluxioException | IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-            access.put(file,acc);
+    Pair accessFile(Map<String, Double> pref){
+        Long time = System.currentTimeMillis();
+        Map<String, Double> interval = new HashMap<>();
+        for(String file : pref.keySet()) {
+            interval.put(file, new ExponentialDistribution(pref.get(file)).sample()*1000);
         }
-        return access;
+        LOG.info(interval.toString());
+        int hit = 0;
+//        for (String file:pref.keySet()){
+//            try {
+//                LOG.info(mFileSystem.getStatus(new AlluxioURI(file)).toString());
+//            } catch (IOException | AlluxioException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        for (int i=0;i<accessNum;i++){
+            int count = 0, goal = (int)(new Random(System.nanoTime()).nextDouble()*pref.size());
+            for (String file:pref.keySet()) {
+                if(count==goal){
+                    try {
+                        AlluxioURI uri = new AlluxioURI(file);
+                        OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
+                        mFileSystem.openFile(uri,options);
+                        if(mFileSystem.getStatus(uri).getInAlluxioPercentage()!=0) {
+                            hit++;
+//                            LOG.info("hit file "+goal);
+//                        }else{
+//                            LOG.info("un-hit file "+goal);
+                        }
+                        Thread.sleep(interval.get(file).longValue());
+                    } catch (InterruptedException | AlluxioException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                count++;
+            }
+        }
+        LOG.info("hit "+hit+" times\ttime "+ (System.currentTimeMillis()-time) + " ms");
+        return new Pair<>(((double)hit/(double)accessNum),System.currentTimeMillis()-time);
+    }
+
+    Double access(Map<String, Double> pref, List<Double> factor){
+        Map<String, Double> interval = new HashMap<>();
+        for(String file : pref.keySet()) {
+            interval.put(file, new ExponentialDistribution(pref.get(file)).sample()*1000);
+        }
+        LOG.info(interval.toString());
+        double hit = 0;
+        for (int i = 0;i<accessNum;i++){
+            int count = 0, goal = (int)(new Random(System.nanoTime()).nextDouble()*pref.size());
+            for (String file:pref.keySet()) {
+                if(count==goal){
+                    try {
+                        OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
+                        mFileSystem.openFile(new AlluxioURI(file),options);
+                        if(mFileSystem.getStatus(new AlluxioURI(file)).getInAlluxioPercentage()!=0) {
+                            hit+=factor.get(count);
+                        }
+                        Thread.sleep(interval.get(file).longValue());
+                    } catch (InterruptedException | AlluxioException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                count++;
+            }
+        }
+        return hit/accessNum;
     }
 
     /**
@@ -113,13 +179,12 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
      * @return cacheList or null
      */
 
-     ArrayList<String> checkCacheChange(Map<String,Boolean> fileList) {
+     ArrayList<String> checkCacheChange(Map<String,Boolean> fileList, int QUOTA) {
 
         ArrayList<String> cachingList = new ArrayList<>();
         setPrefList(fileList);
-        int QUOTA = 150;
         for(String path: prefList){
-            if (QUOTA >0 && fileList.containsKey(path) && !fileList.get(path)){
+            if (QUOTA >0 && !fileList.get(path)){
                 QUOTA--;
                 cachingList.add(path);
                 fileList.replace(path,true);

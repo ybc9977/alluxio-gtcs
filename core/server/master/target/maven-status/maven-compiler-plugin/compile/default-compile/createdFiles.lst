@@ -4,6 +4,7 @@ alluxio/master/block/DefaultBlockMaster$Metrics$2.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$14.class
 alluxio/master/lineage/LineageMasterClientServiceHandler$1.class
 alluxio/master/metrics/DefaultMetricsMaster.class
+alluxio/master/game/GameSystemMaster.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$6.class
 alluxio/master/meta/DefaultMetaMaster$LogConfigReportHeartbeatExecutor.class
 alluxio/master/meta/AlluxioMasterRestServiceHandler$2.class
@@ -38,7 +39,6 @@ alluxio/master/file/meta/InodeTree$2.class
 alluxio/master/block/DefaultBlockMaster$Metrics$7.class
 alluxio/master/block/DefaultBlockMaster$4.class
 alluxio/master/file/meta/TtlBucketList.class
-alluxio/master/file/GameSystemMaster.class
 alluxio/master/lineage/LineageMasterClientRestServiceHandler.class
 alluxio/master/block/DefaultBlockMaster.class
 alluxio/master/metrics/MetricsStore$1.class
@@ -61,7 +61,7 @@ alluxio/master/file/options/ListStatusOptions.class
 alluxio/master/file/meta/InodeTree$1.class
 alluxio/master/block/DefaultBlockMaster$3.class
 alluxio/master/file/FileSystemMasterClientRestServiceHandler.class
-alluxio/master/file/GameSystemMaster$timer.class
+alluxio/master/game/GameSystemClient.class
 alluxio/master/file/options/GetStatusOptions.class
 alluxio/master/file/meta/InodeDirectoryIdGenerator.class
 alluxio/master/metrics/MetricsMasterClientServiceHandler.class
@@ -215,6 +215,7 @@ alluxio/master/lineage/LineageMasterClientServiceHandler$3.class
 alluxio/master/AlluxioSecondaryMaster.class
 alluxio/master/block/DefaultBlockMaster$5.class
 alluxio/master/lineage/LineageMasterFactory.class
+alluxio/master/game/GameSystemMaster$timer.class
 alluxio/master/file/options/LoadMetadataOptions.class
 alluxio/master/file/DefaultFileSystemMaster.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$8.class
@@ -249,4 +250,3 @@ alluxio/master/file/async/AsyncPersistHandler$Factory.class
 alluxio/master/file/meta/AsyncUfsAbsentPathCache$1.class
 alluxio/master/lineage/checkpoint/CheckpointSchedulingExecutor.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$7.class
-alluxio/master/file/GameSystemClient.class

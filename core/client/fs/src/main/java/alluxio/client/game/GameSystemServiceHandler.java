@@ -1,17 +1,21 @@
-package alluxio.client.file;
+package alluxio.client.game;
 
 import alluxio.AlluxioURI;
 import alluxio.Constants;
 import alluxio.RpcUtils;
 import alluxio.client.ReadType;
+import alluxio.client.file.FileInStream;
 import alluxio.client.file.options.OpenFileOptions;
+import alluxio.collections.Pair;
 import alluxio.thrift.*;
 import com.google.common.base.Preconditions;
+import com.google.common.io.Closer;
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,40 +46,58 @@ public class GameSystemServiceHandler implements
     }
 
     @Override
-    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList)
+    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList, int QUOTA)
             throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
-            ArrayList<String> cachingList= mGameSystemServer.checkCacheChange(fileList);
+            ArrayList<String> cachingList= mGameSystemServer.checkCacheChange(fileList,QUOTA);
             return new CheckCacheChangeTResponse(cachingList);
         });
     }
 
     @Override
-    public GetPrefTResponse getPref(GetPrefTOptions options) throws AlluxioTException, TException {
+    public GetPrefTResponse getPref(GetPrefTOptions options) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<GetPrefTResponse>)
                 ()-> new GetPrefTResponse(mGameSystemServer.getPref()));
     }
 
     @Override
-    public LoadTResponse load(String path) throws AlluxioTException, TException {
+    public LoadTResponse load(String path) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
             AlluxioURI uri = new AlluxioURI(path);
             OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
-            mGameSystemServer.openFile(uri,options);
+            Closer closer = Closer.create();
+            try {
+                FileInStream in = closer.register(mGameSystemServer.openFile(uri, options));
+                byte[] buf = new byte[8 * Constants.MB];
+                while (in.read(buf) != -1) {
+                }
+            } catch (Exception e) {
+                throw closer.rethrow(e);
+            } finally {
+                closer.close();
+            }
             return new LoadTResponse();
         });
     }
 
     @Override
-    public AccessTResponse access(Map<String, Double> prefList) throws AlluxioTException, TException {
+    public AccessTResponse access(Map<String, Double> pref) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessTResponse>)()->{
-            Map<String, Integer> list= mGameSystemServer.accessFile(prefList);
-            return new AccessTResponse(list);
+            Pair pair= mGameSystemServer.accessFile(pref);
+            return new AccessTResponse((double)pair.getFirst(),(long)pair.getSecond());
         });
     }
 
     @Override
-    public ResetTResponse reset(ResetTOptions options) throws AlluxioTException, TException {
+    public AccessFairRideTResponse accessFairRide(Map<String, Double> pref, List<Double> factor) throws AlluxioTException {
+        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessFairRideTResponse>)()->{
+            Double ratio= mGameSystemServer.access(pref,factor);
+            return new AccessFairRideTResponse(ratio);
+        });
+    }
+
+    @Override
+    public ResetTResponse reset(ResetTOptions options) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<ResetTResponse>)()->{
             mGameSystemServer.reset();
             return new ResetTResponse();

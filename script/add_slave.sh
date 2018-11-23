@@ -2,11 +2,11 @@
 
 # $1 is the number of workers while $2 is the number of clients
 
-python3 ~/Downloads/flintrock-master/standalone.py add-slaves gtcs --num-slaves $1
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py/standalone.py add-slaves gtcs --num-slaves $1
 
-python3 ~/Downloads/flintrock-master/standalone.py describe gtcs
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py/standalone.py describe gtcs
 
-read -r k < ~/flintrock.txt
+read -r k < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 i=1
 while read -r line
@@ -35,4 +35,4 @@ do
 
     let "i++"
 
-done < ~/flintrock.txt
+done < $(cd `dirname $0`; cd ..; pwd)/flintrock.txt

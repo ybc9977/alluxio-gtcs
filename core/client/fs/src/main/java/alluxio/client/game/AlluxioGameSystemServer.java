@@ -1,4 +1,4 @@
-package alluxio.client;
+package alluxio.client.game;
 
 import alluxio.Constants;
 import alluxio.ProcessUtils;

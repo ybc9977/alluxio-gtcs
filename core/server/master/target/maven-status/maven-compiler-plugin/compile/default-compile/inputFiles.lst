@@ -6,8 +6,8 @@
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/underfs/MasterUfsManager.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/meta/InodeLockList.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/FileSystemMaster.java
-/Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/GameSystemMaster.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/meta/AlluxioMasterRestServiceHandler.java
+/Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/game/GameSystemClient.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/block/ContainerIdGenerable.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/lineage/meta/LineageIdGenerator.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/DefaultSafeModeManager.java
@@ -62,7 +62,6 @@
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/web/WebInterfaceBrowseServlet.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/block/meta/MasterWorkerInfo.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/ProtobufUtils.java
-/Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/GameSystemClient.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/meta/DefaultMetaMaster.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/lineage/LineageMasterClientRestServiceHandler.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/lineage/LineageMasterFactory.java
@@ -92,6 +91,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/InodePermissionChecker.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/InodeTtlChecker.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/block/BlockMaster.java
+/Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/game/GameSystemMaster.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/options/CompleteFileOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/file/options/CreateDirectoryOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/server/master/src/main/java/alluxio/master/lineage/DefaultLineageMaster.java

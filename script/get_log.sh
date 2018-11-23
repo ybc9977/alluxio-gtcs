@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -r line < ~/flintrock.txt
+read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r master.zip ./logs" < /dev/null
 

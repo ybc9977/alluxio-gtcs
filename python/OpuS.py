@@ -1,4 +1,5 @@
 import sys
+import os
 from VCG_Mech import VCG_Mech
 from Isolated_Allocator import Isolated_Allocator
 from FairRide_allocator import FairRide_allocator
@@ -8,9 +9,10 @@ import math
 
 
 def OpuS():
-    f = open("prefs.txt", 'r')
+    cwd = os.getcwd()
+    f = open(cwd+"prefs.txt", 'r')
     R = float(f.readline())
-    log = open("OpuS_log.txt", 'a')  # append
+    log = open(cwd+"OpuS_log.txt", 'a')  # append
     now = datetime.datetime.now()
     log.write("###################Start: %s ####################\n" % now)
 
@@ -61,10 +63,10 @@ def OpuS():
         log.write("Opus access factor: %s" % access_factor)
         cached_ratio_string = ','.join(str("{:10.4f}".format(e)) for e in cached_ratio)
         access_factor_string = ','.join(str("{:10.4f}".format(e)) for e in access_factor)
-        f=open("ratio_opus.txt",'w')
+        f=open(cwd+"ratio_opus.txt",'w')
         f.write(cached_ratio_string)
         f.close()
-        f=open("factor_opus.txt",'w')
+        f=open(cwd+"factor_opus.txt",'w')
         f.write(access_factor_string)
         f.close()
         print(cached_ratio_string)
