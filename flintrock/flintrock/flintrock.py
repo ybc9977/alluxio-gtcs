@@ -563,7 +563,8 @@ def describe(
             vpc_id=ec2_vpc_id)
     else:
         raise UnsupportedProviderError(provider)
-    cwd = os.getcwd()
+    cwd = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + ".")
+    cwd = os.path.abspath(os.path.dirname(cwd) + os.path.sep + ".")
     if not os.path.exists(cwd+"/flintrock.txt"):
         f = open(cwd+"/flintrock.txt", "w")
         for i in range(clusters.__len__()):

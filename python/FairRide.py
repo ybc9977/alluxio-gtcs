@@ -8,7 +8,7 @@ import math
 
 
 def FairRide():
-    cwd = os.getcwd()
+    cwd = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + ".")
     f = open(cwd+"prefs.txt", 'r')
     R = float(f.readline())
     log = open(cwd+"FairRide_log.txt", 'a')  # append
