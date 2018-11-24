@@ -280,7 +280,7 @@ start_client(){
   echo "Starting client @ $(hostname -f). Logging to ${ALLUXIO_LOGS_DIR}"
   (nohup "${JAVA}" -cp ${CLASSPATH} \
    ${ALLUXIO_CLIENT_JAVA_OPTS} \
-   alluxio.client.AlluxioGameSystemServer > ${ALLUXIO_LOGS_DIR}/client.out 2>&1 ) &
+   alluxio.client.game.AlluxioGameSystemServer > ${ALLUXIO_LOGS_DIR}/client.out 2>&1 ) &
 }
 
 restart_worker() {

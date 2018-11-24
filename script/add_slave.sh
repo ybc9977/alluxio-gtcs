@@ -20,6 +20,8 @@ do
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo" < /dev/null
 
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} 'sudo sed -i s/\$releasever/7/g /etc/yum.repos.d/epel-apache-maven.repo' < /dev/null
+    
+    ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sudo yum -y install python2-pip;sudo yum -y install gcc-c++;sudo pip install numpy==1.14.4;sudo pip install cvxpy==0.4.9" < /dev/null
 
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sudo yum -y install apache-maven;sudo yum -y install git;git clone https://github.com/ybc9977/alluxio-gtcs.git;cd alluxio-gtcs;mvn clean install -DskipTests=true -Dlicense.skip=true -Dcheckstyle.skip -Dmaven.javadoc.skip=true" < /dev/null
 

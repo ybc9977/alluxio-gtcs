@@ -21,6 +21,7 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "git clone https://github.com/ybc9977/alluxio-gtcs.git"
 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo yum -y install python2-pip"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo yum -y install gcc-c++"
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo pip install numpy==1.14.4"
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo pip install cvxpy==0.4.9"
 
