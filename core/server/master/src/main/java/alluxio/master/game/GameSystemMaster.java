@@ -135,7 +135,8 @@ public final class GameSystemMaster {
 
         DataInputStream f = null;
         boolean b = true;
-        while (b){
+        int count = 0;
+        while (b || count == 10000){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/python/ratio_opus.txt"));
                 readAndCache(f, fileSystemMaster);
@@ -143,6 +144,7 @@ public final class GameSystemMaster {
                 b = false;
             } catch (IOException e) {
                 e.printStackTrace();
+                count++;
             }
         }
 
@@ -178,7 +180,8 @@ public final class GameSystemMaster {
 
         DataInputStream f = null;
         boolean b = true;
-        while (b){
+        int count = 0;
+        while (b || count == 10000){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/python/ratio_fairride.txt"));
                 readAndCache(f, fileSystemMaster);
@@ -186,6 +189,7 @@ public final class GameSystemMaster {
                 b = false;
             } catch (IOException e) {
                 e.printStackTrace();
+                count++;
             }
         }
         try {
