@@ -127,6 +127,11 @@ public final class GameSystemMaster {
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
         Runtime.getRuntime().exec(cmdArray);
 
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         DataInputStream f = null;
         boolean b = true;
@@ -164,6 +169,12 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
         Runtime.getRuntime().exec(cmdArray);
+
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         DataInputStream f = null;
         boolean b = true;
