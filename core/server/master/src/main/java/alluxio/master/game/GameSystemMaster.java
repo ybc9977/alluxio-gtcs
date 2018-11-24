@@ -121,7 +121,7 @@ public final class GameSystemMaster {
 
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "/python/OpuS.py");
+        cmd.add(currentDirectory + "alluxio-gtcs/python/OpuS.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -138,7 +138,7 @@ public final class GameSystemMaster {
         int count = 0;
         while (b || count == 10000){
             try {
-                f = new DataInputStream(new FileInputStream(currentDirectory+"/python/ratio_opus.txt"));
+                f = new DataInputStream(new FileInputStream(currentDirectory+"alluxio-gtcs/python/ratio_opus.txt"));
                 readAndCache(f, fileSystemMaster);
                 f.close();
                 b = false;
@@ -166,7 +166,7 @@ public final class GameSystemMaster {
 
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "/python/FairRide.py");
+        cmd.add(currentDirectory + "alluxio-gtcs/python/FairRide.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -183,7 +183,7 @@ public final class GameSystemMaster {
         int count = 0;
         while (b || count == 10000){
             try {
-                f = new DataInputStream(new FileInputStream(currentDirectory+"/python/ratio_fairride.txt"));
+                f = new DataInputStream(new FileInputStream(currentDirectory+"alluxio-gtcs/python/ratio_fairride.txt"));
                 readAndCache(f, fileSystemMaster);
                 f.close();
                 b = false;
@@ -330,7 +330,7 @@ public final class GameSystemMaster {
             i++;
         }
 
-        File userLog = new File(currentDirectory+"/python/prefs.txt");
+        File userLog = new File(currentDirectory+"alluxio-gtcs/python/prefs.txt");
         try {
             FileOutputStream fop = new FileOutputStream(userLog,false);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
@@ -460,7 +460,7 @@ public final class GameSystemMaster {
         }
         double sum1 = 0;
         double sum2 = 0;
-        DataInputStream f = new DataInputStream(new FileInputStream(currentDirectory + "/python/factor_opus.txt"));
+        DataInputStream f = new DataInputStream(new FileInputStream(currentDirectory + "alluxio-gtcs/python/factor_opus.txt"));
         Scanner sc = new Scanner(f);
         String str = sc.nextLine().replaceAll("\\s","");
         String[] values = new String[userList.size()];
@@ -491,7 +491,7 @@ public final class GameSystemMaster {
 
     private void Access_FairRide() throws IOException {
         ArrayList<Double> accessList = new ArrayList<>();
-        DataInputStream f = new DataInputStream(new FileInputStream(currentDirectory + "/python/factor_fairride.txt"));
+        DataInputStream f = new DataInputStream(new FileInputStream(currentDirectory + "alluxio-gtcs/python/factor_fairride.txt"));
         Scanner sc = new Scanner(f);
         for (GameSystemClient client:clientList.values()){
             ArrayList<Double> factorList = new ArrayList<>();
