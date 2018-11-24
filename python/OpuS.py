@@ -10,9 +10,9 @@ import math
 
 def OpuS():
     cwd = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + ".")
-    f = open(cwd+"prefs.txt", 'r')
+    f = open(cwd+"/prefs.txt", 'r')
     R = float(f.readline())
-    log = open(cwd+"OpuS_log.txt", 'a')  # append
+    log = open(cwd+"/OpuS_log.txt", 'a')  # append
     now = datetime.datetime.now()
     log.write("###################Start: %s ####################\n" % now)
 
@@ -63,10 +63,10 @@ def OpuS():
         log.write("Opus access factor: %s" % access_factor)
         cached_ratio_string = ','.join(str("{:10.4f}".format(e)) for e in cached_ratio)
         access_factor_string = ','.join(str("{:10.4f}".format(e)) for e in access_factor)
-        f=open(cwd+"ratio_opus.txt",'w')
+        f=open(cwd+"/ratio_opus.txt",'w')
         f.write(cached_ratio_string)
         f.close()
-        f=open(cwd+"factor_opus.txt",'w')
+        f=open(cwd+"/factor_opus.txt",'w')
         f.write(access_factor_string)
         f.close()
         print(cached_ratio_string)
