@@ -341,7 +341,7 @@ public final class GameSystemMaster {
                     if (k != userPref.get(user).values().size()-1)
                         writer.write(pref.toString() + ", " );
                     else
-                        writer.write(pref.toString());
+                        writer.write(pref.toString() + "\n");
                     k++;
                 }
             }
