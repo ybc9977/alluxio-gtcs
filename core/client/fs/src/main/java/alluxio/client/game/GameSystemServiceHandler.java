@@ -66,7 +66,7 @@ public class GameSystemServiceHandler implements
     public LoadTResponse load(String path) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
             AlluxioURI uri = new AlluxioURI(path);
-            OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
+            OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE).setCacheLocationPolicy(new LocalFirstPolicy());
             if (mGameSystemServer.getStatus(new AlluxioURI(path)).getInAlluxioPercentage() == 100) {
                 // The file has already been fully loaded into Alluxio.
                 System.out.println(path+ " already in Alluxio fully");
