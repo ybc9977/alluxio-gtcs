@@ -5,7 +5,9 @@ import alluxio.Constants;
 import alluxio.RpcUtils;
 import alluxio.client.ReadType;
 import alluxio.client.file.FileInStream;
+import alluxio.client.file.FileSystemContext;
 import alluxio.client.file.options.OpenFileOptions;
+import alluxio.client.file.policy.LocalFirstPolicy;
 import alluxio.collections.Pair;
 import alluxio.thrift.*;
 import com.google.common.base.Preconditions;
@@ -65,6 +67,11 @@ public class GameSystemServiceHandler implements
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<LoadTResponse>)()->{
             AlluxioURI uri = new AlluxioURI(path);
             OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.CACHE_PROMOTE);
+            if (mGameSystemServer.getStatus(new AlluxioURI(path)).getInAlluxioPercentage() == 100) {
+                // The file has already been fully loaded into Alluxio.
+                System.out.println(path+ " already in Alluxio fully");
+                return new LoadTResponse();
+            }
             Closer closer = Closer.create();
             try {
                 FileInStream in = closer.register(mGameSystemServer.openFile(uri, options));
