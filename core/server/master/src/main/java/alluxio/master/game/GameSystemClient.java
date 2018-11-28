@@ -175,8 +175,8 @@ public class GameSystemClient extends AbstractClient {
     }
 
 
-    synchronized void cacheIt(Map<String, Boolean> fileList, Map<String, Boolean> cacheList, FileSystemMaster fsMaster){
-        for (String file:fileList.keySet()){
+    synchronized void cacheIt(ArrayList<String> myFileList, Map<String, Boolean> fileList, Map<String, Boolean> cacheList, FileSystemMaster fsMaster){
+        for (String file:myFileList){
             AlluxioURI uri = new AlluxioURI(file);
             if(fileList.get(file)!=cacheList.get(file)){
                 if(fileList.get(file)){

@@ -29,6 +29,8 @@ do
     
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cp ~/alluxio-gtcs/conf/alluxio-env.sh.template ~/alluxio-gtcs/conf/alluxio-env.sh" < /dev/null
 
+    ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "echo 'alluxio.worker.memory.size=8GB' >> ~/alluxio-gtcs/conf/alluxio-site.properties" < /dev/null
+
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "echo 'alluxio.master.hostname=${k:9}' >> ~/alluxio-gtcs/conf/alluxio-site.properties" < /dev/null
 
     ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "echo 'alluxio.underfs.address=hdfs://${k:9}:9000'>> ~/alluxio-gtcs/conf/alluxio-site.properties" < /dev/null

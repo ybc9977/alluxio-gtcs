@@ -298,9 +298,21 @@ public final class GameSystemMaster {
                     for (GameSystemClient clt : clientList.values()){
                         clt.reset();
                     }
-                    Pair<String,Boolean> U = userList.get((int) Math.floor(Math.random()*userList.size()));
-                    GameSystemClient C = clientList.get(U.getFirst());
-                    C.cacheIt(fileList,cacheList,fileSystemMaster);
+                    ArrayList<ArrayList<String>> userCacheList = new ArrayList<>();
+                    ArrayList<String> orderedFileList = new ArrayList<>(fileList.keySet());
+                    int step = fileList.size()/clientList.size();
+                    for (int i = 0; i < clientList.size();i++){
+                        ArrayList<String> list = new ArrayList<>();
+                        for (int j = i * step; j< i *(step+1);j++){
+                            list.add(orderedFileList.get(j));
+                        }
+                        userCacheList.add(list);
+                    }
+                    int i = 0;
+                    for (GameSystemClient C: clientList.values()){
+                        C.cacheIt(userCacheList.get(i),fileList,cacheList,fileSystemMaster);
+                        i++;
+                    }
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
                     Efficiency(QUOTA);
