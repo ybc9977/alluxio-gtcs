@@ -295,23 +295,9 @@ public final class GameSystemMaster {
                 }
                 if (count == userList.size()){
                     LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
-                    for (GameSystemClient clt : clientList.values()){
-                        clt.reset();
-                    }
-                    ArrayList<ArrayList<String>> userCacheList = new ArrayList<>();
-                    ArrayList<String> orderedFileList = new ArrayList<>(fileList.keySet());
-                    int step = fileList.size()/clientList.size();
-                    for (int i = 0; i < clientList.size();i++){
-                        ArrayList<String> list = new ArrayList<>();
-                        for (int j = i * step; j< i *(step+1);j++){
-                            list.add(orderedFileList.get(j));
-                        }
-                        userCacheList.add(list);
-                    }
-                    int i = 0;
-                    for (GameSystemClient C: clientList.values()){
-                        C.cacheIt(userCacheList.get(i),fileList,cacheList,fileSystemMaster);
-                        i++;
+                    for (String U: clientList.keySet()){
+                        clientList.get(U).cacheIt(cacheMap.get(U),fileList,cacheList,fileSystemMaster);
+                        clientList.get(U).reset();
                     }
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
