@@ -205,23 +205,21 @@ public class GameSystemClient extends AbstractClient {
 //        }
     }
 
-    synchronized void cacheIt(Map<String, Double> cacheList, FileSystemMaster fsMaster){
-        for (String file: cacheList.keySet()){
-            AlluxioURI uri = new AlluxioURI(file);
-            if(cacheList.get(file)>0){
-                try {
-                    retryRPC(() -> mClient.load(file), "Load");
-                    LOG.info("Load Process Complete, uri: " + uri.getPath());
-                } catch (AlluxioStatusException e) {
-                    e.printStackTrace();
-                }
-            }else{
-                try {
-                    fsMaster.free(uri,FreeOptions.defaults());
-                    LOG.info("Free Process Complete, uri: " + uri.getPath());
-                } catch (IOException | AccessControlException | FileDoesNotExistException | InvalidPathException | UnexpectedAlluxioException e) {
-                    e.printStackTrace();
-                }
+    synchronized void cacheIt(String file,Map<String, Double> cacheList, FileSystemMaster fsMaster){
+        AlluxioURI uri = new AlluxioURI(file);
+        if(cacheList.get(file)>0){
+            try {
+                retryRPC(() -> mClient.load(file), "Load");
+                LOG.info("Load Process Complete, uri: " + uri.getPath());
+            } catch (AlluxioStatusException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                fsMaster.free(uri,FreeOptions.defaults());
+                LOG.info("Free Process Complete, uri: " + uri.getPath());
+            } catch (IOException | AccessControlException | FileDoesNotExistException | InvalidPathException | UnexpectedAlluxioException e) {
+                e.printStackTrace();
             }
         }
     }

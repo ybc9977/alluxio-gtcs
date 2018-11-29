@@ -206,37 +206,41 @@ public final class GameSystemMaster {
     }
 
     private static void readAndCache(DataInputStream f, FileSystemMaster fileSystemMaster) throws IOException {
-        for (GameSystemClient client : clientList.values()) {
-            Map<String, Double> cacheList = new HashMap<>();
-            ArrayList<Double> ratioList = new ArrayList<>();
-            Scanner sc = new Scanner(f);
-            String str = sc.nextLine().replaceAll("\\s","");
-            String[] values = new String[fileList.size()];
-            int i = 0;
-            for (int j=0;j<fileList.size();j++){
-                values[j]="";
-            }
-            for (char c: str.toCharArray()){
-                if(c==',') {
-                    i++;
-                }else{
-                    values[i]+=c;
-                }
-            }
-            LOG.info(Arrays.toString(values));
-            for (String s:values){
-                if(!s.isEmpty()){
-                    Double d = Double.parseDouble(s);
-                    ratioList.add(d);
-                }
-            }
-            for (int j = 0; j < clientList.size(); j++) {
-                for (String file : prefFileList.get(j)) {
-                    cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
-                }
-            }
-            client.cacheIt(cacheList, fileSystemMaster);
+        Map<String, Double> cacheList = new HashMap<>();
+        ArrayList<Double> ratioList = new ArrayList<>();
+        Scanner sc = new Scanner(f);
+        String str = sc.nextLine().replaceAll("\\s","");
+        String[] values = new String[fileList.size()];
+        int i = 0;
+        for (int j=0;j<fileList.size();j++){
+            values[j]="";
         }
+        for (char c: str.toCharArray()){
+            if(c==',') {
+                i++;
+            }else{
+                values[i]+=c;
+            }
+        }
+        LOG.info(Arrays.toString(values));
+        for (String s:values){
+            if(!s.isEmpty()){
+                Double d = Double.parseDouble(s);
+                ratioList.add(d);
+            }
+        }
+        for (int j = 0; j < clientList.size(); j++) {
+            for (String file : prefFileList.get(j)) {
+                cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
+            }
+        }
+        for (String file:cacheList.keySet()){
+            String[] keys = clientList.keySet().toArray(new String[0]);
+            Random random = new Random();
+            String randomKey = keys[random.nextInt(keys.length)];
+            clientList.get(randomKey).cacheIt(file,cacheList,fileSystemMaster);
+        }
+
     }
 
     /** the main thread of game theoretical communication, run every 20 sec */
