@@ -47,19 +47,19 @@ def PE_allocator(PMatrixUnified, size_set, R): #(PMatrix, R):
     # print normalized_size
     constraints = [0 <= x, x <= 1, sum_entries(reshape(normalized_size, 1, m)*x) <= 1] #
     prob = Problem(objective, constraints)
-    try:
-        prob.solve()
-        ##print "Optimal value", result
+    #try:
+    prob.solve(solver=SCS)
+    ##print "Optimal value", result
 
-        #print "Preference Matrix"
-        #print PMatrix
+    #print "Preference Matrix"
+    #print PMatrix
 
-        #print "Optimal var"
-        #print x.value
-        if prob.status == 'optimal':
-            return x.value
-        else:
-            return False
-    except:
+    #print "Optimal var"
+    #print x.value
+    if prob.status == 'optimal' or prob.status == 'optimal_inaccurate':
+        return x.value
+    else:
         return False
+    #except:
+        #return False
 

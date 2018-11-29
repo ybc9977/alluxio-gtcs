@@ -26,6 +26,8 @@ def VCG_Mech(PMatrix, size_set, R):
     for index_n in range(0, n):
         PMatrixUnified[index_n] = PMatrix[index_n] / (PMatrix[index_n].sum(dtype='float'))
     PE_allocation = numpy.asarray(PE_allocator(PMatrixUnified, size_set, R)).reshape(-1)
+    PE_allocation[PE_allocation<0]=0
+    PE_allocation = PE_allocation / sum(PE_allocation) * R
     if PE_allocation.any() == False:
         return False
     utilities = numpy.asarray(PMatrixUnified.dot(PE_allocation))

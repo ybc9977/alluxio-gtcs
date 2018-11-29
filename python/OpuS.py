@@ -42,10 +42,10 @@ def OpuS():
     # else: # either OpuS or OpuS_Isolated
     opus_success_flag = True
     result = False
-    try:
-        result = VCG_Mech(PMatrix, file_size_set, R)
-    except:
-        opus_success_flag = False
+    #try:
+    result = VCG_Mech(PMatrix, file_size_set, R)
+    #except:
+        #opus_success_flag = False
     if result == False:
          opus_success_flag = False
     if opus_success_flag == False:
@@ -68,6 +68,7 @@ def OpuS():
         f.write(access_factor_string)
         f.close()
         print(cached_ratio_string)
+        print("\n")
         print(access_factor_string)
 
     log.write("###################End########################################\n\n\n")
