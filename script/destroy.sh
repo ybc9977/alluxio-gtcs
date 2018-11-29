@@ -1,1 +1,1 @@
-python3 ~/Downloads/flintrock-master/standalone.py destroy gtcs 
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py destroy gtcs 

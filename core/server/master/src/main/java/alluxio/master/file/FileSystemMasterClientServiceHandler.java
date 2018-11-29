@@ -31,6 +31,7 @@ import alluxio.master.file.options.LoadMetadataOptions;
 import alluxio.master.file.options.MountOptions;
 import alluxio.master.file.options.RenameOptions;
 import alluxio.master.file.options.SetAttributeOptions;
+import alluxio.master.game.GameSystemMaster;
 import alluxio.thrift.*;
 import alluxio.underfs.UnderFileSystem;
 import alluxio.wire.MountPointInfo;

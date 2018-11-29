@@ -2,7 +2,6 @@ alluxio/client/file/options/ExistsOptions.class
 alluxio/client/lineage/LineageMasterClient.class
 alluxio/client/lineage/options/GetLineageInfoListOptions.class
 alluxio/client/file/options/CloseUfsFileOptions.class
-alluxio/client/GameSystemServerProcess.class
 alluxio/client/file/policy/FileWriteLocationPolicy.class
 alluxio/client/lineage/DummyFileOutputStream.class
 alluxio/client/BoundedStream.class
@@ -30,9 +29,11 @@ alluxio/client/block/stream/LocalFilePacketWriter$2.class
 alluxio/client/file/FileSystem$Factory.class
 alluxio/client/file/FileSystemContext$Metrics.class
 alluxio/client/file/options/UnmountOptions.class
+alluxio/client/game/GameSystemServer.class
 alluxio/client/block/policy/BlockLocationPolicy.class
 alluxio/client/file/options/GetStatusOptions.class
 alluxio/client/block/stream/LocalFilePacketReader$Factory.class
+alluxio/client/game/GameSystemServerProcess$1.class
 alluxio/client/file/options/OutStreamOptions.class
 alluxio/client/file/FileSystemUtils$1.class
 alluxio/client/block/options/GetWorkerReportOptions$WorkerRange.class
@@ -59,11 +60,11 @@ alluxio/client/block/stream/LocalFilePacketWriter.class
 alluxio/client/block/stream/NettyPacketWriter$WriteListener.class
 alluxio/client/file/FileSystemMasterClient.class
 alluxio/client/block/AlluxioBlockStore.class
-alluxio/client/GameSystemServerProcess$1.class
 alluxio/client/block/stream/UnderFileSystemFileOutStream.class
 alluxio/client/MetaMasterClient.class
 alluxio/client/RetryHandlingMetaMasterClient.class
 alluxio/client/block/stream/NettyPacketReader$PacketReadHandler.class
+alluxio/client/game/GameSystemServerProcess.class
 alluxio/client/file/FileSystemUtils.class
 alluxio/client/block/BlockWorkerInfo.class
 alluxio/client/lineage/LineageMasterClient$5.class
@@ -71,7 +72,6 @@ alluxio/client/lineage/LineageMasterClient$2.class
 alluxio/client/file/FileSystemMasterClientPool.class
 alluxio/client/file/FileOutStream.class
 alluxio/client/lineage/options/DeleteLineageOptions.class
-alluxio/client/file/GameSystemServiceHandler.class
 alluxio/client/block/stream/BlockInStream.class
 alluxio/client/block/stream/PacketReader$Factory.class
 alluxio/client/AlluxioStorageType.class
@@ -84,6 +84,7 @@ alluxio/client/file/policy/MostAvailableFirstPolicy.class
 alluxio/client/file/policy/LocalFirstAvoidEvictionPolicy.class
 alluxio/client/file/RetryHandlingFileSystemMasterClient.class
 alluxio/client/block/policy/options/CreateOptions.class
+alluxio/client/game/GameSystemServiceHandler.class
 alluxio/client/block/policy/options/GetWorkerOptions.class
 alluxio/client/lineage/LineageMasterClientPool.class
 alluxio/client/block/options/GetWorkerReportOptions.class
@@ -97,7 +98,6 @@ alluxio/client/metrics/MetricsMasterClient.class
 alluxio/client/file/FileSystemMasterClient$Factory.class
 alluxio/client/block/stream/NettyPacketReader$Factory.class
 alluxio/client/metrics/ClientMasterSync.class
-alluxio/client/file/GameSystemServer.class
 alluxio/client/file/options/InStreamOptions.class
 alluxio/client/file/FileSystem.class
 alluxio/client/AbstractOutStream.class
@@ -107,7 +107,6 @@ alluxio/client/file/options/CompleteUfsFileOptions.class
 alluxio/client/block/RetryHandlingBlockMasterClient.class
 alluxio/client/file/policy/LocalFirstPolicy.class
 alluxio/client/file/FileSystemContext$MetricsMasterSyncShutDownHook.class
-alluxio/client/AlluxioGameSystemServer.class
 alluxio/client/lineage/options/CreateLineageOptions.class
 alluxio/client/file/FileSystemContext.class
 alluxio/client/file/options/RenameOptions.class
@@ -119,5 +118,6 @@ alluxio/client/lineage/LineageMasterClient$3.class
 alluxio/client/lineage/LineageClient.class
 alluxio/client/block/BlockMasterClientPool.class
 alluxio/client/block/stream/NettyPacketWriter.class
+alluxio/client/game/AlluxioGameSystemServer.class
 alluxio/client/block/stream/NettyPacketWriter$EofOrCancelListener.class
 alluxio/client/file/options/UpdateUfsModeOptions.class

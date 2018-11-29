@@ -38,7 +38,8 @@ import org.slf4j.LoggerFactory;
 public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse, AccessTResponse._Fields>, java.io.Serializable, Cloneable, Comparable<AccessTResponse> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("AccessTResponse");
 
-  private static final org.apache.thrift.protocol.TField ACCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("access", org.apache.thrift.protocol.TType.MAP, (short)1);
+  private static final org.apache.thrift.protocol.TField RATIO_FIELD_DESC = new org.apache.thrift.protocol.TField("ratio", org.apache.thrift.protocol.TType.DOUBLE, (short)1);
+  private static final org.apache.thrift.protocol.TField TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("time", org.apache.thrift.protocol.TType.I64, (short)2);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -46,11 +47,13 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
     schemes.put(TupleScheme.class, new AccessTResponseTupleSchemeFactory());
   }
 
-  private Map<String,Integer> access; // required
+  private double ratio; // required
+  private long time; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    ACCESS((short)1, "access");
+    RATIO((short)1, "ratio"),
+    TIME((short)2, "time");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -65,8 +68,10 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // ACCESS
-          return ACCESS;
+        case 1: // RATIO
+          return RATIO;
+        case 2: // TIME
+          return TIME;
         default:
           return null;
       }
@@ -107,13 +112,16 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
   }
 
   // isset id assignments
+  private static final int __RATIO_ISSET_ID = 0;
+  private static final int __TIME_ISSET_ID = 1;
+  private byte __isset_bitfield = 0;
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.ACCESS, new org.apache.thrift.meta_data.FieldMetaData("access", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
-            new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
-            new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32))));
+    tmpMap.put(_Fields.RATIO, new org.apache.thrift.meta_data.FieldMetaData("ratio", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
+    tmpMap.put(_Fields.TIME, new org.apache.thrift.meta_data.FieldMetaData("time", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(AccessTResponse.class, metaDataMap);
   }
@@ -122,20 +130,23 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
   }
 
   public AccessTResponse(
-    Map<String,Integer> access)
+    double ratio,
+    long time)
   {
     this();
-    this.access = access;
+    this.ratio = ratio;
+    setRatioIsSet(true);
+    this.time = time;
+    setTimeIsSet(true);
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
   public AccessTResponse(AccessTResponse other) {
-    if (other.isSetAccess()) {
-      Map<String,Integer> __this__access = new HashMap<String,Integer>(other.access);
-      this.access = __this__access;
-    }
+    __isset_bitfield = other.__isset_bitfield;
+    this.ratio = other.ratio;
+    this.time = other.time;
   }
 
   public AccessTResponse deepCopy() {
@@ -144,51 +155,73 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
 
   @Override
   public void clear() {
-    this.access = null;
+    setRatioIsSet(false);
+    this.ratio = 0.0;
+    setTimeIsSet(false);
+    this.time = 0;
   }
 
-  public int getAccessSize() {
-    return (this.access == null) ? 0 : this.access.size();
+  public double getRatio() {
+    return this.ratio;
   }
 
-  public void putToAccess(String key, int val) {
-    if (this.access == null) {
-      this.access = new HashMap<String,Integer>();
-    }
-    this.access.put(key, val);
-  }
-
-  public Map<String,Integer> getAccess() {
-    return this.access;
-  }
-
-  public AccessTResponse setAccess(Map<String,Integer> access) {
-    this.access = access;
+  public AccessTResponse setRatio(double ratio) {
+    this.ratio = ratio;
+    setRatioIsSet(true);
     return this;
   }
 
-  public void unsetAccess() {
-    this.access = null;
+  public void unsetRatio() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __RATIO_ISSET_ID);
   }
 
-  /** Returns true if field access is set (has been assigned a value) and false otherwise */
-  public boolean isSetAccess() {
-    return this.access != null;
+  /** Returns true if field ratio is set (has been assigned a value) and false otherwise */
+  public boolean isSetRatio() {
+    return EncodingUtils.testBit(__isset_bitfield, __RATIO_ISSET_ID);
   }
 
-  public void setAccessIsSet(boolean value) {
-    if (!value) {
-      this.access = null;
-    }
+  public void setRatioIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __RATIO_ISSET_ID, value);
+  }
+
+  public long getTime() {
+    return this.time;
+  }
+
+  public AccessTResponse setTime(long time) {
+    this.time = time;
+    setTimeIsSet(true);
+    return this;
+  }
+
+  public void unsetTime() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __TIME_ISSET_ID);
+  }
+
+  /** Returns true if field time is set (has been assigned a value) and false otherwise */
+  public boolean isSetTime() {
+    return EncodingUtils.testBit(__isset_bitfield, __TIME_ISSET_ID);
+  }
+
+  public void setTimeIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __TIME_ISSET_ID, value);
   }
 
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
-    case ACCESS:
+    case RATIO:
       if (value == null) {
-        unsetAccess();
+        unsetRatio();
       } else {
-        setAccess((Map<String,Integer>)value);
+        setRatio((Double)value);
+      }
+      break;
+
+    case TIME:
+      if (value == null) {
+        unsetTime();
+      } else {
+        setTime((Long)value);
       }
       break;
 
@@ -197,8 +230,11 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
 
   public Object getFieldValue(_Fields field) {
     switch (field) {
-    case ACCESS:
-      return getAccess();
+    case RATIO:
+      return getRatio();
+
+    case TIME:
+      return getTime();
 
     }
     throw new IllegalStateException();
@@ -211,8 +247,10 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
     }
 
     switch (field) {
-    case ACCESS:
-      return isSetAccess();
+    case RATIO:
+      return isSetRatio();
+    case TIME:
+      return isSetTime();
     }
     throw new IllegalStateException();
   }
@@ -230,12 +268,21 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
     if (that == null)
       return false;
 
-    boolean this_present_access = true && this.isSetAccess();
-    boolean that_present_access = true && that.isSetAccess();
-    if (this_present_access || that_present_access) {
-      if (!(this_present_access && that_present_access))
+    boolean this_present_ratio = true;
+    boolean that_present_ratio = true;
+    if (this_present_ratio || that_present_ratio) {
+      if (!(this_present_ratio && that_present_ratio))
         return false;
-      if (!this.access.equals(that.access))
+      if (this.ratio != that.ratio)
+        return false;
+    }
+
+    boolean this_present_time = true;
+    boolean that_present_time = true;
+    if (this_present_time || that_present_time) {
+      if (!(this_present_time && that_present_time))
+        return false;
+      if (this.time != that.time)
         return false;
     }
 
@@ -246,10 +293,15 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
   public int hashCode() {
     List<Object> list = new ArrayList<Object>();
 
-    boolean present_access = true && (isSetAccess());
-    list.add(present_access);
-    if (present_access)
-      list.add(access);
+    boolean present_ratio = true;
+    list.add(present_ratio);
+    if (present_ratio)
+      list.add(ratio);
+
+    boolean present_time = true;
+    list.add(present_time);
+    if (present_time)
+      list.add(time);
 
     return list.hashCode();
   }
@@ -262,12 +314,22 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
 
     int lastComparison = 0;
 
-    lastComparison = Boolean.valueOf(isSetAccess()).compareTo(other.isSetAccess());
+    lastComparison = Boolean.valueOf(isSetRatio()).compareTo(other.isSetRatio());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetAccess()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.access, other.access);
+    if (isSetRatio()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ratio, other.ratio);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetTime()).compareTo(other.isSetTime());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetTime()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.time, other.time);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -292,12 +354,12 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
     StringBuilder sb = new StringBuilder("AccessTResponse(");
     boolean first = true;
 
-    sb.append("access:");
-    if (this.access == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.access);
-    }
+    sb.append("ratio:");
+    sb.append(this.ratio);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("time:");
+    sb.append(this.time);
     first = false;
     sb.append(")");
     return sb.toString();
@@ -318,6 +380,8 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
 
   private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
+      // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+      __isset_bitfield = 0;
       read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
     } catch (org.apache.thrift.TException te) {
       throw new java.io.IOException(te);
@@ -342,22 +406,18 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
           break;
         }
         switch (schemeField.id) {
-          case 1: // ACCESS
-            if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
-              {
-                org.apache.thrift.protocol.TMap _map18 = iprot.readMapBegin();
-                struct.access = new HashMap<String,Integer>(2*_map18.size);
-                String _key19;
-                int _val20;
-                for (int _i21 = 0; _i21 < _map18.size; ++_i21)
-                {
-                  _key19 = iprot.readString();
-                  _val20 = iprot.readI32();
-                  struct.access.put(_key19, _val20);
-                }
-                iprot.readMapEnd();
-              }
-              struct.setAccessIsSet(true);
+          case 1: // RATIO
+            if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
+              struct.ratio = iprot.readDouble();
+              struct.setRatioIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 2: // TIME
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.time = iprot.readI64();
+              struct.setTimeIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -377,19 +437,12 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.access != null) {
-        oprot.writeFieldBegin(ACCESS_FIELD_DESC);
-        {
-          oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.I32, struct.access.size()));
-          for (Map.Entry<String, Integer> _iter22 : struct.access.entrySet())
-          {
-            oprot.writeString(_iter22.getKey());
-            oprot.writeI32(_iter22.getValue());
-          }
-          oprot.writeMapEnd();
-        }
-        oprot.writeFieldEnd();
-      }
+      oprot.writeFieldBegin(RATIO_FIELD_DESC);
+      oprot.writeDouble(struct.ratio);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(TIME_FIELD_DESC);
+      oprot.writeI64(struct.time);
+      oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -408,40 +461,32 @@ public class AccessTResponse implements org.apache.thrift.TBase<AccessTResponse,
     public void write(org.apache.thrift.protocol.TProtocol prot, AccessTResponse struct) throws org.apache.thrift.TException {
       TTupleProtocol oprot = (TTupleProtocol) prot;
       BitSet optionals = new BitSet();
-      if (struct.isSetAccess()) {
+      if (struct.isSetRatio()) {
         optionals.set(0);
       }
-      oprot.writeBitSet(optionals, 1);
-      if (struct.isSetAccess()) {
-        {
-          oprot.writeI32(struct.access.size());
-          for (Map.Entry<String, Integer> _iter23 : struct.access.entrySet())
-          {
-            oprot.writeString(_iter23.getKey());
-            oprot.writeI32(_iter23.getValue());
-          }
-        }
+      if (struct.isSetTime()) {
+        optionals.set(1);
+      }
+      oprot.writeBitSet(optionals, 2);
+      if (struct.isSetRatio()) {
+        oprot.writeDouble(struct.ratio);
+      }
+      if (struct.isSetTime()) {
+        oprot.writeI64(struct.time);
       }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, AccessTResponse struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(1);
+      BitSet incoming = iprot.readBitSet(2);
       if (incoming.get(0)) {
-        {
-          org.apache.thrift.protocol.TMap _map24 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.I32, iprot.readI32());
-          struct.access = new HashMap<String,Integer>(2*_map24.size);
-          String _key25;
-          int _val26;
-          for (int _i27 = 0; _i27 < _map24.size; ++_i27)
-          {
-            _key25 = iprot.readString();
-            _val26 = iprot.readI32();
-            struct.access.put(_key25, _val26);
-          }
-        }
-        struct.setAccessIsSet(true);
+        struct.ratio = iprot.readDouble();
+        struct.setRatioIsSet(true);
+      }
+      if (incoming.get(1)) {
+        struct.time = iprot.readI64();
+        struct.setTimeIsSet(true);
       }
     }
   }

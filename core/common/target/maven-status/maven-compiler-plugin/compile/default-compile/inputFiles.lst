@@ -13,6 +13,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/CreateUfsFileTOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/UnlockBlockTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/exception/FailedToCheckpointException.java
+/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/AccessFairRideTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/CommandType.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/MasterNetAddress.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/resource/DynamicResourcePool.java

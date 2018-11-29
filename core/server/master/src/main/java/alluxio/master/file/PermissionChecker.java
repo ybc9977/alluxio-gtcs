@@ -47,7 +47,7 @@ public interface PermissionChecker {
       throws AccessControlException;
 
   /**
-   * Gets the permission to access inodePath for the current client user.
+   * Gets the permission to experimental_access inodePath for the current client user.
    *
    * @param inodePath the inode path
    * @return the permission

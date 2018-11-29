@@ -956,7 +956,7 @@ public final class PermissionCheckTest {
 
   private String toExceptionMessage(String user, Mode.Bits bits, String path, String inodeName) {
     StringBuilder stringBuilder =
-        new StringBuilder().append("user=").append(user).append(", ").append("access=").append(bits)
+        new StringBuilder().append("user=").append(user).append(", ").append("experimental_access=").append(bits)
             .append(", ").append("path=").append(path).append(": ").append("failed at ")
             .append(inodeName);
     return stringBuilder.toString();

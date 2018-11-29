@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-read -r line < ~/flintrock.txt
+read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r master.zip ./logs" < /dev/null
 
-scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/master.zip ~/Desktop/Data/
+scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/master.zip ~/Desktop/
 
 # ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r 2.zip ./conf" < /dev/null
 

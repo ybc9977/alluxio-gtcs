@@ -15,8 +15,14 @@ struct GetPrefTOptions{
 struct LoadTResponse{
 }
 struct AccessTResponse{
-        1: map<string,i32> access
+        1: double ratio
+        2: i64 time
 }
+
+struct AccessFairRideTResponse{
+        1: double ratio
+}
+
 struct ResetTOptions{
 }
 struct ResetTResponse{
@@ -27,6 +33,7 @@ service GameSystemCacheService extends common.AlluxioService {
 
     CheckCacheChangeTResponse checkCacheChange(
         1: map<string,bool> fileList
+        2: i32 QUOTA
     )
     throws (1: exception.AlluxioTException e)
 
@@ -44,6 +51,11 @@ service GameSystemCacheService extends common.AlluxioService {
         1: map<string,double> prefList
     )
     throws (1: exception.AlluxioTException e)
+
+    AccessFairRideTResponse accessFairRide(
+        1: map<string,double> prefList
+        2: list<double> factor
+    )
 
     ResetTResponse reset(
         1: ResetTOptions options

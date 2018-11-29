@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+install:
+  - "pip install -r requirements/developer.pip"
+script:
+  - "pytest ./tests/test_static.py"
+  - "pytest ./tests/test_flintrock.py"
+  - "pytest ./tests/test_core.py"
+  - "pip install -r requirements/maintainer.pip"
+  - "pytest ./tests/test_pyinstaller_packaging.py"
+addons:
+  artifacts:
+    paths:
+      - '$(ls -1 dist/*.zip | tr "\n" ":")'
+  s3_region: "us-east-1"
+notifications:
+  email: false

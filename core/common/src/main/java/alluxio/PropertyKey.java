@@ -285,6 +285,11 @@ public final class PropertyKey implements Comparable<PropertyKey> {
           .setIgnoredSiteProperty(true)
           .setConsistencyCheckLevel(ConsistencyCheckLevel.WARN)
           .build();
+  public static final PropertyKey MODE =
+          new Builder(Name.MODE)
+                  .setDefaultValue("OpuS")
+                  .setDescription("Alluxio running mode selection.")
+                  .build();
   public static final PropertyKey DEBUG =
       new Builder(Name.DEBUG)
           .setDefaultValue(false)
@@ -3064,6 +3069,7 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   @ThreadSafe
   public static final class Name {
     public static final String CONF_DIR = "alluxio.conf.dir";
+    public static final String MODE = "alluxio.mode";
     public static final String DEBUG = "alluxio.debug";
     public static final String EXTENSIONS_DIR = "alluxio.extensions.dir";
     public static final String HOME = "alluxio.home";

@@ -1,3 +1,4 @@
+import os
 import sys
 from Isolated_Allocator import Isolated_Allocator
 from FairRide_allocator import FairRide_allocator
@@ -7,9 +8,10 @@ import math
 
 
 def FairRide():
-    f = open("prefs.txt", 'r')
+    cwd = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + ".")
+    f = open(cwd+"/prefs.txt", 'r')
     R = float(f.readline())
-    log = open("FairRide_log.txt", 'a')  # append
+    log = open(cwd+"/FairRide_log.txt", 'a')  # append
     now = datetime.datetime.now()
     log.write("###################Start: %s ####################\n" % now)
 
@@ -40,11 +42,11 @@ def FairRide():
     log.write("FairRide access factor: %s" % AccessFactorMatrix)
 
     cachedFractionString = ','.join(str("{:10.4f}".format(e)) for e in cachedFractions)
-    f=open("ratio_fairride.txt",'w')
+    f=open(cwd+"/ratio_fairride.txt",'w')
     f.write(cachedFractionString)
     f.close()
 
-    f=open("factor_fairride.txt",'w')
+    f=open(cwd+"/factor_fairride.txt",'w')
     for user_index in range(0,user_number):
         AccessFactorString = ','.join(str("{:10.4f}".format(e)) for e in AccessFactorMatrix[user_index, :])
         f.write("%s\n" % AccessFactorString)
