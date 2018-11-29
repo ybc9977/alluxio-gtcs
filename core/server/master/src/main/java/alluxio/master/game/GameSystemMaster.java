@@ -360,12 +360,21 @@ public final class GameSystemMaster {
             LOG.info("Start OpuS");
 
             freeAll();
-            LOG.info("Start FairRide");
             FairRideComparison();
+            LOG.info("Start FairRide");
+
+            freeAll();
+            for (String file:fileList.keySet()){
+                fileList.replace(file,false);
+            }
+            for (String file:cacheList.keySet()){
+                cacheList.replace(file,false);
+            }
         } catch (FileDoesNotExistException | InvalidPathException |
                 UnexpectedAlluxioException | AccessControlException | IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private void HitRatio() throws AlluxioStatusException {
