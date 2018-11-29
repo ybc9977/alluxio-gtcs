@@ -332,7 +332,7 @@ public final class GameSystemMaster {
         try {
             FileOutputStream fop = new FileOutputStream(userLog,false);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
-            writer.write(String.valueOf(QUOTA)+'\n');
+            writer.write(String.valueOf(QUOTA*clientList.size())+'\n');
             for (String user: userPref.keySet()){
                 int k = 0;
                 for (Double pref : userPref.get(user).values()){
