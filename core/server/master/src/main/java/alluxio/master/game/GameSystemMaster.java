@@ -251,7 +251,7 @@ public final class GameSystemMaster {
         String[] keys = clientList.keySet().toArray(new String[0]);
         for (String file : cList){
             clientList.get(keys[i]).cacheIt(file,cacheList,fileSystemMaster);
-            if (j%(Math.ceil((double)cList.size()/clientList.size()))!=0 && j!=0){
+            if (j%(Math.ceil((double)cList.size()/(double)clientList.size()))!=0 && j!=0){
                 i++;
             }
             j++;
