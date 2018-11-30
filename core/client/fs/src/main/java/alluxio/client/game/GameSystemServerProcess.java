@@ -25,6 +25,7 @@ import org.apache.thrift.transport.TTransportFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Map;
@@ -72,7 +73,11 @@ public class GameSystemServerProcess implements Process {
 
         mUserId = context.mAppId.substring(4);
 
-        mGameSystemServer =  new GameSystemServer(context,mUserId,mFileSystem);
+        try {
+            mGameSystemServer =  new GameSystemServer(context,mUserId,mFileSystem);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         try {
             mRegistry = new Registry<>();

@@ -21,6 +21,7 @@ struct AccessTResponse{
 
 struct AccessFairRideTResponse{
         1: double ratio
+        2: i64 time
 }
 
 struct ResetTOptions{
@@ -49,6 +50,7 @@ service GameSystemCacheService extends common.AlluxioService {
 
     AccessTResponse access(
         1: map<string,double> prefList
+        2: string mode
     )
     throws (1: exception.AlluxioTException e)
 

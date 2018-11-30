@@ -45,7 +45,7 @@ public class GameSystemCacheService {
 
     public LoadTResponse load(String path) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
-    public AccessTResponse access(Map<String,Double> prefList) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
+    public AccessTResponse access(Map<String,Double> prefList, String mode) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
     public AccessFairRideTResponse accessFairRide(Map<String,Double> prefList, List<Double> factor) throws org.apache.thrift.TException;
 
@@ -61,7 +61,7 @@ public class GameSystemCacheService {
 
     public void load(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void access(Map<String,Double> prefList, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void access(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void accessFairRide(Map<String,Double> prefList, List<Double> factor, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
@@ -168,16 +168,17 @@ public class GameSystemCacheService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "load failed: unknown result");
     }
 
-    public AccessTResponse access(Map<String,Double> prefList) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    public AccessTResponse access(Map<String,Double> prefList, String mode) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
     {
-      send_access(prefList);
+      send_access(prefList, mode);
       return recv_access();
     }
 
-    public void send_access(Map<String,Double> prefList) throws org.apache.thrift.TException
+    public void send_access(Map<String,Double> prefList, String mode) throws org.apache.thrift.TException
     {
       access_args args = new access_args();
       args.setPrefList(prefList);
+      args.setMode(mode);
       sendBase("access", args);
     }
 
@@ -361,24 +362,27 @@ public class GameSystemCacheService {
       }
     }
 
-    public void access(Map<String,Double> prefList, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void access(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      access_call method_call = new access_call(prefList, resultHandler, this, ___protocolFactory, ___transport);
+      access_call method_call = new access_call(prefList, mode, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class access_call extends org.apache.thrift.async.TAsyncMethodCall {
       private Map<String,Double> prefList;
-      public access_call(Map<String,Double> prefList, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private String mode;
+      public access_call(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.prefList = prefList;
+        this.mode = mode;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("access", org.apache.thrift.protocol.TMessageType.CALL, 0));
         access_args args = new access_args();
         args.setPrefList(prefList);
+        args.setMode(mode);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -570,7 +574,7 @@ public class GameSystemCacheService {
       public access_result getResult(I iface, access_args args) throws org.apache.thrift.TException {
         access_result result = new access_result();
         try {
-          result.success = iface.access(args.prefList);
+          result.success = iface.access(args.prefList, args.mode);
         } catch (alluxio.thrift.AlluxioTException e) {
           result.e = e;
         }
@@ -868,7 +872,7 @@ public class GameSystemCacheService {
       }
 
       public void start(I iface, access_args args, org.apache.thrift.async.AsyncMethodCallback<AccessTResponse> resultHandler) throws TException {
-        iface.access(args.prefList,resultHandler);
+        iface.access(args.prefList, args.mode,resultHandler);
       }
     }
 
@@ -3648,6 +3652,7 @@ public class GameSystemCacheService {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("access_args");
 
     private static final org.apache.thrift.protocol.TField PREF_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("prefList", org.apache.thrift.protocol.TType.MAP, (short)1);
+    private static final org.apache.thrift.protocol.TField MODE_FIELD_DESC = new org.apache.thrift.protocol.TField("mode", org.apache.thrift.protocol.TType.STRING, (short)2);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -3656,10 +3661,12 @@ public class GameSystemCacheService {
     }
 
     private Map<String,Double> prefList; // required
+    private String mode; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      PREF_LIST((short)1, "prefList");
+      PREF_LIST((short)1, "prefList"),
+      MODE((short)2, "mode");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -3676,6 +3683,8 @@ public class GameSystemCacheService {
         switch(fieldId) {
           case 1: // PREF_LIST
             return PREF_LIST;
+          case 2: // MODE
+            return MODE;
           default:
             return null;
         }
@@ -3723,6 +3732,8 @@ public class GameSystemCacheService {
           new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
               new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
               new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
+      tmpMap.put(_Fields.MODE, new org.apache.thrift.meta_data.FieldMetaData("mode", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(access_args.class, metaDataMap);
     }
@@ -3731,10 +3742,12 @@ public class GameSystemCacheService {
     }
 
     public access_args(
-      Map<String,Double> prefList)
+      Map<String,Double> prefList,
+      String mode)
     {
       this();
       this.prefList = prefList;
+      this.mode = mode;
     }
 
     /**
@@ -3745,6 +3758,9 @@ public class GameSystemCacheService {
         Map<String,Double> __this__prefList = new HashMap<String,Double>(other.prefList);
         this.prefList = __this__prefList;
       }
+      if (other.isSetMode()) {
+        this.mode = other.mode;
+      }
     }
 
     public access_args deepCopy() {
@@ -3754,6 +3770,7 @@ public class GameSystemCacheService {
     @Override
     public void clear() {
       this.prefList = null;
+      this.mode = null;
     }
 
     public int getPrefListSize() {
@@ -3791,6 +3808,30 @@ public class GameSystemCacheService {
       }
     }
 
+    public String getMode() {
+      return this.mode;
+    }
+
+    public access_args setMode(String mode) {
+      this.mode = mode;
+      return this;
+    }
+
+    public void unsetMode() {
+      this.mode = null;
+    }
+
+    /** Returns true if field mode is set (has been assigned a value) and false otherwise */
+    public boolean isSetMode() {
+      return this.mode != null;
+    }
+
+    public void setModeIsSet(boolean value) {
+      if (!value) {
+        this.mode = null;
+      }
+    }
+
     public void setFieldValue(_Fields field, Object value) {
       switch (field) {
       case PREF_LIST:
@@ -3801,6 +3842,14 @@ public class GameSystemCacheService {
         }
         break;
 
+      case MODE:
+        if (value == null) {
+          unsetMode();
+        } else {
+          setMode((String)value);
+        }
+        break;
+
       }
     }
 
@@ -3808,6 +3857,9 @@ public class GameSystemCacheService {
       switch (field) {
       case PREF_LIST:
         return getPrefList();
+
+      case MODE:
+        return getMode();
 
       }
       throw new IllegalStateException();
@@ -3822,6 +3874,8 @@ public class GameSystemCacheService {
       switch (field) {
       case PREF_LIST:
         return isSetPrefList();
+      case MODE:
+        return isSetMode();
       }
       throw new IllegalStateException();
     }
@@ -3848,6 +3902,15 @@ public class GameSystemCacheService {
           return false;
       }
 
+      boolean this_present_mode = true && this.isSetMode();
+      boolean that_present_mode = true && that.isSetMode();
+      if (this_present_mode || that_present_mode) {
+        if (!(this_present_mode && that_present_mode))
+          return false;
+        if (!this.mode.equals(that.mode))
+          return false;
+      }
+
       return true;
     }
 
@@ -3859,6 +3922,11 @@ public class GameSystemCacheService {
       list.add(present_prefList);
       if (present_prefList)
         list.add(prefList);
+
+      boolean present_mode = true && (isSetMode());
+      list.add(present_mode);
+      if (present_mode)
+        list.add(mode);
 
       return list.hashCode();
     }
@@ -3877,6 +3945,16 @@ public class GameSystemCacheService {
       }
       if (isSetPrefList()) {
         lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.prefList, other.prefList);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetMode()).compareTo(other.isSetMode());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetMode()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.mode, other.mode);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3906,6 +3984,14 @@ public class GameSystemCacheService {
         sb.append("null");
       } else {
         sb.append(this.prefList);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("mode:");
+      if (this.mode == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.mode);
       }
       first = false;
       sb.append(")");
@@ -3971,6 +4057,14 @@ public class GameSystemCacheService {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
+            case 2: // MODE
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.mode = iprot.readString();
+                struct.setModeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
             default:
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
           }
@@ -3999,6 +4093,11 @@ public class GameSystemCacheService {
           }
           oprot.writeFieldEnd();
         }
+        if (struct.mode != null) {
+          oprot.writeFieldBegin(MODE_FIELD_DESC);
+          oprot.writeString(struct.mode);
+          oprot.writeFieldEnd();
+        }
         oprot.writeFieldStop();
         oprot.writeStructEnd();
       }
@@ -4020,7 +4119,10 @@ public class GameSystemCacheService {
         if (struct.isSetPrefList()) {
           optionals.set(0);
         }
-        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetMode()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
         if (struct.isSetPrefList()) {
           {
             oprot.writeI32(struct.prefList.size());
@@ -4031,12 +4133,15 @@ public class GameSystemCacheService {
             }
           }
         }
+        if (struct.isSetMode()) {
+          oprot.writeString(struct.mode);
+        }
       }
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, access_args struct) throws org.apache.thrift.TException {
         TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(1);
+        BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TMap _map34 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
@@ -4051,6 +4156,10 @@ public class GameSystemCacheService {
             }
           }
           struct.setPrefListIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.mode = iprot.readString();
+          struct.setModeIsSet(true);
         }
       }
     }

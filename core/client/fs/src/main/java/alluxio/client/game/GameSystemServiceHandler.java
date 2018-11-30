@@ -88,9 +88,9 @@ public class GameSystemServiceHandler implements
     }
 
     @Override
-    public AccessTResponse access(Map<String, Double> pref) throws TException {
+    public AccessTResponse access(Map<String, Double> pref, String mode) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessTResponse>)()->{
-            Pair pair= mGameSystemServer.accessFile(pref);
+            Pair pair= mGameSystemServer.accessFile(pref,mode);
             return new AccessTResponse((double)pair.getFirst(),(long)pair.getSecond());
         });
     }
@@ -98,8 +98,8 @@ public class GameSystemServiceHandler implements
     @Override
     public AccessFairRideTResponse accessFairRide(Map<String, Double> pref, List<Double> factor) throws AlluxioTException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessFairRideTResponse>)()->{
-            Double ratio= mGameSystemServer.access(pref,factor);
-            return new AccessFairRideTResponse(ratio);
+            Pair<Double, Long> p= mGameSystemServer.access(pref,factor);
+            return new AccessFairRideTResponse(p.getFirst(),p.getSecond());
         });
     }
 

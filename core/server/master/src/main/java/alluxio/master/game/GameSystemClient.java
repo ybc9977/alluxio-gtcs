@@ -73,8 +73,6 @@ public class GameSystemClient extends AbstractClient {
     }
 
     private synchronized void setPrefList (Map<String,Boolean> fileList){
-        double start_time =System.currentTimeMillis();
-        LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
         if (list.size()!=fileList.size()){
             int i = 0;
             for (String file : fileList.keySet()){
@@ -96,7 +94,6 @@ public class GameSystemClient extends AbstractClient {
             mPrefList= new ArrayList<>(mPref.keySet());
             shuffle = false;
         }
-        LOG.info("setPrefList time cost: "+ (System.currentTimeMillis()-start_time));
     }
 
     /** a remote procedure to call in client side server
@@ -198,11 +195,6 @@ public class GameSystemClient extends AbstractClient {
                 }
             }
         }
-//        try {
-//            LOG.info(String.valueOf(fsMaster.getInAlluxioFiles()));
-//        } catch (UnavailableException e) {
-//            e.printStackTrace();
-//        }
     }
 
     synchronized void cacheIt(String file,Map<String, Double> cacheList, FileSystemMaster fsMaster){
@@ -224,12 +216,13 @@ public class GameSystemClient extends AbstractClient {
         }
     }
 
-    synchronized Pair access() throws AlluxioStatusException {
-        Object rpc = retryRPC(() -> mClient.access(mPref),"Access");
+    synchronized Pair access(String mode) throws AlluxioStatusException {
+        Object rpc = retryRPC(() -> mClient.access(mPref, mode),"Access");
         return new Pair<>(((AccessTResponse) rpc).getRatio(),((AccessTResponse) rpc).getTime());
     }
 
-    synchronized Double accessFairRide(ArrayList<Double> factorList) throws AlluxioStatusException {
-        return retryRPC(() -> mClient.accessFairRide(mPref,factorList).getRatio(),"AccessFairRide");
+    synchronized Pair accessFairRide(ArrayList<Double> factorList) throws AlluxioStatusException {
+        Object rpc = retryRPC(() -> mClient.accessFairRide(mPref,factorList),"AccessFairRide");
+        return new Pair<>(((AccessFairRideTResponse) rpc).getRatio(),((AccessFairRideTResponse) rpc).getTime());
     }
 }

@@ -56,9 +56,11 @@ public final class GameSystemMaster {
 
     private static String currentDirectory = System.getProperty("user.dir");
 
+    private File log = new File (currentDirectory + "/alluxio-gtcs/master.txt");
+
     private FileSystemMaster fileSystemMaster;
 
-    private static double start_time;
+    private static long start_time;
 
     private static int QUOTA;
 
@@ -125,18 +127,24 @@ public final class GameSystemMaster {
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
+
+        Long start_time = System.currentTimeMillis();
+
         Runtime.getRuntime().exec(cmdArray);
 
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Long time = System.currentTimeMillis()-start_time;
+        LOG.info("OpuS Execution Time(ms): " + time );
+        FileOutputStream fop = new FileOutputStream(log,false);
+        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        writer.write("Execution Time:"+time+"\n");
+        writer.flush();
+        writer.close();
+        fop.close();
 
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
-        while (b || count == 10000){
+        while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_opus.txt"));
                 readAndCache(f, fileSystemMaster);
@@ -146,12 +154,6 @@ public final class GameSystemMaster {
                 e.printStackTrace();
                 count++;
             }
-        }
-
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         LOG.info("Comparative OpuS result: ");
@@ -170,18 +172,24 @@ public final class GameSystemMaster {
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
+
+        Long start_time = System.currentTimeMillis();
+
         Runtime.getRuntime().exec(cmdArray);
 
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Long time = System.currentTimeMillis()-start_time;
+        LOG.info("FairRide Execution Time(ms): " + time );
+        FileOutputStream fop = new FileOutputStream(log,false);
+        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        writer.write("Execution Time:"+time+"\n");
+        writer.flush();
+        writer.close();
+        fop.close();
 
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
-        while (b || count == 10000){
+        while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_fairride.txt"));
                 readAndCache(f, fileSystemMaster);
@@ -191,11 +199,6 @@ public final class GameSystemMaster {
                 e.printStackTrace();
                 count++;
             }
-        }
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         LOG.info("Comparative FairRide result: ");
@@ -261,6 +264,17 @@ public final class GameSystemMaster {
 
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("Game: \n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         QUOTA = 300 / clientList.size();
 
         start_time =System.currentTimeMillis();
@@ -269,7 +283,7 @@ public final class GameSystemMaster {
         boolean completion = false;
 
         while(userList.size()!=0 && !fileList.isEmpty()){
-            double iter_start = System.currentTimeMillis();
+            Long iter_start = System.currentTimeMillis();
             int userPos = poll_iter % userList.size();
             Pair<String, Boolean> user = userList.get(userPos);
             String userID = user.getFirst();
@@ -314,13 +328,25 @@ public final class GameSystemMaster {
                     count++;
                 }
                 if (count == userList.size()){
-                    LOG.info("Total time cost(ms): "+(System.currentTimeMillis()-start_time));
+                    LOG.info("Equilibrium established");
+                    LOG.info("Total iteration: "+poll_iter);
+                    long t = System.currentTimeMillis()-start_time;
+                    LOG.info("Total time cost(ms): "+t);
+                    try {
+                        FileOutputStream fop = new FileOutputStream(log,false);
+                        OutputStreamWriter writer = new OutputStreamWriter(fop);
+                        writer.write("Time: "+t+"\n");
+                        writer.write("Iteration: "+poll_iter+"\n");
+                        writer.flush();
+                        writer.close();
+                        fop.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     for (String U: clientList.keySet()){
                         clientList.get(U).cacheIt(cacheMap.get(U),fileList,cacheList,fileSystemMaster);
                         clientList.get(U).reset();
                     }
-                    LOG.info("Equilibrium established");
-                    LOG.info("Total iteration: "+poll_iter);
                     Efficiency(QUOTA);
                     HitRatio();
                     Access();
@@ -372,13 +398,23 @@ public final class GameSystemMaster {
 
         try {
             freeAll();
-            OpuSComparasion();
+            FileOutputStream f = new FileOutputStream(log,false);
+            OutputStreamWriter w = new OutputStreamWriter(f);
+            w.write("OpuS: \n");
+            w.flush();
             LOG.info("Start OpuS");
+            OpuSComparasion();
+
 
             freeAll();
-            FairRideComparison();
+            w.write("FairRide: \n");
+            w.flush();
             LOG.info("Start FairRide");
+            FairRideComparison();
 
+            w.write("\n");
+            w.flush();
+            w.close();
             freeAll();
             for (String file:fileList.keySet()){
                 fileList.replace(file,false);
@@ -408,7 +444,16 @@ public final class GameSystemMaster {
                 access += accessList.get(file);
             }
         }
-        LOG.info("the experimental hit ratio is " + hit/access);
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("the experimental hit ratio is " + hit/access+"\n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private synchronized void Efficiency(int QUOTA) {
@@ -460,13 +505,23 @@ public final class GameSystemMaster {
             if(count==cacheNum-1) break;
             count++;
         }
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("Efficiency: "+s/sum+"\n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         LOG.info("Efficiency: " + s/sum);
     }
 
     private void Access() throws AlluxioStatusException {
         ArrayList<Pair<Double,Long>> accessList = new ArrayList<>();
         for (GameSystemClient client:clientList.values()) {
-            accessList.add(client.access());
+            accessList.add(client.access("Game"));
         }
         double sum1=0;
         long sum2=0;
@@ -476,6 +531,17 @@ public final class GameSystemMaster {
         }
         double ratio = sum1/accessList.size();
         long time = sum2/accessList.size();
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("Actual Hit Ratio: " + ratio + "\n");
+            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         LOG.info("the actual hit ratio for game is " + ratio);
         LOG.info("the average overall access time for game is " + time + " ms");
     }
@@ -483,7 +549,7 @@ public final class GameSystemMaster {
     private void Access_OpuS() throws IOException {
         ArrayList<Pair<Double,Long>> accessList = new ArrayList<>();
         for (GameSystemClient client:clientList.values()){
-            accessList.add(client.access());
+            accessList.add(client.access("OpuS"));
         }
         double sum1 = 0;
         double sum2 = 0;
@@ -502,22 +568,36 @@ public final class GameSystemMaster {
                 values[i]+=c;
             }
         }
-        LOG.info(Arrays.toString(values));
-
+        long sum3=0L, time=0L;
         for (Pair<Double, Long> anAccessList : accessList) {
             Double factor = Double.parseDouble(values[accessList.indexOf(anAccessList)]);
             sum1 += anAccessList.getFirst() * factor;
             sum2 += anAccessList.getFirst();
+            sum3 += anAccessList.getSecond();
         }
         double ratio1 = sum1/accessList.size();
         double ratio2 = sum2/accessList.size();
+        time = sum3/accessList.size();
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("Factorized Hit Ratio: " + ratio1 + "\n");
+            writer.write("Normal Hit Ratio: " + ratio2 + "\n");
+            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         LOG.info("the factorized hit ratio for OpuS is "+ ratio1);
         LOG.info("the normal hit ratio for OpuS is "+ ratio2);
+        LOG.info("the average overall access time for OpuS is " + time + " ms");
         f.close();
     }
 
     private void Access_FairRide() throws IOException {
-        ArrayList<Double> accessList = new ArrayList<>();
+        ArrayList<Pair<Double, Long>> accessList = new ArrayList<>();
         DataInputStream f = new DataInputStream(new FileInputStream(currentDirectory + "/alluxio-gtcs/python/factor_fairride.txt"));
         Scanner sc = new Scanner(f);
         for (GameSystemClient client:clientList.values()){
@@ -544,12 +624,27 @@ public final class GameSystemMaster {
             }
             accessList.add(client.accessFairRide(factorList));
         }
-        double sum = 0;
-        for (Double ratio : accessList) {
-            sum += ratio;
+        double sum1 = 0;
+        long sum2 = 0;
+        for (Pair<Double,Long> access : accessList) {
+            sum1 += access.getFirst();
+            sum2 += access.getSecond();
         }
-        double ratio = sum/accessList.size();
+        double ratio = sum1/accessList.size();
+        long time = sum2/accessList.size();
+        try {
+            FileOutputStream fop = new FileOutputStream(log,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write("Factorized Hit Ratio: " + ratio + "\n");
+            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         LOG.info("the factorized hit ratio for FairRide is "+ ratio);
+        LOG.info("the average overall access time for FairRide is " + time + " ms");
         f.close();
     }
 

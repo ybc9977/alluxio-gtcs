@@ -39,6 +39,7 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("AccessFairRideTResponse");
 
   private static final org.apache.thrift.protocol.TField RATIO_FIELD_DESC = new org.apache.thrift.protocol.TField("ratio", org.apache.thrift.protocol.TType.DOUBLE, (short)1);
+  private static final org.apache.thrift.protocol.TField TIME_FIELD_DESC = new org.apache.thrift.protocol.TField("time", org.apache.thrift.protocol.TType.I64, (short)2);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -47,10 +48,12 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
   }
 
   private double ratio; // required
+  private long time; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    RATIO((short)1, "ratio");
+    RATIO((short)1, "ratio"),
+    TIME((short)2, "time");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -67,6 +70,8 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
       switch(fieldId) {
         case 1: // RATIO
           return RATIO;
+        case 2: // TIME
+          return TIME;
         default:
           return null;
       }
@@ -108,12 +113,15 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
 
   // isset id assignments
   private static final int __RATIO_ISSET_ID = 0;
+  private static final int __TIME_ISSET_ID = 1;
   private byte __isset_bitfield = 0;
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
     tmpMap.put(_Fields.RATIO, new org.apache.thrift.meta_data.FieldMetaData("ratio", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
+    tmpMap.put(_Fields.TIME, new org.apache.thrift.meta_data.FieldMetaData("time", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(AccessFairRideTResponse.class, metaDataMap);
   }
@@ -122,11 +130,14 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
   }
 
   public AccessFairRideTResponse(
-    double ratio)
+    double ratio,
+    long time)
   {
     this();
     this.ratio = ratio;
     setRatioIsSet(true);
+    this.time = time;
+    setTimeIsSet(true);
   }
 
   /**
@@ -135,6 +146,7 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
   public AccessFairRideTResponse(AccessFairRideTResponse other) {
     __isset_bitfield = other.__isset_bitfield;
     this.ratio = other.ratio;
+    this.time = other.time;
   }
 
   public AccessFairRideTResponse deepCopy() {
@@ -145,6 +157,8 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
   public void clear() {
     setRatioIsSet(false);
     this.ratio = 0.0;
+    setTimeIsSet(false);
+    this.time = 0;
   }
 
   public double getRatio() {
@@ -170,6 +184,29 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
     __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __RATIO_ISSET_ID, value);
   }
 
+  public long getTime() {
+    return this.time;
+  }
+
+  public AccessFairRideTResponse setTime(long time) {
+    this.time = time;
+    setTimeIsSet(true);
+    return this;
+  }
+
+  public void unsetTime() {
+    __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __TIME_ISSET_ID);
+  }
+
+  /** Returns true if field time is set (has been assigned a value) and false otherwise */
+  public boolean isSetTime() {
+    return EncodingUtils.testBit(__isset_bitfield, __TIME_ISSET_ID);
+  }
+
+  public void setTimeIsSet(boolean value) {
+    __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __TIME_ISSET_ID, value);
+  }
+
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case RATIO:
@@ -180,6 +217,14 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
       }
       break;
 
+    case TIME:
+      if (value == null) {
+        unsetTime();
+      } else {
+        setTime((Long)value);
+      }
+      break;
+
     }
   }
 
@@ -187,6 +232,9 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
     switch (field) {
     case RATIO:
       return getRatio();
+
+    case TIME:
+      return getTime();
 
     }
     throw new IllegalStateException();
@@ -201,6 +249,8 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
     switch (field) {
     case RATIO:
       return isSetRatio();
+    case TIME:
+      return isSetTime();
     }
     throw new IllegalStateException();
   }
@@ -227,6 +277,15 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
         return false;
     }
 
+    boolean this_present_time = true;
+    boolean that_present_time = true;
+    if (this_present_time || that_present_time) {
+      if (!(this_present_time && that_present_time))
+        return false;
+      if (this.time != that.time)
+        return false;
+    }
+
     return true;
   }
 
@@ -238,6 +297,11 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
     list.add(present_ratio);
     if (present_ratio)
       list.add(ratio);
+
+    boolean present_time = true;
+    list.add(present_time);
+    if (present_time)
+      list.add(time);
 
     return list.hashCode();
   }
@@ -256,6 +320,16 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
     }
     if (isSetRatio()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ratio, other.ratio);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetTime()).compareTo(other.isSetTime());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetTime()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.time, other.time);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -282,6 +356,10 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
 
     sb.append("ratio:");
     sb.append(this.ratio);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("time:");
+    sb.append(this.time);
     first = false;
     sb.append(")");
     return sb.toString();
@@ -336,6 +414,14 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 2: // TIME
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.time = iprot.readI64();
+              struct.setTimeIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -353,6 +439,9 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
       oprot.writeStructBegin(STRUCT_DESC);
       oprot.writeFieldBegin(RATIO_FIELD_DESC);
       oprot.writeDouble(struct.ratio);
+      oprot.writeFieldEnd();
+      oprot.writeFieldBegin(TIME_FIELD_DESC);
+      oprot.writeI64(struct.time);
       oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
@@ -375,19 +464,29 @@ public class AccessFairRideTResponse implements org.apache.thrift.TBase<AccessFa
       if (struct.isSetRatio()) {
         optionals.set(0);
       }
-      oprot.writeBitSet(optionals, 1);
+      if (struct.isSetTime()) {
+        optionals.set(1);
+      }
+      oprot.writeBitSet(optionals, 2);
       if (struct.isSetRatio()) {
         oprot.writeDouble(struct.ratio);
+      }
+      if (struct.isSetTime()) {
+        oprot.writeI64(struct.time);
       }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, AccessFairRideTResponse struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(1);
+      BitSet incoming = iprot.readBitSet(2);
       if (incoming.get(0)) {
         struct.ratio = iprot.readDouble();
         struct.setRatioIsSet(true);
+      }
+      if (incoming.get(1)) {
+        struct.time = iprot.readI64();
+        struct.setTimeIsSet(true);
       }
     }
   }

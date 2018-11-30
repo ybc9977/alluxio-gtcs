@@ -17,7 +17,7 @@ import org.apache.thrift.TProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -35,13 +35,14 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     private ArrayList<String> list = new ArrayList<>();
     private boolean shuffle=true;
     private int accessNum = 200;
+    private File clientLog = new File("~/alluxio-gtcs/client"+mUserId+".txt");
 
     /**
      * Constructs a new base file system.
      *
      * @param context file system context
      */
-    public GameSystemServer(FileSystemContext context, String userId, BaseFileSystem fileSystem) {
+    public GameSystemServer(FileSystemContext context, String userId, BaseFileSystem fileSystem) throws FileNotFoundException {
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
@@ -52,8 +53,6 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     private void setPrefList(Map<String,Boolean> fileList){
-        LOG.info("user " + mUserId + " previously shuffle? " + shuffle);
-        double start_time =System.currentTimeMillis();
         if (list.size()!=fileList.size()){
             int i = 0;
             for (String file : fileList.keySet()){
@@ -75,38 +74,31 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             prefList= new ArrayList<>(pref.keySet());
             shuffle = false;
         }
-        LOG.info("setPrefList time cost: "+ (System.currentTimeMillis()-start_time));
-
     }
 
-    Pair accessFile(Map<String, Double> pref){
+    Pair accessFile(Map<String, Double> pref, String mode) throws IOException {
+        FileOutputStream fop = new FileOutputStream(clientLog,false);
+        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        writer.write(mode+":\n");
         Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
+        ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
         for(String file : pref.keySet()) {
             interval.put(file, new ExponentialDistribution(pref.get(file)).sample()*1000);
         }
-        LOG.info(interval.toString());
         int hit = 0;
-//        for (String file:pref.keySet()){
-//            try {
-//                LOG.info(mFileSystem.getStatus(new AlluxioURI(file)).toString());
-//            } catch (IOException | AlluxioException e) {
-//                e.printStackTrace();
-//            }
-//        }
         for (int i=0;i<accessNum;i++){
             int count = 0, goal = (int)(new Random(System.nanoTime()).nextDouble()*pref.size());
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
+                        long start = System.currentTimeMillis();
                         AlluxioURI uri = new AlluxioURI(file);
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                         mFileSystem.openFile(uri,options);
+                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
                         if(mFileSystem.getStatus(uri).getInAlluxioPercentage()!=0) {
                             hit++;
-//                            LOG.info("hit file "+goal);
-//                        }else{
-//                            LOG.info("un-hit file "+goal);
                         }
                         Thread.sleep(interval.get(file).longValue());
                     } catch (InterruptedException | AlluxioException | IOException e) {
@@ -117,24 +109,33 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
         }
-        LOG.info("hit "+hit+" times\ttime "+ (System.currentTimeMillis()-time) + " ms");
+        writer.write(String.valueOf(timeList));
+        writer.flush();
+        writer.close();
+        fop.close();
         return new Pair<>(((double)hit/(double)accessNum),System.currentTimeMillis()-time);
     }
 
-    Double access(Map<String, Double> pref, List<Double> factor){
+    Pair access(Map<String, Double> pref, List<Double> factor) throws IOException {
+        FileOutputStream fop = new FileOutputStream(clientLog,false);
+        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        writer.write("FairRide:\n");
+        Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
+        ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
         for(String file : pref.keySet()) {
             interval.put(file, new ExponentialDistribution(pref.get(file)).sample()*1000);
         }
-        LOG.info(interval.toString());
         double hit = 0;
         for (int i = 0;i<accessNum;i++){
             int count = 0, goal = (int)(new Random(System.nanoTime()).nextDouble()*pref.size());
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
+                        long start = System.currentTimeMillis();
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                         mFileSystem.openFile(new AlluxioURI(file),options);
+                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
                         if(mFileSystem.getStatus(new AlluxioURI(file)).getInAlluxioPercentage()!=0) {
                             hit+=factor.get(count);
                         }
@@ -147,7 +148,11 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
         }
-        return hit/accessNum;
+        writer.write(String.valueOf(timeList));
+        writer.flush();
+        writer.close();
+        fop.close();
+        return new Pair<>((hit/accessNum),System.currentTimeMillis()-time);
     }
 
     /**
@@ -170,6 +175,8 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         return result;
     }
 
+    private void printLog(Object o) throws IOException {
+    }
 
     /**
      *
