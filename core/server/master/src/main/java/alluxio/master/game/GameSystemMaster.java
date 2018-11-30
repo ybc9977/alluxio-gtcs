@@ -232,7 +232,7 @@ public final class GameSystemMaster {
         ArrayList<String> cList = new ArrayList();
         for (int j = 0; j < clientList.size(); j++) {
             for (String file : prefFileList.get(j)) {
-//                cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
+                cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
                 if(ratioList.get(prefFileList.get(j).indexOf(file))!=0){
                     cList.add(file);
                 }
