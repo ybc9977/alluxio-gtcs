@@ -23,5 +23,5 @@ do
 
     scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/*.txt ~/Desktop/gtcs_log/
 
-done < ~/flintrock.txt
+done < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
