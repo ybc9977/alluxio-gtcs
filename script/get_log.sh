@@ -4,7 +4,7 @@ mkdir ~/Desktop/gtcs_log/
 
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; rm ./logs/master.out ;rm master.zip;zip -r master.zip ./logs" < /dev/null
+ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r master.zip ./logs" < /dev/null
 
 scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/master.zip ~/Desktop/gtcs_log/
 
