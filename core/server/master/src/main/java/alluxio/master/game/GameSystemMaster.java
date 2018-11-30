@@ -229,16 +229,32 @@ public final class GameSystemMaster {
                 ratioList.add(d);
             }
         }
+        ArrayList<String> cList = new ArrayList();
         for (int j = 0; j < clientList.size(); j++) {
             for (String file : prefFileList.get(j)) {
-                cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
+//                cacheList.put(file, ratioList.get(prefFileList.get(j).indexOf(file)));
+                if(ratioList.get(prefFileList.get(j).indexOf(file))!=0){
+                    cList.add(file);
+                }
             }
         }
-        for (String file:cacheList.keySet()){
-            String[] keys = clientList.keySet().toArray(new String[0]);
-            Random random = new Random();
-            String randomKey = keys[random.nextInt(keys.length)];
-            clientList.get(randomKey).cacheIt(file,cacheList,fileSystemMaster);
+        //Logic 1
+//        for (String file:cacheList.keySet()){
+//            String[] keys = clientList.keySet().toArray(new String[0]);
+//            Random random = new Random();
+//            String randomKey = keys[random.nextInt(keys.length)];
+//            clientList.get(randomKey).cacheIt(file,cacheList,fileSystemMaster);
+//        }
+        //Logic 2
+        i = 0;
+        int j = 0;
+        String[] keys = clientList.keySet().toArray(new String[0]);
+        for (String file : cList){
+            clientList.get(keys[i]).cacheIt(file,cacheList,fileSystemMaster);
+            if (j%(cList.size()/clientList.size())==0 && j!=0){
+                i++;
+            }
+            j++;
         }
 
     }
