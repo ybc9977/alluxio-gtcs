@@ -35,7 +35,8 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     private ArrayList<String> list = new ArrayList<>();
     private boolean shuffle=true;
     private int accessNum = 200;
-    private File clientLog = new File("~/alluxio-gtcs/client"+mUserId+".txt");
+    private File clientLog;
+
 
     /**
      * Constructs a new base file system.
@@ -46,6 +47,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
+        clientLog = new File("~/alluxio-gtcs/client"+mUserId+".txt");
     }
 
     public String getUserId(){
@@ -77,7 +79,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     Pair accessFile(Map<String, Double> pref, String mode) throws IOException {
-        FileOutputStream fop = new FileOutputStream(clientLog,false);
+        FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write(mode+":\n");
         Long time = System.currentTimeMillis();
@@ -117,7 +119,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     }
 
     Pair access(Map<String, Double> pref, List<Double> factor) throws IOException {
-        FileOutputStream fop = new FileOutputStream(clientLog,false);
+        FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("FairRide:\n");
         Long time = System.currentTimeMillis();

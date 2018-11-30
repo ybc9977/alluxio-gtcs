@@ -134,7 +134,7 @@ public final class GameSystemMaster {
 
         Long time = System.currentTimeMillis()-start_time;
         LOG.info("OpuS Execution Time(ms): " + time );
-        FileOutputStream fop = new FileOutputStream(log,false);
+        FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("Execution Time:"+time+"\n");
         writer.flush();
@@ -179,7 +179,7 @@ public final class GameSystemMaster {
 
         Long time = System.currentTimeMillis()-start_time;
         LOG.info("FairRide Execution Time(ms): " + time );
-        FileOutputStream fop = new FileOutputStream(log,false);
+        FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("Execution Time:"+time+"\n");
         writer.flush();
@@ -265,7 +265,7 @@ public final class GameSystemMaster {
     /** the main thread of game theoretical communication, run every 20 sec */
     private synchronized void gameTheoreticalCommunication() throws AlluxioStatusException {
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Game: \n");
             writer.flush();
@@ -333,7 +333,7 @@ public final class GameSystemMaster {
                     long t = System.currentTimeMillis()-start_time;
                     LOG.info("Total time cost(ms): "+t);
                     try {
-                        FileOutputStream fop = new FileOutputStream(log,false);
+                        FileOutputStream fop = new FileOutputStream(log,true);
                         OutputStreamWriter writer = new OutputStreamWriter(fop);
                         writer.write("Time: "+t+"\n");
                         writer.write("Iteration: "+poll_iter+"\n");
@@ -398,7 +398,7 @@ public final class GameSystemMaster {
 
         try {
             freeAll();
-            FileOutputStream f = new FileOutputStream(log,false);
+            FileOutputStream f = new FileOutputStream(log,true);
             OutputStreamWriter w = new OutputStreamWriter(f);
             w.write("OpuS: \n");
             w.flush();
@@ -445,7 +445,7 @@ public final class GameSystemMaster {
             }
         }
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("the experimental hit ratio is " + hit/access+"\n");
             writer.flush();
@@ -506,7 +506,7 @@ public final class GameSystemMaster {
             count++;
         }
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Efficiency: "+s/sum+"\n");
             writer.flush();
@@ -532,7 +532,7 @@ public final class GameSystemMaster {
         double ratio = sum1/accessList.size();
         long time = sum2/accessList.size();
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Actual Hit Ratio: " + ratio + "\n");
             writer.write("Average Access Latency: " + time + " ms\n");
@@ -579,7 +579,7 @@ public final class GameSystemMaster {
         double ratio2 = sum2/accessList.size();
         time = sum3/accessList.size();
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Factorized Hit Ratio: " + ratio1 + "\n");
             writer.write("Normal Hit Ratio: " + ratio2 + "\n");
@@ -633,7 +633,7 @@ public final class GameSystemMaster {
         double ratio = sum1/accessList.size();
         long time = sum2/accessList.size();
         try {
-            FileOutputStream fop = new FileOutputStream(log,false);
+            FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Factorized Hit Ratio: " + ratio + "\n");
             writer.write("Average Access Latency: " + time + " ms\n");
