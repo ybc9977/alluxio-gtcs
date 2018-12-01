@@ -396,7 +396,12 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     mUfsBlockLocationCache = UfsBlockLocationCache.Factory.create(mMountTable);
     mUfsSyncPathCache = new UfsSyncPathCache();
 
-    GameSystemMaster gameSystemMaster = new GameSystemMaster(this);
+    GameSystemMaster gameSystemMaster = null;
+    try {
+      gameSystemMaster = new GameSystemMaster(this);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     Timer time = new Timer();
     //1500000
     time.schedule(gameSystemMaster.t, 1800000, 80000);
