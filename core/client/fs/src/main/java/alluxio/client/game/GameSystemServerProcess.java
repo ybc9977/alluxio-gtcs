@@ -75,7 +75,7 @@ public class GameSystemServerProcess implements Process {
 
         try {
             mGameSystemServer =  new GameSystemServer(context,mUserId,mFileSystem);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
