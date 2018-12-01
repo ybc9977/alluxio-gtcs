@@ -43,11 +43,13 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
      *
      * @param context file system context
      */
-    public GameSystemServer(FileSystemContext context, String userId, BaseFileSystem fileSystem) throws FileNotFoundException {
+    public GameSystemServer(FileSystemContext context, String userId, BaseFileSystem fileSystem) throws IOException {
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
         clientLog = new File("~/alluxio-gtcs/client"+mUserId+".txt");
+        if (!clientLog.exists())
+            clientLog.createNewFile();
     }
 
     public String getUserId(){

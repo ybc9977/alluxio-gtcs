@@ -64,8 +64,10 @@ public final class GameSystemMaster {
 
     private static int QUOTA;
 
-    public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) {
+    public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) throws IOException {
         fileSystemMaster = defaultFileSystemMaster;
+        if (!log.exists())
+            log.createNewFile();
     }
 
 
