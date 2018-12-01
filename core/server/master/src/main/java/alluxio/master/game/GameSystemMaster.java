@@ -56,7 +56,7 @@ public final class GameSystemMaster {
 
     private static String currentDirectory = System.getProperty("user.dir");
 
-    private File log = new File (currentDirectory + "/alluxio-gtcs/master.txt");
+    private File log = new File (currentDirectory + "/master.txt");
 
     private FileSystemMaster fileSystemMaster;
 

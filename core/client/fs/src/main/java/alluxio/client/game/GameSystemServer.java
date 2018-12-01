@@ -47,7 +47,8 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
-        clientLog = new File(mUserId+".txt");
+        String currentDirectory = System.getProperty("user.dir");
+        clientLog = new File(currentDirectory+'/'+mUserId+".txt");
         if (!clientLog.exists())
             clientLog.createNewFile();
     }
