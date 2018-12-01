@@ -47,7 +47,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         super(context);
         mUserId = userId;
         mFileSystem = fileSystem;
-        clientLog = new File("~/alluxio-gtcs/client"+mUserId+".txt");
+        clientLog = new File(System.getProperty("user.dir")+"/alluxio-gtcs/client"+mUserId+".txt");
         if (!clientLog.exists())
             clientLog.createNewFile();
     }
