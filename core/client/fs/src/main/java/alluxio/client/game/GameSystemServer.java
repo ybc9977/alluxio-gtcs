@@ -97,11 +97,11 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
-                        long start = System.currentTimeMillis();
+                        long start = System.nanoTime();
                         AlluxioURI uri = new AlluxioURI(file);
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                         mFileSystem.openFile(uri,options);
-                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
+                        timeList.add(new Pair<>(file,System.nanoTime()-start));
                         if(mFileSystem.getStatus(uri).getInAlluxioPercentage()!=0) {
                             hit++;
                         }
@@ -137,10 +137,10 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
-                        long start = System.currentTimeMillis();
+                        long start = System.nanoTime();
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                         mFileSystem.openFile(new AlluxioURI(file),options);
-                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
+                        timeList.add(new Pair<>(file,System.nanoTime()-start));
                         if(mFileSystem.getStatus(new AlluxioURI(file)).getInAlluxioPercentage()!=0) {
                             hit+=factor.get(count);
                         }
@@ -178,9 +178,6 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             result.put(entry.getKey(), entry.getValue());
         }
         return result;
-    }
-
-    private void printLog(Object o) throws IOException {
     }
 
     /**
