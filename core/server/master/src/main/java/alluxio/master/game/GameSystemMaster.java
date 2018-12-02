@@ -130,15 +130,15 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.currentTimeMillis();
+        Long start_time = System.nanoTime();
 
         Runtime.getRuntime().exec(cmdArray);
 
-        Long time = System.currentTimeMillis()-start_time;
-        LOG.info("OpuS Execution Time(ms): " + time );
+        Long time = System.nanoTime()-start_time;
+        LOG.info("OpuS Execution Time(ns): " + time );
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Execution Time:"+time+"\n");
+        writer.write("Execution Time:"+time+" ns\n");
         writer.flush();
         writer.close();
         fop.close();
@@ -175,15 +175,15 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.currentTimeMillis();
+        Long start_time = System.nanoTime();
 
         Runtime.getRuntime().exec(cmdArray);
 
-        Long time = System.currentTimeMillis()-start_time;
-        LOG.info("FairRide Execution Time(ms): " + time );
+        Long time = System.nanoTime()-start_time;
+        LOG.info("FairRide Execution Time(ns): " + time );
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Execution Time:"+time+"\n");
+        writer.write("Execution Time:"+time+" ns\n");
         writer.flush();
         writer.close();
         fop.close();
@@ -333,7 +333,7 @@ public final class GameSystemMaster {
                     LOG.info("Equilibrium established");
                     LOG.info("Total iteration: "+poll_iter);
                     long t = System.currentTimeMillis()-start_time;
-                    LOG.info("Total time cost(ms): "+t);
+                    LOG.info("Total time cost(ms): "+t+" ms");
                     try {
                         FileOutputStream fop = new FileOutputStream(log,true);
                         OutputStreamWriter writer = new OutputStreamWriter(fop);

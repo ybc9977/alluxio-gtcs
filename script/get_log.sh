@@ -21,7 +21,7 @@ do
 
     test $i -eq 1 && continue
 
-    scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/*.txt ~/Desktop/gtcs_log/
+    scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/*.txt ~/Desktop/gtcs_log/
 
 done < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
