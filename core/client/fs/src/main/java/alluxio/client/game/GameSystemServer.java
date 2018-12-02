@@ -84,7 +84,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     Pair accessFile(Map<String, Double> pref, String mode) throws IOException {
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write(mode+":\n");
+        writer.write("\n"+mode+":\n");
         Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
         ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
@@ -124,7 +124,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
     Pair access(Map<String, Double> pref, List<Double> factor) throws IOException {
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("FairRide:\n");
+        writer.write("\nFairRide:\n");
         Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
         ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
