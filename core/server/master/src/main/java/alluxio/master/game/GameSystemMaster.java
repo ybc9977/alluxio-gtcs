@@ -138,7 +138,7 @@ public final class GameSystemMaster {
         LOG.info("OpuS Execution Time(ns): " + time );
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Execution Time:"+time+" ns\n");
+        writer.write("Execution Time: "+time+" ns\n");
         writer.flush();
         writer.close();
         fop.close();
@@ -339,7 +339,7 @@ public final class GameSystemMaster {
                     try {
                         FileOutputStream fop = new FileOutputStream(log,true);
                         OutputStreamWriter writer = new OutputStreamWriter(fop);
-                        writer.write("Time: "+t+"\n");
+                        writer.write("Polling Time: "+t+" ms\n");
                         writer.write("Iteration: "+poll_iter+"\n");
                         writer.flush();
                         writer.close();

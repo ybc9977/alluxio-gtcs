@@ -4,6 +4,7 @@ import alluxio.AlluxioURI;
 import alluxio.Server;
 import alluxio.client.ReadType;
 import alluxio.client.file.BaseFileSystem;
+import alluxio.client.file.FileInStream;
 import alluxio.client.file.FileSystemContext;
 import alluxio.client.file.options.OpenFileOptions;
 import alluxio.collections.Pair;
@@ -85,7 +86,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("\n"+mode+":\n");
-        Long time = System.currentTimeMillis();
+//        Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
         ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
         for(String file : pref.keySet()) {
@@ -97,11 +98,14 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
-                        long start = System.nanoTime();
+                        long start = System.currentTimeMillis();
                         AlluxioURI uri = new AlluxioURI(file);
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
-                        mFileSystem.openFile(uri,options);
-                        timeList.add(new Pair<>(file,System.nanoTime()-start));
+                        FileInStream is = mFileSystem.openFile(uri,options);
+                        byte [] fileBuf = new byte[(int) (is.remaining()+is.getPos())];
+                        is.read(fileBuf);
+                        is.close();
+                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
                         if(mFileSystem.getStatus(uri).getInAlluxioPercentage()!=0) {
                             hit++;
                         }
@@ -114,18 +118,26 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
         }
-        writer.write(String.valueOf(timeList));
+        writer.write('[');
+        for (Pair<String, Long> p :timeList){
+            writer.write('('+p.getFirst().substring(6)+','+p.getSecond()+')');
+        }
+        writer.write(']');
         writer.flush();
         writer.close();
         fop.close();
-        return new Pair<>(((double)hit/(double)accessNum),System.currentTimeMillis()-time);
+        long t = 0L;
+        for (int i = 0; i<timeList.size();i++){
+            t+=timeList.get(i).getSecond();
+        }
+        return new Pair<>(((double)hit/(double)accessNum),t);
     }
 
     Pair access(Map<String, Double> pref, List<Double> factor) throws IOException {
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("\nFairRide:\n");
-        Long time = System.currentTimeMillis();
+//        Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
         ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
         for(String file : pref.keySet()) {
@@ -137,10 +149,13 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
-                        long start = System.nanoTime();
+                        long start = System.currentTimeMillis();
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
-                        mFileSystem.openFile(new AlluxioURI(file),options);
-                        timeList.add(new Pair<>(file,System.nanoTime()-start));
+                        FileInStream is =mFileSystem.openFile(new AlluxioURI(file),options);
+                        byte [] fileBuf = new byte[(int) (is.remaining()+is.getPos())];
+                        is.read(fileBuf);
+                        is.close();
+                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
                         if(mFileSystem.getStatus(new AlluxioURI(file)).getInAlluxioPercentage()!=0) {
                             hit+=factor.get(count);
                         }
@@ -153,11 +168,19 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
         }
-        writer.write(String.valueOf(timeList));
+        writer.write('[');
+        for (Pair<String, Long> p :timeList){
+            writer.write('('+p.getFirst().substring(6)+','+p.getSecond()+')');
+        }
+        writer.write(']');
         writer.flush();
         writer.close();
         fop.close();
-        return new Pair<>((hit/accessNum),System.currentTimeMillis()-time);
+        long t = 0L;
+        for (Pair<String, Long> aTimeList : timeList) {
+            t += aTimeList.getSecond();
+        }
+        return new Pair<>((hit/accessNum),t);
     }
 
     /**
