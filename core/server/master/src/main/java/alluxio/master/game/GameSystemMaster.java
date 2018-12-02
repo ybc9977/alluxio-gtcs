@@ -120,7 +120,7 @@ public final class GameSystemMaster {
     }
 
     /** the comparison thread for running OpuS plugged into this System **/
-    private synchronized void OpuSComparasion() throws IOException {
+    private synchronized void OpuSComparasion() throws IOException, InterruptedException {
 
 
         ArrayList<String> cmd = new ArrayList<>();
@@ -146,6 +146,7 @@ public final class GameSystemMaster {
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
+        Thread.sleep(1000);
         while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_opus.txt"));
@@ -165,7 +166,7 @@ public final class GameSystemMaster {
     }
 
     /** the comparison thread for running OpuS plugged into this System **/
-    private synchronized void FairRideComparison() throws IOException {
+    private synchronized void FairRideComparison() throws IOException, InterruptedException {
 
 
         ArrayList<String> cmd = new ArrayList<>();
@@ -191,6 +192,7 @@ public final class GameSystemMaster {
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
+        Thread.sleep(1000);
         while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_fairride.txt"));
@@ -424,8 +426,7 @@ public final class GameSystemMaster {
             for (String file:cacheList.keySet()){
                 cacheList.replace(file,false);
             }
-        } catch (FileDoesNotExistException | InvalidPathException |
-                UnexpectedAlluxioException | AccessControlException | IOException e) {
+        } catch (FileDoesNotExistException | InvalidPathException | UnexpectedAlluxioException | AccessControlException | IOException | InterruptedException e) {
             e.printStackTrace();
         }
 
