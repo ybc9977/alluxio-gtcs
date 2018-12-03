@@ -64,6 +64,8 @@ public final class GameSystemMaster {
 
     private static int QUOTA;
 
+    private int accessNum = 200;
+
     public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) throws IOException {
         fileSystemMaster = defaultFileSystemMaster;
         if (!log.exists())
@@ -452,7 +454,7 @@ public final class GameSystemMaster {
         try {
             FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
-            writer.write("the experimental hit ratio is " + hit/access+"\n");
+            writer.write("the calculated hit ratio is " + hit/access+"\n");
             writer.flush();
             writer.close();
             fop.close();
@@ -588,7 +590,7 @@ public final class GameSystemMaster {
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Factorized Hit Ratio: " + ratio1 + "\n");
             writer.write("Normal Hit Ratio: " + ratio2 + "\n");
-            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.write("Average Access Latency: " + (double) time/accessNum + " ms\n");
             writer.flush();
             writer.close();
             fop.close();
@@ -641,7 +643,7 @@ public final class GameSystemMaster {
             FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Factorized Hit Ratio: " + ratio + "\n");
-            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.write("Average Access Latency: " + (double)time/accessNum + " ms\n");
             writer.flush();
             writer.close();
             fop.close();
