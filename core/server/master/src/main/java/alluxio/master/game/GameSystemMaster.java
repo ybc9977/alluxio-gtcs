@@ -542,7 +542,7 @@ public final class GameSystemMaster {
             FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write("Actual Hit Ratio: " + ratio + "\n");
-            writer.write("Average Access Latency: " + time + " ms\n");
+            writer.write("Average Access Latency: " + (double) time/accessNum + " ms\n");
             writer.flush();
             writer.close();
             fop.close();
