@@ -50,5 +50,4 @@ target/
 tests.log*
 *.xml
 *.iml
-python/*.txt
 flintrock/*.txt
