@@ -380,6 +380,8 @@ public final class GameSystemMaster {
 
         File userLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
         try {
+            if (!userLog.exists())
+                userLog.createNewFile();
             FileOutputStream fop = new FileOutputStream(userLog,false);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
             writer.write(String.valueOf(QUOTA*clientList.size())+'\n');
