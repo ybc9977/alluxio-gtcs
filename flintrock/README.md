@@ -5,7 +5,7 @@
 
 Flintrock is a command-line tool for launching [Apache Spark](http://spark.apache.org/) clusters.
 
-Though Flintrock hasn't made a 1.0 release yet, it's fairly stable. Expect some minor but nonethless backwards incompatible changes as Flintrock reaches formal stability via a 1.0 release.
+Though Flintrock hasn't made a 1.0 release yet, it's fairly stable. Expect some minor but nonetheless backwards incompatible changes as Flintrock reaches formal stability via a 1.0 release.
 
 
 ## Flintrock around the web
@@ -32,10 +32,10 @@ Here's a quick way to launch a cluster on EC2, assuming you already have an [AWS
 ```sh
 flintrock launch test-cluster \
     --num-slaves 1 \
-    --spark-version 2.3.1 \
+    --spark-version 2.4.0 \
     --ec2-key-name key_name \
     --ec2-identity-file /path/to/key.pem \
-    --ec2-ami ami-7105540e \
+    --ec2-ami ami-0b8d0d6ac70e5750c \
     --ec2-user ec2-user
 ```
 
@@ -89,7 +89,7 @@ these steps:
    better performance.
 3. Make sure Flintrock is configured to use Hadoop/HDFS 2.7+. Earlier
    versions of Hadoop do not have solid implementations of `s3a://`.
-   Flintrock's default is Hadoop 2.8.4, so you don't need to do anything
+   Flintrock's default is Hadoop 2.8.5, so you don't need to do anything
    here if you're using a vanilla configuration.
 4. Call Spark with the hadoop-aws package to enable `s3a://`. For example:
    ```sh
@@ -254,7 +254,7 @@ provider: ec2
 
 services:
   spark:
-    version: 2.3.1
+    version: 2.4.0
 
 launch:
   num-slaves: 1
@@ -265,7 +265,7 @@ providers:
     identity-file: /path/to/.ssh/key.pem
     instance-type: m3.medium
     region: us-east-1
-    ami: ami-7105540e
+    ami: ami-0b8d0d6ac70e5750c
     user: ec2-user
 ```
 

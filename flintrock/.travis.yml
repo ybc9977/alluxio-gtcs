@@ -3,14 +3,17 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
+# Work-around for Python 3.7 on Travis CI pulled from here:
+# https://github.com/travis-ci/travis-ci/issues/9815#issue-336465122
+matrix:
+  include:
+    - python: "3.7"
+      dist: "xenial"
+      sudo: true
 install:
-  - "pip install -r requirements/developer.pip"
-script:
-  - "pytest ./tests/test_static.py"
-  - "pytest ./tests/test_flintrock.py"
-  - "pytest ./tests/test_core.py"
   - "pip install -r requirements/maintainer.pip"
-  - "pytest ./tests/test_pyinstaller_packaging.py"
+script:
+  - "pytest"
 addons:
   artifacts:
     paths:

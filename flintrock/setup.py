@@ -36,6 +36,7 @@ setuptools.setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     keywords=['Apache Spark'],
 
@@ -49,18 +50,11 @@ setuptools.setup(
     # totally break Flintrock.
     # For example: https://github.com/paramiko/paramiko/issues/615
     install_requires=[
-        'boto3 == 1.7.58',
-        'botocore == 1.10.58',
-        'click == 6.7',
-        'paramiko == 2.4.1',
-        'PyYAML == 3.12',
-        # This is to ensure that PyInstaller works. dateutil is an
-        # indirect dependency of Flintrock, and PyInstaller chokes on
-        # dateutil 2.5.0.
-        # See: https://github.com/pyinstaller/pyinstaller/issues/1848
-        # More recently, botocore also imposes additional restrictions
-        # on the acceptable versions of python-dateutil.
-        'python-dateutil >= 2.5.3, < 2.7.0',
+        'boto3 == 1.9.57',
+        'botocore == 1.12.57',
+        'click == 7.0',
+        'paramiko == 2.4.2',
+        'PyYAML == 3.13',
         # This is to address reports that PyInstaller-packaged versions
         # of Flintrock intermittently fail due to an out-of-date version
         # of Cryptography being used.

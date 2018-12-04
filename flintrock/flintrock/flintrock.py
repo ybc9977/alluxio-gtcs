@@ -254,7 +254,7 @@ def cli(cli_context, config, provider, debug):
 @click.argument('cluster-name')
 @click.option('--num-slaves', type=click.IntRange(min=1), required=True)
 @click.option('--install-hdfs/--no-install-hdfs', default=False)
-@click.option('--hdfs-version', default='2.8.4')
+@click.option('--hdfs-version', default='2.8.5')
 @click.option('--hdfs-download-source',
               help="URL to download Hadoop from.",
               default='https://www.apache.org/dyn/closer.lua?action=download&filename=hadoop/common/hadoop-{v}/hadoop-{v}.tar.gz',
@@ -563,6 +563,7 @@ def describe(
             vpc_id=ec2_vpc_id)
     else:
         raise UnsupportedProviderError(provider)
+
     cwd = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + os.path.sep + ".")
     cwd = os.path.abspath(os.path.dirname(cwd) + os.path.sep + ".")
     if not os.path.exists(cwd+"/flintrock.txt"):
@@ -1190,9 +1191,11 @@ def check_external_dependency(executable_name: str):
 
 
 def main() -> int:
-    if flintrock_is_in_development_mode():
-        warnings.simplefilter(action='always', category=DeprecationWarning)
-        # warnings.simplefilter(action='always', category=ResourceWarning)
+    # Starting in Python 3.7, deprecation warnings are shown by default. We
+    # don't want to show these to end-users.
+    # See: https://docs.python.org/3/library/warnings.html#default-warning-filter
+    if not flintrock_is_in_development_mode():
+        warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
     set_open_files_limit(4096)
 
