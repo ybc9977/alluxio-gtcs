@@ -148,7 +148,7 @@ public final class GameSystemMaster {
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
-        Thread.sleep(3000);
+        Thread.sleep(30000);
         while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_opus.txt"));
@@ -194,7 +194,7 @@ public final class GameSystemMaster {
         DataInputStream f = null;
         boolean b = true;
         int count = 0;
-        Thread.sleep(3000);
+        Thread.sleep(30000);
         while (b || count == 100){
             try {
                 f = new DataInputStream(new FileInputStream(currentDirectory+"/alluxio-gtcs/python/ratio_fairride.txt"));
