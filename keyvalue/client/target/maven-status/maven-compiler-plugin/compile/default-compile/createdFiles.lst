@@ -8,8 +8,8 @@ alluxio/client/keyvalue/BasePayloadWriter.class
 alluxio/client/keyvalue/KeyValuePartitionWriter$Factory.class
 alluxio/client/keyvalue/KeyValueStoreWriter.class
 alluxio/client/keyvalue/BaseKeyValueStoreReader.class
-alluxio/client/keyvalue/KeyValueIterator.class
 alluxio/client/keyvalue/ByteBufferKeyValuePartitionReader$1.class
+alluxio/client/keyvalue/KeyValueIterator.class
 alluxio/client/keyvalue/ByteBufferKeyValuePartitionReader.class
 alluxio/client/keyvalue/KeyValueMasterClient$5.class
 alluxio/client/keyvalue/PayloadReader.class
@@ -20,10 +20,10 @@ alluxio/client/keyvalue/KeyValueStoreIterator.class
 alluxio/client/keyvalue/KeyValueMasterClient.class
 alluxio/client/keyvalue/BaseKeyValuePartitionReader$Iterator.class
 alluxio/client/keyvalue/KeyValueWorkerClient$3.class
-alluxio/client/keyvalue/KeyValuePartitionReader.class
 alluxio/client/keyvalue/KeyValueMasterClient$1.class
-alluxio/client/keyvalue/KeyValueSystem$Factory.class
+alluxio/client/keyvalue/KeyValuePartitionReader.class
 alluxio/client/keyvalue/KeyValueMasterClient$6.class
+alluxio/client/keyvalue/KeyValueSystem$Factory.class
 alluxio/client/keyvalue/KeyValueMasterClient$3.class
 alluxio/client/keyvalue/KeyValueSystem.class
 alluxio/client/keyvalue/KeyValueMasterClient$4.class

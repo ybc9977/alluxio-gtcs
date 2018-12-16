@@ -132,15 +132,16 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.nanoTime();
+        Long start_time = System.currentTimeMillis();
 
-        Runtime.getRuntime().exec(cmdArray);
+        Process p= Runtime.getRuntime().exec(cmdArray); // exec is non-blocking, add wait-for
+        p.waitFor();
 
-        Long time = System.nanoTime()-start_time;
-        LOG.info("OpuS Execution Time(ns): " + time );
+        Long time = System.currentTimeMillis()-start_time;
+        LOG.info("OpuS Execution Time(ms): " + time );
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Execution Time: "+time+" ns\n");
+        writer.write("Execution Time: "+time+" ms\n");
         writer.flush();
         writer.close();
         fop.close();
@@ -178,15 +179,16 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.nanoTime();
+        Long start_time = System.currentTimeMillis();
 
-        Runtime.getRuntime().exec(cmdArray);
+        Process p=Runtime.getRuntime().exec(cmdArray);
+        p.waitFor();
 
-        Long time = System.nanoTime()-start_time;
-        LOG.info("FairRide Execution Time(ns): " + time );
+        Long time = System.currentTimeMillis()-start_time;
+        LOG.info("FairRide Execution Time(ms): " + time );
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Execution Time:"+time+" ns\n");
+        writer.write("Execution Time:"+time+" ms\n");
         writer.flush();
         writer.close();
         fop.close();
@@ -281,7 +283,7 @@ public final class GameSystemMaster {
             e.printStackTrace();
         }
 
-        QUOTA = 300 / clientList.size();
+        QUOTA = 300 / clientList.size(); // todo: total quota read from configuration instead of hard-coding
 
         start_time =System.currentTimeMillis();
         int poll_iter = 0;

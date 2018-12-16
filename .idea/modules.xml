@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/assembly/alluxio-assembly.iml" filepath="$PROJECT_DIR$/assembly/alluxio-assembly.iml" />
       <module fileurl="file://$PROJECT_DIR$/assembly/client/alluxio-assembly-client.iml" filepath="$PROJECT_DIR$/assembly/client/alluxio-assembly-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" filepath="$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" filepath="$PROJECT_DIR$/assembly/server/alluxio-assembly-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/integration/checker/alluxio-checker.iml" filepath="$PROJECT_DIR$/integration/checker/alluxio-checker.iml" />
       <module fileurl="file://$PROJECT_DIR$/integration/checker/alluxio-checker.iml" filepath="$PROJECT_DIR$/integration/checker/alluxio-checker.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/alluxio-core.iml" filepath="$PROJECT_DIR$/core/alluxio-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/client/alluxio-core-client.iml" filepath="$PROJECT_DIR$/core/client/alluxio-core-client.iml" />
@@ -28,13 +26,10 @@
       <module fileurl="file://$PROJECT_DIR$/keyvalue/common/alluxio-keyvalue-common.iml" filepath="$PROJECT_DIR$/keyvalue/common/alluxio-keyvalue-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/keyvalue/hadoop/alluxio-keyvalue-hadoop.iml" filepath="$PROJECT_DIR$/keyvalue/hadoop/alluxio-keyvalue-hadoop.iml" />
       <module fileurl="file://$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" filepath="$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" filepath="$PROJECT_DIR$/keyvalue/server/alluxio-keyvalue-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/logserver/alluxio-logserver.iml" filepath="$PROJECT_DIR$/logserver/alluxio-logserver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" filepath="$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" filepath="$PROJECT_DIR$/minicluster/alluxio-minicluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/alluxio-parent.iml" filepath="$PROJECT_DIR$/alluxio-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/shell/alluxio-shell.iml" filepath="$PROJECT_DIR$/shell/alluxio-shell.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tests/alluxio-tests.iml" filepath="$PROJECT_DIR$/tests/alluxio-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/tests/alluxio-tests.iml" filepath="$PROJECT_DIR$/tests/alluxio-tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/alluxio-underfs.iml" filepath="$PROJECT_DIR$/underfs/alluxio-underfs.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/gcs/alluxio-underfs-gcs.iml" filepath="$PROJECT_DIR$/underfs/gcs/alluxio-underfs-gcs.iml" />
@@ -43,8 +38,6 @@
       <module fileurl="file://$PROJECT_DIR$/underfs/oss/alluxio-underfs-oss.iml" filepath="$PROJECT_DIR$/underfs/oss/alluxio-underfs-oss.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/s3a/alluxio-underfs-s3a.iml" filepath="$PROJECT_DIR$/underfs/s3a/alluxio-underfs-s3a.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" filepath="$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" />
-      <module fileurl="file://$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" filepath="$PROJECT_DIR$/underfs/swift/alluxio-underfs-swift.iml" />
-      <module fileurl="file://$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" filepath="$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" />
       <module fileurl="file://$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" filepath="$PROJECT_DIR$/underfs/wasb/alluxio-underfs-wasb.iml" />
     </modules>
   </component>

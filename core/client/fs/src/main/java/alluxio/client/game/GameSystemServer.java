@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  *  created by byangak on 28/06/2018
@@ -86,31 +87,28 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("\n"+mode+":\n");
-//        Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
-        ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
+        List<Future<Long>> timeList = new ArrayList<>(); // Record the latency of each read
         for(String file : pref.keySet()) {
             interval.put(file, new ExponentialDistribution(pref.get(file)).sample()*1000);
         }
         int hit = 0;
+        ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i=0;i<accessNum;i++){
             int count = 0, goal = (int)(new Random(System.nanoTime()).nextDouble()*pref.size());
             for (String file:pref.keySet()) {
                 if(count==goal){
                     try {
-                        long start = System.currentTimeMillis();
                         AlluxioURI uri = new AlluxioURI(file);
                         OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                         FileInStream is = mFileSystem.openFile(uri,options);
-                        byte [] fileBuf = new byte[(int) (is.remaining()+is.getPos())];
-                        is.read(fileBuf);
-                        is.close();
-                        timeList.add(new Pair<>(file,System.currentTimeMillis()-start));
+                        Future<Long> future = executorService.submit(new FileAccessThread(is)); // run the file read in another thread
+                        timeList.add(future);
                         if(mFileSystem.getStatus(uri).getInAlluxioPercentage()!=0) {
                             hit++;
                         }
                         Thread.sleep(interval.get(file).longValue());
-                    } catch (InterruptedException | AlluxioException | IOException e) {
+                    } catch (InterruptedException | AlluxioException e) {
                         e.printStackTrace();
                     }
                     break;
@@ -118,18 +116,29 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 count++;
             }
         }
-        writer.write('[');
-        for (Pair<String, Long> p :timeList){
-            writer.write('('+p.getFirst().substring(6)+','+p.getSecond()+')');
+        //shut down the created threads
+//        executorService.shutdown();
+//        try {
+//            executorService.awaitTermination(1, TimeUnit.HOURS);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        long t = 0L;
+
+        try{
+            for (Future<Long> futureRuntime :timeList){
+                Long runtime =futureRuntime.get();
+                writer.write("" + runtime + "\n");
+                t += runtime;
+            }
+        }catch(InterruptedException | ExecutionException e){
+            e.printStackTrace();
         }
-        writer.write(']');
+
         writer.flush();
         writer.close();
         fop.close();
-        long t = 0L;
-        for (int i = 0; i<timeList.size();i++){
-            t+=timeList.get(i).getSecond();
-        }
         return new Pair<>(((double)hit/(double)accessNum),t);
     }
 
@@ -137,7 +146,6 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         FileOutputStream fop = new FileOutputStream(clientLog,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
         writer.write("\nFairRide:\n");
-//        Long time = System.currentTimeMillis();
         Map<String, Double> interval = new HashMap<>();
         ArrayList<Pair<String,Long>> timeList = new ArrayList<>();
         for(String file : pref.keySet()) {
