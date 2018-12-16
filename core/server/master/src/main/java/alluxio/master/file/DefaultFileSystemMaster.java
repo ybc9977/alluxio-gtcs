@@ -215,8 +215,8 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
    *
    * <p><blockquote><pre>
    *    try (RpcContext rpcContext = createRpcContext()) {
-   *      // experimental_access journal context with rpcContext.getJournalContext()
-   *      // experimental_access block deletion context with rpcContext.getBlockDeletionContext()
+   *      // simulated_access journal context with rpcContext.getJournalContext()
+   *      // simulated_access block deletion context with rpcContext.getBlockDeletionContext()
    *      ...
    *    }
    * </pre></blockquote>
@@ -237,7 +237,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
    * always created before any {@link LockedInodePath} resources to avoid holding an inode path lock
    * while waiting for journal IO.
    *
-   * User experimental_access audit logging in the FileSystemMaster
+   * User simulated_access audit logging in the FileSystemMaster
    *
    * User accesses to file system metadata should be audited. The intent to write audit log and the
    * actual writing of the audit log is decoupled so that operations are not holding metadata locks
@@ -354,7 +354,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   private Future<List<AlluxioURI>> mStartupConsistencyCheck;
 
   /**
-   * Log writer for user experimental_access audit log.
+   * Log writer for user simulated_access audit log.
    */
   private AsyncUserAccessAuditLogWriter mAsyncAuditLogWriter;
 
@@ -961,7 +961,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
    * traversal order.
    *
    * @param currInodePath the inode path to find the status
-   * @param auditContext the audit context to return any experimental_access exceptions
+   * @param auditContext the audit context to return any simulated_access exceptions
    * @param descendantType if the currInodePath is a directory, how many levels of its descendant
    *                       should be returned
    * @param statusList To be populated with the status of the files and directories requested

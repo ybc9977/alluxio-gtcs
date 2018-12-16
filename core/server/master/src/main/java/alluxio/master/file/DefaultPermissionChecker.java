@@ -200,7 +200,7 @@ public class DefaultPermissionChecker implements PermissionChecker {
    * group, and the requested action will be evaluated on each of the inodes. It will return if
    * check passed, and throw exception if check failed.
    *
-   * @param user who requests experimental_access permission
+   * @param user who requests simulated_access permission
    * @param groups in which user belongs to
    * @param bits bits that capture the action {@link Mode.Bits} by user
    * @param path the path to check permission on
@@ -238,7 +238,7 @@ public class DefaultPermissionChecker implements PermissionChecker {
   /**
    * This method checks requested permission on a given inode, represented by its fileInfo.
    *
-   * @param user who requests experimental_access permission
+   * @param user who requests simulated_access permission
    * @param groups in which user belongs to
    * @param inode whose attributes used for permission check logic
    * @param bits requested {@link Mode.Bits} by user
@@ -257,7 +257,7 @@ public class DefaultPermissionChecker implements PermissionChecker {
   }
 
   /**
-   * Gets the permission to experimental_access an inode path given a user and its groups.
+   * Gets the permission to simulated_access an inode path given a user and its groups.
    *
    * @param user the user
    * @param groups the groups this user belongs to
@@ -300,7 +300,7 @@ public class DefaultPermissionChecker implements PermissionChecker {
   private static String toExceptionMessage(String user, Mode.Bits bits, String path,
       Inode<?> inode) {
     StringBuilder sb =
-        new StringBuilder().append("user=").append(user).append(", ").append("experimental_access=").append(bits)
+        new StringBuilder().append("user=").append(user).append(", ").append("simulated_access=").append(bits)
             .append(", ").append("path=").append(path).append(": ").append("failed at ")
             .append(inode.getName().equals("") ? "/" : inode.getName()).append(", inode owner=")
             .append(inode.getOwner()).append(", inode group=").append(inode.getGroup())

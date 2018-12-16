@@ -131,7 +131,7 @@ public final class DefaultBlockMaster extends AbstractMaster implements BlockMas
   /**
    * Concurrency and locking in the BlockMaster
    *
-   * The block master uses concurrent data structures to allow non-conflicting concurrent experimental_access.
+   * The block master uses concurrent data structures to allow non-conflicting concurrent simulated_access.
    * This means each piece of metadata should be locked individually. There are two types of
    * metadata in the {@link DefaultBlockMaster}; {@link MasterBlockInfo} and
    * {@link MasterWorkerInfo}.

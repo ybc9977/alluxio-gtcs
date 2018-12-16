@@ -126,7 +126,7 @@ public class GameSystemClient extends AbstractClient {
             return mPref;
     }
 
-    public Map<String, Integer> experimental_access(Map<String,Double> prefList) throws AlluxioStatusException {
+    public Map<String, Integer> simulated_access(Map<String,Double> prefList) throws AlluxioStatusException {
         Map<String,Integer> access = new HashMap<>();
         ArrayList<Integer> acc = new ArrayList<>(prefList.size());
         for (int i = 0;i<prefList.size();i++){

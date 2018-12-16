@@ -1,5 +1,5 @@
 alluxio/underfs/oss/OSSOutputStreamTest.class
-alluxio/underfs/oss/OSSInputStreamTest.class
 alluxio/underfs/oss/OSSUnderFileSystemFactoryTest.class
+alluxio/underfs/oss/OSSInputStreamTest.class
 alluxio/underfs/oss/OSSInputStreamTest$1.class
 alluxio/underfs/oss/OSSUnderFileSystemTest.class

@@ -444,7 +444,7 @@ public final class PermissionCheckerTest {
       String inodeName) {
     StringBuilder stringBuilder = new StringBuilder()
         .append("user=").append(user).append(", ")
-        .append("experimental_access=").append(action).append(", ")
+        .append("simulated_access=").append(action).append(", ")
         .append("path=").append(path).append(": ")
         .append("failed at ")
         .append(inodeName);
