@@ -441,4 +441,20 @@ public final class FileSystemMasterClientServiceHandler implements
       }
     });
   }
+
+  @Override
+  public RunGameTResponse runGame(final int fileNumber, final int quota)throws AlluxioTException{
+    return RpcUtils.call(LOG, new RpcCallableThrowsIOException<RunGameTResponse>() {
+      @Override
+      public RunGameTResponse call() throws AlluxioException, IOException {
+        mFileSystemMaster.runGame(fileNumber, quota);
+        return new RunGameTResponse();
+      }
+
+      @Override
+      public String toString() {
+        return String.format("RunGame: file number=%s, quota=%s", fileNumber, quota);
+      }
+    });
+  }
 }

@@ -85,10 +85,15 @@ public final class GameSystemMaster {
 
     private enum MODE {OpuS,FairRide,Game}
 
-    public GameSystemMaster() throws IOException {
+    public GameSystemMaster(){
         fileSystem = FileSystem.Factory.get();
-        if (!log.exists())
-            log.createNewFile();
+        try{
+            if (!log.exists())
+                log.createNewFile();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -284,8 +289,10 @@ public final class GameSystemMaster {
         }
 
         // write preferences into prefs.txt
+        System.out.println("Current dir:" + currentDirectory);
+        File prefLog = new File(currentDirectory+"/python/prefs.txt");
 
-        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
+        System.out.println("Client number" + userList.size());
         try {
             if (!prefLog.exists())
                 prefLog.createNewFile();
@@ -311,6 +318,7 @@ public final class GameSystemMaster {
      */
     private static void initWrite() throws AlluxioException, IOException{
         for(int fileId=0;fileId < File_Number;fileId++) {
+            System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
             AlluxioURI alluxioURI = new AlluxioURI(AlluxioFolder + "/" + fileId);
             if (!fileSystem.exists(alluxioURI)) {
                 Closer closer = Closer.create();
@@ -321,14 +329,15 @@ public final class GameSystemMaster {
                         new Class[]{}, new Object[]{});
                 FileOutStream os = closer.register(fileSystem.createFile(alluxioURI,
                         CreateFileOptions.defaults().setLocationPolicy(locationPolicy)));
-                ByteBuffer buf = ByteBuffer.allocate(8 * Constants.MB);
+                byte[] buf = new byte[8 * 1024*1024];
                 long bytes = File_Size * 1024 * 1024;
                 int writeBytes;
                 while (bytes > 0) {
-                    writeBytes = (int) Math.min(bytes, buf.capacity());
-                    os.write(buf.array(), 0, writeBytes);
+                    writeBytes = (int) Math.min(bytes, buf.length);
+                    os.write(buf, 0, writeBytes);
                     bytes -= writeBytes;
                 }
+                os.close();
             }
         }
     }
@@ -548,7 +557,6 @@ public final class GameSystemMaster {
             for(int i = 0; i< totalPref.length;i++)
                 totalPref[i] += prefs.get(i);
         }
-
         //sort it
         Arrays.sort(totalPref,Collections.reverseOrder());
 
@@ -761,14 +769,19 @@ public final class GameSystemMaster {
      *
      * Only run it after all users have registered and updated their prefs!
      */
-    public static void runAll(int fileNumber, int quota){
+    public void runAll(int fileNumber, int quota){
         File_Number = fileNumber;
         Total_QUOTA = quota;
 
-        try {
-            FileOutputStream fop = new FileOutputStream(log,true);
-            OutputStreamWriter writer = new OutputStreamWriter(fop);
+        fileSystem = FileSystem.Factory.get();
+        try{
+            if (!log.exists())
+                log.createNewFile();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
+        try {
             getPref(); //get preferences from clients and also log to pref.txt
 
             initWrite();

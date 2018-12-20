@@ -72,6 +72,7 @@ alluxio/master/block/meta/MasterBlockLocation.class
 alluxio/master/file/meta/InodeDirectory$1.class
 alluxio/master/file/meta/LockedInodePath.class
 alluxio/master/ProtobufUtils$1.class
+alluxio/master/file/FileSystemMasterClientServiceHandler$20.class
 alluxio/master/file/DefaultInodePermissionChecker.class
 alluxio/web/WebInterfaceBrowseServlet.class
 alluxio/master/file/meta/InodeTree$TraversalResult.class

@@ -456,5 +456,6 @@
 /Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/master/SingleMasterInquireClient.java
 /Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/AccessFairRideTResponse.java
 /Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/AccessTResponse.java
+/Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/RunGameTResponse.java
 /Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/network/protocol/RPCMessageEncoder.java
 /Users/yyuau/Research/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/CompleteUfsFileTReponse.java

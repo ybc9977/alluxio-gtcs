@@ -332,6 +332,8 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
   /** This caches paths which have been synced with UFS. */
   private final UfsSyncPathCache mUfsSyncPathCache;
 
+  private final GameSystemMaster mGameSystemMaster;
+
   /**
    * The service that checks for inode files with ttl set. We store it here so that it can be
    * accessed from tests.
@@ -396,7 +398,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     mUfsBlockLocationCache = UfsBlockLocationCache.Factory.create(mMountTable);
     mUfsSyncPathCache = new UfsSyncPathCache();
 
-    //GameSystemMaster gameSystemMaster = null;
+    mGameSystemMaster = new GameSystemMaster();
     //try {
       //gameSystemMaster = new GameSystemMaster();
     //} catch (IOException e) {
@@ -408,6 +410,12 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     resetState();
     Metrics.registerGauges(this, mUfsManager);
   }
+
+  @Override
+  public void runGame(int fileNumber, int quota){
+    mGameSystemMaster.runAll(fileNumber, quota);
+  }
+
 
   @Override
   public Map<String, TProcessor> getServices() {

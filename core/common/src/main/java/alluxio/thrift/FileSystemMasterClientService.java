@@ -211,6 +211,8 @@ public class FileSystemMasterClientService {
      */
     public UpdateUfsModeTResponse updateUfsMode(String ufsPath, UpdateUfsModeTOptions options) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
+    public RunGameTResponse runGame(int fileNumber, int quota) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface extends alluxio.thrift.AlluxioService .AsyncIface {
@@ -250,6 +252,8 @@ public class FileSystemMasterClientService {
     public void unmount(String alluxioPath, UnmountTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void updateUfsMode(String ufsPath, UpdateUfsModeTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void runGame(int fileNumber, int quota, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -762,6 +766,33 @@ public class FileSystemMasterClientService {
         throw result.e;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateUfsMode failed: unknown result");
+    }
+
+    public RunGameTResponse runGame(int fileNumber, int quota) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    {
+      send_runGame(fileNumber, quota);
+      return recv_runGame();
+    }
+
+    public void send_runGame(int fileNumber, int quota) throws org.apache.thrift.TException
+    {
+      runGame_args args = new runGame_args();
+      args.setFileNumber(fileNumber);
+      args.setQuota(quota);
+      sendBase("runGame", args);
+    }
+
+    public RunGameTResponse recv_runGame() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    {
+      runGame_result result = new runGame_result();
+      receiveBase(result, "runGame");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.e != null) {
+        throw result.e;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "runGame failed: unknown result");
     }
 
   }
@@ -1427,6 +1458,41 @@ public class FileSystemMasterClientService {
       }
     }
 
+    public void runGame(int fileNumber, int quota, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      runGame_call method_call = new runGame_call(fileNumber, quota, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class runGame_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private int fileNumber;
+      private int quota;
+      public runGame_call(int fileNumber, int quota, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.fileNumber = fileNumber;
+        this.quota = quota;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("runGame", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        runGame_args args = new runGame_args();
+        args.setFileNumber(fileNumber);
+        args.setQuota(quota);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public RunGameTResponse getResult() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_runGame();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends alluxio.thrift.AlluxioService.Processor<I> implements org.apache.thrift.TProcessor {
@@ -1458,6 +1524,7 @@ public class FileSystemMasterClientService {
       processMap.put("setAttribute", new setAttribute());
       processMap.put("unmount", new unmount());
       processMap.put("updateUfsMode", new updateUfsMode());
+      processMap.put("runGame", new runGame());
       return processMap;
     }
 
@@ -1893,6 +1960,30 @@ public class FileSystemMasterClientService {
       }
     }
 
+    public static class runGame<I extends Iface> extends org.apache.thrift.ProcessFunction<I, runGame_args> {
+      public runGame() {
+        super("runGame");
+      }
+
+      public runGame_args getEmptyArgsInstance() {
+        return new runGame_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public runGame_result getResult(I iface, runGame_args args) throws org.apache.thrift.TException {
+        runGame_result result = new runGame_result();
+        try {
+          result.success = iface.runGame(args.fileNumber, args.quota);
+        } catch (alluxio.thrift.AlluxioTException e) {
+          result.e = e;
+        }
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends alluxio.thrift.AlluxioService.AsyncProcessor<I> {
@@ -1924,6 +2015,7 @@ public class FileSystemMasterClientService {
       processMap.put("setAttribute", new setAttribute());
       processMap.put("unmount", new unmount());
       processMap.put("updateUfsMode", new updateUfsMode());
+      processMap.put("runGame", new runGame());
       return processMap;
     }
 
@@ -2950,6 +3042,63 @@ public class FileSystemMasterClientService {
 
       public void start(I iface, updateUfsMode_args args, org.apache.thrift.async.AsyncMethodCallback<UpdateUfsModeTResponse> resultHandler) throws TException {
         iface.updateUfsMode(args.ufsPath, args.options,resultHandler);
+      }
+    }
+
+    public static class runGame<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, runGame_args, RunGameTResponse> {
+      public runGame() {
+        super("runGame");
+      }
+
+      public runGame_args getEmptyArgsInstance() {
+        return new runGame_args();
+      }
+
+      public AsyncMethodCallback<RunGameTResponse> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<RunGameTResponse>() { 
+          public void onComplete(RunGameTResponse o) {
+            runGame_result result = new runGame_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            runGame_result result = new runGame_result();
+            if (e instanceof alluxio.thrift.AlluxioTException) {
+                        result.e = (alluxio.thrift.AlluxioTException) e;
+                        result.setEIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, runGame_args args, org.apache.thrift.async.AsyncMethodCallback<RunGameTResponse> resultHandler) throws TException {
+        iface.runGame(args.fileNumber, args.quota,resultHandler);
       }
     }
 
@@ -20778,6 +20927,937 @@ public class FileSystemMasterClientService {
         BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
           struct.success = new UpdateUfsModeTResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.e = new alluxio.thrift.AlluxioTException();
+          struct.e.read(iprot);
+          struct.setEIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class runGame_args implements org.apache.thrift.TBase<runGame_args, runGame_args._Fields>, java.io.Serializable, Cloneable, Comparable<runGame_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("runGame_args");
+
+    private static final org.apache.thrift.protocol.TField FILE_NUMBER_FIELD_DESC = new org.apache.thrift.protocol.TField("fileNumber", org.apache.thrift.protocol.TType.I32, (short)1);
+    private static final org.apache.thrift.protocol.TField QUOTA_FIELD_DESC = new org.apache.thrift.protocol.TField("quota", org.apache.thrift.protocol.TType.I32, (short)2);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new runGame_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new runGame_argsTupleSchemeFactory());
+    }
+
+    private int fileNumber; // required
+    private int quota; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      FILE_NUMBER((short)1, "fileNumber"),
+      QUOTA((short)2, "quota");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // FILE_NUMBER
+            return FILE_NUMBER;
+          case 2: // QUOTA
+            return QUOTA;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __FILENUMBER_ISSET_ID = 0;
+    private static final int __QUOTA_ISSET_ID = 1;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.FILE_NUMBER, new org.apache.thrift.meta_data.FieldMetaData("fileNumber", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.QUOTA, new org.apache.thrift.meta_data.FieldMetaData("quota", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(runGame_args.class, metaDataMap);
+    }
+
+    public runGame_args() {
+    }
+
+    public runGame_args(
+      int fileNumber,
+      int quota)
+    {
+      this();
+      this.fileNumber = fileNumber;
+      setFileNumberIsSet(true);
+      this.quota = quota;
+      setQuotaIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public runGame_args(runGame_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.fileNumber = other.fileNumber;
+      this.quota = other.quota;
+    }
+
+    public runGame_args deepCopy() {
+      return new runGame_args(this);
+    }
+
+    @Override
+    public void clear() {
+      setFileNumberIsSet(false);
+      this.fileNumber = 0;
+      setQuotaIsSet(false);
+      this.quota = 0;
+    }
+
+    public int getFileNumber() {
+      return this.fileNumber;
+    }
+
+    public runGame_args setFileNumber(int fileNumber) {
+      this.fileNumber = fileNumber;
+      setFileNumberIsSet(true);
+      return this;
+    }
+
+    public void unsetFileNumber() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __FILENUMBER_ISSET_ID);
+    }
+
+    /** Returns true if field fileNumber is set (has been assigned a value) and false otherwise */
+    public boolean isSetFileNumber() {
+      return EncodingUtils.testBit(__isset_bitfield, __FILENUMBER_ISSET_ID);
+    }
+
+    public void setFileNumberIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __FILENUMBER_ISSET_ID, value);
+    }
+
+    public int getQuota() {
+      return this.quota;
+    }
+
+    public runGame_args setQuota(int quota) {
+      this.quota = quota;
+      setQuotaIsSet(true);
+      return this;
+    }
+
+    public void unsetQuota() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __QUOTA_ISSET_ID);
+    }
+
+    /** Returns true if field quota is set (has been assigned a value) and false otherwise */
+    public boolean isSetQuota() {
+      return EncodingUtils.testBit(__isset_bitfield, __QUOTA_ISSET_ID);
+    }
+
+    public void setQuotaIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __QUOTA_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case FILE_NUMBER:
+        if (value == null) {
+          unsetFileNumber();
+        } else {
+          setFileNumber((Integer)value);
+        }
+        break;
+
+      case QUOTA:
+        if (value == null) {
+          unsetQuota();
+        } else {
+          setQuota((Integer)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case FILE_NUMBER:
+        return getFileNumber();
+
+      case QUOTA:
+        return getQuota();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case FILE_NUMBER:
+        return isSetFileNumber();
+      case QUOTA:
+        return isSetQuota();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof runGame_args)
+        return this.equals((runGame_args)that);
+      return false;
+    }
+
+    public boolean equals(runGame_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_fileNumber = true;
+      boolean that_present_fileNumber = true;
+      if (this_present_fileNumber || that_present_fileNumber) {
+        if (!(this_present_fileNumber && that_present_fileNumber))
+          return false;
+        if (this.fileNumber != that.fileNumber)
+          return false;
+      }
+
+      boolean this_present_quota = true;
+      boolean that_present_quota = true;
+      if (this_present_quota || that_present_quota) {
+        if (!(this_present_quota && that_present_quota))
+          return false;
+        if (this.quota != that.quota)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_fileNumber = true;
+      list.add(present_fileNumber);
+      if (present_fileNumber)
+        list.add(fileNumber);
+
+      boolean present_quota = true;
+      list.add(present_quota);
+      if (present_quota)
+        list.add(quota);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(runGame_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetFileNumber()).compareTo(other.isSetFileNumber());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetFileNumber()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.fileNumber, other.fileNumber);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetQuota()).compareTo(other.isSetQuota());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetQuota()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.quota, other.quota);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runGame_args(");
+      boolean first = true;
+
+      sb.append("fileNumber:");
+      sb.append(this.fileNumber);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("quota:");
+      sb.append(this.quota);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class runGame_argsStandardSchemeFactory implements SchemeFactory {
+      public runGame_argsStandardScheme getScheme() {
+        return new runGame_argsStandardScheme();
+      }
+    }
+
+    private static class runGame_argsStandardScheme extends StandardScheme<runGame_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, runGame_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // FILE_NUMBER
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.fileNumber = iprot.readI32();
+                struct.setFileNumberIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // QUOTA
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.quota = iprot.readI32();
+                struct.setQuotaIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, runGame_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        oprot.writeFieldBegin(FILE_NUMBER_FIELD_DESC);
+        oprot.writeI32(struct.fileNumber);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(QUOTA_FIELD_DESC);
+        oprot.writeI32(struct.quota);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class runGame_argsTupleSchemeFactory implements SchemeFactory {
+      public runGame_argsTupleScheme getScheme() {
+        return new runGame_argsTupleScheme();
+      }
+    }
+
+    private static class runGame_argsTupleScheme extends TupleScheme<runGame_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, runGame_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetFileNumber()) {
+          optionals.set(0);
+        }
+        if (struct.isSetQuota()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetFileNumber()) {
+          oprot.writeI32(struct.fileNumber);
+        }
+        if (struct.isSetQuota()) {
+          oprot.writeI32(struct.quota);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, runGame_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.fileNumber = iprot.readI32();
+          struct.setFileNumberIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.quota = iprot.readI32();
+          struct.setQuotaIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class runGame_result implements org.apache.thrift.TBase<runGame_result, runGame_result._Fields>, java.io.Serializable, Cloneable, Comparable<runGame_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("runGame_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new runGame_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new runGame_resultTupleSchemeFactory());
+    }
+
+    private RunGameTResponse success; // required
+    private alluxio.thrift.AlluxioTException e; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      E((short)1, "e");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // E
+            return E;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, RunGameTResponse.class)));
+      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(runGame_result.class, metaDataMap);
+    }
+
+    public runGame_result() {
+    }
+
+    public runGame_result(
+      RunGameTResponse success,
+      alluxio.thrift.AlluxioTException e)
+    {
+      this();
+      this.success = success;
+      this.e = e;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public runGame_result(runGame_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new RunGameTResponse(other.success);
+      }
+      if (other.isSetE()) {
+        this.e = new alluxio.thrift.AlluxioTException(other.e);
+      }
+    }
+
+    public runGame_result deepCopy() {
+      return new runGame_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+      this.e = null;
+    }
+
+    public RunGameTResponse getSuccess() {
+      return this.success;
+    }
+
+    public runGame_result setSuccess(RunGameTResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public alluxio.thrift.AlluxioTException getE() {
+      return this.e;
+    }
+
+    public runGame_result setE(alluxio.thrift.AlluxioTException e) {
+      this.e = e;
+      return this;
+    }
+
+    public void unsetE() {
+      this.e = null;
+    }
+
+    /** Returns true if field e is set (has been assigned a value) and false otherwise */
+    public boolean isSetE() {
+      return this.e != null;
+    }
+
+    public void setEIsSet(boolean value) {
+      if (!value) {
+        this.e = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((RunGameTResponse)value);
+        }
+        break;
+
+      case E:
+        if (value == null) {
+          unsetE();
+        } else {
+          setE((alluxio.thrift.AlluxioTException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      case E:
+        return getE();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case E:
+        return isSetE();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof runGame_result)
+        return this.equals((runGame_result)that);
+      return false;
+    }
+
+    public boolean equals(runGame_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      boolean this_present_e = true && this.isSetE();
+      boolean that_present_e = true && that.isSetE();
+      if (this_present_e || that_present_e) {
+        if (!(this_present_e && that_present_e))
+          return false;
+        if (!this.e.equals(that.e))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true && (isSetSuccess());
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_e = true && (isSetE());
+      list.add(present_e);
+      if (present_e)
+        list.add(e);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(runGame_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetE()).compareTo(other.isSetE());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetE()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, other.e);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("runGame_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("e:");
+      if (this.e == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.e);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class runGame_resultStandardSchemeFactory implements SchemeFactory {
+      public runGame_resultStandardScheme getScheme() {
+        return new runGame_resultStandardScheme();
+      }
+    }
+
+    private static class runGame_resultStandardScheme extends StandardScheme<runGame_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, runGame_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new RunGameTResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // E
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.e = new alluxio.thrift.AlluxioTException();
+                struct.e.read(iprot);
+                struct.setEIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, runGame_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        if (struct.e != null) {
+          oprot.writeFieldBegin(E_FIELD_DESC);
+          struct.e.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class runGame_resultTupleSchemeFactory implements SchemeFactory {
+      public runGame_resultTupleScheme getScheme() {
+        return new runGame_resultTupleScheme();
+      }
+    }
+
+    private static class runGame_resultTupleScheme extends TupleScheme<runGame_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, runGame_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetE()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+        if (struct.isSetE()) {
+          struct.e.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, runGame_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = new RunGameTResponse();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }

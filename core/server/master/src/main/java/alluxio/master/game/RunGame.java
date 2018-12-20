@@ -11,6 +11,6 @@ public class RunGame {
   public static void main(String[] argvs){
     int fileNumber = Integer.parseInt(argvs[0]);
     int quota = Integer.parseInt(argvs[1]);
-    GameSystemMaster.runAll(fileNumber,quota);
+    //GameSystemMaster.runAll(fileNumber,quota);
   }
 }

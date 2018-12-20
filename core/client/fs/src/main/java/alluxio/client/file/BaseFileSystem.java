@@ -433,4 +433,17 @@ public class BaseFileSystem implements FileSystem {
       mFileSystemContext.releaseMasterClient(masterClient);
     }
   }
+
+  @Override
+  public void runGame(int fileNumber, int quota){
+    FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
+    try {
+      masterClient.runGame(fileNumber,quota);
+
+    } catch (AlluxioStatusException e) {
+      e.printStackTrace();
+    } finally {
+      mFileSystemContext.releaseMasterClient(masterClient);
+    }
+  }
 }

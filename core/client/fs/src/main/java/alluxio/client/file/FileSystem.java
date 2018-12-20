@@ -363,4 +363,6 @@ public interface FileSystem {
    * @param options options to associate with this operation
    */
   void unmount(AlluxioURI path, UnmountOptions options) throws IOException, AlluxioException;
+
+  void runGame(int fileNumber, int quota);
 }

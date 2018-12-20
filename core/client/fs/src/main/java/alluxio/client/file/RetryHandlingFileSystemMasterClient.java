@@ -212,4 +212,11 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
     retryRPC(() -> mClient.updateUfsMode(ufsUri.getRootPath(), options.toThrift()),
         "UpdateUfsMode");
   }
+
+  @Override
+  public synchronized void runGame(final int fileNumber, final int quota) throws AlluxioStatusException{
+      retryRPC(() -> mClient.runGame(fileNumber, quota),
+              "RunGame");
+  }
+
 }

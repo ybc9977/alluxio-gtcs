@@ -234,6 +234,8 @@ struct UpdateUfsModeTOptions {
 }
 struct UpdateUfsModeTResponse {}
 
+struct RunGameTResponse{}
+
 /**
  * This interface contains file system master service endpoints for Alluxio clients.
  */
@@ -410,6 +412,9 @@ service FileSystemMasterClientService extends common.AlluxioService {
     /** the method options */ 2: UpdateUfsModeTOptions options,
     )
     throws (1: exception.AlluxioTException e)
+
+
+  RunGameTResponse runGame(1: i32 fileNumber, 2: i32 quota)  throws (1: exception.AlluxioTException e)
 }
 
 struct FileSystemHeartbeatTOptions {

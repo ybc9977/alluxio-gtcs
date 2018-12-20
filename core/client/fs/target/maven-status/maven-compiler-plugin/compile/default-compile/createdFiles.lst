@@ -33,6 +33,7 @@ alluxio/client/game/GameSystemServer.class
 alluxio/client/block/policy/BlockLocationPolicy.class
 alluxio/client/file/options/GetStatusOptions.class
 alluxio/client/block/stream/LocalFilePacketReader$Factory.class
+alluxio/client/game/RunGame.class
 alluxio/client/game/GameSystemServerProcess$1.class
 alluxio/client/file/options/OutStreamOptions.class
 alluxio/client/block/options/GetWorkerReportOptions$WorkerRange.class
