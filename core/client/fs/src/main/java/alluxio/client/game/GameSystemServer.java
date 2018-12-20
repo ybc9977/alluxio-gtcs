@@ -119,8 +119,9 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
                 AlluxioURI uri = new AlluxioURI(AlluxioFolder+"/"+fileId);
                 OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                 FileInStream is = mFileSystem.openFile(uri,options);
-                hit+= cachedRatio.get(fileId)* accessFactor.get(fileId);
-                Future<Long> future = executorService.submit(new FileAccessThread(is, hit)); // run the file read in another thread
+                double thisHit = cachedRatio.get(fileId)* accessFactor.get(fileId);
+                Future<Long> future = executorService.submit(new FileAccessThread(is, thisHit)); // run the file read in another thread
+                hit += thisHit;
                 timeList.add(future);
 
                 // Access interval

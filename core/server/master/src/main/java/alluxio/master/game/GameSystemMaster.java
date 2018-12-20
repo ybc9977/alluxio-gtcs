@@ -79,17 +79,18 @@ public final class GameSystemMaster {
     private static FileSystem fileSystem; // to do load and free
 
 
-    private static int Total_QUOTA = Configuration.getInt(PropertyKey.CACHE_QUOTA);
-    private static int File_Number= Configuration.getInt(PropertyKey.FILE_NUMBER);
+    private static int Total_QUOTA;// = Configuration.getInt(PropertyKey.CACHE_QUOTA);
+    private static int File_Number;//= Configuration.getInt(PropertyKey.FILE_NUMBER);
     private static int File_Size= Configuration.getInt(PropertyKey.FILE_SIZE); // file size in MB
 
     private enum MODE {OpuS,FairRide,Game}
 
-    public GameSystemMaster(FileSystemMaster defaultFileSystemMaster) throws IOException {
+    public GameSystemMaster() throws IOException {
         fileSystem = FileSystem.Factory.get();
         if (!log.exists())
             log.createNewFile();
     }
+
 
 
 //    /** add file into fileList & cacheList */
@@ -760,7 +761,10 @@ public final class GameSystemMaster {
      *
      * Only run it after all users have registered and updated their prefs!
      */
-    public static void runAll(){
+    public static void runAll(int fileNumber, int quota){
+        File_Number = fileNumber;
+        Total_QUOTA = quota;
+
         try {
             FileOutputStream fop = new FileOutputStream(log,true);
             OutputStreamWriter writer = new OutputStreamWriter(fop);
