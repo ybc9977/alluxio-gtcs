@@ -290,6 +290,18 @@ public final class PropertyKey implements Comparable<PropertyKey> {
                   .setDefaultValue("OpuS")
                   .setDescription("Alluxio running mode selection.")
                   .build();
+  public static final PropertyKey ACCESS_COUNT=
+          new Builder(Name.ACCESS_COUNT).setDefaultValue("200").setDescription("Access count for cache sharing game").build();
+  public static final PropertyKey ACCESS_RATE=
+          new Builder(Name.ACCESS_RATE).setDefaultValue("0.5").setDescription("Access rate for cache sharing game").build();
+  public static final PropertyKey CACHE_QUOTA=
+          new Builder(Name.CACHE_QUOTA).setDefaultValue("300").setDescription("Cache quota for cache sharing game").build();
+  public static final PropertyKey FILE_NUMBER=
+          new Builder(Name.FILE_NUMBER).setDefaultValue("500").setDescription("Total file number in the cache sharing game").build();
+  public static final PropertyKey FILE_SIZE=
+          new Builder(Name.FILE_SIZE).setDefaultValue("100").setDescription("File size (MB) in the cache sharing game").build();
+  public static final PropertyKey MISS_PENALTY=
+          new Builder(Name.MISS_PENALTY).setDefaultValue("1000").setDescription("Delay of a full miss in ms in the cache sharing game").build();
   public static final PropertyKey DEBUG =
       new Builder(Name.DEBUG)
           .setDefaultValue(false)
@@ -3069,7 +3081,13 @@ public final class PropertyKey implements Comparable<PropertyKey> {
   @ThreadSafe
   public static final class Name {
     public static final String CONF_DIR = "alluxio.conf.dir";
-    public static final String MODE = "alluxio.mode";
+    public static final String MODE = "alluxio.game.mode";
+    public static final String ACCESS_COUNT = "alluxio.game.accesscount";
+    public static final String MISS_PENALTY = "alluxio.game.misspenalty";
+    public static final String ACCESS_RATE = "alluxio.game.accessrate";
+    public static final String CACHE_QUOTA = "alluxio.game.quota";
+    public static final String FILE_NUMBER = "alluxio.game.filenumber";
+    public static final String FILE_SIZE = "alluxio.game.filesize";
     public static final String DEBUG = "alluxio.debug";
     public static final String EXTENSIONS_DIR = "alluxio.extensions.dir";
     public static final String HOME = "alluxio.home";

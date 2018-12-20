@@ -1,5 +1,5 @@
 alluxio/hadoop/HadoopClientTestUtils.class
-alluxio/hadoop/HadoopConfigurationUtilsTest.class
 alluxio/hadoop/AbstractFileSystemTest.class
+alluxio/hadoop/HadoopConfigurationUtilsTest.class
 alluxio/hadoop/HadoopUtilsTest.class
 alluxio/hadoop/AbstractFileSystemTest$1.class

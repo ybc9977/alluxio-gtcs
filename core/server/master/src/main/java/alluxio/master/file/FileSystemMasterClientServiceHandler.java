@@ -138,7 +138,7 @@ public final class FileSystemMasterClientServiceHandler implements
       @Override
       public CreateFileTResponse call() throws AlluxioException, IOException {
         mFileSystemMaster.createFile(new AlluxioURI(path), new CreateFileOptions(options));
-        GameSystemMaster.addfile(path);
+        //GameSystemMaster.addfile(path);
         return new CreateFileTResponse();
       }
 
@@ -152,7 +152,7 @@ public final class FileSystemMasterClientServiceHandler implements
   @Override
   public FreeTResponse free(final String path, final boolean recursive, final FreeTOptions options)
       throws AlluxioTException {
-    GameSystemMaster.changeFileMode(path,false);
+    //GameSystemMaster.changeFileMode(path,false);
     return RpcUtils.call(LOG, new RpcCallableThrowsIOException<FreeTResponse>() {
       @Override
       public FreeTResponse call() throws AlluxioException, IOException {

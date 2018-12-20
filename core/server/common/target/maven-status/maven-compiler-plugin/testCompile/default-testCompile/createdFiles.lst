@@ -1,9 +1,9 @@
-alluxio/RestUtilsTest$2.class
 alluxio/cli/FormatTest$1.class
+alluxio/RestUtilsTest$2.class
 alluxio/cli/FormatTest.class
 alluxio/master/RegistryTest$ServerA.class
-alluxio/RestUtilsTest$3.class
 alluxio/master/RegistryTest.class
+alluxio/RestUtilsTest$3.class
 alluxio/cli/FormatTest$2.class
 alluxio/master/journal/AsyncJournalWriterTest.class
 alluxio/master/RegistryTest$ServerD.class
@@ -12,8 +12,8 @@ alluxio/StorageTierAssocTest.class
 alluxio/RestUtilsTest$4.class
 alluxio/master/RegistryTest$ServerC.class
 alluxio/master/AbstractPrimarySelectorTest$TestSelector.class
-alluxio/RestUtilsTest$1Obj.class
 alluxio/master/AbstractPrimarySelectorTest.class
+alluxio/RestUtilsTest$1Obj.class
 alluxio/RestUtilsTest$1.class
 alluxio/master/RegistryTest$ServerB.class
 alluxio/master/RegistryTest$TestServer.class

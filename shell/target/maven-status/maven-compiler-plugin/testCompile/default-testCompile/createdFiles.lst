@@ -1,5 +1,5 @@
 alluxio/cli/fsadmin/report/SummaryCommandTest.class
 alluxio/cli/fs/command/ChownCommandTest.class
-alluxio/cli/fsadmin/report/MetricsCommandTest.class
 alluxio/cli/fsadmin/report/CapacityCommandTest.class
+alluxio/cli/fsadmin/report/MetricsCommandTest.class
 alluxio/cli/fsadmin/FileSystemAdminShellUtilsTest.class

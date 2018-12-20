@@ -1,5 +1,7 @@
 package alluxio.client.game;
 
+import alluxio.Configuration;
+import alluxio.PropertyKey;
 import alluxio.client.file.FileInStream;
 
 import java.io.IOException;
@@ -13,20 +15,27 @@ import java.util.concurrent.Callable;
  */
 public class FileAccessThread implements Callable {
   private FileInStream mFis;
+  private double mHit;
+  private long mMissPenalty;
 
-  public FileAccessThread(FileInStream fis){
+  public FileAccessThread(FileInStream fis, double hit){
     mFis=fis;
+    mHit=hit;
+    mMissPenalty = Configuration.getLong(PropertyKey.MISS_PENALTY);
   }
 
   public Long call() {
     byte[] fileBuf = new byte[(int) (mFis.remaining() + mFis.getPos())];
     long start = System.currentTimeMillis();
     try {
-      mFis.read(fileBuf);
+      mFis.read(fileBuf); //todo: use a smaller fixed size buffer to avoid heap out-of-memory
       mFis.close();
-    } catch (IOException e) {
+      // Simulate cache miss delay
+      Thread.sleep((long)(1000*(1-mHit)));
+    } catch (IOException |InterruptedException e) {
       e.printStackTrace();
     }
+
     return System.currentTimeMillis() - start;
   }
 

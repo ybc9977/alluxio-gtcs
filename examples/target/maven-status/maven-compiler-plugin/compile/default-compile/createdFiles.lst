@@ -16,8 +16,8 @@ alluxio/cli/RunOperation$OperationThread.class
 alluxio/cli/RunOperation.class
 alluxio/cli/RunOperation$Operation.class
 alluxio/examples/Performance$AlluxioReadWorker.class
-alluxio/examples/Performance$HdfsWorker.class
 alluxio/examples/keyvalue/SameKeyValueStoresTest.class
+alluxio/examples/Performance$HdfsWorker.class
 alluxio/cli/JournalCrashTest$ClientThread.class
 alluxio/examples/keyvalue/hadoop/CloneStoreMapReduce$CloneStoreMapper.class
 alluxio/examples/keyvalue/KeyValueStoreQuickStart.class

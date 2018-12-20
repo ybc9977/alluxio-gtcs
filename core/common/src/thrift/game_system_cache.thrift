@@ -32,16 +32,16 @@ struct ResetTResponse{
 //Client offer service to Master
 service GameSystemCacheService extends common.AlluxioService {
 
-    CheckCacheChangeTResponse checkCacheChange(
-        1: map<string,bool> fileList
-        2: i32 QUOTA
-    )
-    throws (1: exception.AlluxioTException e)
+    //CheckCacheChangeTResponse checkCacheChange(
+      //  1: map<string,bool> fileList
+        //2: i32 QUOTA
+    //)
+    //throws (1: exception.AlluxioTException e)
 
-    GetPrefTResponse getPref(
-        1: GetPrefTOptions options
-    )
-    throws (1: exception.AlluxioTException e)
+    //GetPrefTResponse getPref(
+      //  1: GetPrefTOptions options
+    //)
+    //throws (1: exception.AlluxioTException e)
 
     LoadTResponse load(
         1: string path
@@ -49,15 +49,11 @@ service GameSystemCacheService extends common.AlluxioService {
     throws (1: exception.AlluxioTException e)
 
     AccessTResponse access(
-        1: map<string,double> prefList
+        1: list<double> pref
         2: string mode
-    )
+        3: list<double> cachedRatio
+        4: list<double> accessFactor)
     throws (1: exception.AlluxioTException e)
-
-    AccessFairRideTResponse accessFairRide(
-        1: map<string,double> prefList
-        2: list<double> factor
-    )
 
     ResetTResponse reset(
         1: ResetTOptions options

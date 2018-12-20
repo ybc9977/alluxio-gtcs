@@ -402,9 +402,9 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     } catch (IOException e) {
       e.printStackTrace();
     }
-    Timer time = new Timer();
+    //Timer time = new Timer();
     //1500000
-    time.schedule(gameSystemMaster.t, 1500000, 80000);
+    //time.schedule(gameSystemMaster.t, 1500000, 80000);
     resetState();
     Metrics.registerGauges(this, mUfsManager);
   }

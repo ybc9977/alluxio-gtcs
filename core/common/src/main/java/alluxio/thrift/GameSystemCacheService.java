@@ -39,15 +39,9 @@ public class GameSystemCacheService {
 
   public interface Iface extends alluxio.thrift.AlluxioService.Iface {
 
-    public CheckCacheChangeTResponse checkCacheChange(Map<String,Boolean> fileList, int QUOTA) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
-
-    public GetPrefTResponse getPref(GetPrefTOptions options) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
-
     public LoadTResponse load(String path) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
-    public AccessTResponse access(Map<String,Double> prefList, String mode) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
-
-    public AccessFairRideTResponse accessFairRide(Map<String,Double> prefList, List<Double> factor) throws org.apache.thrift.TException;
+    public AccessTResponse access(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
     public ResetTResponse reset(ResetTOptions options) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
@@ -55,15 +49,9 @@ public class GameSystemCacheService {
 
   public interface AsyncIface extends alluxio.thrift.AlluxioService .AsyncIface {
 
-    public void checkCacheChange(Map<String,Boolean> fileList, int QUOTA, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
-
-    public void getPref(GetPrefTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
-
     public void load(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
-    public void access(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
-
-    public void accessFairRide(Map<String,Double> prefList, List<Double> factor, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+    public void access(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void reset(ResetTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
@@ -87,59 +75,6 @@ public class GameSystemCacheService {
 
     public Client(org.apache.thrift.protocol.TProtocol iprot, org.apache.thrift.protocol.TProtocol oprot) {
       super(iprot, oprot);
-    }
-
-    public CheckCacheChangeTResponse checkCacheChange(Map<String,Boolean> fileList, int QUOTA) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
-    {
-      send_checkCacheChange(fileList, QUOTA);
-      return recv_checkCacheChange();
-    }
-
-    public void send_checkCacheChange(Map<String,Boolean> fileList, int QUOTA) throws org.apache.thrift.TException
-    {
-      checkCacheChange_args args = new checkCacheChange_args();
-      args.setFileList(fileList);
-      args.setQUOTA(QUOTA);
-      sendBase("checkCacheChange", args);
-    }
-
-    public CheckCacheChangeTResponse recv_checkCacheChange() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
-    {
-      checkCacheChange_result result = new checkCacheChange_result();
-      receiveBase(result, "checkCacheChange");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      if (result.e != null) {
-        throw result.e;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "checkCacheChange failed: unknown result");
-    }
-
-    public GetPrefTResponse getPref(GetPrefTOptions options) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
-    {
-      send_getPref(options);
-      return recv_getPref();
-    }
-
-    public void send_getPref(GetPrefTOptions options) throws org.apache.thrift.TException
-    {
-      getPref_args args = new getPref_args();
-      args.setOptions(options);
-      sendBase("getPref", args);
-    }
-
-    public GetPrefTResponse recv_getPref() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
-    {
-      getPref_result result = new getPref_result();
-      receiveBase(result, "getPref");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      if (result.e != null) {
-        throw result.e;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getPref failed: unknown result");
     }
 
     public LoadTResponse load(String path) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
@@ -168,17 +103,19 @@ public class GameSystemCacheService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "load failed: unknown result");
     }
 
-    public AccessTResponse access(Map<String,Double> prefList, String mode) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    public AccessTResponse access(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
     {
-      send_access(prefList, mode);
+      send_access(pref, mode, cachedRatio, accessFactor);
       return recv_access();
     }
 
-    public void send_access(Map<String,Double> prefList, String mode) throws org.apache.thrift.TException
+    public void send_access(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor) throws org.apache.thrift.TException
     {
       access_args args = new access_args();
-      args.setPrefList(prefList);
+      args.setPref(pref);
       args.setMode(mode);
+      args.setCachedRatio(cachedRatio);
+      args.setAccessFactor(accessFactor);
       sendBase("access", args);
     }
 
@@ -193,30 +130,6 @@ public class GameSystemCacheService {
         throw result.e;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "access failed: unknown result");
-    }
-
-    public AccessFairRideTResponse accessFairRide(Map<String,Double> prefList, List<Double> factor) throws org.apache.thrift.TException
-    {
-      send_accessFairRide(prefList, factor);
-      return recv_accessFairRide();
-    }
-
-    public void send_accessFairRide(Map<String,Double> prefList, List<Double> factor) throws org.apache.thrift.TException
-    {
-      accessFairRide_args args = new accessFairRide_args();
-      args.setPrefList(prefList);
-      args.setFactor(factor);
-      sendBase("accessFairRide", args);
-    }
-
-    public AccessFairRideTResponse recv_accessFairRide() throws org.apache.thrift.TException
-    {
-      accessFairRide_result result = new accessFairRide_result();
-      receiveBase(result, "accessFairRide");
-      if (result.isSetSuccess()) {
-        return result.success;
-      }
-      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "accessFairRide failed: unknown result");
     }
 
     public ResetTResponse reset(ResetTOptions options) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
@@ -263,73 +176,6 @@ public class GameSystemCacheService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void checkCacheChange(Map<String,Boolean> fileList, int QUOTA, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      checkCacheChange_call method_call = new checkCacheChange_call(fileList, QUOTA, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class checkCacheChange_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private Map<String,Boolean> fileList;
-      private int QUOTA;
-      public checkCacheChange_call(Map<String,Boolean> fileList, int QUOTA, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.fileList = fileList;
-        this.QUOTA = QUOTA;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("checkCacheChange", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        checkCacheChange_args args = new checkCacheChange_args();
-        args.setFileList(fileList);
-        args.setQUOTA(QUOTA);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public CheckCacheChangeTResponse getResult() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_checkCacheChange();
-      }
-    }
-
-    public void getPref(GetPrefTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      getPref_call method_call = new getPref_call(options, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class getPref_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private GetPrefTOptions options;
-      public getPref_call(GetPrefTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.options = options;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getPref", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        getPref_args args = new getPref_args();
-        args.setOptions(options);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public GetPrefTResponse getResult() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_getPref();
-      }
-    }
-
     public void load(String path, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
       load_call method_call = new load_call(path, resultHandler, this, ___protocolFactory, ___transport);
@@ -362,27 +208,33 @@ public class GameSystemCacheService {
       }
     }
 
-    public void access(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+    public void access(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      access_call method_call = new access_call(prefList, mode, resultHandler, this, ___protocolFactory, ___transport);
+      access_call method_call = new access_call(pref, mode, cachedRatio, accessFactor, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class access_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private Map<String,Double> prefList;
+      private List<Double> pref;
       private String mode;
-      public access_call(Map<String,Double> prefList, String mode, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private List<Double> cachedRatio;
+      private List<Double> accessFactor;
+      public access_call(List<Double> pref, String mode, List<Double> cachedRatio, List<Double> accessFactor, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
-        this.prefList = prefList;
+        this.pref = pref;
         this.mode = mode;
+        this.cachedRatio = cachedRatio;
+        this.accessFactor = accessFactor;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("access", org.apache.thrift.protocol.TMessageType.CALL, 0));
         access_args args = new access_args();
-        args.setPrefList(prefList);
+        args.setPref(pref);
         args.setMode(mode);
+        args.setCachedRatio(cachedRatio);
+        args.setAccessFactor(accessFactor);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -394,41 +246,6 @@ public class GameSystemCacheService {
         org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
         org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
         return (new Client(prot)).recv_access();
-      }
-    }
-
-    public void accessFairRide(Map<String,Double> prefList, List<Double> factor, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
-      checkReady();
-      accessFairRide_call method_call = new accessFairRide_call(prefList, factor, resultHandler, this, ___protocolFactory, ___transport);
-      this.___currentMethod = method_call;
-      ___manager.call(method_call);
-    }
-
-    public static class accessFairRide_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private Map<String,Double> prefList;
-      private List<Double> factor;
-      public accessFairRide_call(Map<String,Double> prefList, List<Double> factor, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
-        super(client, protocolFactory, transport, resultHandler, false);
-        this.prefList = prefList;
-        this.factor = factor;
-      }
-
-      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
-        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("accessFairRide", org.apache.thrift.protocol.TMessageType.CALL, 0));
-        accessFairRide_args args = new accessFairRide_args();
-        args.setPrefList(prefList);
-        args.setFactor(factor);
-        args.write(prot);
-        prot.writeMessageEnd();
-      }
-
-      public AccessFairRideTResponse getResult() throws org.apache.thrift.TException {
-        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
-          throw new IllegalStateException("Method call not finished!");
-        }
-        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
-        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
-        return (new Client(prot)).recv_accessFairRide();
       }
     }
 
@@ -477,61 +294,10 @@ public class GameSystemCacheService {
     }
 
     private static <I extends Iface> Map<String,  org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> getProcessMap(Map<String,  org.apache.thrift.ProcessFunction<I, ? extends  org.apache.thrift.TBase>> processMap) {
-      processMap.put("checkCacheChange", new checkCacheChange());
-      processMap.put("getPref", new getPref());
       processMap.put("load", new load());
       processMap.put("access", new access());
-      processMap.put("accessFairRide", new accessFairRide());
       processMap.put("reset", new reset());
       return processMap;
-    }
-
-    public static class checkCacheChange<I extends Iface> extends org.apache.thrift.ProcessFunction<I, checkCacheChange_args> {
-      public checkCacheChange() {
-        super("checkCacheChange");
-      }
-
-      public checkCacheChange_args getEmptyArgsInstance() {
-        return new checkCacheChange_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public checkCacheChange_result getResult(I iface, checkCacheChange_args args) throws org.apache.thrift.TException {
-        checkCacheChange_result result = new checkCacheChange_result();
-        try {
-          result.success = iface.checkCacheChange(args.fileList, args.QUOTA);
-        } catch (alluxio.thrift.AlluxioTException e) {
-          result.e = e;
-        }
-        return result;
-      }
-    }
-
-    public static class getPref<I extends Iface> extends org.apache.thrift.ProcessFunction<I, getPref_args> {
-      public getPref() {
-        super("getPref");
-      }
-
-      public getPref_args getEmptyArgsInstance() {
-        return new getPref_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public getPref_result getResult(I iface, getPref_args args) throws org.apache.thrift.TException {
-        getPref_result result = new getPref_result();
-        try {
-          result.success = iface.getPref(args.options);
-        } catch (alluxio.thrift.AlluxioTException e) {
-          result.e = e;
-        }
-        return result;
-      }
     }
 
     public static class load<I extends Iface> extends org.apache.thrift.ProcessFunction<I, load_args> {
@@ -574,30 +340,10 @@ public class GameSystemCacheService {
       public access_result getResult(I iface, access_args args) throws org.apache.thrift.TException {
         access_result result = new access_result();
         try {
-          result.success = iface.access(args.prefList, args.mode);
+          result.success = iface.access(args.pref, args.mode, args.cachedRatio, args.accessFactor);
         } catch (alluxio.thrift.AlluxioTException e) {
           result.e = e;
         }
-        return result;
-      }
-    }
-
-    public static class accessFairRide<I extends Iface> extends org.apache.thrift.ProcessFunction<I, accessFairRide_args> {
-      public accessFairRide() {
-        super("accessFairRide");
-      }
-
-      public accessFairRide_args getEmptyArgsInstance() {
-        return new accessFairRide_args();
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public accessFairRide_result getResult(I iface, accessFairRide_args args) throws org.apache.thrift.TException {
-        accessFairRide_result result = new accessFairRide_result();
-        result.success = iface.accessFairRide(args.prefList, args.factor);
         return result;
       }
     }
@@ -639,127 +385,10 @@ public class GameSystemCacheService {
     }
 
     private static <I extends AsyncIface> Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase,?>> getProcessMap(Map<String,  org.apache.thrift.AsyncProcessFunction<I, ? extends  org.apache.thrift.TBase, ?>> processMap) {
-      processMap.put("checkCacheChange", new checkCacheChange());
-      processMap.put("getPref", new getPref());
       processMap.put("load", new load());
       processMap.put("access", new access());
-      processMap.put("accessFairRide", new accessFairRide());
       processMap.put("reset", new reset());
       return processMap;
-    }
-
-    public static class checkCacheChange<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, checkCacheChange_args, CheckCacheChangeTResponse> {
-      public checkCacheChange() {
-        super("checkCacheChange");
-      }
-
-      public checkCacheChange_args getEmptyArgsInstance() {
-        return new checkCacheChange_args();
-      }
-
-      public AsyncMethodCallback<CheckCacheChangeTResponse> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new AsyncMethodCallback<CheckCacheChangeTResponse>() { 
-          public void onComplete(CheckCacheChangeTResponse o) {
-            checkCacheChange_result result = new checkCacheChange_result();
-            result.success = o;
-            try {
-              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-              return;
-            } catch (Exception e) {
-              LOGGER.error("Exception writing to internal frame buffer", e);
-            }
-            fb.close();
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TBase msg;
-            checkCacheChange_result result = new checkCacheChange_result();
-            if (e instanceof alluxio.thrift.AlluxioTException) {
-                        result.e = (alluxio.thrift.AlluxioTException) e;
-                        result.setEIsSet(true);
-                        msg = result;
-            }
-             else 
-            {
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-              return;
-            } catch (Exception ex) {
-              LOGGER.error("Exception writing to internal frame buffer", ex);
-            }
-            fb.close();
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, checkCacheChange_args args, org.apache.thrift.async.AsyncMethodCallback<CheckCacheChangeTResponse> resultHandler) throws TException {
-        iface.checkCacheChange(args.fileList, args.QUOTA,resultHandler);
-      }
-    }
-
-    public static class getPref<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, getPref_args, GetPrefTResponse> {
-      public getPref() {
-        super("getPref");
-      }
-
-      public getPref_args getEmptyArgsInstance() {
-        return new getPref_args();
-      }
-
-      public AsyncMethodCallback<GetPrefTResponse> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new AsyncMethodCallback<GetPrefTResponse>() { 
-          public void onComplete(GetPrefTResponse o) {
-            getPref_result result = new getPref_result();
-            result.success = o;
-            try {
-              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-              return;
-            } catch (Exception e) {
-              LOGGER.error("Exception writing to internal frame buffer", e);
-            }
-            fb.close();
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TBase msg;
-            getPref_result result = new getPref_result();
-            if (e instanceof alluxio.thrift.AlluxioTException) {
-                        result.e = (alluxio.thrift.AlluxioTException) e;
-                        result.setEIsSet(true);
-                        msg = result;
-            }
-             else 
-            {
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-              return;
-            } catch (Exception ex) {
-              LOGGER.error("Exception writing to internal frame buffer", ex);
-            }
-            fb.close();
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, getPref_args args, org.apache.thrift.async.AsyncMethodCallback<GetPrefTResponse> resultHandler) throws TException {
-        iface.getPref(args.options,resultHandler);
-      }
     }
 
     public static class load<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, load_args, LoadTResponse> {
@@ -872,58 +501,7 @@ public class GameSystemCacheService {
       }
 
       public void start(I iface, access_args args, org.apache.thrift.async.AsyncMethodCallback<AccessTResponse> resultHandler) throws TException {
-        iface.access(args.prefList, args.mode,resultHandler);
-      }
-    }
-
-    public static class accessFairRide<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, accessFairRide_args, AccessFairRideTResponse> {
-      public accessFairRide() {
-        super("accessFairRide");
-      }
-
-      public accessFairRide_args getEmptyArgsInstance() {
-        return new accessFairRide_args();
-      }
-
-      public AsyncMethodCallback<AccessFairRideTResponse> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
-        final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new AsyncMethodCallback<AccessFairRideTResponse>() { 
-          public void onComplete(AccessFairRideTResponse o) {
-            accessFairRide_result result = new accessFairRide_result();
-            result.success = o;
-            try {
-              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
-              return;
-            } catch (Exception e) {
-              LOGGER.error("Exception writing to internal frame buffer", e);
-            }
-            fb.close();
-          }
-          public void onError(Exception e) {
-            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
-            org.apache.thrift.TBase msg;
-            accessFairRide_result result = new accessFairRide_result();
-            {
-              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
-              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
-            }
-            try {
-              fcall.sendResponse(fb,msg,msgType,seqid);
-              return;
-            } catch (Exception ex) {
-              LOGGER.error("Exception writing to internal frame buffer", ex);
-            }
-            fb.close();
-          }
-        };
-      }
-
-      protected boolean isOneway() {
-        return false;
-      }
-
-      public void start(I iface, accessFairRide_args args, org.apache.thrift.async.AsyncMethodCallback<AccessFairRideTResponse> resultHandler) throws TException {
-        iface.accessFairRide(args.prefList, args.factor,resultHandler);
+        iface.access(args.pref, args.mode, args.cachedRatio, args.accessFactor,resultHandler);
       }
     }
 
@@ -981,1834 +559,6 @@ public class GameSystemCacheService {
 
       public void start(I iface, reset_args args, org.apache.thrift.async.AsyncMethodCallback<ResetTResponse> resultHandler) throws TException {
         iface.reset(args.options,resultHandler);
-      }
-    }
-
-  }
-
-  public static class checkCacheChange_args implements org.apache.thrift.TBase<checkCacheChange_args, checkCacheChange_args._Fields>, java.io.Serializable, Cloneable, Comparable<checkCacheChange_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("checkCacheChange_args");
-
-    private static final org.apache.thrift.protocol.TField FILE_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("fileList", org.apache.thrift.protocol.TType.MAP, (short)1);
-    private static final org.apache.thrift.protocol.TField QUOTA_FIELD_DESC = new org.apache.thrift.protocol.TField("QUOTA", org.apache.thrift.protocol.TType.I32, (short)2);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new checkCacheChange_argsStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new checkCacheChange_argsTupleSchemeFactory());
-    }
-
-    private Map<String,Boolean> fileList; // required
-    private int QUOTA; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      FILE_LIST((short)1, "fileList"),
-      QUOTA((short)2, "QUOTA");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // FILE_LIST
-            return FILE_LIST;
-          case 2: // QUOTA
-            return QUOTA;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    private static final int __QUOTA_ISSET_ID = 0;
-    private byte __isset_bitfield = 0;
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.FILE_LIST, new org.apache.thrift.meta_data.FieldMetaData("fileList", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL))));
-      tmpMap.put(_Fields.QUOTA, new org.apache.thrift.meta_data.FieldMetaData("QUOTA", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(checkCacheChange_args.class, metaDataMap);
-    }
-
-    public checkCacheChange_args() {
-    }
-
-    public checkCacheChange_args(
-      Map<String,Boolean> fileList,
-      int QUOTA)
-    {
-      this();
-      this.fileList = fileList;
-      this.QUOTA = QUOTA;
-      setQUOTAIsSet(true);
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public checkCacheChange_args(checkCacheChange_args other) {
-      __isset_bitfield = other.__isset_bitfield;
-      if (other.isSetFileList()) {
-        Map<String,Boolean> __this__fileList = new HashMap<String,Boolean>(other.fileList);
-        this.fileList = __this__fileList;
-      }
-      this.QUOTA = other.QUOTA;
-    }
-
-    public checkCacheChange_args deepCopy() {
-      return new checkCacheChange_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.fileList = null;
-      setQUOTAIsSet(false);
-      this.QUOTA = 0;
-    }
-
-    public int getFileListSize() {
-      return (this.fileList == null) ? 0 : this.fileList.size();
-    }
-
-    public void putToFileList(String key, boolean val) {
-      if (this.fileList == null) {
-        this.fileList = new HashMap<String,Boolean>();
-      }
-      this.fileList.put(key, val);
-    }
-
-    public Map<String,Boolean> getFileList() {
-      return this.fileList;
-    }
-
-    public checkCacheChange_args setFileList(Map<String,Boolean> fileList) {
-      this.fileList = fileList;
-      return this;
-    }
-
-    public void unsetFileList() {
-      this.fileList = null;
-    }
-
-    /** Returns true if field fileList is set (has been assigned a value) and false otherwise */
-    public boolean isSetFileList() {
-      return this.fileList != null;
-    }
-
-    public void setFileListIsSet(boolean value) {
-      if (!value) {
-        this.fileList = null;
-      }
-    }
-
-    public int getQUOTA() {
-      return this.QUOTA;
-    }
-
-    public checkCacheChange_args setQUOTA(int QUOTA) {
-      this.QUOTA = QUOTA;
-      setQUOTAIsSet(true);
-      return this;
-    }
-
-    public void unsetQUOTA() {
-      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __QUOTA_ISSET_ID);
-    }
-
-    /** Returns true if field QUOTA is set (has been assigned a value) and false otherwise */
-    public boolean isSetQUOTA() {
-      return EncodingUtils.testBit(__isset_bitfield, __QUOTA_ISSET_ID);
-    }
-
-    public void setQUOTAIsSet(boolean value) {
-      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __QUOTA_ISSET_ID, value);
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case FILE_LIST:
-        if (value == null) {
-          unsetFileList();
-        } else {
-          setFileList((Map<String,Boolean>)value);
-        }
-        break;
-
-      case QUOTA:
-        if (value == null) {
-          unsetQUOTA();
-        } else {
-          setQUOTA((Integer)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case FILE_LIST:
-        return getFileList();
-
-      case QUOTA:
-        return getQUOTA();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case FILE_LIST:
-        return isSetFileList();
-      case QUOTA:
-        return isSetQUOTA();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof checkCacheChange_args)
-        return this.equals((checkCacheChange_args)that);
-      return false;
-    }
-
-    public boolean equals(checkCacheChange_args that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_fileList = true && this.isSetFileList();
-      boolean that_present_fileList = true && that.isSetFileList();
-      if (this_present_fileList || that_present_fileList) {
-        if (!(this_present_fileList && that_present_fileList))
-          return false;
-        if (!this.fileList.equals(that.fileList))
-          return false;
-      }
-
-      boolean this_present_QUOTA = true;
-      boolean that_present_QUOTA = true;
-      if (this_present_QUOTA || that_present_QUOTA) {
-        if (!(this_present_QUOTA && that_present_QUOTA))
-          return false;
-        if (this.QUOTA != that.QUOTA)
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_fileList = true && (isSetFileList());
-      list.add(present_fileList);
-      if (present_fileList)
-        list.add(fileList);
-
-      boolean present_QUOTA = true;
-      list.add(present_QUOTA);
-      if (present_QUOTA)
-        list.add(QUOTA);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(checkCacheChange_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetFileList()).compareTo(other.isSetFileList());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetFileList()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.fileList, other.fileList);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetQUOTA()).compareTo(other.isSetQUOTA());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetQUOTA()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.QUOTA, other.QUOTA);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("checkCacheChange_args(");
-      boolean first = true;
-
-      sb.append("fileList:");
-      if (this.fileList == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.fileList);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("QUOTA:");
-      sb.append(this.QUOTA);
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
-        __isset_bitfield = 0;
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class checkCacheChange_argsStandardSchemeFactory implements SchemeFactory {
-      public checkCacheChange_argsStandardScheme getScheme() {
-        return new checkCacheChange_argsStandardScheme();
-      }
-    }
-
-    private static class checkCacheChange_argsStandardScheme extends StandardScheme<checkCacheChange_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, checkCacheChange_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // FILE_LIST
-              if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
-                {
-                  org.apache.thrift.protocol.TMap _map18 = iprot.readMapBegin();
-                  struct.fileList = new HashMap<String,Boolean>(2*_map18.size);
-                  String _key19;
-                  boolean _val20;
-                  for (int _i21 = 0; _i21 < _map18.size; ++_i21)
-                  {
-                    _key19 = iprot.readString();
-                    _val20 = iprot.readBool();
-                    struct.fileList.put(_key19, _val20);
-                  }
-                  iprot.readMapEnd();
-                }
-                struct.setFileListIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 2: // QUOTA
-              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.QUOTA = iprot.readI32();
-                struct.setQUOTAIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, checkCacheChange_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.fileList != null) {
-          oprot.writeFieldBegin(FILE_LIST_FIELD_DESC);
-          {
-            oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.BOOL, struct.fileList.size()));
-            for (Map.Entry<String, Boolean> _iter22 : struct.fileList.entrySet())
-            {
-              oprot.writeString(_iter22.getKey());
-              oprot.writeBool(_iter22.getValue());
-            }
-            oprot.writeMapEnd();
-          }
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldBegin(QUOTA_FIELD_DESC);
-        oprot.writeI32(struct.QUOTA);
-        oprot.writeFieldEnd();
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class checkCacheChange_argsTupleSchemeFactory implements SchemeFactory {
-      public checkCacheChange_argsTupleScheme getScheme() {
-        return new checkCacheChange_argsTupleScheme();
-      }
-    }
-
-    private static class checkCacheChange_argsTupleScheme extends TupleScheme<checkCacheChange_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, checkCacheChange_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetFileList()) {
-          optionals.set(0);
-        }
-        if (struct.isSetQUOTA()) {
-          optionals.set(1);
-        }
-        oprot.writeBitSet(optionals, 2);
-        if (struct.isSetFileList()) {
-          {
-            oprot.writeI32(struct.fileList.size());
-            for (Map.Entry<String, Boolean> _iter23 : struct.fileList.entrySet())
-            {
-              oprot.writeString(_iter23.getKey());
-              oprot.writeBool(_iter23.getValue());
-            }
-          }
-        }
-        if (struct.isSetQUOTA()) {
-          oprot.writeI32(struct.QUOTA);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, checkCacheChange_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(2);
-        if (incoming.get(0)) {
-          {
-            org.apache.thrift.protocol.TMap _map24 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.BOOL, iprot.readI32());
-            struct.fileList = new HashMap<String,Boolean>(2*_map24.size);
-            String _key25;
-            boolean _val26;
-            for (int _i27 = 0; _i27 < _map24.size; ++_i27)
-            {
-              _key25 = iprot.readString();
-              _val26 = iprot.readBool();
-              struct.fileList.put(_key25, _val26);
-            }
-          }
-          struct.setFileListIsSet(true);
-        }
-        if (incoming.get(1)) {
-          struct.QUOTA = iprot.readI32();
-          struct.setQUOTAIsSet(true);
-        }
-      }
-    }
-
-  }
-
-  public static class checkCacheChange_result implements org.apache.thrift.TBase<checkCacheChange_result, checkCacheChange_result._Fields>, java.io.Serializable, Cloneable, Comparable<checkCacheChange_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("checkCacheChange_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new checkCacheChange_resultStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new checkCacheChange_resultTupleSchemeFactory());
-    }
-
-    private CheckCacheChangeTResponse success; // required
-    private alluxio.thrift.AlluxioTException e; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success"),
-      E((short)1, "e");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          case 1: // E
-            return E;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, CheckCacheChangeTResponse.class)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(checkCacheChange_result.class, metaDataMap);
-    }
-
-    public checkCacheChange_result() {
-    }
-
-    public checkCacheChange_result(
-      CheckCacheChangeTResponse success,
-      alluxio.thrift.AlluxioTException e)
-    {
-      this();
-      this.success = success;
-      this.e = e;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public checkCacheChange_result(checkCacheChange_result other) {
-      if (other.isSetSuccess()) {
-        this.success = new CheckCacheChangeTResponse(other.success);
-      }
-      if (other.isSetE()) {
-        this.e = new alluxio.thrift.AlluxioTException(other.e);
-      }
-    }
-
-    public checkCacheChange_result deepCopy() {
-      return new checkCacheChange_result(this);
-    }
-
-    @Override
-    public void clear() {
-      this.success = null;
-      this.e = null;
-    }
-
-    public CheckCacheChangeTResponse getSuccess() {
-      return this.success;
-    }
-
-    public checkCacheChange_result setSuccess(CheckCacheChangeTResponse success) {
-      this.success = success;
-      return this;
-    }
-
-    public void unsetSuccess() {
-      this.success = null;
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return this.success != null;
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      if (!value) {
-        this.success = null;
-      }
-    }
-
-    public alluxio.thrift.AlluxioTException getE() {
-      return this.e;
-    }
-
-    public checkCacheChange_result setE(alluxio.thrift.AlluxioTException e) {
-      this.e = e;
-      return this;
-    }
-
-    public void unsetE() {
-      this.e = null;
-    }
-
-    /** Returns true if field e is set (has been assigned a value) and false otherwise */
-    public boolean isSetE() {
-      return this.e != null;
-    }
-
-    public void setEIsSet(boolean value) {
-      if (!value) {
-        this.e = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((CheckCacheChangeTResponse)value);
-        }
-        break;
-
-      case E:
-        if (value == null) {
-          unsetE();
-        } else {
-          setE((alluxio.thrift.AlluxioTException)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      case E:
-        return getE();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      case E:
-        return isSetE();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof checkCacheChange_result)
-        return this.equals((checkCacheChange_result)that);
-      return false;
-    }
-
-    public boolean equals(checkCacheChange_result that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_success = true && this.isSetSuccess();
-      boolean that_present_success = true && that.isSetSuccess();
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (!this.success.equals(that.success))
-          return false;
-      }
-
-      boolean this_present_e = true && this.isSetE();
-      boolean that_present_e = true && that.isSetE();
-      if (this_present_e || that_present_e) {
-        if (!(this_present_e && that_present_e))
-          return false;
-        if (!this.e.equals(that.e))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_success = true && (isSetSuccess());
-      list.add(present_success);
-      if (present_success)
-        list.add(success);
-
-      boolean present_e = true && (isSetE());
-      list.add(present_e);
-      if (present_e)
-        list.add(e);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(checkCacheChange_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetE()).compareTo(other.isSetE());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetE()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, other.e);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("checkCacheChange_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      if (this.success == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.success);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("e:");
-      if (this.e == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.e);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-      if (success != null) {
-        success.validate();
-      }
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class checkCacheChange_resultStandardSchemeFactory implements SchemeFactory {
-      public checkCacheChange_resultStandardScheme getScheme() {
-        return new checkCacheChange_resultStandardScheme();
-      }
-    }
-
-    private static class checkCacheChange_resultStandardScheme extends StandardScheme<checkCacheChange_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, checkCacheChange_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new CheckCacheChangeTResponse();
-                struct.success.read(iprot);
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 1: // E
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.e = new alluxio.thrift.AlluxioTException();
-                struct.e.read(iprot);
-                struct.setEIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, checkCacheChange_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.success != null) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          struct.success.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        if (struct.e != null) {
-          oprot.writeFieldBegin(E_FIELD_DESC);
-          struct.e.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class checkCacheChange_resultTupleSchemeFactory implements SchemeFactory {
-      public checkCacheChange_resultTupleScheme getScheme() {
-        return new checkCacheChange_resultTupleScheme();
-      }
-    }
-
-    private static class checkCacheChange_resultTupleScheme extends TupleScheme<checkCacheChange_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, checkCacheChange_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        if (struct.isSetE()) {
-          optionals.set(1);
-        }
-        oprot.writeBitSet(optionals, 2);
-        if (struct.isSetSuccess()) {
-          struct.success.write(oprot);
-        }
-        if (struct.isSetE()) {
-          struct.e.write(oprot);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, checkCacheChange_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(2);
-        if (incoming.get(0)) {
-          struct.success = new CheckCacheChangeTResponse();
-          struct.success.read(iprot);
-          struct.setSuccessIsSet(true);
-        }
-        if (incoming.get(1)) {
-          struct.e = new alluxio.thrift.AlluxioTException();
-          struct.e.read(iprot);
-          struct.setEIsSet(true);
-        }
-      }
-    }
-
-  }
-
-  public static class getPref_args implements org.apache.thrift.TBase<getPref_args, getPref_args._Fields>, java.io.Serializable, Cloneable, Comparable<getPref_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getPref_args");
-
-    private static final org.apache.thrift.protocol.TField OPTIONS_FIELD_DESC = new org.apache.thrift.protocol.TField("options", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new getPref_argsStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new getPref_argsTupleSchemeFactory());
-    }
-
-    private GetPrefTOptions options; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      OPTIONS((short)1, "options");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // OPTIONS
-            return OPTIONS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.OPTIONS, new org.apache.thrift.meta_data.FieldMetaData("options", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, GetPrefTOptions.class)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getPref_args.class, metaDataMap);
-    }
-
-    public getPref_args() {
-    }
-
-    public getPref_args(
-      GetPrefTOptions options)
-    {
-      this();
-      this.options = options;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public getPref_args(getPref_args other) {
-      if (other.isSetOptions()) {
-        this.options = new GetPrefTOptions(other.options);
-      }
-    }
-
-    public getPref_args deepCopy() {
-      return new getPref_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.options = null;
-    }
-
-    public GetPrefTOptions getOptions() {
-      return this.options;
-    }
-
-    public getPref_args setOptions(GetPrefTOptions options) {
-      this.options = options;
-      return this;
-    }
-
-    public void unsetOptions() {
-      this.options = null;
-    }
-
-    /** Returns true if field options is set (has been assigned a value) and false otherwise */
-    public boolean isSetOptions() {
-      return this.options != null;
-    }
-
-    public void setOptionsIsSet(boolean value) {
-      if (!value) {
-        this.options = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case OPTIONS:
-        if (value == null) {
-          unsetOptions();
-        } else {
-          setOptions((GetPrefTOptions)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case OPTIONS:
-        return getOptions();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case OPTIONS:
-        return isSetOptions();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof getPref_args)
-        return this.equals((getPref_args)that);
-      return false;
-    }
-
-    public boolean equals(getPref_args that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_options = true && this.isSetOptions();
-      boolean that_present_options = true && that.isSetOptions();
-      if (this_present_options || that_present_options) {
-        if (!(this_present_options && that_present_options))
-          return false;
-        if (!this.options.equals(that.options))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_options = true && (isSetOptions());
-      list.add(present_options);
-      if (present_options)
-        list.add(options);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(getPref_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetOptions()).compareTo(other.isSetOptions());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetOptions()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.options, other.options);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("getPref_args(");
-      boolean first = true;
-
-      sb.append("options:");
-      if (this.options == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.options);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-      if (options != null) {
-        options.validate();
-      }
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class getPref_argsStandardSchemeFactory implements SchemeFactory {
-      public getPref_argsStandardScheme getScheme() {
-        return new getPref_argsStandardScheme();
-      }
-    }
-
-    private static class getPref_argsStandardScheme extends StandardScheme<getPref_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, getPref_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // OPTIONS
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.options = new GetPrefTOptions();
-                struct.options.read(iprot);
-                struct.setOptionsIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, getPref_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.options != null) {
-          oprot.writeFieldBegin(OPTIONS_FIELD_DESC);
-          struct.options.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class getPref_argsTupleSchemeFactory implements SchemeFactory {
-      public getPref_argsTupleScheme getScheme() {
-        return new getPref_argsTupleScheme();
-      }
-    }
-
-    private static class getPref_argsTupleScheme extends TupleScheme<getPref_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, getPref_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetOptions()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetOptions()) {
-          struct.options.write(oprot);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, getPref_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.options = new GetPrefTOptions();
-          struct.options.read(iprot);
-          struct.setOptionsIsSet(true);
-        }
-      }
-    }
-
-  }
-
-  public static class getPref_result implements org.apache.thrift.TBase<getPref_result, getPref_result._Fields>, java.io.Serializable, Cloneable, Comparable<getPref_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("getPref_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new getPref_resultStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new getPref_resultTupleSchemeFactory());
-    }
-
-    private GetPrefTResponse success; // required
-    private alluxio.thrift.AlluxioTException e; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success"),
-      E((short)1, "e");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          case 1: // E
-            return E;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, GetPrefTResponse.class)));
-      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getPref_result.class, metaDataMap);
-    }
-
-    public getPref_result() {
-    }
-
-    public getPref_result(
-      GetPrefTResponse success,
-      alluxio.thrift.AlluxioTException e)
-    {
-      this();
-      this.success = success;
-      this.e = e;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public getPref_result(getPref_result other) {
-      if (other.isSetSuccess()) {
-        this.success = new GetPrefTResponse(other.success);
-      }
-      if (other.isSetE()) {
-        this.e = new alluxio.thrift.AlluxioTException(other.e);
-      }
-    }
-
-    public getPref_result deepCopy() {
-      return new getPref_result(this);
-    }
-
-    @Override
-    public void clear() {
-      this.success = null;
-      this.e = null;
-    }
-
-    public GetPrefTResponse getSuccess() {
-      return this.success;
-    }
-
-    public getPref_result setSuccess(GetPrefTResponse success) {
-      this.success = success;
-      return this;
-    }
-
-    public void unsetSuccess() {
-      this.success = null;
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return this.success != null;
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      if (!value) {
-        this.success = null;
-      }
-    }
-
-    public alluxio.thrift.AlluxioTException getE() {
-      return this.e;
-    }
-
-    public getPref_result setE(alluxio.thrift.AlluxioTException e) {
-      this.e = e;
-      return this;
-    }
-
-    public void unsetE() {
-      this.e = null;
-    }
-
-    /** Returns true if field e is set (has been assigned a value) and false otherwise */
-    public boolean isSetE() {
-      return this.e != null;
-    }
-
-    public void setEIsSet(boolean value) {
-      if (!value) {
-        this.e = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((GetPrefTResponse)value);
-        }
-        break;
-
-      case E:
-        if (value == null) {
-          unsetE();
-        } else {
-          setE((alluxio.thrift.AlluxioTException)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      case E:
-        return getE();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      case E:
-        return isSetE();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof getPref_result)
-        return this.equals((getPref_result)that);
-      return false;
-    }
-
-    public boolean equals(getPref_result that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_success = true && this.isSetSuccess();
-      boolean that_present_success = true && that.isSetSuccess();
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (!this.success.equals(that.success))
-          return false;
-      }
-
-      boolean this_present_e = true && this.isSetE();
-      boolean that_present_e = true && that.isSetE();
-      if (this_present_e || that_present_e) {
-        if (!(this_present_e && that_present_e))
-          return false;
-        if (!this.e.equals(that.e))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_success = true && (isSetSuccess());
-      list.add(present_success);
-      if (present_success)
-        list.add(success);
-
-      boolean present_e = true && (isSetE());
-      list.add(present_e);
-      if (present_e)
-        list.add(e);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(getPref_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetE()).compareTo(other.isSetE());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetE()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, other.e);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("getPref_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      if (this.success == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.success);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("e:");
-      if (this.e == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.e);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-      if (success != null) {
-        success.validate();
-      }
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class getPref_resultStandardSchemeFactory implements SchemeFactory {
-      public getPref_resultStandardScheme getScheme() {
-        return new getPref_resultStandardScheme();
-      }
-    }
-
-    private static class getPref_resultStandardScheme extends StandardScheme<getPref_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, getPref_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new GetPrefTResponse();
-                struct.success.read(iprot);
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 1: // E
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.e = new alluxio.thrift.AlluxioTException();
-                struct.e.read(iprot);
-                struct.setEIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, getPref_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.success != null) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          struct.success.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        if (struct.e != null) {
-          oprot.writeFieldBegin(E_FIELD_DESC);
-          struct.e.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class getPref_resultTupleSchemeFactory implements SchemeFactory {
-      public getPref_resultTupleScheme getScheme() {
-        return new getPref_resultTupleScheme();
-      }
-    }
-
-    private static class getPref_resultTupleScheme extends TupleScheme<getPref_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, getPref_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        if (struct.isSetE()) {
-          optionals.set(1);
-        }
-        oprot.writeBitSet(optionals, 2);
-        if (struct.isSetSuccess()) {
-          struct.success.write(oprot);
-        }
-        if (struct.isSetE()) {
-          struct.e.write(oprot);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, getPref_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(2);
-        if (incoming.get(0)) {
-          struct.success = new GetPrefTResponse();
-          struct.success.read(iprot);
-          struct.setSuccessIsSet(true);
-        }
-        if (incoming.get(1)) {
-          struct.e = new alluxio.thrift.AlluxioTException();
-          struct.e.read(iprot);
-          struct.setEIsSet(true);
-        }
       }
     }
 
@@ -3651,8 +1401,10 @@ public class GameSystemCacheService {
   public static class access_args implements org.apache.thrift.TBase<access_args, access_args._Fields>, java.io.Serializable, Cloneable, Comparable<access_args>   {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("access_args");
 
-    private static final org.apache.thrift.protocol.TField PREF_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("prefList", org.apache.thrift.protocol.TType.MAP, (short)1);
+    private static final org.apache.thrift.protocol.TField PREF_FIELD_DESC = new org.apache.thrift.protocol.TField("pref", org.apache.thrift.protocol.TType.LIST, (short)1);
     private static final org.apache.thrift.protocol.TField MODE_FIELD_DESC = new org.apache.thrift.protocol.TField("mode", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift.protocol.TField CACHED_RATIO_FIELD_DESC = new org.apache.thrift.protocol.TField("cachedRatio", org.apache.thrift.protocol.TType.LIST, (short)3);
+    private static final org.apache.thrift.protocol.TField ACCESS_FACTOR_FIELD_DESC = new org.apache.thrift.protocol.TField("accessFactor", org.apache.thrift.protocol.TType.LIST, (short)4);
 
     private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
     static {
@@ -3660,13 +1412,17 @@ public class GameSystemCacheService {
       schemes.put(TupleScheme.class, new access_argsTupleSchemeFactory());
     }
 
-    private Map<String,Double> prefList; // required
+    private List<Double> pref; // required
     private String mode; // required
+    private List<Double> cachedRatio; // required
+    private List<Double> accessFactor; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      PREF_LIST((short)1, "prefList"),
-      MODE((short)2, "mode");
+      PREF((short)1, "pref"),
+      MODE((short)2, "mode"),
+      CACHED_RATIO((short)3, "cachedRatio"),
+      ACCESS_FACTOR((short)4, "accessFactor");
 
       private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -3681,10 +1437,14 @@ public class GameSystemCacheService {
        */
       public static _Fields findByThriftId(int fieldId) {
         switch(fieldId) {
-          case 1: // PREF_LIST
-            return PREF_LIST;
+          case 1: // PREF
+            return PREF;
           case 2: // MODE
             return MODE;
+          case 3: // CACHED_RATIO
+            return CACHED_RATIO;
+          case 4: // ACCESS_FACTOR
+            return ACCESS_FACTOR;
           default:
             return null;
         }
@@ -3728,12 +1488,17 @@ public class GameSystemCacheService {
     public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.PREF_LIST, new org.apache.thrift.meta_data.FieldMetaData("prefList", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
+      tmpMap.put(_Fields.PREF, new org.apache.thrift.meta_data.FieldMetaData("pref", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
               new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
       tmpMap.put(_Fields.MODE, new org.apache.thrift.meta_data.FieldMetaData("mode", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.CACHED_RATIO, new org.apache.thrift.meta_data.FieldMetaData("cachedRatio", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
+      tmpMap.put(_Fields.ACCESS_FACTOR, new org.apache.thrift.meta_data.FieldMetaData("accessFactor", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
+              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(access_args.class, metaDataMap);
     }
@@ -3742,24 +1507,36 @@ public class GameSystemCacheService {
     }
 
     public access_args(
-      Map<String,Double> prefList,
-      String mode)
+      List<Double> pref,
+      String mode,
+      List<Double> cachedRatio,
+      List<Double> accessFactor)
     {
       this();
-      this.prefList = prefList;
+      this.pref = pref;
       this.mode = mode;
+      this.cachedRatio = cachedRatio;
+      this.accessFactor = accessFactor;
     }
 
     /**
      * Performs a deep copy on <i>other</i>.
      */
     public access_args(access_args other) {
-      if (other.isSetPrefList()) {
-        Map<String,Double> __this__prefList = new HashMap<String,Double>(other.prefList);
-        this.prefList = __this__prefList;
+      if (other.isSetPref()) {
+        List<Double> __this__pref = new ArrayList<Double>(other.pref);
+        this.pref = __this__pref;
       }
       if (other.isSetMode()) {
         this.mode = other.mode;
+      }
+      if (other.isSetCachedRatio()) {
+        List<Double> __this__cachedRatio = new ArrayList<Double>(other.cachedRatio);
+        this.cachedRatio = __this__cachedRatio;
+      }
+      if (other.isSetAccessFactor()) {
+        List<Double> __this__accessFactor = new ArrayList<Double>(other.accessFactor);
+        this.accessFactor = __this__accessFactor;
       }
     }
 
@@ -3769,42 +1546,48 @@ public class GameSystemCacheService {
 
     @Override
     public void clear() {
-      this.prefList = null;
+      this.pref = null;
       this.mode = null;
+      this.cachedRatio = null;
+      this.accessFactor = null;
     }
 
-    public int getPrefListSize() {
-      return (this.prefList == null) ? 0 : this.prefList.size();
+    public int getPrefSize() {
+      return (this.pref == null) ? 0 : this.pref.size();
     }
 
-    public void putToPrefList(String key, double val) {
-      if (this.prefList == null) {
-        this.prefList = new HashMap<String,Double>();
+    public java.util.Iterator<Double> getPrefIterator() {
+      return (this.pref == null) ? null : this.pref.iterator();
+    }
+
+    public void addToPref(double elem) {
+      if (this.pref == null) {
+        this.pref = new ArrayList<Double>();
       }
-      this.prefList.put(key, val);
+      this.pref.add(elem);
     }
 
-    public Map<String,Double> getPrefList() {
-      return this.prefList;
+    public List<Double> getPref() {
+      return this.pref;
     }
 
-    public access_args setPrefList(Map<String,Double> prefList) {
-      this.prefList = prefList;
+    public access_args setPref(List<Double> pref) {
+      this.pref = pref;
       return this;
     }
 
-    public void unsetPrefList() {
-      this.prefList = null;
+    public void unsetPref() {
+      this.pref = null;
     }
 
-    /** Returns true if field prefList is set (has been assigned a value) and false otherwise */
-    public boolean isSetPrefList() {
-      return this.prefList != null;
+    /** Returns true if field pref is set (has been assigned a value) and false otherwise */
+    public boolean isSetPref() {
+      return this.pref != null;
     }
 
-    public void setPrefListIsSet(boolean value) {
+    public void setPrefIsSet(boolean value) {
       if (!value) {
-        this.prefList = null;
+        this.pref = null;
       }
     }
 
@@ -3832,13 +1615,91 @@ public class GameSystemCacheService {
       }
     }
 
+    public int getCachedRatioSize() {
+      return (this.cachedRatio == null) ? 0 : this.cachedRatio.size();
+    }
+
+    public java.util.Iterator<Double> getCachedRatioIterator() {
+      return (this.cachedRatio == null) ? null : this.cachedRatio.iterator();
+    }
+
+    public void addToCachedRatio(double elem) {
+      if (this.cachedRatio == null) {
+        this.cachedRatio = new ArrayList<Double>();
+      }
+      this.cachedRatio.add(elem);
+    }
+
+    public List<Double> getCachedRatio() {
+      return this.cachedRatio;
+    }
+
+    public access_args setCachedRatio(List<Double> cachedRatio) {
+      this.cachedRatio = cachedRatio;
+      return this;
+    }
+
+    public void unsetCachedRatio() {
+      this.cachedRatio = null;
+    }
+
+    /** Returns true if field cachedRatio is set (has been assigned a value) and false otherwise */
+    public boolean isSetCachedRatio() {
+      return this.cachedRatio != null;
+    }
+
+    public void setCachedRatioIsSet(boolean value) {
+      if (!value) {
+        this.cachedRatio = null;
+      }
+    }
+
+    public int getAccessFactorSize() {
+      return (this.accessFactor == null) ? 0 : this.accessFactor.size();
+    }
+
+    public java.util.Iterator<Double> getAccessFactorIterator() {
+      return (this.accessFactor == null) ? null : this.accessFactor.iterator();
+    }
+
+    public void addToAccessFactor(double elem) {
+      if (this.accessFactor == null) {
+        this.accessFactor = new ArrayList<Double>();
+      }
+      this.accessFactor.add(elem);
+    }
+
+    public List<Double> getAccessFactor() {
+      return this.accessFactor;
+    }
+
+    public access_args setAccessFactor(List<Double> accessFactor) {
+      this.accessFactor = accessFactor;
+      return this;
+    }
+
+    public void unsetAccessFactor() {
+      this.accessFactor = null;
+    }
+
+    /** Returns true if field accessFactor is set (has been assigned a value) and false otherwise */
+    public boolean isSetAccessFactor() {
+      return this.accessFactor != null;
+    }
+
+    public void setAccessFactorIsSet(boolean value) {
+      if (!value) {
+        this.accessFactor = null;
+      }
+    }
+
     public void setFieldValue(_Fields field, Object value) {
       switch (field) {
-      case PREF_LIST:
+      case PREF:
         if (value == null) {
-          unsetPrefList();
+          unsetPref();
         } else {
-          setPrefList((Map<String,Double>)value);
+          setPref((List<Double>)value);
         }
         break;
 
@@ -3850,16 +1711,38 @@ public class GameSystemCacheService {
         }
         break;
 
+      case CACHED_RATIO:
+        if (value == null) {
+          unsetCachedRatio();
+        } else {
+          setCachedRatio((List<Double>)value);
+        }
+        break;
+
+      case ACCESS_FACTOR:
+        if (value == null) {
+          unsetAccessFactor();
+        } else {
+          setAccessFactor((List<Double>)value);
+        }
+        break;
+
       }
     }
 
     public Object getFieldValue(_Fields field) {
       switch (field) {
-      case PREF_LIST:
-        return getPrefList();
+      case PREF:
+        return getPref();
 
       case MODE:
         return getMode();
+
+      case CACHED_RATIO:
+        return getCachedRatio();
+
+      case ACCESS_FACTOR:
+        return getAccessFactor();
 
       }
       throw new IllegalStateException();
@@ -3872,10 +1755,14 @@ public class GameSystemCacheService {
       }
 
       switch (field) {
-      case PREF_LIST:
-        return isSetPrefList();
+      case PREF:
+        return isSetPref();
       case MODE:
         return isSetMode();
+      case CACHED_RATIO:
+        return isSetCachedRatio();
+      case ACCESS_FACTOR:
+        return isSetAccessFactor();
       }
       throw new IllegalStateException();
     }
@@ -3893,12 +1780,12 @@ public class GameSystemCacheService {
       if (that == null)
         return false;
 
-      boolean this_present_prefList = true && this.isSetPrefList();
-      boolean that_present_prefList = true && that.isSetPrefList();
-      if (this_present_prefList || that_present_prefList) {
-        if (!(this_present_prefList && that_present_prefList))
+      boolean this_present_pref = true && this.isSetPref();
+      boolean that_present_pref = true && that.isSetPref();
+      if (this_present_pref || that_present_pref) {
+        if (!(this_present_pref && that_present_pref))
           return false;
-        if (!this.prefList.equals(that.prefList))
+        if (!this.pref.equals(that.pref))
           return false;
       }
 
@@ -3911,6 +1798,24 @@ public class GameSystemCacheService {
           return false;
       }
 
+      boolean this_present_cachedRatio = true && this.isSetCachedRatio();
+      boolean that_present_cachedRatio = true && that.isSetCachedRatio();
+      if (this_present_cachedRatio || that_present_cachedRatio) {
+        if (!(this_present_cachedRatio && that_present_cachedRatio))
+          return false;
+        if (!this.cachedRatio.equals(that.cachedRatio))
+          return false;
+      }
+
+      boolean this_present_accessFactor = true && this.isSetAccessFactor();
+      boolean that_present_accessFactor = true && that.isSetAccessFactor();
+      if (this_present_accessFactor || that_present_accessFactor) {
+        if (!(this_present_accessFactor && that_present_accessFactor))
+          return false;
+        if (!this.accessFactor.equals(that.accessFactor))
+          return false;
+      }
+
       return true;
     }
 
@@ -3918,15 +1823,25 @@ public class GameSystemCacheService {
     public int hashCode() {
       List<Object> list = new ArrayList<Object>();
 
-      boolean present_prefList = true && (isSetPrefList());
-      list.add(present_prefList);
-      if (present_prefList)
-        list.add(prefList);
+      boolean present_pref = true && (isSetPref());
+      list.add(present_pref);
+      if (present_pref)
+        list.add(pref);
 
       boolean present_mode = true && (isSetMode());
       list.add(present_mode);
       if (present_mode)
         list.add(mode);
+
+      boolean present_cachedRatio = true && (isSetCachedRatio());
+      list.add(present_cachedRatio);
+      if (present_cachedRatio)
+        list.add(cachedRatio);
+
+      boolean present_accessFactor = true && (isSetAccessFactor());
+      list.add(present_accessFactor);
+      if (present_accessFactor)
+        list.add(accessFactor);
 
       return list.hashCode();
     }
@@ -3939,12 +1854,12 @@ public class GameSystemCacheService {
 
       int lastComparison = 0;
 
-      lastComparison = Boolean.valueOf(isSetPrefList()).compareTo(other.isSetPrefList());
+      lastComparison = Boolean.valueOf(isSetPref()).compareTo(other.isSetPref());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetPrefList()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.prefList, other.prefList);
+      if (isSetPref()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.pref, other.pref);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3955,6 +1870,26 @@ public class GameSystemCacheService {
       }
       if (isSetMode()) {
         lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.mode, other.mode);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetCachedRatio()).compareTo(other.isSetCachedRatio());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetCachedRatio()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.cachedRatio, other.cachedRatio);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetAccessFactor()).compareTo(other.isSetAccessFactor());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetAccessFactor()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.accessFactor, other.accessFactor);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3979,11 +1914,11 @@ public class GameSystemCacheService {
       StringBuilder sb = new StringBuilder("access_args(");
       boolean first = true;
 
-      sb.append("prefList:");
-      if (this.prefList == null) {
+      sb.append("pref:");
+      if (this.pref == null) {
         sb.append("null");
       } else {
-        sb.append(this.prefList);
+        sb.append(this.pref);
       }
       first = false;
       if (!first) sb.append(", ");
@@ -3992,6 +1927,22 @@ public class GameSystemCacheService {
         sb.append("null");
       } else {
         sb.append(this.mode);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("cachedRatio:");
+      if (this.cachedRatio == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.cachedRatio);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("accessFactor:");
+      if (this.accessFactor == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.accessFactor);
       }
       first = false;
       sb.append(")");
@@ -4037,22 +1988,20 @@ public class GameSystemCacheService {
             break;
           }
           switch (schemeField.id) {
-            case 1: // PREF_LIST
-              if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
+            case 1: // PREF
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
-                  org.apache.thrift.protocol.TMap _map28 = iprot.readMapBegin();
-                  struct.prefList = new HashMap<String,Double>(2*_map28.size);
-                  String _key29;
-                  double _val30;
-                  for (int _i31 = 0; _i31 < _map28.size; ++_i31)
+                  org.apache.thrift.protocol.TList _list18 = iprot.readListBegin();
+                  struct.pref = new ArrayList<Double>(_list18.size);
+                  double _elem19;
+                  for (int _i20 = 0; _i20 < _list18.size; ++_i20)
                   {
-                    _key29 = iprot.readString();
-                    _val30 = iprot.readDouble();
-                    struct.prefList.put(_key29, _val30);
+                    _elem19 = iprot.readDouble();
+                    struct.pref.add(_elem19);
                   }
-                  iprot.readMapEnd();
+                  iprot.readListEnd();
                 }
-                struct.setPrefListIsSet(true);
+                struct.setPrefIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -4061,6 +2010,42 @@ public class GameSystemCacheService {
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
                 struct.mode = iprot.readString();
                 struct.setModeIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // CACHED_RATIO
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list21 = iprot.readListBegin();
+                  struct.cachedRatio = new ArrayList<Double>(_list21.size);
+                  double _elem22;
+                  for (int _i23 = 0; _i23 < _list21.size; ++_i23)
+                  {
+                    _elem22 = iprot.readDouble();
+                    struct.cachedRatio.add(_elem22);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setCachedRatioIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 4: // ACCESS_FACTOR
+              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+                {
+                  org.apache.thrift.protocol.TList _list24 = iprot.readListBegin();
+                  struct.accessFactor = new ArrayList<Double>(_list24.size);
+                  double _elem25;
+                  for (int _i26 = 0; _i26 < _list24.size; ++_i26)
+                  {
+                    _elem25 = iprot.readDouble();
+                    struct.accessFactor.add(_elem25);
+                  }
+                  iprot.readListEnd();
+                }
+                struct.setAccessFactorIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -4080,22 +2065,45 @@ public class GameSystemCacheService {
         struct.validate();
 
         oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.prefList != null) {
-          oprot.writeFieldBegin(PREF_LIST_FIELD_DESC);
+        if (struct.pref != null) {
+          oprot.writeFieldBegin(PREF_FIELD_DESC);
           {
-            oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.DOUBLE, struct.prefList.size()));
-            for (Map.Entry<String, Double> _iter32 : struct.prefList.entrySet())
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, struct.pref.size()));
+            for (double _iter27 : struct.pref)
             {
-              oprot.writeString(_iter32.getKey());
-              oprot.writeDouble(_iter32.getValue());
+              oprot.writeDouble(_iter27);
             }
-            oprot.writeMapEnd();
+            oprot.writeListEnd();
           }
           oprot.writeFieldEnd();
         }
         if (struct.mode != null) {
           oprot.writeFieldBegin(MODE_FIELD_DESC);
           oprot.writeString(struct.mode);
+          oprot.writeFieldEnd();
+        }
+        if (struct.cachedRatio != null) {
+          oprot.writeFieldBegin(CACHED_RATIO_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, struct.cachedRatio.size()));
+            for (double _iter28 : struct.cachedRatio)
+            {
+              oprot.writeDouble(_iter28);
+            }
+            oprot.writeListEnd();
+          }
+          oprot.writeFieldEnd();
+        }
+        if (struct.accessFactor != null) {
+          oprot.writeFieldBegin(ACCESS_FACTOR_FIELD_DESC);
+          {
+            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, struct.accessFactor.size()));
+            for (double _iter29 : struct.accessFactor)
+            {
+              oprot.writeDouble(_iter29);
+            }
+            oprot.writeListEnd();
+          }
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -4116,50 +2124,97 @@ public class GameSystemCacheService {
       public void write(org.apache.thrift.protocol.TProtocol prot, access_args struct) throws org.apache.thrift.TException {
         TTupleProtocol oprot = (TTupleProtocol) prot;
         BitSet optionals = new BitSet();
-        if (struct.isSetPrefList()) {
+        if (struct.isSetPref()) {
           optionals.set(0);
         }
         if (struct.isSetMode()) {
           optionals.set(1);
         }
-        oprot.writeBitSet(optionals, 2);
-        if (struct.isSetPrefList()) {
+        if (struct.isSetCachedRatio()) {
+          optionals.set(2);
+        }
+        if (struct.isSetAccessFactor()) {
+          optionals.set(3);
+        }
+        oprot.writeBitSet(optionals, 4);
+        if (struct.isSetPref()) {
           {
-            oprot.writeI32(struct.prefList.size());
-            for (Map.Entry<String, Double> _iter33 : struct.prefList.entrySet())
+            oprot.writeI32(struct.pref.size());
+            for (double _iter30 : struct.pref)
             {
-              oprot.writeString(_iter33.getKey());
-              oprot.writeDouble(_iter33.getValue());
+              oprot.writeDouble(_iter30);
             }
           }
         }
         if (struct.isSetMode()) {
           oprot.writeString(struct.mode);
         }
+        if (struct.isSetCachedRatio()) {
+          {
+            oprot.writeI32(struct.cachedRatio.size());
+            for (double _iter31 : struct.cachedRatio)
+            {
+              oprot.writeDouble(_iter31);
+            }
+          }
+        }
+        if (struct.isSetAccessFactor()) {
+          {
+            oprot.writeI32(struct.accessFactor.size());
+            for (double _iter32 : struct.accessFactor)
+            {
+              oprot.writeDouble(_iter32);
+            }
+          }
+        }
       }
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, access_args struct) throws org.apache.thrift.TException {
         TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(2);
+        BitSet incoming = iprot.readBitSet(4);
         if (incoming.get(0)) {
           {
-            org.apache.thrift.protocol.TMap _map34 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
-            struct.prefList = new HashMap<String,Double>(2*_map34.size);
-            String _key35;
-            double _val36;
-            for (int _i37 = 0; _i37 < _map34.size; ++_i37)
+            org.apache.thrift.protocol.TList _list33 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
+            struct.pref = new ArrayList<Double>(_list33.size);
+            double _elem34;
+            for (int _i35 = 0; _i35 < _list33.size; ++_i35)
             {
-              _key35 = iprot.readString();
-              _val36 = iprot.readDouble();
-              struct.prefList.put(_key35, _val36);
+              _elem34 = iprot.readDouble();
+              struct.pref.add(_elem34);
             }
           }
-          struct.setPrefListIsSet(true);
+          struct.setPrefIsSet(true);
         }
         if (incoming.get(1)) {
           struct.mode = iprot.readString();
           struct.setModeIsSet(true);
+        }
+        if (incoming.get(2)) {
+          {
+            org.apache.thrift.protocol.TList _list36 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
+            struct.cachedRatio = new ArrayList<Double>(_list36.size);
+            double _elem37;
+            for (int _i38 = 0; _i38 < _list36.size; ++_i38)
+            {
+              _elem37 = iprot.readDouble();
+              struct.cachedRatio.add(_elem37);
+            }
+          }
+          struct.setCachedRatioIsSet(true);
+        }
+        if (incoming.get(3)) {
+          {
+            org.apache.thrift.protocol.TList _list39 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
+            struct.accessFactor = new ArrayList<Double>(_list39.size);
+            double _elem40;
+            for (int _i41 = 0; _i41 < _list39.size; ++_i41)
+            {
+              _elem40 = iprot.readDouble();
+              struct.accessFactor.add(_elem40);
+            }
+          }
+          struct.setAccessFactorIsSet(true);
         }
       }
     }
@@ -4633,939 +2688,6 @@ public class GameSystemCacheService {
           struct.e = new alluxio.thrift.AlluxioTException();
           struct.e.read(iprot);
           struct.setEIsSet(true);
-        }
-      }
-    }
-
-  }
-
-  public static class accessFairRide_args implements org.apache.thrift.TBase<accessFairRide_args, accessFairRide_args._Fields>, java.io.Serializable, Cloneable, Comparable<accessFairRide_args>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("accessFairRide_args");
-
-    private static final org.apache.thrift.protocol.TField PREF_LIST_FIELD_DESC = new org.apache.thrift.protocol.TField("prefList", org.apache.thrift.protocol.TType.MAP, (short)1);
-    private static final org.apache.thrift.protocol.TField FACTOR_FIELD_DESC = new org.apache.thrift.protocol.TField("factor", org.apache.thrift.protocol.TType.LIST, (short)2);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new accessFairRide_argsStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new accessFairRide_argsTupleSchemeFactory());
-    }
-
-    private Map<String,Double> prefList; // required
-    private List<Double> factor; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      PREF_LIST((short)1, "prefList"),
-      FACTOR((short)2, "factor");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 1: // PREF_LIST
-            return PREF_LIST;
-          case 2: // FACTOR
-            return FACTOR;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.PREF_LIST, new org.apache.thrift.meta_data.FieldMetaData("prefList", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.MapMetaData(org.apache.thrift.protocol.TType.MAP, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING), 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
-      tmpMap.put(_Fields.FACTOR, new org.apache.thrift.meta_data.FieldMetaData("factor", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE))));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(accessFairRide_args.class, metaDataMap);
-    }
-
-    public accessFairRide_args() {
-    }
-
-    public accessFairRide_args(
-      Map<String,Double> prefList,
-      List<Double> factor)
-    {
-      this();
-      this.prefList = prefList;
-      this.factor = factor;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public accessFairRide_args(accessFairRide_args other) {
-      if (other.isSetPrefList()) {
-        Map<String,Double> __this__prefList = new HashMap<String,Double>(other.prefList);
-        this.prefList = __this__prefList;
-      }
-      if (other.isSetFactor()) {
-        List<Double> __this__factor = new ArrayList<Double>(other.factor);
-        this.factor = __this__factor;
-      }
-    }
-
-    public accessFairRide_args deepCopy() {
-      return new accessFairRide_args(this);
-    }
-
-    @Override
-    public void clear() {
-      this.prefList = null;
-      this.factor = null;
-    }
-
-    public int getPrefListSize() {
-      return (this.prefList == null) ? 0 : this.prefList.size();
-    }
-
-    public void putToPrefList(String key, double val) {
-      if (this.prefList == null) {
-        this.prefList = new HashMap<String,Double>();
-      }
-      this.prefList.put(key, val);
-    }
-
-    public Map<String,Double> getPrefList() {
-      return this.prefList;
-    }
-
-    public accessFairRide_args setPrefList(Map<String,Double> prefList) {
-      this.prefList = prefList;
-      return this;
-    }
-
-    public void unsetPrefList() {
-      this.prefList = null;
-    }
-
-    /** Returns true if field prefList is set (has been assigned a value) and false otherwise */
-    public boolean isSetPrefList() {
-      return this.prefList != null;
-    }
-
-    public void setPrefListIsSet(boolean value) {
-      if (!value) {
-        this.prefList = null;
-      }
-    }
-
-    public int getFactorSize() {
-      return (this.factor == null) ? 0 : this.factor.size();
-    }
-
-    public java.util.Iterator<Double> getFactorIterator() {
-      return (this.factor == null) ? null : this.factor.iterator();
-    }
-
-    public void addToFactor(double elem) {
-      if (this.factor == null) {
-        this.factor = new ArrayList<Double>();
-      }
-      this.factor.add(elem);
-    }
-
-    public List<Double> getFactor() {
-      return this.factor;
-    }
-
-    public accessFairRide_args setFactor(List<Double> factor) {
-      this.factor = factor;
-      return this;
-    }
-
-    public void unsetFactor() {
-      this.factor = null;
-    }
-
-    /** Returns true if field factor is set (has been assigned a value) and false otherwise */
-    public boolean isSetFactor() {
-      return this.factor != null;
-    }
-
-    public void setFactorIsSet(boolean value) {
-      if (!value) {
-        this.factor = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case PREF_LIST:
-        if (value == null) {
-          unsetPrefList();
-        } else {
-          setPrefList((Map<String,Double>)value);
-        }
-        break;
-
-      case FACTOR:
-        if (value == null) {
-          unsetFactor();
-        } else {
-          setFactor((List<Double>)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case PREF_LIST:
-        return getPrefList();
-
-      case FACTOR:
-        return getFactor();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case PREF_LIST:
-        return isSetPrefList();
-      case FACTOR:
-        return isSetFactor();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof accessFairRide_args)
-        return this.equals((accessFairRide_args)that);
-      return false;
-    }
-
-    public boolean equals(accessFairRide_args that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_prefList = true && this.isSetPrefList();
-      boolean that_present_prefList = true && that.isSetPrefList();
-      if (this_present_prefList || that_present_prefList) {
-        if (!(this_present_prefList && that_present_prefList))
-          return false;
-        if (!this.prefList.equals(that.prefList))
-          return false;
-      }
-
-      boolean this_present_factor = true && this.isSetFactor();
-      boolean that_present_factor = true && that.isSetFactor();
-      if (this_present_factor || that_present_factor) {
-        if (!(this_present_factor && that_present_factor))
-          return false;
-        if (!this.factor.equals(that.factor))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_prefList = true && (isSetPrefList());
-      list.add(present_prefList);
-      if (present_prefList)
-        list.add(prefList);
-
-      boolean present_factor = true && (isSetFactor());
-      list.add(present_factor);
-      if (present_factor)
-        list.add(factor);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(accessFairRide_args other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetPrefList()).compareTo(other.isSetPrefList());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetPrefList()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.prefList, other.prefList);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      lastComparison = Boolean.valueOf(isSetFactor()).compareTo(other.isSetFactor());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetFactor()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.factor, other.factor);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("accessFairRide_args(");
-      boolean first = true;
-
-      sb.append("prefList:");
-      if (this.prefList == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.prefList);
-      }
-      first = false;
-      if (!first) sb.append(", ");
-      sb.append("factor:");
-      if (this.factor == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.factor);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class accessFairRide_argsStandardSchemeFactory implements SchemeFactory {
-      public accessFairRide_argsStandardScheme getScheme() {
-        return new accessFairRide_argsStandardScheme();
-      }
-    }
-
-    private static class accessFairRide_argsStandardScheme extends StandardScheme<accessFairRide_args> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, accessFairRide_args struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 1: // PREF_LIST
-              if (schemeField.type == org.apache.thrift.protocol.TType.MAP) {
-                {
-                  org.apache.thrift.protocol.TMap _map38 = iprot.readMapBegin();
-                  struct.prefList = new HashMap<String,Double>(2*_map38.size);
-                  String _key39;
-                  double _val40;
-                  for (int _i41 = 0; _i41 < _map38.size; ++_i41)
-                  {
-                    _key39 = iprot.readString();
-                    _val40 = iprot.readDouble();
-                    struct.prefList.put(_key39, _val40);
-                  }
-                  iprot.readMapEnd();
-                }
-                struct.setPrefListIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            case 2: // FACTOR
-              if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
-                {
-                  org.apache.thrift.protocol.TList _list42 = iprot.readListBegin();
-                  struct.factor = new ArrayList<Double>(_list42.size);
-                  double _elem43;
-                  for (int _i44 = 0; _i44 < _list42.size; ++_i44)
-                  {
-                    _elem43 = iprot.readDouble();
-                    struct.factor.add(_elem43);
-                  }
-                  iprot.readListEnd();
-                }
-                struct.setFactorIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, accessFairRide_args struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.prefList != null) {
-          oprot.writeFieldBegin(PREF_LIST_FIELD_DESC);
-          {
-            oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.DOUBLE, struct.prefList.size()));
-            for (Map.Entry<String, Double> _iter45 : struct.prefList.entrySet())
-            {
-              oprot.writeString(_iter45.getKey());
-              oprot.writeDouble(_iter45.getValue());
-            }
-            oprot.writeMapEnd();
-          }
-          oprot.writeFieldEnd();
-        }
-        if (struct.factor != null) {
-          oprot.writeFieldBegin(FACTOR_FIELD_DESC);
-          {
-            oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, struct.factor.size()));
-            for (double _iter46 : struct.factor)
-            {
-              oprot.writeDouble(_iter46);
-            }
-            oprot.writeListEnd();
-          }
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class accessFairRide_argsTupleSchemeFactory implements SchemeFactory {
-      public accessFairRide_argsTupleScheme getScheme() {
-        return new accessFairRide_argsTupleScheme();
-      }
-    }
-
-    private static class accessFairRide_argsTupleScheme extends TupleScheme<accessFairRide_args> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, accessFairRide_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetPrefList()) {
-          optionals.set(0);
-        }
-        if (struct.isSetFactor()) {
-          optionals.set(1);
-        }
-        oprot.writeBitSet(optionals, 2);
-        if (struct.isSetPrefList()) {
-          {
-            oprot.writeI32(struct.prefList.size());
-            for (Map.Entry<String, Double> _iter47 : struct.prefList.entrySet())
-            {
-              oprot.writeString(_iter47.getKey());
-              oprot.writeDouble(_iter47.getValue());
-            }
-          }
-        }
-        if (struct.isSetFactor()) {
-          {
-            oprot.writeI32(struct.factor.size());
-            for (double _iter48 : struct.factor)
-            {
-              oprot.writeDouble(_iter48);
-            }
-          }
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, accessFairRide_args struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(2);
-        if (incoming.get(0)) {
-          {
-            org.apache.thrift.protocol.TMap _map49 = new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING, org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
-            struct.prefList = new HashMap<String,Double>(2*_map49.size);
-            String _key50;
-            double _val51;
-            for (int _i52 = 0; _i52 < _map49.size; ++_i52)
-            {
-              _key50 = iprot.readString();
-              _val51 = iprot.readDouble();
-              struct.prefList.put(_key50, _val51);
-            }
-          }
-          struct.setPrefListIsSet(true);
-        }
-        if (incoming.get(1)) {
-          {
-            org.apache.thrift.protocol.TList _list53 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.DOUBLE, iprot.readI32());
-            struct.factor = new ArrayList<Double>(_list53.size);
-            double _elem54;
-            for (int _i55 = 0; _i55 < _list53.size; ++_i55)
-            {
-              _elem54 = iprot.readDouble();
-              struct.factor.add(_elem54);
-            }
-          }
-          struct.setFactorIsSet(true);
-        }
-      }
-    }
-
-  }
-
-  public static class accessFairRide_result implements org.apache.thrift.TBase<accessFairRide_result, accessFairRide_result._Fields>, java.io.Serializable, Cloneable, Comparable<accessFairRide_result>   {
-    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("accessFairRide_result");
-
-    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
-
-    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
-    static {
-      schemes.put(StandardScheme.class, new accessFairRide_resultStandardSchemeFactory());
-      schemes.put(TupleScheme.class, new accessFairRide_resultTupleSchemeFactory());
-    }
-
-    private AccessFairRideTResponse success; // required
-
-    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
-    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-      SUCCESS((short)0, "success");
-
-      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
-
-      static {
-        for (_Fields field : EnumSet.allOf(_Fields.class)) {
-          byName.put(field.getFieldName(), field);
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, or null if its not found.
-       */
-      public static _Fields findByThriftId(int fieldId) {
-        switch(fieldId) {
-          case 0: // SUCCESS
-            return SUCCESS;
-          default:
-            return null;
-        }
-      }
-
-      /**
-       * Find the _Fields constant that matches fieldId, throwing an exception
-       * if it is not found.
-       */
-      public static _Fields findByThriftIdOrThrow(int fieldId) {
-        _Fields fields = findByThriftId(fieldId);
-        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
-        return fields;
-      }
-
-      /**
-       * Find the _Fields constant that matches name, or null if its not found.
-       */
-      public static _Fields findByName(String name) {
-        return byName.get(name);
-      }
-
-      private final short _thriftId;
-      private final String _fieldName;
-
-      _Fields(short thriftId, String fieldName) {
-        _thriftId = thriftId;
-        _fieldName = fieldName;
-      }
-
-      public short getThriftFieldId() {
-        return _thriftId;
-      }
-
-      public String getFieldName() {
-        return _fieldName;
-      }
-    }
-
-    // isset id assignments
-    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
-    static {
-      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, AccessFairRideTResponse.class)));
-      metaDataMap = Collections.unmodifiableMap(tmpMap);
-      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(accessFairRide_result.class, metaDataMap);
-    }
-
-    public accessFairRide_result() {
-    }
-
-    public accessFairRide_result(
-      AccessFairRideTResponse success)
-    {
-      this();
-      this.success = success;
-    }
-
-    /**
-     * Performs a deep copy on <i>other</i>.
-     */
-    public accessFairRide_result(accessFairRide_result other) {
-      if (other.isSetSuccess()) {
-        this.success = new AccessFairRideTResponse(other.success);
-      }
-    }
-
-    public accessFairRide_result deepCopy() {
-      return new accessFairRide_result(this);
-    }
-
-    @Override
-    public void clear() {
-      this.success = null;
-    }
-
-    public AccessFairRideTResponse getSuccess() {
-      return this.success;
-    }
-
-    public accessFairRide_result setSuccess(AccessFairRideTResponse success) {
-      this.success = success;
-      return this;
-    }
-
-    public void unsetSuccess() {
-      this.success = null;
-    }
-
-    /** Returns true if field success is set (has been assigned a value) and false otherwise */
-    public boolean isSetSuccess() {
-      return this.success != null;
-    }
-
-    public void setSuccessIsSet(boolean value) {
-      if (!value) {
-        this.success = null;
-      }
-    }
-
-    public void setFieldValue(_Fields field, Object value) {
-      switch (field) {
-      case SUCCESS:
-        if (value == null) {
-          unsetSuccess();
-        } else {
-          setSuccess((AccessFairRideTResponse)value);
-        }
-        break;
-
-      }
-    }
-
-    public Object getFieldValue(_Fields field) {
-      switch (field) {
-      case SUCCESS:
-        return getSuccess();
-
-      }
-      throw new IllegalStateException();
-    }
-
-    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
-    public boolean isSet(_Fields field) {
-      if (field == null) {
-        throw new IllegalArgumentException();
-      }
-
-      switch (field) {
-      case SUCCESS:
-        return isSetSuccess();
-      }
-      throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-      if (that == null)
-        return false;
-      if (that instanceof accessFairRide_result)
-        return this.equals((accessFairRide_result)that);
-      return false;
-    }
-
-    public boolean equals(accessFairRide_result that) {
-      if (that == null)
-        return false;
-
-      boolean this_present_success = true && this.isSetSuccess();
-      boolean that_present_success = true && that.isSetSuccess();
-      if (this_present_success || that_present_success) {
-        if (!(this_present_success && that_present_success))
-          return false;
-        if (!this.success.equals(that.success))
-          return false;
-      }
-
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      List<Object> list = new ArrayList<Object>();
-
-      boolean present_success = true && (isSetSuccess());
-      list.add(present_success);
-      if (present_success)
-        list.add(success);
-
-      return list.hashCode();
-    }
-
-    @Override
-    public int compareTo(accessFairRide_result other) {
-      if (!getClass().equals(other.getClass())) {
-        return getClass().getName().compareTo(other.getClass().getName());
-      }
-
-      int lastComparison = 0;
-
-      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-      if (isSetSuccess()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
-        if (lastComparison != 0) {
-          return lastComparison;
-        }
-      }
-      return 0;
-    }
-
-    public _Fields fieldForId(int fieldId) {
-      return _Fields.findByThriftId(fieldId);
-    }
-
-    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
-      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
-    }
-
-    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
-      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
-      }
-
-    @Override
-    public String toString() {
-      StringBuilder sb = new StringBuilder("accessFairRide_result(");
-      boolean first = true;
-
-      sb.append("success:");
-      if (this.success == null) {
-        sb.append("null");
-      } else {
-        sb.append(this.success);
-      }
-      first = false;
-      sb.append(")");
-      return sb.toString();
-    }
-
-    public void validate() throws org.apache.thrift.TException {
-      // check for required fields
-      // check for sub-struct validity
-      if (success != null) {
-        success.validate();
-      }
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-      try {
-        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-      try {
-        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
-      } catch (org.apache.thrift.TException te) {
-        throw new java.io.IOException(te);
-      }
-    }
-
-    private static class accessFairRide_resultStandardSchemeFactory implements SchemeFactory {
-      public accessFairRide_resultStandardScheme getScheme() {
-        return new accessFairRide_resultStandardScheme();
-      }
-    }
-
-    private static class accessFairRide_resultStandardScheme extends StandardScheme<accessFairRide_result> {
-
-      public void read(org.apache.thrift.protocol.TProtocol iprot, accessFairRide_result struct) throws org.apache.thrift.TException {
-        org.apache.thrift.protocol.TField schemeField;
-        iprot.readStructBegin();
-        while (true)
-        {
-          schemeField = iprot.readFieldBegin();
-          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
-            break;
-          }
-          switch (schemeField.id) {
-            case 0: // SUCCESS
-              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new AccessFairRideTResponse();
-                struct.success.read(iprot);
-                struct.setSuccessIsSet(true);
-              } else { 
-                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-              }
-              break;
-            default:
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-          }
-          iprot.readFieldEnd();
-        }
-        iprot.readStructEnd();
-
-        // check for required fields of primitive type, which can't be checked in the validate method
-        struct.validate();
-      }
-
-      public void write(org.apache.thrift.protocol.TProtocol oprot, accessFairRide_result struct) throws org.apache.thrift.TException {
-        struct.validate();
-
-        oprot.writeStructBegin(STRUCT_DESC);
-        if (struct.success != null) {
-          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-          struct.success.write(oprot);
-          oprot.writeFieldEnd();
-        }
-        oprot.writeFieldStop();
-        oprot.writeStructEnd();
-      }
-
-    }
-
-    private static class accessFairRide_resultTupleSchemeFactory implements SchemeFactory {
-      public accessFairRide_resultTupleScheme getScheme() {
-        return new accessFairRide_resultTupleScheme();
-      }
-    }
-
-    private static class accessFairRide_resultTupleScheme extends TupleScheme<accessFairRide_result> {
-
-      @Override
-      public void write(org.apache.thrift.protocol.TProtocol prot, accessFairRide_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol oprot = (TTupleProtocol) prot;
-        BitSet optionals = new BitSet();
-        if (struct.isSetSuccess()) {
-          optionals.set(0);
-        }
-        oprot.writeBitSet(optionals, 1);
-        if (struct.isSetSuccess()) {
-          struct.success.write(oprot);
-        }
-      }
-
-      @Override
-      public void read(org.apache.thrift.protocol.TProtocol prot, accessFairRide_result struct) throws org.apache.thrift.TException {
-        TTupleProtocol iprot = (TTupleProtocol) prot;
-        BitSet incoming = iprot.readBitSet(1);
-        if (incoming.get(0)) {
-          struct.success = new AccessFairRideTResponse();
-          struct.success.read(iprot);
-          struct.setSuccessIsSet(true);
         }
       }
     }

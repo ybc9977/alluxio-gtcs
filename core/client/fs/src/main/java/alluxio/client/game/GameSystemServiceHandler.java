@@ -47,20 +47,20 @@ public class GameSystemServiceHandler implements
         return new GetServiceVersionTResponse(Constants.GAME_SYSTEM_SERVICE_VERSION);
     }
 
-    @Override
-    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList, int QUOTA)
-            throws TException {
-        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
-            ArrayList<String> cachingList= mGameSystemServer.checkCacheChange(fileList,QUOTA);
-            return new CheckCacheChangeTResponse(cachingList);
-        });
-    }
+//    @Override
+//    public CheckCacheChangeTResponse checkCacheChange(final Map<String, Boolean> fileList, int QUOTA)
+//            throws TException {
+//        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<CheckCacheChangeTResponse>)()->{
+//            ArrayList<String> cachingList= mGameSystemServer.checkCacheChange(fileList,QUOTA);
+//            return new CheckCacheChangeTResponse(cachingList);
+//        });
+//    }
 
-    @Override
-    public GetPrefTResponse getPref(GetPrefTOptions options) throws TException {
-        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<GetPrefTResponse>)
-                ()-> new GetPrefTResponse(mGameSystemServer.getPref()));
-    }
+//    @Override
+//    public GetPrefTResponse getPref(GetPrefTOptions options) throws TException {
+//        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<GetPrefTResponse>)
+//                ()-> new GetPrefTResponse(mGameSystemServer.getPref()));
+//    }
 
     @Override
     public LoadTResponse load(String path) throws TException {
@@ -88,20 +88,20 @@ public class GameSystemServiceHandler implements
     }
 
     @Override
-    public AccessTResponse access(Map<String, Double> pref, String mode) throws TException {
+    public AccessTResponse access(List<Double> prefs, String mode, List<Double> cacheRatio, List<Double> accessFactor) throws TException {
         return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessTResponse>)()->{
-            Pair pair= mGameSystemServer.accessFile(pref,mode);
+            Pair pair= mGameSystemServer.access(prefs,mode, cacheRatio, accessFactor);
             return new AccessTResponse((double)pair.getFirst(),(long)pair.getSecond());
         });
     }
 
-    @Override
-    public AccessFairRideTResponse accessFairRide(Map<String, Double> pref, List<Double> factor) throws AlluxioTException {
-        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessFairRideTResponse>)()->{
-            Pair<Double, Long> p= mGameSystemServer.access(pref,factor);
-            return new AccessFairRideTResponse(p.getFirst(),p.getSecond());
-        });
-    }
+//    @Override
+//    public AccessFairRideTResponse accessFairRide(Map<String, Double> pref, List<Double> factor) throws AlluxioTException {
+//        return RpcUtils.call(LOG, (RpcUtils.RpcCallableThrowsIOException<AccessFairRideTResponse>)()->{
+//            Pair<Double, Long> p= mGameSystemServer.access(pref,factor);
+//            return new AccessFairRideTResponse(p.getFirst(),p.getSecond());
+//        });
+//    }
 
     @Override
     public ResetTResponse reset(ResetTOptions options) throws TException {
