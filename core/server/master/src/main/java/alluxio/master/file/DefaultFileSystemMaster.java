@@ -413,7 +413,7 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
 
   @Override
   public void runGame(int fileNumber, int quota){
-    mGameSystemMaster.runAll(fileNumber, quota);
+    GameSystemMaster.runAll(fileNumber, quota);
   }
 
 

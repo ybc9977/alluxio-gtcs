@@ -113,10 +113,13 @@ public final class GameSystemMaster {
             userList.add(userId);
             //cacheMap.put(userId,null);
             LOG.info("user "+ userId +" is added successfully into userList");
+            System.out.println("After add: " + userList.size() + " users.");
 
         }else{
             LOG.info("user "+ userId +" is already in the userList");
         }
+
+
     }
 
     /** user registration, called the moment when the client side server start
@@ -292,7 +295,7 @@ public final class GameSystemMaster {
         System.out.println("Current dir:" + currentDirectory);
         File prefLog = new File(currentDirectory+"/python/prefs.txt");
 
-        System.out.println("Client number" + userList.size());
+
         try {
             if (!prefLog.exists())
                 prefLog.createNewFile();
@@ -323,12 +326,12 @@ public final class GameSystemMaster {
             if (!fileSystem.exists(alluxioURI)) {
                 Closer closer = Closer.create();
                 FileWriteLocationPolicy locationPolicy;
-                locationPolicy = CommonUtils.createNewClassInstance(
-                        Configuration.<FileWriteLocationPolicy>getClass(
-                                PropertyKey.USER_FILE_COPY_FROM_LOCAL_WRITE_LOCATION_POLICY),
-                        new Class[]{}, new Object[]{});
+                //locationPolicy = CommonUtils.createNewClassInstance(
+                  //      Configuration.<FileWriteLocationPolicy>getClass(
+                    //            PropertyKey.USER_FILE_COPY_FROM_LOCAL_WRITE_LOCATION_POLICY),
+                      //  new Class[]{}, new Object[]{});
                 FileOutStream os = closer.register(fileSystem.createFile(alluxioURI,
-                        CreateFileOptions.defaults().setLocationPolicy(locationPolicy)));
+                        CreateFileOptions.defaults()));
                 byte[] buf = new byte[8 * 1024*1024];
                 long bytes = File_Size * 1024 * 1024;
                 int writeBytes;
@@ -345,7 +348,7 @@ public final class GameSystemMaster {
     /** the main logic of cache sharing game */
     private static Pair<Integer, Long> game() throws AlluxioStatusException, IOException {
 
-        Boolean[] cacheFlag = new Boolean[File_Number];
+        boolean[] cacheFlag = new boolean[File_Number];
         int quota = Total_QUOTA / clientMap.size();
         Long start_time =System.currentTimeMillis();
 
@@ -553,6 +556,8 @@ public final class GameSystemMaster {
             return; // 100% hr
 
         Double[] totalPref = new Double[File_Number];
+        Arrays.fill(totalPref, 0.0);
+        //System.out.println("File_Number:" + File_Number + "Cache quota:" + Total_QUOTA);
         for(List<Double> prefs: userPref.values()){
             for(int i = 0; i< totalPref.length;i++)
                 totalPref[i] += prefs.get(i);
@@ -769,7 +774,7 @@ public final class GameSystemMaster {
      *
      * Only run it after all users have registered and updated their prefs!
      */
-    public void runAll(int fileNumber, int quota){
+    public static void runAll(int fileNumber, int quota){
         File_Number = fileNumber;
         Total_QUOTA = quota;
 

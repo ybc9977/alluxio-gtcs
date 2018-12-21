@@ -36,10 +36,10 @@ public class GameSystemClient extends AbstractClient {
 
     private String mUserId;
 
-    private List<Double> mPref;
+    private List<Double> mPref = new ArrayList<>();
     private int[] mSortedIndices;
 
-    private List<Integer> mCachedFileIds; // the files that are cached by this client (in the game)
+    private List<Integer> mCachedFileIds = new ArrayList<>(); // the files that are cached by this client (in the game)
 
     private boolean delegate = true;
 
@@ -87,6 +87,7 @@ public class GameSystemClient extends AbstractClient {
 //    }
 
     protected List<Double> updatePref(int fileNumber){
+        mPref.clear();
         ZipfDistribution zd = new ZipfDistribution(fileNumber,1.05);
         for(int i=1;i<=fileNumber;i++) {
             mPref.add(zd.probability(i));
@@ -99,7 +100,7 @@ public class GameSystemClient extends AbstractClient {
     }
 
     // return whether the caching decisions have changed
-    public boolean poll(Boolean[] cacheFlag, int quota){
+    public boolean poll(boolean[] cacheFlag, int quota){
         //reset the status of files cached by this user
         for(int fileId: mCachedFileIds)
             cacheFlag[fileId] = false;
