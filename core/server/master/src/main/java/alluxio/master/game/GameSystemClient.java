@@ -113,7 +113,7 @@ public class GameSystemClient extends AbstractClient {
                 if (!cacheFlag[index]) {
                     cacheFlag[index] = true;
                     quota--;
-                    mCachedFileIds.add(index);
+                    cachedFileIds.add(index);
                 }
             } else
                 break;

@@ -4,6 +4,7 @@ import alluxio.AlluxioURI;
 import alluxio.Configuration;
 import alluxio.Constants;
 import alluxio.client.ReadType;
+import alluxio.client.WriteType;
 import alluxio.client.file.*;
 import alluxio.client.file.options.CreateFileOptions;
 import alluxio.client.file.policy.FileWriteLocationPolicy;
@@ -27,6 +28,8 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.DoubleStream;
@@ -140,7 +143,7 @@ public final class GameSystemMaster {
         // run OpuS
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "/alluxio-gtcs/python/OpuS.py");
+        cmd.add(currentDirectory + "/python/OpuS.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -153,7 +156,7 @@ public final class GameSystemMaster {
         Long time = System.currentTimeMillis()-start_time;
 
         // read cache ratios
-        File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_opus.txt");
+        File file = new File(currentDirectory+"/python/ratio_opus.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         for(String ratioStr: br.readLine().split(",")){
             Double ratio = Double.parseDouble(ratioStr);
@@ -164,7 +167,7 @@ public final class GameSystemMaster {
         cacheOrFree();
 
         // read access factors
-        file = new File(currentDirectory+"/alluxio-gtcs/python/factor_opus.txt");
+        file = new File(currentDirectory+"/python/factor_opus.txt");
         br = new BufferedReader(new FileReader(file));
 
         // each user has a single factor for all files
@@ -183,7 +186,7 @@ public final class GameSystemMaster {
 
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("FairRide\t Runtime\t" + time + "\t Expect HR" + hitRatio + "\t Experiment HR" + pair.getFirst() + "\t Latency" + pair.getSecond() + "\n");
+        writer.write("OpuS\n Runtime\t" + time + "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
         writer.close();
         fop.close();
 
@@ -196,7 +199,7 @@ public final class GameSystemMaster {
         // Run fairride
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "/alluxio-gtcs/python/FairRide.py");
+        cmd.add(currentDirectory + "/python/FairRide.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -210,7 +213,7 @@ public final class GameSystemMaster {
 
         // read cache ratios
         cachedRatio.clear();
-        File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_fairride.txt");
+        File file = new File(currentDirectory+"/python/ratio_fairride.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         for(String ratioStr: br.readLine().split(",")){
             Double ratio = Double.parseDouble(ratioStr);
@@ -222,7 +225,7 @@ public final class GameSystemMaster {
 
         // read access factors
         accessFactors.clear();
-        file = new File(currentDirectory+"/alluxio-gtcs/python/factor_fairride.txt");
+        file = new File(currentDirectory+"/python/factor_fairride.txt");
         br = new BufferedReader(new FileReader(file));
         String str;
         while((str = br.readLine()) != null){
@@ -238,7 +241,7 @@ public final class GameSystemMaster {
 
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("OpuS\t Runtime\t" + time + "\t Expect HR" + hitRatio + "\t Experiment HR" + pair.getFirst() + "\t Latency" + pair.getSecond() + "\n");
+        writer.write("FairRide\n Runtime\t" + time + "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
         writer.close();
         fop.close();
         //return new Pair<>(time, hitRatio); // runtime and expected hit ratio
@@ -268,13 +271,13 @@ public final class GameSystemMaster {
                     } finally {
                         closer.close();
                     }
-                    System.out.println("File " + i + "has been loaded.");
+                    System.out.println("File " + i + " has been loaded.");
                 }
 
 
                 if(cachedRatio.get(i)==0 && inMemoryPercentage>0){ // do full free
                     fileSystem.free(alluxioURI,FreeOptions.defaults());
-                    System.out.println("File " + i + "has been freed.");
+                    System.out.println("File " + i + " has been freed.");
                 }
             }catch(Exception e){
                 e.printStackTrace();
@@ -324,14 +327,8 @@ public final class GameSystemMaster {
             System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
             AlluxioURI alluxioURI = new AlluxioURI(AlluxioFolder + "/" + fileId);
             if (!fileSystem.exists(alluxioURI)) {
-                Closer closer = Closer.create();
-                FileWriteLocationPolicy locationPolicy;
-                //locationPolicy = CommonUtils.createNewClassInstance(
-                  //      Configuration.<FileWriteLocationPolicy>getClass(
-                    //            PropertyKey.USER_FILE_COPY_FROM_LOCAL_WRITE_LOCATION_POLICY),
-                      //  new Class[]{}, new Object[]{});
-                FileOutStream os = closer.register(fileSystem.createFile(alluxioURI,
-                        CreateFileOptions.defaults()));
+                FileOutStream os = fileSystem.createFile(alluxioURI,
+                        CreateFileOptions.defaults().setWriteType(WriteType.MUST_CACHE));
                 byte[] buf = new byte[8 * 1024*1024];
                 long bytes = File_Size * 1024 * 1024;
                 int writeBytes;
@@ -386,11 +383,11 @@ public final class GameSystemMaster {
         cacheOrFree();
         Double hitRatio = calculateHitRatio();
 
-        Pair<Double,Double> pair = access(MODE.Game);
+        Pair<Double,Double> pair = new Pair<>(-1.0,-1.0);//access(MODE.Game);
 
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Game\t Runtime\t" + time + "Iteration number\t" + pollIter+ "\t Expect HR" + hitRatio + "\t Experiment HR" + pair.getFirst() + "\t Latency" + pair.getSecond() + "\n");
+        writer.write("Game\n Runtime\t" + time + "Iteration number\t" + pollIter+ "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
         writer.close();
         fop.close();
 
@@ -777,6 +774,11 @@ public final class GameSystemMaster {
     public static void runAll(int fileNumber, int quota){
         File_Number = fileNumber;
         Total_QUOTA = quota;
+
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current absolute path is: " + s);
+        currentDirectory = s;
 
         fileSystem = FileSystem.Factory.get();
         try{
