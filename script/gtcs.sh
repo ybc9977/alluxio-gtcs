@@ -48,8 +48,8 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo 'alluxio.underfs.address=hdfs://${line:9}:9000'>> ~/alluxio-gtcs/conf/alluxio-site.properties"
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo ${line:9} >> ~/alluxio-gtcs/conf/masters"
 
-read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
+# read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
+# ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
 
 sh ~/Github/alluxio-gtcs/script/start.sh $1
 
