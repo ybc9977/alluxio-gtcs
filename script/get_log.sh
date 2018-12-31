@@ -8,6 +8,10 @@ read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/python/*.txt ~/Desktop/gtcs_log/
 
+scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/logs/*.log ~/Desktop/gtcs_log/
+
+scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/logs/*.out ~/Desktop/gtcs_log/
+
 # scp -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem -r ${line}:~/alluxio-gtcs/master.txt ~/Desktop/gtcs_log/
 
 # ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "cd alluxio-gtcs; zip -r 2.zip ./conf" < /dev/null

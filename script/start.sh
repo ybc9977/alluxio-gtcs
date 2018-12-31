@@ -37,8 +37,13 @@ do
 done < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 # sleep 10
-until [ ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} 'grep -q "After add:" "~/alluxio-gtcs/logs/master.out"' ]
+value1="After add: "
+value2=" users."
+value=${value1}${2}${value2}
+
+until [ ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "grep -q ${value} '~/alluxio-gtcs/logs/master.out'" ]
 do
+
 done
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio runGame 200 120"

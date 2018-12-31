@@ -51,6 +51,5 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 # read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 # ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
 
-sh ~/Github/alluxio-gtcs/script/start.sh $1
-
+sh ~/Github/alluxio-gtcs/script/start.sh $1 $2
 exit 0
