@@ -112,27 +112,30 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         List<Future<Long>> timeList = new ArrayList<>(); // Record the latency of each read
         ExecutorService executorService = Executors.newCachedThreadPool();
         double hit = 0;
+        System.out.println("Going to access " + mAccessNum + " times.");
         for (int i=0;i<mAccessNum;i++){
 
             int fileId = rand.getNext(); // get a file Id to access given the pref distribution
             try {
+                System.out.println("Access file " + fileId);
                 AlluxioURI uri = new AlluxioURI(AlluxioFolder+"/"+fileId);
                 OpenFileOptions options = OpenFileOptions.defaults().setReadType(ReadType.NO_CACHE);
                 FileInStream is = mFileSystem.openFile(uri,options);
                 double thisHit = cachedRatio.get(fileId)* accessFactor.get(fileId);
                 Future<Long> future = executorService.submit(new FileAccessThread(is, thisHit)); // run the file read in another thread
+                System.out.println("Cache ratio: "+ cachedRatio.get(fileId) + ", access factor:" + accessFactor.get(fileId));
+
                 hit += thisHit;
                 timeList.add(future);
 
                 // Access interval
                 Double interval  = new ExponentialDistribution(1.0/mAccessRate).sample();
-                System.out.println("Sleep" + interval.longValue()*1000 + "ms");
-                Thread.sleep(interval.longValue()*1000);
+                interval*= 1000; // ms
+                System.out.println("Access interval " + interval.longValue() + " ms");
+                Thread.sleep(interval.longValue());
             } catch (InterruptedException | IOException | AlluxioException e) {
                 e.printStackTrace();
             }
-            break;
-
 
         }
         // Now get the read latencies.
@@ -155,7 +158,7 @@ public class GameSystemServer extends BaseFileSystem implements Server<ClientNet
         }catch(InterruptedException | ExecutionException | IOException e){
             e.printStackTrace();
         }
-        return new Pair<>(hit/mAccessNum,t);
+        return new Pair<>(hit/mAccessNum,t/mAccessNum);
     }
 //
 //    Pair access(Map<String, Double> pref, List<Double> factor) throws IOException {

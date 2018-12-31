@@ -31,6 +31,7 @@ public class FileAccessThread implements Callable {
       mFis.read(fileBuf); //todo: use a smaller fixed size buffer to avoid heap out-of-memory
       mFis.close();
       // Simulate cache miss delay
+      System.out.println(String.format("Blocking delay %s ms", (long)(1000*(1-mHit))));
       Thread.sleep((long)(1000*(1-mHit)));
     } catch (IOException |InterruptedException e) {
       e.printStackTrace();

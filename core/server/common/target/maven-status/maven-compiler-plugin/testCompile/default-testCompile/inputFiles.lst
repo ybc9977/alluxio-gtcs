@@ -1,6 +1,6 @@
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/RegistryTest.java
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/RestUtilsTest.java
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/StorageTierAssocTest.java
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/journal/AsyncJournalWriterTest.java
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/cli/FormatTest.java
-/Users/yyuau/Research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/AbstractPrimarySelectorTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/AbstractPrimarySelectorTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/StorageTierAssocTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/journal/AsyncJournalWriterTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/master/RegistryTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/cli/FormatTest.java
+/Users/yuyinghao/research/alluxio-gtcs/core/server/common/src/test/java/alluxio/RestUtilsTest.java

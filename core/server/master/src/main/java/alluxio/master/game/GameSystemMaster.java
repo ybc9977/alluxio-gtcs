@@ -324,11 +324,11 @@ public final class GameSystemMaster {
      */
     private static void initWrite() throws AlluxioException, IOException{
         for(int fileId=0;fileId < File_Number;fileId++) {
-            System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
             AlluxioURI alluxioURI = new AlluxioURI(AlluxioFolder + "/" + fileId);
             if (!fileSystem.exists(alluxioURI)) {
+                System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
                 FileOutStream os = fileSystem.createFile(alluxioURI,
-                        CreateFileOptions.defaults().setWriteType(WriteType.MUST_CACHE));
+                        CreateFileOptions.defaults().setWriteType(WriteType.CACHE_THROUGH));
                 byte[] buf = new byte[8 * 1024*1024];
                 long bytes = File_Size * 1024 * 1024;
                 int writeBytes;
@@ -338,6 +338,9 @@ public final class GameSystemMaster {
                     bytes -= writeBytes;
                 }
                 os.close();
+            }
+            else{
+                System.out.println("File "+ fileId + " already exists.");
             }
         }
     }
@@ -383,11 +386,11 @@ public final class GameSystemMaster {
         cacheOrFree();
         Double hitRatio = calculateHitRatio();
 
-        Pair<Double,Double> pair = new Pair<>(-1.0,-1.0);//access(MODE.Game);
+        Pair<Double,Double> pair = access(MODE.Game); // new Pair<>(-1.0,-1.0);
 
         FileOutputStream fop = new FileOutputStream(log,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop);
-        writer.write("Game\n Runtime\t" + time + "Iteration number\t" + pollIter+ "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
+        writer.write("Game\n Runtime\t" + time + "\t Iteration number\t" + pollIter+ "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
         writer.close();
         fop.close();
 
