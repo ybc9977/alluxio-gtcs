@@ -77,7 +77,7 @@ public final class GameSystemMaster {
 
     private static String currentDirectory = System.getProperty("user.dir");
 
-    private static File log = new File (currentDirectory + "alluxio-gtcs/master.txt");
+    private static File log = new File (currentDirectory + "/alluxio-gtcs/master.txt");
 
     private static FileSystem fileSystem; // to do load and free
 
@@ -143,7 +143,7 @@ public final class GameSystemMaster {
         // run OpuS
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "alluxio-gtcs/python/OpuS.py");
+        cmd.add(currentDirectory + "/alluxio-gtcs/python/OpuS.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -199,7 +199,7 @@ public final class GameSystemMaster {
         // Run fairride
         ArrayList<String> cmd = new ArrayList<>();
         cmd.add("python");
-        cmd.add(currentDirectory + "alluxio-gtcs/python/FairRide.py");
+        cmd.add(currentDirectory + "/alluxio-gtcs/python/FairRide.py");
 
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
@@ -213,7 +213,7 @@ public final class GameSystemMaster {
 
         // read cache ratios
         cachedRatio.clear();
-        File file = new File(currentDirectory+"alluxio-gtcs/python/ratio_fairride.txt");
+        File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_fairride.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         for(String ratioStr: br.readLine().split(",")){
             Double ratio = Double.parseDouble(ratioStr);
@@ -225,7 +225,7 @@ public final class GameSystemMaster {
 
         // read access factors
         accessFactors.clear();
-        file = new File(currentDirectory+"alluxio-gtcs/python/factor_fairride.txt");
+        file = new File(currentDirectory+"/alluxio-gtcs/python/factor_fairride.txt");
         br = new BufferedReader(new FileReader(file));
         String str;
         while((str = br.readLine()) != null){
@@ -296,7 +296,7 @@ public final class GameSystemMaster {
 
         // write preferences into prefs.txt
         System.out.println("Current dir:" + currentDirectory);
-        File prefLog = new File(currentDirectory+"alluxio-gtcs/python/prefs.txt");
+        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
 
 
         try {
