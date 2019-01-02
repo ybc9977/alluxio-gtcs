@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# set $flintrockPemPath as an environmental variable
+
 # $1 is the number of workers and $2 is the numnber of clients
 
 
@@ -49,8 +51,10 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo ${line:9} >> ~/alluxio-gtcs/conf/masters"
 
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
+ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "sh ~/alluxio-gtcs/script/file_preparation.sh"
 
-sh ~/Github/alluxio-gtcs/script/start.sh $1
+#sh ~/Github/alluxio-gtcs/script/start.sh $1
+sh $(cd `dirname $0`;pwd)/start.sh $1
+
 
 exit 0
