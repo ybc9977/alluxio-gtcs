@@ -38,9 +38,17 @@ do
     let "i++"
 done < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
-sleep 10
-
+# sleep 10
+value1="After add: "
+value2=" users."
+value=${value1}${2}${value2}
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "sh ~/alluxio-gtcs/script/file_copy.sh"
+
+until ssh -o StrictHostKeyChecking=no -i ~/.ssh/gtcs.pem ${line} 'grep -q "'${value}'" ~/alluxio-gtcs/logs/master.out' < /dev/null
+do
+    continue
+done
+ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "~/alluxio-gtcs/bin/alluxio runGame 200 120"
+
 
 exit 0
