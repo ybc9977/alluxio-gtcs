@@ -1,10 +1,29 @@
-1. sh  *alluxio-gtcs.dir*/script/gtcs.sh #Workers #Clients
+1. launch the cluster and install required packages 
+sh  *alluxio-gtcs.dir*/script/launch.sh #Workers #Clients
 
-2. sh *alluxio-gtcs.dir*/script/get_log.sh
+2. set up the alluxio configurations (master &  workers) and launch Alluxio
+sh script/start.sh #Workers
+
+3. start clients (will kill the existing ones first)
+
+sh script/runClients.sh #Workers
+
+4. check whether the clients have all registered
+python3 flintrock/standalone.py login gtcs
+[On Master]vim ~/alluxio-gtcs/logs/master.out
+
+5. start the game (and opus and fairride)
+[On Master].~/alluxio-gtcs/bin/alluxio runGame #Files #TotalQuota
+
+6. update the preferences of All clients
+[On Master].~/alluxio-gtcs/bin/alluxio updatePref
+
+
+7. sh *alluxio-gtcs.dir*/script/get_log.sh
 
    resulting in a directory named *gtcs_log* on the Desktop, with master.txt, user_id.txt, OpuS/FairRide logs inside.
 
-3. sh *alluxio-gtcs.dir*/script/destroy.sh
+8. sh *alluxio-gtcs.dir*/script/destroy.sh
 
 
 
@@ -27,6 +46,3 @@ $ flintrock configure
 
 
 
-Notice:
-
-It seems that there's some issue on file creating, so we need to maintain the python logs inside the python directory.
