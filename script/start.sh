@@ -5,8 +5,23 @@
 # $1: worker number
 
 # start
+read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "touch ~/alluxio-gtcs/conf/workers"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "cp ~/alluxio-gtcs/conf/alluxio-site.properties.template ~/alluxio-gtcs/conf/alluxio-site.properties"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "cp ~/alluxio-gtcs/conf/alluxio-env.sh.template ~/alluxio-gtcs/conf/alluxio-env.sh"
+#python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo   'alluxio.worker.memory.size=32GB' >> ~/alluxio-gtcs/conf/alluxio-site.properties"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo 'alluxio.master.hostname=${line:9}' >> ~/alluxio-gtcs/conf/alluxio-site.properties"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo'alluxio.underfs.address=hdfs://${line:9}:9000'>> ~/alluxio-gtcs/conf/alluxio-site.properties"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "echo ${line:9} > ~/alluxio-gtcs/conf/masters"
+
+
+
+
+
+
+
+
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "rm  ~/alluxio-gtcs/conf/workers;touch ~/alluxio-gtcs/conf/workers"
 
 i=1
 while read -r line

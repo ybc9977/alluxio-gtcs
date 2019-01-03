@@ -386,12 +386,43 @@ public final class GameSystemMaster {
             accessFactors.add(Arrays.asList(ones));
 
         cacheOrFree();
+
+        // log cache ratio and access factors of game
+        File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_game.txt");
+        FileOutputStream fop = new FileOutputStream(file,false);
+        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        writer.write(Arrays.toString(cachedRatio.toArray()) // [1.0, 2.0, ..., ]
+                .replace("[", "")  //remove the right bracket
+                .replace("]", "")  //remove the left bracket
+                //.replace(",", "\t")
+                .trim()); // remove trailing spaces from partially initialized arrays
+        writer.write("\n");
+        writer.close();
+        fop.close();
+
+        file = new File(currentDirectory+"/alluxio-gtcs/python/factor_game.txt");
+        fop = new FileOutputStream(file,false);
+        writer = new OutputStreamWriter(fop);
+        for(List<Double> accessFactor: accessFactors) {
+            writer.write(Arrays.toString(accessFactor.toArray()) // [1.0, 2.0, ..., ]
+                    .replace("[", "")  //remove the right bracket
+                    .replace("]", ""));  //remove the left bracket
+                    //.replace(",", "\t")
+                   // .trim()); // remove trailing spaces from partially initialized arrays
+            writer.write("\n");
+        }
+        writer.close();
+        fop.close();
+
+
+
+
         Double hitRatio = calculateHitRatio();
 
         Pair<Double,Double> pair = access(MODE.Game); // new Pair<>(-1.0,-1.0);
 
-        FileOutputStream fop = new FileOutputStream(log,true);
-        OutputStreamWriter writer = new OutputStreamWriter(fop);
+        fop = new FileOutputStream(log,true);
+        writer = new OutputStreamWriter(fop);
         writer.write("Game\n Runtime\t" + time + "\t Iteration number\t" + pollIter+ "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
         writer.close();
         fop.close();
@@ -584,12 +615,13 @@ public final class GameSystemMaster {
     private static double calculateHitRatio() {
         Double cachedSum =0.0;
         Double sum = 0.0;
-        for(int i = 0; i< File_Number;i++){
-            Double thisSum = 0.0;
-            for(List<Double> prefs: userPref.values())
-                thisSum += prefs.get(i);
-            sum += thisSum;
-            cachedSum += thisSum * cachedRatio.get(i);
+        for(int userIndex = 0; userIndex < userList.size();userIndex++) {
+            List<Double> prefs = userPref.get(userList.get(userIndex));
+            List<Double> factors = accessFactors.get(userIndex);
+            for (int fileIndex = 0; fileIndex < prefs.size(); fileIndex++) {
+                sum += prefs.get(fileIndex);
+                cachedSum += prefs.get(fileIndex) * cachedRatio.get(fileIndex) * factors.get(fileIndex);
+            }
         }
 
         return cachedSum / sum;
