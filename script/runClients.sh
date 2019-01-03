@@ -20,10 +20,10 @@ value=${value1}${2}${value2}
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 
-until ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} 'grep -q "'${value}'" ~/alluxio-gtcs/logs/master.out' < /dev/null
-do
-   continue
-done
+#until ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} 'grep -q "'${value}'" ~/alluxio-gtcs/logs/master.out' < /dev/null
+#do
+ #  continue
+#done
 #ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "~/alluxio-gtcs/bin/alluxio runGame 200 120"
 
 

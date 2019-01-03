@@ -230,7 +230,7 @@ public final class GameSystemMaster {
         String str;
         while((str = br.readLine()) != null){
             List<Double> factors = new ArrayList<>();
-            for(String factorStr: br.readLine().split(","))
+            for(String factorStr: str.split(","))
                 factors.add(Double.parseDouble(factorStr));
             accessFactors.add(factors);
         }
