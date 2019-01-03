@@ -310,7 +310,9 @@ public final class GameSystemMaster {
                 writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
                         .replace("[", "")  //remove the right bracket
                         .replace("]", "")  //remove the left bracket
+                        //.replace(",", "\t")
                         .trim()); // remove trailing spaces from partially initialized arrays
+                writer.write("\n");
             }
             writer.flush();
             writer.close();

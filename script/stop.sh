@@ -4,9 +4,9 @@
 # stop all the master/client/worker
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
-ssh -o StrictHostKeyChecking=no -i .ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio fs rm -R /test"
+ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "~/alluxio-gtcs/bin/alluxio fs rm -R /test"
 
-ssh -o StrictHostKeyChecking=no -i .ssh/gtcs.pem ${line} "~/alluxio-gtcs/bin/alluxio-stop.sh all"
+ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "~/alluxio-gtcs/bin/alluxio-stop.sh all"
 
 # ssh -o StrictHostKeyChecking=no -i .ssh/gtcs.pem ${line} "rm *.txt"
 
