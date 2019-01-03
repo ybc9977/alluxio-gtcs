@@ -621,6 +621,10 @@ public final class GameSystemMaster {
             for (int fileIndex = 0; fileIndex < prefs.size(); fileIndex++) {
                 sum += prefs.get(fileIndex);
                 cachedSum += prefs.get(fileIndex) * cachedRatio.get(fileIndex) * factors.get(fileIndex);
+                System.out.println("User " + userIndex + " File "+ fileIndex + " Pref " + prefs.get(fileIndex) + " ratio " +
+                        cachedRatio.get(fileIndex) + " factor " + factors.get(fileIndex));
+                System.out.println("Sum " + sum + " Cachesum " + cachedSum);
+
             }
         }
 

@@ -4,6 +4,9 @@
 
 # $1: worker number
 
+# clear existing logs
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "rm  ~/alluxio-gtcs/*.txt"
+
 # start
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
