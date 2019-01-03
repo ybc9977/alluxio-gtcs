@@ -4,6 +4,8 @@
 
 # set $flintrockPemPath as an environmental variable
 
+# kill the clients first
+sh $(cd `dirname $0`; pwd)/killClients.sh $1
 
 i=1
 while read -r line

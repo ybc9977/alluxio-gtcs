@@ -100,6 +100,7 @@ alluxio/master/file/FileSystemMasterClientServiceHandler$16.class
 alluxio/master/metrics/MetricsMasterClientServiceHandler$1.class
 alluxio/master/meta/DefaultMetaMaster$2.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$1.class
+alluxio/master/game/UpdatePreferences.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$19.class
 alluxio/master/file/NoopUfsDeleter.class
 alluxio/master/lineage/recompute/RecomputeExecutor.class

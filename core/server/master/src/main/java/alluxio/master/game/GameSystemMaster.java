@@ -288,7 +288,7 @@ public final class GameSystemMaster {
     /**
      * Get user's preference from game clients
      */
-    private static void getPref() throws AlluxioStatusException{
+    public static void getPref() throws AlluxioStatusException{
         for(String userID: userList){
             GameSystemClient client = clientMap.get(userID);
             userPref.put(userID, client.updatePref(File_Number));
@@ -579,7 +579,7 @@ public final class GameSystemMaster {
 
 
     /**
-     * Calculate the expected cache hit ratio based on the current #cachedRatio#
+     * Calculate the expected cache hit ratio based on the current #cachedRatio# and #accessFactors
      */
     private static double calculateHitRatio() {
         Double cachedSum =0.0;
