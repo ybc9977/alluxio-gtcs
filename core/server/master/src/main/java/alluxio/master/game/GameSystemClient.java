@@ -88,6 +88,7 @@ public class GameSystemClient extends AbstractClient {
 
     protected List<Double> updatePref(int fileNumber){
         mPref.clear();
+        mCachedFileIds.clear();
         ZipfDistribution zd = new ZipfDistribution(fileNumber,1.05);
         for(int i=1;i<=fileNumber;i++) {
             mPref.add(zd.probability(i));

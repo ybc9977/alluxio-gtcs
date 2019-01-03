@@ -15,8 +15,8 @@ python3 flintrock/standalone.py login gtcs
 5. start the game (and opus and fairride)
 [On Master].~/alluxio-gtcs/bin/alluxio runGame #Files #TotalQuota
 
-6. update the preferences of All clients
-[On Master].~/alluxio-gtcs/bin/alluxio updatePref
+#6. update the preferences of All clients
+#[On Master].~/alluxio-gtcs/bin/alluxio updatePref
 
 
 7. sh *alluxio-gtcs.dir*/script/get_log.sh
