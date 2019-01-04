@@ -16,10 +16,10 @@ do
 done < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 # sleep 10
-value1="After add: "
-value2=" users."
-value=${value1}${2}${value2}
-read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
+#value1="After add: "
+#value2=" users."
+#value=${value1}${2}${value2}
+#read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
 
 #until ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} 'grep -q "'${value}'" ~/alluxio-gtcs/logs/master.out' < /dev/null

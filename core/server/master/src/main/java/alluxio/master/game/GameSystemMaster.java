@@ -287,42 +287,42 @@ public final class GameSystemMaster {
         }
     }
 
-    /**
-     * Get user's preference from game clients
-     */
-    public static void getPref() throws AlluxioStatusException{
-        for(String userID: userList){
-            GameSystemClient client = clientMap.get(userID);
-            userPref.put(userID, client.updatePref(File_Number));
-        }
-
-        // write preferences into prefs.txt
-        System.out.println("Current dir:" + currentDirectory);
-        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
-
-
-        try {
-            if (!prefLog.exists())
-                prefLog.createNewFile();
-            FileOutputStream fop = new FileOutputStream(prefLog,false);
-            OutputStreamWriter writer = new OutputStreamWriter(fop);
-            writer.write(String.valueOf(Total_QUOTA)+'\n');
-            for(String userId: userList){
-                List<Double> prefs = userPref.get(userId);
-                writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
-                        .replace("[", "")  //remove the right bracket
-                        .replace("]", "")  //remove the left bracket
-                        //.replace(",", "\t")
-                        .trim()); // remove trailing spaces from partially initialized arrays
-                writer.write("\n");
-            }
-            writer.flush();
-            writer.close();
-            fop.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    /**
+//     * Get user's preference from game clients
+//     */
+//    public static void getPref() throws AlluxioStatusException{
+//        for(String userID: userList){
+//            GameSystemClient client = clientMap.get(userID);
+//            userPref.put(userID, client.updatePref(File_Number));
+//        }
+//
+//        // write preferences into prefs.txt
+//        System.out.println("Current dir:" + currentDirectory);
+//        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
+//
+//
+//        try {
+//            if (!prefLog.exists())
+//                prefLog.createNewFile();
+//            FileOutputStream fop = new FileOutputStream(prefLog,false);
+//            OutputStreamWriter writer = new OutputStreamWriter(fop);
+//            writer.write(String.valueOf(Total_QUOTA)+'\n');
+//            for(String userId: userList){
+//                List<Double> prefs = userPref.get(userId);
+//                writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
+//                        .replace("[", "")  //remove the right bracket
+//                        .replace("]", "")  //remove the left bracket
+//                        //.replace(",", "\t")
+//                        .trim()); // remove trailing spaces from partially initialized arrays
+//                writer.write("\n");
+//            }
+//            writer.flush();
+//            writer.close();
+//            fop.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     /**
      * Create files if not exist. From file 0 to file (File_Number-1).
      */
@@ -833,7 +833,7 @@ public final class GameSystemMaster {
         }
 
         try {
-            getPref(); //get preferences from clients and also log to pref.txt
+            updatePref(userList.size()); //get preferences from clients and also log to pref.txt
 
             initWrite();
 
@@ -857,6 +857,115 @@ public final class GameSystemMaster {
 
     }
 
+    /**
+     * Sequentially update the users' preference while running game, opus or fairride.
+     *
+     * @param fileNumber the number of files.
+     * @param quota the number of cache quota.
+     * @param updateNumber the number of users whose preferences should be updated.
+     * @param loopNumber the number of loops that should be run.
+     */
+
+    public static void updatePrefCompare(int fileNumber, int quota, int updateNumber, int loopNumber){
+        File_Number = fileNumber;
+        Total_QUOTA = quota;
+
+        try{
+            if (!log.exists())
+                log.createNewFile();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        fileSystem = FileSystem.Factory.get();
+
+        try{
+            updatePref(userList.size());
+
+            initWrite();
+
+            optimalHitRatio();
+
+            for (int i=0;i<loopNumber;i++){
+                Pair<Integer, Long> result = game();
+                LOG.info("Game loop "+i+"'s runtime (ms):" + result.getSecond());
+                LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
+                updatePref(updateNumber);
+            }
+
+            for (int i=0;i<loopNumber;i++){
+                Long runtime = runOpuS();
+                LOG.info("OpuS loop "+i+"'s runtime (ms):" + runtime);
+                updatePref(updateNumber);
+            }
+            for (int i=0;i<loopNumber;i++){
+                Long runtime = runFairRide();
+                LOG.info("FairRide loop "+i+"'s runtime (ms):" + runtime);
+                updatePref(updateNumber);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    /**
+     * Randomly update users' preferences.
+     *
+     * @param updateNumber the number of users whose preferences will be updated.
+     */
+    private static void updatePref(int updateNumber) {
+
+        int size = userList.size();
+        if (updateNumber==size){
+            for(String userID: userList){
+                GameSystemClient client = clientMap.get(userID);
+                userPref.put(userID, client.updatePref(File_Number));
+            }
+        }else{
+            boolean[] userChange = new boolean[userList.size()];
+            int count = 0;
+            while (count != updateNumber) {
+                int index = (int) (Math.random() * size);
+                if (!userChange[index]) {
+                    String userID = userList.get(index);
+                    GameSystemClient client = clientMap.get(userID);
+                    userPref.put(userID, client.updatePref(File_Number));
+                    userChange[index] = true;
+                    count++;
+                }
+            }
+        }
+
+        // write preferences into prefs.txt
+        System.out.println("Current dir:" + currentDirectory);
+        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
+
+
+        try {
+            if (!prefLog.exists())
+                prefLog.createNewFile();
+            FileOutputStream fop = new FileOutputStream(prefLog,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write(String.valueOf(Total_QUOTA)+'\n');
+            for(String userId: userList){
+                List<Double> prefs = userPref.get(userId);
+                writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
+                        .replace("[", "")  //remove the right bracket
+                        .replace("]", "")  //remove the left bracket
+                        //.replace(",", "\t")
+                        .trim()); // remove trailing spaces from partially initialized arrays
+                writer.write("\n");
+            }
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 //    /** timer task to start GTC*/

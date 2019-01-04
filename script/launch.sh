@@ -53,4 +53,3 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 #sh $(cd `dirname $0`;pwd)/start.sh $1 $2
 
 exit 0
-

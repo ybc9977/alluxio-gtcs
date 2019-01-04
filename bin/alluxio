@@ -335,12 +335,13 @@ function main {
       ALLUXIO_SHELL_JAVA_OPTS+=" -Dalluxio.logger.type=Console"
       runJavaClass "$@"
     ;;
-  "updatePref")
-        CLASS="alluxio.master.game.UpdatePreferences"
+    
+  "updatePrefComp")
+        CLASS="alluxio.master.game.UpdatePreferenceCompare"
         CLASSPATH=${ALLUXIO_SERVER_CLASSPATH}
         ALLUXIO_SHELL_JAVA_OPTS+=" -Dalluxio.logger.type=Console"
         runJavaClass "$@"
-      ;;
+    ;;
 
   "runMiniBenchmark")
     CLASS="alluxio.cli.MiniBenchmark"
