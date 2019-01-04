@@ -870,6 +870,11 @@ public final class GameSystemMaster {
         File_Number = fileNumber;
         Total_QUOTA = quota;
 
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current absolute path is: " + s);
+        currentDirectory = s;
+
         try{
             if (!log.exists())
                 log.createNewFile();

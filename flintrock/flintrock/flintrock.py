@@ -584,7 +584,6 @@ def describe(
                 f.write("ec2-user@"+clusters[i].slave_instances[j].public_ip_address + '\n')
         f.close()
 
-
     if cluster_name:
         cluster = clusters[0]
         if master_hostname_only:
