@@ -629,6 +629,7 @@ public final class GameSystemMaster {
 
             }
         }
+        System.out.println("\n\n");
 
         return cachedSum / sum;
     }
