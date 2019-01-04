@@ -54,6 +54,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/options/UpdateUfsModeOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/Cancelable.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/options/ListStatusOptions.java
+/Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/game/UpdatePreferenceCompare.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/file/FileInStream.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/metrics/MetricsMasterClient.java
 /Users/ybc/Github/alluxio-gtcs/core/client/fs/src/main/java/alluxio/client/ReadType.java

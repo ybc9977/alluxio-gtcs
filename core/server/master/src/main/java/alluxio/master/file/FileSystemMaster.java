@@ -517,5 +517,7 @@ public interface FileSystemMaster extends Master {
 
   void runGame(int fileNumber, int quota);
 
+  void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum);
+
 
 }

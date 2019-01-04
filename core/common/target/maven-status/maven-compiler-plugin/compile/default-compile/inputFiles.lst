@@ -140,6 +140,7 @@
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/WorkerInfo.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/PersistCommandOptions.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/DependencyInfo.java
+/Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/UpdatePrefCompTResponse.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/OptionalString.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/thrift/Command.java
 /Users/ybc/Github/alluxio-gtcs/core/common/src/main/java/alluxio/collections/FieldIndex.java

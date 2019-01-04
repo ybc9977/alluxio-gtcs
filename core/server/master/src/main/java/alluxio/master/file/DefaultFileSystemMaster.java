@@ -416,6 +416,11 @@ public final class DefaultFileSystemMaster extends AbstractMaster implements Fil
     GameSystemMaster.runAll(fileNumber, quota);
   }
 
+  @Override
+  public void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum){
+    GameSystemMaster.updatePrefCompare(fileNumber, quota, updateNum, loopNum);
+  }
+
 
   @Override
   public Map<String, TProcessor> getServices() {

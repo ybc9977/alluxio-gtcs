@@ -219,4 +219,9 @@ public final class RetryHandlingFileSystemMasterClient extends AbstractMasterCli
               "RunGame");
   }
 
+  @Override
+  public synchronized void updatePrefComp(final int fileNumber, final int quota, final int updateNum, final int loopNum) throws AlluxioStatusException{
+    retryRPC(() -> mClient.updatePrefComp(fileNumber, quota, updateNum, loopNum),
+            "UpdatePrefComp");
+  }
 }

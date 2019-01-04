@@ -365,4 +365,6 @@ public interface FileSystem {
   void unmount(AlluxioURI path, UnmountOptions options) throws IOException, AlluxioException;
 
   void runGame(int fileNumber, int quota);
+
+  void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum);
 }

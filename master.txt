@@ -1,5 +1,0 @@
-Optimal HR	0.791638932511849
-Game
- Runtime	0	 Iteration number	2	 Expect HR	0.7916389325118489	 Experiment HR	0.81	 Latency	57442.0
-OpuS
- Runtime	742	 Expect HR	0.7916389325118489	 Experiment HR	0.805	 Latency	53692.0

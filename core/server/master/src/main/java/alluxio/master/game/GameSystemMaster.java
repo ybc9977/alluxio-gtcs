@@ -135,6 +135,7 @@ public final class GameSystemMaster {
         LOG.info("register a client with : " + mAddress.getAddress().toString());
         GameSystemClient client = new GameSystemClient(null,mAddress,userId);
         clientMap.put(userId,client);
+        System.out.println(clientMap);
     }
 
     /** Run OpuS and launch access **/
@@ -287,42 +288,42 @@ public final class GameSystemMaster {
         }
     }
 
-//    /**
-//     * Get user's preference from game clients
-//     */
-//    public static void getPref() throws AlluxioStatusException{
-//        for(String userID: userList){
-//            GameSystemClient client = clientMap.get(userID);
-//            userPref.put(userID, client.updatePref(File_Number));
-//        }
-//
-//        // write preferences into prefs.txt
-//        System.out.println("Current dir:" + currentDirectory);
-//        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
-//
-//
-//        try {
-//            if (!prefLog.exists())
-//                prefLog.createNewFile();
-//            FileOutputStream fop = new FileOutputStream(prefLog,false);
-//            OutputStreamWriter writer = new OutputStreamWriter(fop);
-//            writer.write(String.valueOf(Total_QUOTA)+'\n');
-//            for(String userId: userList){
-//                List<Double> prefs = userPref.get(userId);
-//                writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
-//                        .replace("[", "")  //remove the right bracket
-//                        .replace("]", "")  //remove the left bracket
-//                        //.replace(",", "\t")
-//                        .trim()); // remove trailing spaces from partially initialized arrays
-//                writer.write("\n");
-//            }
-//            writer.flush();
-//            writer.close();
-//            fop.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * Get user's preference from game clients
+     */
+    public static void getPref() throws AlluxioStatusException{
+        for(String userID: userList){
+            GameSystemClient client = clientMap.get(userID);
+            userPref.put(userID, client.updatePref(File_Number));
+        }
+
+        // write preferences into prefs.txt
+        System.out.println("Current dir:" + currentDirectory);
+        File prefLog = new File(currentDirectory+"/alluxio-gtcs/python/prefs.txt");
+
+
+        try {
+            if (!prefLog.exists())
+                prefLog.createNewFile();
+            FileOutputStream fop = new FileOutputStream(prefLog,false);
+            OutputStreamWriter writer = new OutputStreamWriter(fop);
+            writer.write(String.valueOf(Total_QUOTA)+'\n');
+            for(String userId: userList){
+                List<Double> prefs = userPref.get(userId);
+                writer.write(Arrays.toString(prefs.toArray()) // [1.0, 2.0, ..., ]
+                        .replace("[", "")  //remove the right bracket
+                        .replace("]", "")  //remove the left bracket
+                        //.replace(",", "\t")
+                        .trim()); // remove trailing spaces from partially initialized arrays
+                writer.write("\n");
+            }
+            writer.flush();
+            writer.close();
+            fop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Create files if not exist. From file 0 to file (File_Number-1).
      */
@@ -833,7 +834,7 @@ public final class GameSystemMaster {
         }
 
         try {
-            updatePref(userList.size()); //get preferences from clients and also log to pref.txt
+            getPref(); //get preferences from clients and also log to pref.txt
 
             initWrite();
 
@@ -875,22 +876,24 @@ public final class GameSystemMaster {
         System.out.println("Current absolute path is: " + s);
         currentDirectory = s;
 
+        fileSystem = FileSystem.Factory.get();
         try{
             if (!log.exists())
                 log.createNewFile();
         }catch(IOException e){
             e.printStackTrace();
         }
-        fileSystem = FileSystem.Factory.get();
+
 
         try{
-            updatePref(userList.size());
+            getPref();
 
             initWrite();
 
             optimalHitRatio();
 
             for (int i=0;i<loopNumber;i++){
+                System.out.println(i);
                 Pair<Integer, Long> result = game();
                 LOG.info("Game loop "+i+"'s runtime (ms):" + result.getSecond());
                 LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
@@ -923,26 +926,19 @@ public final class GameSystemMaster {
     private static void updatePref(int updateNumber) {
 
         int size = userList.size();
-        if (updateNumber==size){
-            for(String userID: userList){
+        boolean[] userChange = new boolean[size];
+        for (int i = 0; i <userList.size();i++){
+            userChange[i]= false;
+        }
+        int count = 0;
+        while (count != updateNumber) {
+            int index = (int) (Math.random() * size);
+            if (!userChange[index]) {
+                String userID = userList.get(index);
                 GameSystemClient client = clientMap.get(userID);
                 userPref.put(userID, client.updatePref(File_Number));
-            }
-        }else{
-            boolean[] userChange = new boolean[userList.size()];
-            for (int i = 0; i <userList.size();i++){
-                userChange[i]= false;
-            }
-            int count = 0;
-            while (count != updateNumber) {
-                int index = (int) (Math.random() * size);
-                if (!userChange[index]) {
-                    String userID = userList.get(index);
-                    GameSystemClient client = clientMap.get(userID);
-                    userPref.put(userID, client.updatePref(File_Number));
-                    userChange[index] = true;
-                    count++;
-                }
+                userChange[index] = true;
+                count++;
             }
         }
 

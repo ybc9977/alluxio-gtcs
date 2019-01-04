@@ -20,6 +20,7 @@ alluxio/web/WebInterfaceDownloadServlet.class
 alluxio/master/file/meta/AsyncUfsAbsentPathCache.class
 alluxio/master/file/meta/MountTable$Resolution.class
 alluxio/master/file/StartupConsistencyCheck.class
+alluxio/master/file/FileSystemMasterClientServiceHandler$21.class
 alluxio/master/meta/DefaultMetaMaster.class
 alluxio/master/meta/MetaMasterMasterServiceHandler$1.class
 alluxio/master/meta/checkconf/ServerConfigurationStore.class

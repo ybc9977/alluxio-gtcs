@@ -213,6 +213,8 @@ public class FileSystemMasterClientService {
 
     public RunGameTResponse runGame(int fileNumber, int quota) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
 
+    public UpdatePrefCompTResponse updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface extends alluxio.thrift.AlluxioService .AsyncIface {
@@ -254,6 +256,8 @@ public class FileSystemMasterClientService {
     public void updateUfsMode(String ufsPath, UpdateUfsModeTOptions options, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
     public void runGame(int fileNumber, int quota, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
+
+    public void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -793,6 +797,35 @@ public class FileSystemMasterClientService {
         throw result.e;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "runGame failed: unknown result");
+    }
+
+    public UpdatePrefCompTResponse updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum) throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    {
+      send_updatePrefComp(fileNumber, quota, updateNum, loopNum);
+      return recv_updatePrefComp();
+    }
+
+    public void send_updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum) throws org.apache.thrift.TException
+    {
+      updatePrefComp_args args = new updatePrefComp_args();
+      args.setFileNumber(fileNumber);
+      args.setQuota(quota);
+      args.setUpdateNum(updateNum);
+      args.setLoopNum(loopNum);
+      sendBase("updatePrefComp", args);
+    }
+
+    public UpdatePrefCompTResponse recv_updatePrefComp() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException
+    {
+      updatePrefComp_result result = new updatePrefComp_result();
+      receiveBase(result, "updatePrefComp");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      if (result.e != null) {
+        throw result.e;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updatePrefComp failed: unknown result");
     }
 
   }
@@ -1493,6 +1526,47 @@ public class FileSystemMasterClientService {
       }
     }
 
+    public void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum, org.apache.thrift.async.AsyncMethodCallback resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      updatePrefComp_call method_call = new updatePrefComp_call(fileNumber, quota, updateNum, loopNum, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class updatePrefComp_call extends org.apache.thrift.async.TAsyncMethodCall {
+      private int fileNumber;
+      private int quota;
+      private int updateNum;
+      private int loopNum;
+      public updatePrefComp_call(int fileNumber, int quota, int updateNum, int loopNum, org.apache.thrift.async.AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.fileNumber = fileNumber;
+        this.quota = quota;
+        this.updateNum = updateNum;
+        this.loopNum = loopNum;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("updatePrefComp", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        updatePrefComp_args args = new updatePrefComp_args();
+        args.setFileNumber(fileNumber);
+        args.setQuota(quota);
+        args.setUpdateNum(updateNum);
+        args.setLoopNum(loopNum);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public UpdatePrefCompTResponse getResult() throws alluxio.thrift.AlluxioTException, org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_updatePrefComp();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends alluxio.thrift.AlluxioService.Processor<I> implements org.apache.thrift.TProcessor {
@@ -1525,6 +1599,7 @@ public class FileSystemMasterClientService {
       processMap.put("unmount", new unmount());
       processMap.put("updateUfsMode", new updateUfsMode());
       processMap.put("runGame", new runGame());
+      processMap.put("updatePrefComp", new updatePrefComp());
       return processMap;
     }
 
@@ -1984,6 +2059,30 @@ public class FileSystemMasterClientService {
       }
     }
 
+    public static class updatePrefComp<I extends Iface> extends org.apache.thrift.ProcessFunction<I, updatePrefComp_args> {
+      public updatePrefComp() {
+        super("updatePrefComp");
+      }
+
+      public updatePrefComp_args getEmptyArgsInstance() {
+        return new updatePrefComp_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public updatePrefComp_result getResult(I iface, updatePrefComp_args args) throws org.apache.thrift.TException {
+        updatePrefComp_result result = new updatePrefComp_result();
+        try {
+          result.success = iface.updatePrefComp(args.fileNumber, args.quota, args.updateNum, args.loopNum);
+        } catch (alluxio.thrift.AlluxioTException e) {
+          result.e = e;
+        }
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends alluxio.thrift.AlluxioService.AsyncProcessor<I> {
@@ -2016,6 +2115,7 @@ public class FileSystemMasterClientService {
       processMap.put("unmount", new unmount());
       processMap.put("updateUfsMode", new updateUfsMode());
       processMap.put("runGame", new runGame());
+      processMap.put("updatePrefComp", new updatePrefComp());
       return processMap;
     }
 
@@ -3099,6 +3199,63 @@ public class FileSystemMasterClientService {
 
       public void start(I iface, runGame_args args, org.apache.thrift.async.AsyncMethodCallback<RunGameTResponse> resultHandler) throws TException {
         iface.runGame(args.fileNumber, args.quota,resultHandler);
+      }
+    }
+
+    public static class updatePrefComp<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, updatePrefComp_args, UpdatePrefCompTResponse> {
+      public updatePrefComp() {
+        super("updatePrefComp");
+      }
+
+      public updatePrefComp_args getEmptyArgsInstance() {
+        return new updatePrefComp_args();
+      }
+
+      public AsyncMethodCallback<UpdatePrefCompTResponse> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new AsyncMethodCallback<UpdatePrefCompTResponse>() { 
+          public void onComplete(UpdatePrefCompTResponse o) {
+            updatePrefComp_result result = new updatePrefComp_result();
+            result.success = o;
+            try {
+              fcall.sendResponse(fb,result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+              return;
+            } catch (Exception e) {
+              LOGGER.error("Exception writing to internal frame buffer", e);
+            }
+            fb.close();
+          }
+          public void onError(Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TBase msg;
+            updatePrefComp_result result = new updatePrefComp_result();
+            if (e instanceof alluxio.thrift.AlluxioTException) {
+                        result.e = (alluxio.thrift.AlluxioTException) e;
+                        result.setEIsSet(true);
+                        msg = result;
+            }
+             else 
+            {
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+              return;
+            } catch (Exception ex) {
+              LOGGER.error("Exception writing to internal frame buffer", ex);
+            }
+            fb.close();
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, updatePrefComp_args args, org.apache.thrift.async.AsyncMethodCallback<UpdatePrefCompTResponse> resultHandler) throws TException {
+        iface.updatePrefComp(args.fileNumber, args.quota, args.updateNum, args.loopNum,resultHandler);
       }
     }
 
@@ -21858,6 +22015,1135 @@ public class FileSystemMasterClientService {
         BitSet incoming = iprot.readBitSet(2);
         if (incoming.get(0)) {
           struct.success = new RunGameTResponse();
+          struct.success.read(iprot);
+          struct.setSuccessIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.e = new alluxio.thrift.AlluxioTException();
+          struct.e.read(iprot);
+          struct.setEIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class updatePrefComp_args implements org.apache.thrift.TBase<updatePrefComp_args, updatePrefComp_args._Fields>, java.io.Serializable, Cloneable, Comparable<updatePrefComp_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updatePrefComp_args");
+
+    private static final org.apache.thrift.protocol.TField FILE_NUMBER_FIELD_DESC = new org.apache.thrift.protocol.TField("fileNumber", org.apache.thrift.protocol.TType.I32, (short)1);
+    private static final org.apache.thrift.protocol.TField QUOTA_FIELD_DESC = new org.apache.thrift.protocol.TField("quota", org.apache.thrift.protocol.TType.I32, (short)2);
+    private static final org.apache.thrift.protocol.TField UPDATE_NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("updateNum", org.apache.thrift.protocol.TType.I32, (short)3);
+    private static final org.apache.thrift.protocol.TField LOOP_NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("loopNum", org.apache.thrift.protocol.TType.I32, (short)4);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new updatePrefComp_argsStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new updatePrefComp_argsTupleSchemeFactory());
+    }
+
+    private int fileNumber; // required
+    private int quota; // required
+    private int updateNum; // required
+    private int loopNum; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      FILE_NUMBER((short)1, "fileNumber"),
+      QUOTA((short)2, "quota"),
+      UPDATE_NUM((short)3, "updateNum"),
+      LOOP_NUM((short)4, "loopNum");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 1: // FILE_NUMBER
+            return FILE_NUMBER;
+          case 2: // QUOTA
+            return QUOTA;
+          case 3: // UPDATE_NUM
+            return UPDATE_NUM;
+          case 4: // LOOP_NUM
+            return LOOP_NUM;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __FILENUMBER_ISSET_ID = 0;
+    private static final int __QUOTA_ISSET_ID = 1;
+    private static final int __UPDATENUM_ISSET_ID = 2;
+    private static final int __LOOPNUM_ISSET_ID = 3;
+    private byte __isset_bitfield = 0;
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.FILE_NUMBER, new org.apache.thrift.meta_data.FieldMetaData("fileNumber", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.QUOTA, new org.apache.thrift.meta_data.FieldMetaData("quota", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.UPDATE_NUM, new org.apache.thrift.meta_data.FieldMetaData("updateNum", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.LOOP_NUM, new org.apache.thrift.meta_data.FieldMetaData("loopNum", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(updatePrefComp_args.class, metaDataMap);
+    }
+
+    public updatePrefComp_args() {
+    }
+
+    public updatePrefComp_args(
+      int fileNumber,
+      int quota,
+      int updateNum,
+      int loopNum)
+    {
+      this();
+      this.fileNumber = fileNumber;
+      setFileNumberIsSet(true);
+      this.quota = quota;
+      setQuotaIsSet(true);
+      this.updateNum = updateNum;
+      setUpdateNumIsSet(true);
+      this.loopNum = loopNum;
+      setLoopNumIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public updatePrefComp_args(updatePrefComp_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.fileNumber = other.fileNumber;
+      this.quota = other.quota;
+      this.updateNum = other.updateNum;
+      this.loopNum = other.loopNum;
+    }
+
+    public updatePrefComp_args deepCopy() {
+      return new updatePrefComp_args(this);
+    }
+
+    @Override
+    public void clear() {
+      setFileNumberIsSet(false);
+      this.fileNumber = 0;
+      setQuotaIsSet(false);
+      this.quota = 0;
+      setUpdateNumIsSet(false);
+      this.updateNum = 0;
+      setLoopNumIsSet(false);
+      this.loopNum = 0;
+    }
+
+    public int getFileNumber() {
+      return this.fileNumber;
+    }
+
+    public updatePrefComp_args setFileNumber(int fileNumber) {
+      this.fileNumber = fileNumber;
+      setFileNumberIsSet(true);
+      return this;
+    }
+
+    public void unsetFileNumber() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __FILENUMBER_ISSET_ID);
+    }
+
+    /** Returns true if field fileNumber is set (has been assigned a value) and false otherwise */
+    public boolean isSetFileNumber() {
+      return EncodingUtils.testBit(__isset_bitfield, __FILENUMBER_ISSET_ID);
+    }
+
+    public void setFileNumberIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __FILENUMBER_ISSET_ID, value);
+    }
+
+    public int getQuota() {
+      return this.quota;
+    }
+
+    public updatePrefComp_args setQuota(int quota) {
+      this.quota = quota;
+      setQuotaIsSet(true);
+      return this;
+    }
+
+    public void unsetQuota() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __QUOTA_ISSET_ID);
+    }
+
+    /** Returns true if field quota is set (has been assigned a value) and false otherwise */
+    public boolean isSetQuota() {
+      return EncodingUtils.testBit(__isset_bitfield, __QUOTA_ISSET_ID);
+    }
+
+    public void setQuotaIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __QUOTA_ISSET_ID, value);
+    }
+
+    public int getUpdateNum() {
+      return this.updateNum;
+    }
+
+    public updatePrefComp_args setUpdateNum(int updateNum) {
+      this.updateNum = updateNum;
+      setUpdateNumIsSet(true);
+      return this;
+    }
+
+    public void unsetUpdateNum() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __UPDATENUM_ISSET_ID);
+    }
+
+    /** Returns true if field updateNum is set (has been assigned a value) and false otherwise */
+    public boolean isSetUpdateNum() {
+      return EncodingUtils.testBit(__isset_bitfield, __UPDATENUM_ISSET_ID);
+    }
+
+    public void setUpdateNumIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __UPDATENUM_ISSET_ID, value);
+    }
+
+    public int getLoopNum() {
+      return this.loopNum;
+    }
+
+    public updatePrefComp_args setLoopNum(int loopNum) {
+      this.loopNum = loopNum;
+      setLoopNumIsSet(true);
+      return this;
+    }
+
+    public void unsetLoopNum() {
+      __isset_bitfield = EncodingUtils.clearBit(__isset_bitfield, __LOOPNUM_ISSET_ID);
+    }
+
+    /** Returns true if field loopNum is set (has been assigned a value) and false otherwise */
+    public boolean isSetLoopNum() {
+      return EncodingUtils.testBit(__isset_bitfield, __LOOPNUM_ISSET_ID);
+    }
+
+    public void setLoopNumIsSet(boolean value) {
+      __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __LOOPNUM_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case FILE_NUMBER:
+        if (value == null) {
+          unsetFileNumber();
+        } else {
+          setFileNumber((Integer)value);
+        }
+        break;
+
+      case QUOTA:
+        if (value == null) {
+          unsetQuota();
+        } else {
+          setQuota((Integer)value);
+        }
+        break;
+
+      case UPDATE_NUM:
+        if (value == null) {
+          unsetUpdateNum();
+        } else {
+          setUpdateNum((Integer)value);
+        }
+        break;
+
+      case LOOP_NUM:
+        if (value == null) {
+          unsetLoopNum();
+        } else {
+          setLoopNum((Integer)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case FILE_NUMBER:
+        return getFileNumber();
+
+      case QUOTA:
+        return getQuota();
+
+      case UPDATE_NUM:
+        return getUpdateNum();
+
+      case LOOP_NUM:
+        return getLoopNum();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case FILE_NUMBER:
+        return isSetFileNumber();
+      case QUOTA:
+        return isSetQuota();
+      case UPDATE_NUM:
+        return isSetUpdateNum();
+      case LOOP_NUM:
+        return isSetLoopNum();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof updatePrefComp_args)
+        return this.equals((updatePrefComp_args)that);
+      return false;
+    }
+
+    public boolean equals(updatePrefComp_args that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_fileNumber = true;
+      boolean that_present_fileNumber = true;
+      if (this_present_fileNumber || that_present_fileNumber) {
+        if (!(this_present_fileNumber && that_present_fileNumber))
+          return false;
+        if (this.fileNumber != that.fileNumber)
+          return false;
+      }
+
+      boolean this_present_quota = true;
+      boolean that_present_quota = true;
+      if (this_present_quota || that_present_quota) {
+        if (!(this_present_quota && that_present_quota))
+          return false;
+        if (this.quota != that.quota)
+          return false;
+      }
+
+      boolean this_present_updateNum = true;
+      boolean that_present_updateNum = true;
+      if (this_present_updateNum || that_present_updateNum) {
+        if (!(this_present_updateNum && that_present_updateNum))
+          return false;
+        if (this.updateNum != that.updateNum)
+          return false;
+      }
+
+      boolean this_present_loopNum = true;
+      boolean that_present_loopNum = true;
+      if (this_present_loopNum || that_present_loopNum) {
+        if (!(this_present_loopNum && that_present_loopNum))
+          return false;
+        if (this.loopNum != that.loopNum)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_fileNumber = true;
+      list.add(present_fileNumber);
+      if (present_fileNumber)
+        list.add(fileNumber);
+
+      boolean present_quota = true;
+      list.add(present_quota);
+      if (present_quota)
+        list.add(quota);
+
+      boolean present_updateNum = true;
+      list.add(present_updateNum);
+      if (present_updateNum)
+        list.add(updateNum);
+
+      boolean present_loopNum = true;
+      list.add(present_loopNum);
+      if (present_loopNum)
+        list.add(loopNum);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(updatePrefComp_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetFileNumber()).compareTo(other.isSetFileNumber());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetFileNumber()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.fileNumber, other.fileNumber);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetQuota()).compareTo(other.isSetQuota());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetQuota()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.quota, other.quota);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetUpdateNum()).compareTo(other.isSetUpdateNum());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetUpdateNum()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.updateNum, other.updateNum);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetLoopNum()).compareTo(other.isSetLoopNum());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetLoopNum()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.loopNum, other.loopNum);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("updatePrefComp_args(");
+      boolean first = true;
+
+      sb.append("fileNumber:");
+      sb.append(this.fileNumber);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("quota:");
+      sb.append(this.quota);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("updateNum:");
+      sb.append(this.updateNum);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("loopNum:");
+      sb.append(this.loopNum);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class updatePrefComp_argsStandardSchemeFactory implements SchemeFactory {
+      public updatePrefComp_argsStandardScheme getScheme() {
+        return new updatePrefComp_argsStandardScheme();
+      }
+    }
+
+    private static class updatePrefComp_argsStandardScheme extends StandardScheme<updatePrefComp_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, updatePrefComp_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 1: // FILE_NUMBER
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.fileNumber = iprot.readI32();
+                struct.setFileNumberIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 2: // QUOTA
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.quota = iprot.readI32();
+                struct.setQuotaIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 3: // UPDATE_NUM
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.updateNum = iprot.readI32();
+                struct.setUpdateNumIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 4: // LOOP_NUM
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.loopNum = iprot.readI32();
+                struct.setLoopNumIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, updatePrefComp_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        oprot.writeFieldBegin(FILE_NUMBER_FIELD_DESC);
+        oprot.writeI32(struct.fileNumber);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(QUOTA_FIELD_DESC);
+        oprot.writeI32(struct.quota);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(UPDATE_NUM_FIELD_DESC);
+        oprot.writeI32(struct.updateNum);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(LOOP_NUM_FIELD_DESC);
+        oprot.writeI32(struct.loopNum);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class updatePrefComp_argsTupleSchemeFactory implements SchemeFactory {
+      public updatePrefComp_argsTupleScheme getScheme() {
+        return new updatePrefComp_argsTupleScheme();
+      }
+    }
+
+    private static class updatePrefComp_argsTupleScheme extends TupleScheme<updatePrefComp_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, updatePrefComp_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetFileNumber()) {
+          optionals.set(0);
+        }
+        if (struct.isSetQuota()) {
+          optionals.set(1);
+        }
+        if (struct.isSetUpdateNum()) {
+          optionals.set(2);
+        }
+        if (struct.isSetLoopNum()) {
+          optionals.set(3);
+        }
+        oprot.writeBitSet(optionals, 4);
+        if (struct.isSetFileNumber()) {
+          oprot.writeI32(struct.fileNumber);
+        }
+        if (struct.isSetQuota()) {
+          oprot.writeI32(struct.quota);
+        }
+        if (struct.isSetUpdateNum()) {
+          oprot.writeI32(struct.updateNum);
+        }
+        if (struct.isSetLoopNum()) {
+          oprot.writeI32(struct.loopNum);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, updatePrefComp_args struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(4);
+        if (incoming.get(0)) {
+          struct.fileNumber = iprot.readI32();
+          struct.setFileNumberIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.quota = iprot.readI32();
+          struct.setQuotaIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.updateNum = iprot.readI32();
+          struct.setUpdateNumIsSet(true);
+        }
+        if (incoming.get(3)) {
+          struct.loopNum = iprot.readI32();
+          struct.setLoopNumIsSet(true);
+        }
+      }
+    }
+
+  }
+
+  public static class updatePrefComp_result implements org.apache.thrift.TBase<updatePrefComp_result, updatePrefComp_result._Fields>, java.io.Serializable, Cloneable, Comparable<updatePrefComp_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("updatePrefComp_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
+    private static final org.apache.thrift.protocol.TField E_FIELD_DESC = new org.apache.thrift.protocol.TField("e", org.apache.thrift.protocol.TType.STRUCT, (short)1);
+
+    private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
+    static {
+      schemes.put(StandardScheme.class, new updatePrefComp_resultStandardSchemeFactory());
+      schemes.put(TupleScheme.class, new updatePrefComp_resultTupleSchemeFactory());
+    }
+
+    private UpdatePrefCompTResponse success; // required
+    private alluxio.thrift.AlluxioTException e; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success"),
+      E((short)1, "e");
+
+      private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
+
+      static {
+        for (_Fields field : EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          case 1: // E
+            return E;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final String _fieldName;
+
+      _Fields(short thriftId, String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, UpdatePrefCompTResponse.class)));
+      tmpMap.put(_Fields.E, new org.apache.thrift.meta_data.FieldMetaData("e", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRUCT)));
+      metaDataMap = Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(updatePrefComp_result.class, metaDataMap);
+    }
+
+    public updatePrefComp_result() {
+    }
+
+    public updatePrefComp_result(
+      UpdatePrefCompTResponse success,
+      alluxio.thrift.AlluxioTException e)
+    {
+      this();
+      this.success = success;
+      this.e = e;
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public updatePrefComp_result(updatePrefComp_result other) {
+      if (other.isSetSuccess()) {
+        this.success = new UpdatePrefCompTResponse(other.success);
+      }
+      if (other.isSetE()) {
+        this.e = new alluxio.thrift.AlluxioTException(other.e);
+      }
+    }
+
+    public updatePrefComp_result deepCopy() {
+      return new updatePrefComp_result(this);
+    }
+
+    @Override
+    public void clear() {
+      this.success = null;
+      this.e = null;
+    }
+
+    public UpdatePrefCompTResponse getSuccess() {
+      return this.success;
+    }
+
+    public updatePrefComp_result setSuccess(UpdatePrefCompTResponse success) {
+      this.success = success;
+      return this;
+    }
+
+    public void unsetSuccess() {
+      this.success = null;
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return this.success != null;
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      if (!value) {
+        this.success = null;
+      }
+    }
+
+    public alluxio.thrift.AlluxioTException getE() {
+      return this.e;
+    }
+
+    public updatePrefComp_result setE(alluxio.thrift.AlluxioTException e) {
+      this.e = e;
+      return this;
+    }
+
+    public void unsetE() {
+      this.e = null;
+    }
+
+    /** Returns true if field e is set (has been assigned a value) and false otherwise */
+    public boolean isSetE() {
+      return this.e != null;
+    }
+
+    public void setEIsSet(boolean value) {
+      if (!value) {
+        this.e = null;
+      }
+    }
+
+    public void setFieldValue(_Fields field, Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((UpdatePrefCompTResponse)value);
+        }
+        break;
+
+      case E:
+        if (value == null) {
+          unsetE();
+        } else {
+          setE((alluxio.thrift.AlluxioTException)value);
+        }
+        break;
+
+      }
+    }
+
+    public Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return getSuccess();
+
+      case E:
+        return getE();
+
+      }
+      throw new IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      case E:
+        return isSetE();
+      }
+      throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof updatePrefComp_result)
+        return this.equals((updatePrefComp_result)that);
+      return false;
+    }
+
+    public boolean equals(updatePrefComp_result that) {
+      if (that == null)
+        return false;
+
+      boolean this_present_success = true && this.isSetSuccess();
+      boolean that_present_success = true && that.isSetSuccess();
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (!this.success.equals(that.success))
+          return false;
+      }
+
+      boolean this_present_e = true && this.isSetE();
+      boolean that_present_e = true && that.isSetE();
+      if (this_present_e || that_present_e) {
+        if (!(this_present_e && that_present_e))
+          return false;
+        if (!this.e.equals(that.e))
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      List<Object> list = new ArrayList<Object>();
+
+      boolean present_success = true && (isSetSuccess());
+      list.add(present_success);
+      if (present_success)
+        list.add(success);
+
+      boolean present_e = true && (isSetE());
+      list.add(present_e);
+      if (present_e)
+        list.add(e);
+
+      return list.hashCode();
+    }
+
+    @Override
+    public int compareTo(updatePrefComp_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = Boolean.valueOf(isSetE()).compareTo(other.isSetE());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetE()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.e, other.e);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      schemes.get(iprot.getScheme()).getScheme().read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      schemes.get(oprot.getScheme()).getScheme().write(oprot, this);
+      }
+
+    @Override
+    public String toString() {
+      StringBuilder sb = new StringBuilder("updatePrefComp_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      if (this.success == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.success);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("e:");
+      if (this.e == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.e);
+      }
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+      if (success != null) {
+        success.validate();
+      }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+      try {
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class updatePrefComp_resultStandardSchemeFactory implements SchemeFactory {
+      public updatePrefComp_resultStandardScheme getScheme() {
+        return new updatePrefComp_resultStandardScheme();
+      }
+    }
+
+    private static class updatePrefComp_resultStandardScheme extends StandardScheme<updatePrefComp_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, updatePrefComp_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.success = new UpdatePrefCompTResponse();
+                struct.success.read(iprot);
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case 1: // E
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.e = new alluxio.thrift.AlluxioTException();
+                struct.e.read(iprot);
+                struct.setEIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, updatePrefComp_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.success != null) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          struct.success.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        if (struct.e != null) {
+          oprot.writeFieldBegin(E_FIELD_DESC);
+          struct.e.write(oprot);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class updatePrefComp_resultTupleSchemeFactory implements SchemeFactory {
+      public updatePrefComp_resultTupleScheme getScheme() {
+        return new updatePrefComp_resultTupleScheme();
+      }
+    }
+
+    private static class updatePrefComp_resultTupleScheme extends TupleScheme<updatePrefComp_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, updatePrefComp_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol oprot = (TTupleProtocol) prot;
+        BitSet optionals = new BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        if (struct.isSetE()) {
+          optionals.set(1);
+        }
+        oprot.writeBitSet(optionals, 2);
+        if (struct.isSetSuccess()) {
+          struct.success.write(oprot);
+        }
+        if (struct.isSetE()) {
+          struct.e.write(oprot);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, updatePrefComp_result struct) throws org.apache.thrift.TException {
+        TTupleProtocol iprot = (TTupleProtocol) prot;
+        BitSet incoming = iprot.readBitSet(2);
+        if (incoming.get(0)) {
+          struct.success = new UpdatePrefCompTResponse();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }

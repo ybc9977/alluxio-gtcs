@@ -457,4 +457,20 @@ public final class FileSystemMasterClientServiceHandler implements
       }
     });
   }
+
+  @Override
+  public UpdatePrefCompTResponse updatePrefComp(final int fileNumber, final int quota, final int updateNum, final int loopNum)throws AlluxioTException{
+    return RpcUtils.call(LOG, new RpcCallableThrowsIOException<UpdatePrefCompTResponse>() {
+      @Override
+      public UpdatePrefCompTResponse call() throws AlluxioException, IOException {
+        mFileSystemMaster.updatePrefComp(fileNumber, quota, updateNum,loopNum);
+        return new UpdatePrefCompTResponse();
+      }
+
+      @Override
+      public String toString() {
+        return String.format("UpdatePrefComp: file number=%s, quota=%s", fileNumber, quota, updateNum, loopNum);
+      }
+    });
+  }
 }

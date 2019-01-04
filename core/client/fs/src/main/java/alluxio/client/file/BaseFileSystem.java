@@ -446,4 +446,17 @@ public class BaseFileSystem implements FileSystem {
       mFileSystemContext.releaseMasterClient(masterClient);
     }
   }
+
+  @Override
+  public void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum){
+    FileSystemMasterClient masterClient = mFileSystemContext.acquireMasterClient();
+    try {
+      masterClient.updatePrefComp(fileNumber,quota,updateNum,loopNum);
+
+    } catch (AlluxioStatusException e) {
+      e.printStackTrace();
+    } finally {
+      mFileSystemContext.releaseMasterClient(masterClient);
+    }
+  }
 }

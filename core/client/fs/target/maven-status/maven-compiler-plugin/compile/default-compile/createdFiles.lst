@@ -98,6 +98,7 @@ alluxio/client/lineage/LineageContext.class
 alluxio/client/lineage/LineageFileSystem.class
 alluxio/client/file/options/UpdateUfsModeOptions$1.class
 alluxio/client/metrics/MetricsMasterClient.class
+alluxio/client/game/UpdatePreferenceCompare.class
 alluxio/client/file/FileSystemMasterClient$Factory.class
 alluxio/client/block/stream/NettyPacketReader$Factory.class
 alluxio/client/metrics/ClientMasterSync.class

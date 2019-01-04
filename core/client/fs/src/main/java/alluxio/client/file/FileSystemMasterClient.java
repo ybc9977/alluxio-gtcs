@@ -212,4 +212,6 @@ public interface FileSystemMasterClient extends Client{
   void updateUfsMode(AlluxioURI ufsUri, UpdateUfsModeOptions options) throws AlluxioStatusException;
 
   void runGame(int fileNumber, int quota) throws AlluxioStatusException;
+
+  void updatePrefComp(int fileNumber, int quota, int updateNum, int loopNum) throws AlluxioStatusException;
 }
