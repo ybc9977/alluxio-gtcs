@@ -17,7 +17,7 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 'sudo sed -i s/\$releasever/7/g /etc/yum.repos.d/epel-apache-maven.repo'
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo yum -y install apache-maven"
 
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py describe gtcs
+#python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py describe gtcs
 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "sudo yum -y install git"
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "git clone https://github.com/ybc9977/alluxio-gtcs.git"

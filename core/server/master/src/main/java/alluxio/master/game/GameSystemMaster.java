@@ -156,6 +156,7 @@ public final class GameSystemMaster {
         Long time = System.currentTimeMillis()-start_time;
 
         // read cache ratios
+        cachedRatio.clear();
         File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_opus.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         for(String ratioStr: br.readLine().split(",")){
@@ -167,6 +168,7 @@ public final class GameSystemMaster {
         cacheOrFree();
 
         // read access factors
+        accessFactors.clear();
         file = new File(currentDirectory+"/alluxio-gtcs/python/factor_opus.txt");
         br = new BufferedReader(new FileReader(file));
 
