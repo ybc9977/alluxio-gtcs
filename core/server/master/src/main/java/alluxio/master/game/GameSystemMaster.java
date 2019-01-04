@@ -930,6 +930,9 @@ public final class GameSystemMaster {
             }
         }else{
             boolean[] userChange = new boolean[userList.size()];
+            for (int i = 0; i <userList.size();i++){
+                userChange[i]= false;
+            }
             int count = 0;
             while (count != updateNumber) {
                 int index = (int) (Math.random() * size);
