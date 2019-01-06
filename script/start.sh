@@ -12,7 +12,7 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py describe gtcs
 # start
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "cp ~/alluxio-gtcs/conf/alluxio-site.properties.template ~/alluxio-gtcs/conf/alluxio-site.properties;cp ~/alluxio-gtcs/conf/alluxio-env.sh.template ~/alluxio-gtcs/conf/alluxio-env.sh;echo 'alluxio.master.hostname=${line:9}' >> ~/alluxio-gtcs/conf/alluxio-site.properties;echo 'alluxio.underfs.address=hdfs://${line:9}:9000'>> ~/alluxio-gtcs/conf/alluxio-site.properties;echo ${line:9} > ~/alluxio-gtcs/conf/masters;rm  ~/alluxio-gtcs/conf/workers;touch ~/alluxio-gtcs/conf/workers"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "cp ~/alluxio-gtcs/conf/alluxio-site.properties.template ~/alluxio-gtcs/conf/alluxio-site.properties; cp ~/alluxio-gtcs/conf/alluxio-env.sh.template ~/alluxio-gtcs/conf/alluxio-env.sh; echo 'alluxio.master.hostname=${line:9}' >> ~/alluxio-gtcs/conf/alluxio-site.properties; echo 'alluxio.underfs.address=hdfs://${line:9}:9000'>> ~/alluxio-gtcs/conf/alluxio-site.properties; echo ${line:9} > ~/alluxio-gtcs/conf/masters;rm  ~/alluxio-gtcs/conf/workers;touch ~/alluxio-gtcs/conf/workers"
 
 # python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs ""
 
