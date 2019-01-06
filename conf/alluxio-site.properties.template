@@ -29,5 +29,6 @@
 # User properties
 # alluxio.user.file.readtype.default=CACHE_PROMOTE
 alluxio.user.file.writetype.default=CACHE_THROUGH
-alluxio.game.accesscount=60
-alluxio.game.accessrate=0.3
+alluxio.game.accesscount=80
+alluxio.game.accessrate=0.5
+alluxio.security.authentication.socket.timeout.ms=600000000
