@@ -19,7 +19,7 @@
 
   [On Master] ~/alluxio-gtcs/bin/alluxio updatePrefComp #Files #TotalQuota #Updates #Loops
 
-7. sh *alluxio-gtcs.dir*/script/get_log.sh
+7. sh *alluxio-gtcs.dir*/script/get_log.sh #Worker
 
    resulting in a directory named *gtcs_log* on the Desktop, with master.txt, user_id.txt, OpuS/FairRide logs inside.
 

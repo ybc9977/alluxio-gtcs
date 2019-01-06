@@ -29,4 +29,4 @@
 # User properties
 # alluxio.user.file.readtype.default=CACHE_PROMOTE
 alluxio.user.file.writetype.default=CACHE_THROUGH
-# alluxio.game.accesscount=20
+alluxio.game.accesscount=100
