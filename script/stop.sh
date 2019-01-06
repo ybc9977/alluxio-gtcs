@@ -14,4 +14,4 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "rm -rf ~/alluxio-gtcs/logs;rm -rf ~/alluxio-gtcs/journal;rm ~/alluxio-gtcs/conf/workers;rm ~/alluxio-gtcs/*.txt;rm ~/alluxio-gtcs/python/*.txt;rm ~/*.txt"
 
-python3 flintrock/standalone.py stop gtcs
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py stop gtcs
