@@ -2,9 +2,9 @@
 
 # $1 is the number of newly-added clients while $2 is the number of previously-added instances
 
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py/standalone.py add-slaves gtcs --num-slaves $1
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py add-slaves gtcs --num-slaves $1
 
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py/standalone.py describe gtcs
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py describe gtcs
 
 read -r k < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 
