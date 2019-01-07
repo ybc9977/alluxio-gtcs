@@ -30,8 +30,9 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 
 
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
-ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "sh ~/hadoop/sbin/stop-dfs.sh;sh ~/hadoop/sbin/start-dfs.sh;~/alluxio-gtcs/bin/alluxio format;~/alluxio-gtcs/bin/alluxio-start.sh all SudoMount"
+ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "~/alluxio-gtcs/bin/alluxio format;~/alluxio-gtcs/bin/alluxio-start.sh all SudoMount"
 
+# sh ~/hadoop/sbin/stop-dfs.sh;sh ~/hadoop/sbin/start-dfs.sh;
 #python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "chmod -R 770 /mnt/"
 
 # i=1

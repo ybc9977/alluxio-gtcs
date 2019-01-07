@@ -149,12 +149,12 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.currentTimeMillis();
+        Long start_time = System.nanoTime();
 
         Process p= Runtime.getRuntime().exec(cmdArray); // exec is non-blocking, add wait-for
         p.waitFor();
 
-        Long time = System.currentTimeMillis()-start_time;
+        Long time = System.nanoTime()-start_time;
 
         // read cache ratios
         cachedRatio.clear();
@@ -207,12 +207,12 @@ public final class GameSystemMaster {
         Object[] objectList = cmd.toArray();
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
-        Long start_time = System.currentTimeMillis();
+        Long start_time = System.nanoTime();
 
         Process p=Runtime.getRuntime().exec(cmdArray);
         p.waitFor();
 
-        Long time = System.currentTimeMillis()-start_time;
+        Long time = System.nanoTime()-start_time;
 
         // read cache ratios
         cachedRatio.clear();
@@ -355,7 +355,7 @@ public final class GameSystemMaster {
 
         boolean[] cacheFlag = new boolean[File_Number];
         int quota = Total_QUOTA / clientMap.size();
-        Long start_time =System.currentTimeMillis();
+        Long start_time =System.nanoTime();
 
         int pollIter = 0;
         int unchange = 0; // the number of users whose decisions do not change. Reset to zero once any user changes its decisions
@@ -369,7 +369,7 @@ public final class GameSystemMaster {
                 unchange =0;
             pollIter ++;
         }
-        Long time = System.currentTimeMillis()-start_time;
+        Long time = System.nanoTime()-start_time;
 
         // set cache ratios
         cachedRatio.clear();
@@ -841,15 +841,15 @@ public final class GameSystemMaster {
             optimalHitRatio();
 
             Pair<Integer, Long> result = game();
-            LOG.info("Game runtime (ms):" + result.getSecond());
+            LOG.info("Game runtime (ns):" + result.getSecond());
             LOG.info("Game iteration #:" + result.getFirst());
 
             Long runtime = runOpuS();
-            LOG.info("OpuS runtime (ms):" + runtime);
+            LOG.info("OpuS runtime (ns):" + runtime);
 
 
             runtime = runFairRide();
-            LOG.info("FairRide runtime (ms):" + runtime);
+            LOG.info("FairRide runtime (ns):" + runtime);
 
         } catch(Exception e){
             e.printStackTrace();
@@ -895,19 +895,19 @@ public final class GameSystemMaster {
             for (int i=0;i<loopNumber;i++){
                 System.out.println(i);
                 Pair<Integer, Long> result = game();
-                LOG.info("Game loop "+i+"'s runtime (ms):" + result.getSecond());
+                LOG.info("Game loop "+i+"'s runtime (ns):" + result.getSecond());
                 LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
                 updatePref(updateNumber);
             }
 
             for (int i=0;i<loopNumber;i++){
                 Long runtime = runOpuS();
-                LOG.info("OpuS loop "+i+"'s runtime (ms):" + runtime);
+                LOG.info("OpuS loop "+i+"'s runtime (ns):" + runtime);
                 updatePref(updateNumber);
             }
             for (int i=0;i<loopNumber;i++){
                 Long runtime = runFairRide();
-                LOG.info("FairRide loop "+i+"'s runtime (ms):" + runtime);
+                LOG.info("FairRide loop "+i+"'s runtime (ns):" + runtime);
                 updatePref(updateNumber);
             }
 
