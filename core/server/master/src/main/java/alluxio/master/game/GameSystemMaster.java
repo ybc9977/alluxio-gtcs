@@ -135,7 +135,7 @@ public final class GameSystemMaster {
         LOG.info("register a client with : " + mAddress.getAddress().toString());
         GameSystemClient client = new GameSystemClient(null,mAddress,userId);
         clientMap.put(userId,client);
-        System.out.println(clientMap);
+//        System.out.println(clientMap);
     }
 
     /** Run OpuS and launch access **/
