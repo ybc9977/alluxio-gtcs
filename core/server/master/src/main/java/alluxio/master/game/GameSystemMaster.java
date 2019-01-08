@@ -150,9 +150,11 @@ public final class GameSystemMaster {
         String[] cmdArray = Arrays.copyOf(objectList, objectList.length, String[].class);
 
         Long start_time = System.nanoTime();
+//
+//        Process p= Runtime.getRuntime().exec(cmdArray); // exec is non-blocking, add wait-for
+//        p.waitFor();
 
-        Process p= Runtime.getRuntime().exec(cmdArray); // exec is non-blocking, add wait-for
-        p.waitFor();
+        runCommand(cmdArray);
 
         Long time = System.nanoTime()-start_time;
 
@@ -209,11 +211,13 @@ public final class GameSystemMaster {
 
         Long start_time = System.nanoTime();
 
-        System.out.println("BEFORE:");
-        Process p=Runtime.getRuntime().exec(cmdArray);
-        System.out.println("FAIRRIDE");
-        p.waitFor();
-        System.out.println("FAIRRIDE COMPLETE");
+        runCommand(cmdArray);
+
+//        System.out.println("BEFORE:");
+//        Process p=Runtime.getRuntime().exec(cmdArray);
+//        System.out.println("FAIRRIDE");
+//        p.waitFor();
+//        System.out.println("FAIRRIDE COMPLETE");
 
         Long time = System.nanoTime()-start_time;
 
@@ -252,6 +256,84 @@ public final class GameSystemMaster {
         fop.close();
         //return new Pair<>(time, hitRatio); // runtime and expected hit ratio
         return time;
+    }
+
+    private static void runCommand(String[] cmdArray) {
+        try
+        {
+            final Process process = Runtime.getRuntime().exec(cmdArray);
+            System.out.println("start run cmd=" + cmdArray);
+            new Thread()
+            {
+                @Override
+                public void run()
+                {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    try
+                    {
+                        while((line = in.readLine()) != null)
+                        {
+                            System.out.println("output: " + line);
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    finally
+                    {
+                        try
+                        {
+                            in.close();
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
+
+            new Thread()
+            {
+                @Override
+                public void run()
+                {
+                    BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                    String line = null;
+
+                    try
+                    {
+                        while((line = err.readLine()) != null)
+                        {
+                            System.out.println("err: " + line);
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    finally
+                    {
+                        try
+                        {
+                            err.close();
+                        }
+                        catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }.start();
+
+            process.waitFor();
+            System.out.println("finish run cmd=" + cmdArray);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
