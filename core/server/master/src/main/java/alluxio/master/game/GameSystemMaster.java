@@ -209,8 +209,11 @@ public final class GameSystemMaster {
 
         Long start_time = System.nanoTime();
 
+        System.out.println("BEFORE:");
         Process p=Runtime.getRuntime().exec(cmdArray);
+        System.out.println("FAIRRIDE");
         p.waitFor();
+        System.out.println("FAIRRIDE COMPLETE");
 
         Long time = System.nanoTime()-start_time;
 
