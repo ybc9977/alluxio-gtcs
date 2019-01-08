@@ -331,7 +331,7 @@ public final class GameSystemMaster {
         for(int fileId=0;fileId < File_Number;fileId++) {
             AlluxioURI alluxioURI = new AlluxioURI(AlluxioFolder + "/" + fileId);
             if (!fileSystem.exists(alluxioURI)) {
-                System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
+//                System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
                 FileOutStream os = fileSystem.createFile(alluxioURI,
                         CreateFileOptions.defaults().setWriteType(WriteType.CACHE_THROUGH));
                 byte[] buf = new byte[8 * 1024*1024];
@@ -624,9 +624,9 @@ public final class GameSystemMaster {
             for (int fileIndex = 0; fileIndex < prefs.size(); fileIndex++) {
                 sum += prefs.get(fileIndex);
                 cachedSum += prefs.get(fileIndex) * cachedRatio.get(fileIndex) * factors.get(fileIndex);
-                System.out.println("User " + userIndex + " File "+ fileIndex + " Pref " + prefs.get(fileIndex) + " ratio " +
-                        cachedRatio.get(fileIndex) + " factor " + factors.get(fileIndex));
-                System.out.println("Sum " + sum + " Cachesum " + cachedSum);
+//                System.out.println("User " + userIndex + " File "+ fileIndex + " Pref " + prefs.get(fileIndex) + " ratio " +
+//                        cachedRatio.get(fileIndex) + " factor " + factors.get(fileIndex));
+//                System.out.println("Sum " + sum + " Cachesum " + cachedSum);
 
             }
         }
@@ -893,7 +893,7 @@ public final class GameSystemMaster {
             optimalHitRatio();
 
             for (int i=0;i<loopNumber;i++){
-                System.out.println(i);
+//                System.out.println(i);
                 Pair<Integer, Long> result = game();
                 LOG.info("Game loop "+i+"'s runtime (ns):" + result.getSecond());
                 LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
