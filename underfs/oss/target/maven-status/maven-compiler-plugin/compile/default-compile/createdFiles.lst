@@ -1,5 +1,0 @@
-alluxio/underfs/oss/OSSUnderFileSystem.class
-alluxio/underfs/oss/OSSUnderFileSystemFactory.class
-alluxio/underfs/oss/OSSUnderFileSystem$OSSObjectListingChunk.class
-alluxio/underfs/oss/OSSInputStream.class
-alluxio/underfs/oss/OSSOutputStream.class

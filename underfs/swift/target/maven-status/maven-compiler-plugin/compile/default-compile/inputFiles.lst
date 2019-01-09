@@ -1,9 +1,0 @@
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/http/SwiftDirectClient.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/KeystoneV3Access.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/KeystoneV3AccessProvider.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftInputStream.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/MidPartLongRange.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftUnderFileSystem.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftOutputStream.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftUnderFileSystemFactory.java
-/Users/ybc/Github/alluxio-gtcs/underfs/swift/src/main/java/alluxio/underfs/swift/SwiftMockOutputStream.java
