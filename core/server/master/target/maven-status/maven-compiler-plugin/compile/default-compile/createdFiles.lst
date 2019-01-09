@@ -118,6 +118,7 @@ alluxio/master/lineage/meta/Lineage.class
 alluxio/master/game/LaunchAccessThread.class
 alluxio/master/block/DefaultBlockMaster$1.class
 alluxio/master/block/DefaultBlockMaster$Metrics$4.class
+alluxio/master/game/GameSystemMaster$1.class
 alluxio/web/WebInterfaceGeneralServlet$StorageTierInfo.class
 alluxio/master/file/FileSystemMasterClientRestServiceHandler$5.class
 alluxio/master/meta/DefaultMetaMaster$1.class
@@ -135,6 +136,7 @@ alluxio/master/block/DefaultBlockMaster$Metrics$3.class
 alluxio/web/WebInterfaceWorkersServlet$1.class
 alluxio/master/file/options/CompleteFileOptions.class
 alluxio/master/file/FileSystemMasterClientServiceHandler$3.class
+alluxio/master/game/GameSystemMaster$2.class
 alluxio/master/file/options/RenameOptions.class
 alluxio/master/file/SafeUfsDeleter.class
 alluxio/master/meta/MetaMaster.class

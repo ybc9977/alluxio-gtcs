@@ -54,3 +54,7 @@ flintrock/*.txt
 *.txt
 !flintrock/flintrock/templates/hadoop/conf/core-site.xml
 !flintrock/flintrock/templates/hadoop/conf/hdfs-site.xml
+*.properties
+*.lst
+*.js
+!conf/log4j.properties
