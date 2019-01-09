@@ -1,6 +1,0 @@
-alluxio/underfs/gcs/GCSUnderFileSystem.class
-alluxio/underfs/gcs/GCSInputStream.class
-alluxio/underfs/gcs/GCSUnderFileSystem$GCSObjectListingChunk.class
-alluxio/underfs/gcs/GCSOutputStream.class
-alluxio/underfs/gcs/GCSUnderFileSystemFactory.class
-alluxio/underfs/gcs/GCSUtils.class

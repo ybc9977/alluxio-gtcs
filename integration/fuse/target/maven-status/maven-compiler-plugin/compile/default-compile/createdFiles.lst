@@ -1,6 +1,0 @@
-alluxio/fuse/AlluxioFuseFileSystem.class
-alluxio/fuse/AlluxioFuseFileSystem$PathCacheLoader.class
-alluxio/fuse/OpenFileEntry.class
-alluxio/fuse/AlluxioFuse.class
-alluxio/fuse/AlluxioFuseOptions.class
-alluxio/fuse/AlluxioFuseUtils.class
