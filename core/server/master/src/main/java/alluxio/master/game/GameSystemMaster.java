@@ -445,6 +445,10 @@ public final class GameSystemMaster {
         int pollIter = 0;
         int unchange = 0; // the number of users whose decisions do not change. Reset to zero once any user changes its decisions
 
+        for (int i = 0; i<File_Number;i++){
+            cacheFlag[i] = (cachedRatio.get(i) == 1.0);
+        }
+
         while(unchange < userList.size()){
             String userId = userList.get(pollIter % userList.size());
             GameSystemClient client = clientMap.get(userId);

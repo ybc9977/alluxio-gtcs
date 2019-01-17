@@ -5,7 +5,7 @@
 # $1: worker number
 
 # clear existing logs
-python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "rm *.txt;rm  ~/alluxio-gtcs/*.txt; rm ~/alluxio-gtcs/python/OpuS_log.txt;rm ~/alluxio-gtcs/python/FairRide_log.txt;"
+python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "rm *.txt;rm  ~/alluxio-gtcs/*.txt;rm  ~/alluxio-gtcs/logs/*.out;rm ~/alluxio-gtcs/logs/*.log; rm ~/alluxio-gtcs/python/OpuS_log.txt;rm ~/alluxio-gtcs/python/FairRide_log.txt;"
 
 python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py describe gtcs
 
@@ -31,6 +31,8 @@ python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs 
 
 read -r line < $(cd `dirname $0`; cd ..; pwd)/flintrock/flintrock.txt
 ssh -o StrictHostKeyChecking=no -i $flintrockPemPath ${line} "sh ~/hadoop/sbin/stop-dfs.sh;sh ~/hadoop/sbin/start-dfs.sh;~/alluxio-gtcs/bin/alluxio format;~/alluxio-gtcs/bin/alluxio-start.sh all SudoMount"
+
+sh $(cd `dirname $0`; pwd)/runClients.sh $1
 
 # sh ~/hadoop/sbin/stop-dfs.sh;sh ~/hadoop/sbin/start-dfs.sh;
 #python3 $(cd `dirname $0`; cd ..; pwd)/flintrock/standalone.py run-command gtcs "chmod -R 770 /mnt/"
