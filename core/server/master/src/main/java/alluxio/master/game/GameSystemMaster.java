@@ -989,16 +989,16 @@ public final class GameSystemMaster {
                 updatePref(updateNumber);
             }
 
-            for (int i=0;i<loopNumber;i++){
-                Long runtime = runOpuS();
-                LOG.info("OpuS loop "+i+"'s runtime (ns):" + runtime);
-                updatePref(updateNumber);
-            }
-            for (int i=0;i<loopNumber;i++){
-                Long runtime = runFairRide();
-                LOG.info("FairRide loop "+i+"'s runtime (ns):" + runtime);
-                updatePref(updateNumber);
-            }
+//            for (int i=0;i<loopNumber;i++){
+//                Long runtime = runOpuS();
+//                LOG.info("OpuS loop "+i+"'s runtime (ns):" + runtime);
+//                updatePref(updateNumber);
+//            }
+//            for (int i=0;i<loopNumber;i++){
+//                Long runtime = runFairRide();
+//                LOG.info("FairRide loop "+i+"'s runtime (ns):" + runtime);
+//                updatePref(updateNumber);
+//            }
 
         }catch (Exception e){
             e.printStackTrace();
