@@ -981,9 +981,9 @@ public final class GameSystemMaster {
 
             initWrite();
 
-            optimalHitRatio();
-
             for (int i=0;i<loopNumber;i++){
+                optimalHitRatio();
+
                 Pair<Integer, Long> result = game();
                 LOG.info("Game loop "+i+"'s runtime (ns):" + result.getSecond());
                 LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
