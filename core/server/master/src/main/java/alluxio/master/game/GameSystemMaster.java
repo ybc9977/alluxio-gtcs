@@ -414,6 +414,7 @@ public final class GameSystemMaster {
      */
     private static void initWrite() throws AlluxioException, IOException{
         for(int fileId=0;fileId < File_Number;fileId++) {
+            cachedRatio.add(fileId,0.0);
             AlluxioURI alluxioURI = new AlluxioURI(AlluxioFolder + "/" + fileId);
             if (!fileSystem.exists(alluxioURI)) {
 //                System.out.println("Start to write file "+ fileId + " of size " + File_Size + " MB.");
