@@ -469,6 +469,7 @@ public final class GameSystemMaster {
             else
                 cachedRatio.add(0.0);
         }
+        System.out.println(cachedRatio);
 
 
         // set access factors: all ones!
