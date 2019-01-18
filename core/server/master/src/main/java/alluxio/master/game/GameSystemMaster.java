@@ -436,93 +436,6 @@ public final class GameSystemMaster {
         }
     }
 
-    /** the version of cache sharing game specified for updatePrefComp **/
-
-    private static void updateGame(int updateNumber, int loopNumber) throws AlluxioStatusException, IOException{
-        boolean[] cacheFlag = new boolean[File_Number];
-        int quota = Total_QUOTA / clientMap.size();
-
-        for (int i = 0; i<loopNumber; i++){
-            Long start_time =System.nanoTime();
-
-            int pollIter = 0;
-            int unchange = 0; // the number of users whose decisions do not change. Reset to zero once any user changes its decisions
-
-            while(unchange < userList.size()){
-                pollIter ++;
-                String userId = userList.get(pollIter % userList.size());
-                GameSystemClient client = clientMap.get(userId);
-                if(client.poll(cacheFlag, quota))
-                    unchange++;
-                else
-                    unchange=0;
-            }
-            Long time = System.nanoTime()-start_time;
-            // set cache ratios
-            cachedRatio.clear();
-            for(boolean flag: cacheFlag){
-                if(flag)
-                    cachedRatio.add(1.0);
-                else
-                    cachedRatio.add(0.0);
-            }
-            // set access factors: all ones!
-            accessFactors.clear();
-            Double[] ones = new Double[File_Number];
-            Arrays.fill(ones,1.0);
-            for(int j=0;j<userList.size();j++)
-                accessFactors.add(Arrays.asList(ones));
-
-            cacheOrFree();
-            // log cache ratio and access factors of game
-            File file = new File(currentDirectory+"/alluxio-gtcs/python/ratio_game.txt");
-            FileOutputStream fop = new FileOutputStream(file,false);
-            OutputStreamWriter writer = new OutputStreamWriter(fop);
-            writer.write(Arrays.toString(cachedRatio.toArray()) // [1.0, 2.0, ..., ]
-                    .replace("[", "")  //remove the right bracket
-                    .replace("]", "")  //remove the left bracket
-                    //.replace(",", "\t")
-                    .trim()); // remove trailing spaces from partially initialized arrays
-            writer.write("\n");
-            writer.close();
-            fop.close();
-
-            file = new File(currentDirectory+"/alluxio-gtcs/python/factor_game.txt");
-            fop = new FileOutputStream(file,false);
-            writer = new OutputStreamWriter(fop);
-            for(List<Double> accessFactor: accessFactors) {
-                writer.write(Arrays.toString(accessFactor.toArray()) // [1.0, 2.0, ..., ]
-                        .replace("[", "")  //remove the right bracket
-                        .replace("]", ""));  //remove the left bracket
-                //.replace(",", "\t")
-                // .trim()); // remove trailing spaces from partially initialized arrays
-                writer.write("\n");
-            }
-            writer.close();
-            fop.close();
-
-
-
-
-
-            Double hitRatio = calculateHitRatio();
-
-            Pair<Double,Double> pair = access(MODE.Game); // new Pair<>(-1.0,-1.0);
-
-            fop = new FileOutputStream(log,true);
-            writer = new OutputStreamWriter(fop);
-            writer.write("Game\n Runtime\t" + time + "\t Iteration number\t" + pollIter+ "\t Expect HR\t" + hitRatio + "\t Experiment HR\t" + pair.getFirst() + "\t Latency\t" + pair.getSecond() + "\n");
-            writer.close();
-            fop.close();
-
-            LOG.info("Game loop "+i+"'s runtime (ns):" + time);
-            LOG.info("Game loop "+i+"'s iteration #:" + pollIter);
-
-            updatePref(updateNumber);
-        }
-
-    }
-
     /** the main logic of cache sharing game */
     private static Pair<Integer, Long> game() throws AlluxioStatusException, IOException {
 
@@ -532,6 +445,10 @@ public final class GameSystemMaster {
 
         int pollIter = 0;
         int unchange = 0; // the number of users whose decisions do not change. Reset to zero once any user changes its decisions
+
+        for (int i = 0; i<File_Number;i++){
+            cacheFlag[i] = (cachedRatio.get(i) == 1.0);
+        }
 
         while(unchange < userList.size()){
             String userId = userList.get(pollIter % userList.size());
@@ -1059,14 +976,29 @@ public final class GameSystemMaster {
 
 
         try{
-
             getPref();
 
             initWrite();
 
             optimalHitRatio();
 
-            updateGame(updateNumber,loopNumber);
+            for (int i=0;i<loopNumber;i++){
+                Pair<Integer, Long> result = game();
+                LOG.info("Game loop "+i+"'s runtime (ns):" + result.getSecond());
+                LOG.info("Game loop "+i+"'s iteration #:" + result.getFirst());
+                updatePref(updateNumber);
+            }
+
+//            for (int i=0;i<loopNumber;i++){
+//                Long runtime = runOpuS();
+//                LOG.info("OpuS loop "+i+"'s runtime (ns):" + runtime);
+//                updatePref(updateNumber);
+//            }
+//            for (int i=0;i<loopNumber;i++){
+//                Long runtime = runFairRide();
+//                LOG.info("FairRide loop "+i+"'s runtime (ns):" + runtime);
+//                updatePref(updateNumber);
+//            }
 
         }catch (Exception e){
             e.printStackTrace();
