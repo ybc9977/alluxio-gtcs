@@ -110,7 +110,7 @@ public class GameSystemClient extends AbstractClient {
         List<Integer> cachedFileIds = new ArrayList<>();
 
         for(int index:mSortedIndices) { // in descending order of preference
-            System.out.println(mUserId+" Quota: "+quota);
+//            System.out.println(mUserId+" Quota: "+quota);
             if(quota>0) {
                 if (!cacheFlag[index]) {
                     cacheFlag[index] = true;
